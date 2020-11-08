@@ -1,0 +1,88 @@
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+    .page-login {
+        .col-vector {
+            height: 450px;
+            .vector-1 img {
+                position: absolute;
+                top: 50px;
+                left: 10px;
+                width: 95%;
+            }
+        }
+        .container-form-login {
+            .col-form {
+                padding-top: 0;
+                padding-right: 0;
+                padding: 0 50px;
+            }
+        }
+    }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (min-width: 576px) and (max-width: 767.98px) { 
+    .page-login {
+        .col-vector {
+            height: 550px;
+            .vector-1 img {
+                position: absolute;
+                top: 50px;
+                left: 40px;
+                width: 85%;
+            }
+        }
+        .container-form-login {
+            .col-form {
+                padding-top: 0;
+                padding-right: 0;
+                padding: 0 80px;
+            }
+        }
+    }
+}
+
+// Medium devices (tablets, less than 992px)
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .page-login {
+        .col-vector {
+            height: 600px;
+            .vector-1 img {
+                position: absolute;
+                top: 50px;
+                left: 100px;
+                width: 75%;
+            }
+        }
+        .container-form-login {
+            .col-form {
+                padding-top: 0;
+                padding-right: 0;
+                padding: 0 150px;
+            }
+        }
+    }
+}
+
+// Large devices (desktops, less than 1200px)
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    .page-login {
+        svg.svg-2 {
+            display: inline-block;
+        }
+        .col-vector {
+            .vector-1 img {
+                position: absolute;
+                top: 20px;
+                left: 0;
+                width: 100%;
+            }
+        }
+        .container-form-login {
+            .col-form {
+                padding-top: 260px;
+                padding-right: 30px;
+            }
+        }
+    }
+}

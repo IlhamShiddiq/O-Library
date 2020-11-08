@@ -1,0 +1,134 @@
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+    nav.nav-landing {
+        @include nav-mobile;
+    }
+    .page-1 {
+        @include page-1-mobile;
+        .vector .vector-2 {
+            position: absolute;
+            bottom: 65px;
+            right: 0;
+            width: 100%;
+            text-align: center;
+            img {
+                width: 330px;
+                display: inline-block;
+            }
+        }
+    }
+    .page-2 {
+        height: 1320px;
+        .green-square-sm {
+            display: none;
+        }
+        .info-container {
+            padding: 10px 40px;
+            h1.title-page {
+                font-size: 22px;
+            }
+        }
+    }
+    .page-3 {
+        .gallery-container {
+            padding: 0 20px;
+            h1.title-page {
+                font-size: 22px;
+            }
+        }
+    }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (min-width: 576px) and (max-width: 767.98px) { 
+    nav.nav-landing {
+        @include nav-mobile;
+    }
+    .page-1 {
+        @include page-1-mobile;
+        .vector .vector-2 {
+            position: absolute;
+            bottom: 65px;
+            right: 0;
+            width: 100%;
+            text-align: center;
+            img {
+                width: 350px;
+                display: inline-block;
+            }
+        }
+    }
+    .page-2 {
+        height: 1320px;
+        .green-square-sm {
+            display: none;
+        }
+        .info-container {
+            padding: 10px 50px;
+            h1.title-page {
+                font-size: 23px;
+            }
+        }
+    }
+    .page-3 {
+        .gallery-container {
+            h1.title-page {
+                font-size: 23px;
+            }
+        }
+    }
+}
+
+// Medium devices (tablets, less than 992px)
+@media (min-width: 768px) and (max-width: 991.98px) {
+    nav.nav-landing {
+        @include nav-mobile;
+    }
+    .page-1 {
+        @include page-1-mobile;
+        .vector .vector-2 {
+            position: absolute;
+            bottom: 65px;
+            right: 0;
+            width: 100%;
+            text-align: center;
+            img {
+                width: 370px;
+                display: inline-block;
+            }
+        }
+    }
+}
+
+// Large devices (desktops, less than 1200px)
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    .page-1 {
+        .vector .vector-1 img {
+            top: 100px;
+            right: 25px;
+            width: 610px;
+        }
+        .vector .vector-2 {
+            img {
+                display: none;
+            }
+        }
+        .words-1 {
+            padding: 190px 50px;
+            h1 {
+                font-size: 70px;
+            }
+            h2 {
+                font-size: 25px;
+            }
+            p {
+                font-size: 21px;
+                line-height: 28px;
+                margin-top: 30px;
+            }
+            a.btn {
+                margin-top: 20px;
+            }
+        }
+    }
+}

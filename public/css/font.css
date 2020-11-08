@@ -1,0 +1,14 @@
+@font-face {
+    font-family: segoe;
+    src: url('./../font/segoe.ttf');
+}
+
+@font-face {
+    font-family: roboto;
+    src: url('./../font/roboto.ttf');
+}
+
+@font-face {
+    font-family: number;
+    src: url('./../font/number.ttf');
+}

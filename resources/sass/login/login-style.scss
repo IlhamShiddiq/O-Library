@@ -1,0 +1,81 @@
+.page-login {
+    .vector-1 img {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        width: 90%;
+    }
+    svg {
+        width: 100%;
+    }
+    svg.svg-2 {
+        display: none;
+    }
+    .container-form-login {
+        .col-form {
+            padding-top: 290px;
+            padding-right: 70px;
+            h1 {
+                font-family: segoe;
+                font-size: 42px;
+            }
+            h4 {
+                font-family: segoe;
+                font-size: 18px;
+                margin-top: -10px;
+            }
+            form {
+                .input-group-text {
+                    background-color: #fff !important;
+                    border: 0 solid black !important;
+                }
+                input {
+                    border: 0 solid black !important;
+                    &:focus {
+                        box-shadow: 0 0 0 0.2rem rgba(0,123,255,0) !important;
+                        border-bottom: 2px solid #36AB83 !important;
+                    }
+                }
+                input.is-invalid {
+                    border-bottom: 2px solid #cf4218 !important;
+                }
+                .input-group-text, input {
+                    border-bottom: 2px solid #D1D1D1 !important;
+                    border-radius: 0 !important;
+                }
+                button {
+                    width: 100%;
+                }
+                .log-as-admin {
+                    font-family: segoe;
+                    color: #3D3D3D;
+                    font-size: 15px;
+                    &:hover {
+                        text-decoration: none;
+                        color: #929292;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.home-btn {
+    bottom: 20px;
+    left: 20px;
+    a {
+        width: 65px;
+        height: 65px;
+        background-color: #388751;
+        font-size: 25px;
+        padding-top: 12px;
+        &:hover {  
+            background-color: #013D2D;
+        }
+        &:focus {
+            box-shadow: 0 0 0 0.2rem rgba(44, 165, 64, 0.575) !important;
+        }
+    }
+}
+
+@import './responsive.scss';

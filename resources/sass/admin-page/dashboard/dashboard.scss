@@ -1,0 +1,78 @@
+.dashboard-container {
+    .calendar {
+        box-shadow: 0 0 0 rgba(0, 0, 0) !important;
+    }
+    .about-user {
+        img.vector {
+            width: 100%;
+        }
+        .greeting-user {
+            border-bottom: 1px solid black;
+            h1, p {
+                font-family: segoe;
+            }
+            h1 {
+                font-size: 32px;
+                letter-spacing: 1px;
+            }
+        }
+    }
+    .more-graphic {
+        canvas {
+            margin-top: -10px;
+        }
+        .total {
+            span {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+        }
+    }
+    .total-more-graphic {
+        background-color: rgb(164, 236, 157);
+    }
+    .info {
+        .info-item {
+            width: 100%;
+            height: 105px;
+            border-radius: 10px;
+            padding: 12px 12px 12px 0;
+            h1 {
+                font-family: segoe;
+                font-size: 15px;
+                margin-top: 5px;
+            }
+            p {
+                font-family: number;
+                font-size: 42px;
+                margin-top: -10px;
+            }
+            .icon {
+                width: 80px;
+                height: 80px;
+                border-radius: 100%;
+                font-size: 25px;
+                padding-top: 22px;
+            }
+        }
+        .info-item-buku {
+            background-color: rgb(252, 80, 117);
+        }
+        .icon-buku {
+            background-color: rgb(252, 189, 202);
+        }
+        .info-item-ebook {
+            background-color: rgb(255, 202, 68);
+        }
+        .icon-ebook {
+            background-color: rgb(255, 234, 181);
+        }
+        .info-item-kategori {
+            background-color: rgb(62, 204, 204);
+        }
+        .icon-kategori {
+            background-color: rgb(177, 247, 247);
+        }
+    }
+}
+
+@import './responsive.scss';

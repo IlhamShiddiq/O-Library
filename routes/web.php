@@ -35,8 +35,11 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/book', [DataBukuController::class, 'index']);
+    Route::post('/book', [DataBukuController::class, 'store']);
+    Route::post('/book/search', [DataBukuController::class, 'search']);
     Route::get('/book/history', [DataBukuController::class, 'bookHistory']);
     Route::get('/return-book', [DataBukuController::class, 'returnBook']);
+    Route::delete('/book/{book}', [DataBukuController::class, 'destroy']);
 
     Route::get('/ebook', [DataEbookController::class, 'index']);
     Route::get('/ebook/view', [DataEbookController::class, 'view']);

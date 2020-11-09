@@ -65,7 +65,7 @@
                                 <p>Jumlah<br>Buku</p>
                             </div>
                             <div class="value mt-4">
-                                <p>56</p>
+                                <p>{{$sum_books}}</p>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                                 <p>Jumlah<br>Ebook</p>
                             </div>
                             <div class="value mt-4">
-                                <p>87</p>
+                                <p>{{$sum_ebooks}}</p>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                                 <p>Jumlah<br>Kategori</p>
                             </div>
                             <div class="value mt-4">
-                                <p>45</p>
+                                <p>{{$sum_categories}}</p>
                             </div>
                         </div>
                     </div>

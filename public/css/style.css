@@ -1278,6 +1278,9 @@ nav.nav-landing button:focus {
 .item-buku .image-buku .image {
   height: 100%;
   background-size: cover;
+}
+
+.item-buku .image-buku .image img {
   border-bottom-left-radius: 40px;
 }
 
@@ -1317,9 +1320,11 @@ nav.nav-landing button:focus {
 
 .item-person .photo-person-wrapper .photo-person {
   height: 100%;
+}
+
+.item-person .photo-person-wrapper .photo-person img {
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
-  background-size: cover;
 }
 
 .item-person .role-person {

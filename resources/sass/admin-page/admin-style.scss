@@ -212,7 +212,9 @@
         .image {
             height: 100%;
             background-size: cover;
-            border-bottom-left-radius: 40px;
+            img {
+                border-bottom-left-radius: 40px;
+            }
         }
     }
     .btn-action {
@@ -245,9 +247,10 @@
         border-bottom-right-radius: 25px;
         .photo-person {
             height: 100%;
-            border-top-right-radius: 25px;
-            border-bottom-right-radius: 25px;
-            background-size: cover;
+            img {
+                border-top-right-radius: 25px;
+                border-bottom-right-radius: 25px;
+            }
         }
     }
     .role-person {

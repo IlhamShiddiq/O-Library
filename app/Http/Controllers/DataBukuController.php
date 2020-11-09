@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Categories;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File; 
 
 class DataBukuController extends Controller
 {
@@ -14,7 +18,14 @@ class DataBukuController extends Controller
      */
     public function index()
     {
-        return view('librarian/data-book');
+        $books = DB::table('books')
+            ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
+            ->join('categories', 'books.category_id', '=', 'categories.id')
+            ->select('books.id', 'books.title', 'books.author', 'books.qty', 'books.image', 'books.about', 'publishers.publisher', 'categories.category')
+            ->paginate(5);
+        
+        return view('librarian/data-book', compact('books'));
+        // dd($books);
     }
 
     public function bookHistory()
@@ -40,7 +51,45 @@ class DataBukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'judulBuku' => 'required',
+            'penerbitBuku' => 'required',
+            'kategoriBuku' => 'required',
+            'penulisBuku' => 'required',
+            'stokBuku' => 'required',
+            'tentangBuku' => 'required',
+            'gambarBuku' => 'mimes:jpeg,jpg,bmp,png|max:2000'
+        ]);
+
+        $cat = Categories::where('id', $request->kategoriBuku)->get();
+        $pub = Publisher::where('id', $request->penerbitBuku)->get();
+
+        if($cat->all() && $pub->all())
+        {
+            $file = $request->file('gambarBuku');
+
+            if($file) $image = $file->getClientOriginalName();
+            else $image = "book-default.png";
+
+            $book = new Book;
+            $book->title = $request->judulBuku;
+            $book->publisher_id = $request->penerbitBuku;
+            $book->author = $request->penulisBuku;
+            $book->category_id = $request->kategoriBuku;
+            $book->qty = $request->stokBuku;
+            $book->image = $image;
+            $book->about = $request->tentangBuku;
+            $book->save();
+
+            if($file) $file->move(public_path('uploaded_files/book-cover/'),$file->getClientOriginalName());
+
+            return redirect('/book')->with('success', 'Data berhasil ditambah');
+        }
+        else if($cat->all() && !($pub->all())) $err = 'ID Penerbit tidak ditemukan';
+        else if(!($cat->all()) && $pub->all()) $err = 'ID Kategori tidak ditemukan';
+        else $err = 'ID Penerbit dan Kategori tidak ditemukan';
+
+        return redirect('/book')->with('failed', $err);
     }
 
     /**
@@ -85,11 +134,36 @@ class DataBukuController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        Book::destroy($book->id);
+        if($book->image) {
+            if($book->image != "book-default.png") File::delete(public_path('uploaded_files/book-cover/'.$book->image));
+        }
+
+        return redirect('/book')->with('success', 'Data '.$book->title.' berhasil dihapus');
+        // dd($book);
     }
 
     public function returnBook()
     {
         return view('librarian/return-book');
+    }
+
+    public function search(Request $request)
+    {
+        if($request->by == 'category') $tbl = 'categories.'.$request->by;
+        else if($request->by == 'publisher') $tbl = 'publishers.'.$request->by;
+        else $tbl = 'books.'.$request->by;
+
+        $search = '%'.$request->search.'%';
+
+        $books = DB::table('books')
+            ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
+            ->join('categories', 'books.category_id', '=', 'categories.id')
+            ->select('books.id', 'books.publisher_id', 'books.category_id', 'books.title', 'books.author', 'books.qty', 'books.image', 'books.about', 'publishers.publisher', 'categories.category')
+            ->where($tbl, 'like', $search)
+            ->paginate(3000);
+
+        return view('librarian.data-book', compact('books'));
+        // dd($request->request);
     }
 }

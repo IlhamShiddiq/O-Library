@@ -40,6 +40,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/book/history', [DataBukuController::class, 'bookHistory']);
     Route::get('/return-book', [DataBukuController::class, 'returnBook']);
     Route::delete('/book/{book}', [DataBukuController::class, 'destroy']);
+    Route::put('/book/{book}', [DataBukuController::class, 'update']);
 
     Route::get('/ebook', [DataEbookController::class, 'index']);
     Route::get('/ebook/view', [DataEbookController::class, 'view']);

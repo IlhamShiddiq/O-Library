@@ -58,7 +58,7 @@
                     @foreach ($books as $book)
                         <div class="item-table item-buku shadow">
                             <div class="item-table-header top-absolute">
-                                <h1 class="judul text-white">{{$book->title}}</h1>
+                                <h1 class="judul text-white">{{$book->title}} ~ ID : {{$book->id}}</h1>
                             </div>
                             <div class="item-table-body">
                                 <div class="row">
@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <div class="btn-action bottom-absolute">
-                                <a href="#" class="badge badge-success" data-toggle="modal" data-target="#editDataModal">Ubah</a>
+                                <a href="#" class="badge badge-success" data-toggle="modal" data-target="#editDataModal" data-id="{{$book->id}}" data-title="{{$book->title}}" data-category_id="{{$book->category_id}}" data-author="{{$book->author}}" data-publisher_id="{{$book->publisher_id}}" data-about="{{$book->about}}" data-qty="{{$book->qty}}" data-image="{{asset('uploaded_files/book-cover/'.$book->image)}}" data-nameimg="{{$book->image}}">Ubah</a>
                                 <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$book->id}}">Hapus</a>
                                 <a href="{{ url('/book/history') }}" class="badge badge-info">Riwayat</a>
                             </div>
@@ -84,7 +84,7 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-6 p-0">
-                                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#detailDataModal">Detail Buku</button>
+                                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#detailDataModal" data-id="{{$book->id}}" data-title="{{$book->title}}" data-category="{{$book->category}}" data-author="{{$book->author}}" data-publisher="{{$book->publisher}}" data-about="{{$book->about}}" data-qty="{{$book->qty}}" data-image="{{asset('uploaded_files/book-cover/'.$book->image)}}">Detail Buku</button>
                                         </div>
                                         <div class="col-6 text-right p-0">
                                             <span class="badge badge-light mr-3 stok">Stok buku : {{$book->qty}}</span>
@@ -107,7 +107,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header text-center">
-                    <img src="img/icon.png" alt="icon" width="55">
+                    <img src="{{asset('img/icon.png')}}" alt="icon" width="55">
                     <h5>TAMBAH DATA</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -229,87 +229,14 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header text-center">
-                    <img src="img/icon.png" alt="icon" width="55">
+                    <img src="{{asset('img/icon.png')}}" alt="icon" width="55">
                     <h5>EDIT DATA</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body py-3">
-                    <form>
-                        <div class="row">
-                          <div class="col-12">
-                            <div class="form-group">
-                                <small for="judulBuku">Judul Buku</small>
-                                <input type="text" class="form-control" id="judulBuku" name="judulBuku" placeholder="Isikan disini...">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row form-mg">
-                          <div class="col-6 pr-1">
-                            <div class="form-group">
-                                <small for="penerbitBuku">Penerbit Buku</small>
-                                <select class="form-control" id="penerbitBuku" name="penerbitBuku">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                </select>
-                            </div>
-                          </div>
-                          <div class="col-6 pl-1">
-                            <div class="form-group">
-                                <small for="penulisBuku">Kategori Buku</small>
-                                <select class="form-control" id="penulisBuku" name="penulisBuku">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row form-mg">
-                          <div class="col-8 pr-1">
-                            <div class="form-group">
-                                <small for="judulBuku">Penulis Buku</small>
-                                <input type="text" class="form-control" id="judulBuku" name="judulBuku" placeholder="Isikan disini...">
-                            </div>
-                          </div>
-                          <div class="col-4 pl-1">
-                            <div class="form-group">
-                                <small for="judulBuku">Stok Buku</small>
-                                <input type="number" class="form-control" id="judulBuku" name="judulBuku" placeholder="Isikan disini...">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row form-mg">
-                          <div class="col-12">
-                            <div class="form-group">
-                                <small for="tentangBuku">Tentang Buku</small>
-                                <textarea class="form-control" id="tentangBuku" name="tentangBuku" placeholder="Isikan disini..." rows="3"></textarea>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row form-mg">
-                          <div class="col-12">
-                            <small for="gambarBuku">Gambar Buku</small>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="gambarBuku" name="gambarBuku">
-                                  <label class="custom-file-label" for="gambarBuku">Choose file</label>
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row justify-content-center mt-3">
-                          <div class="col-4 px-0">
-                            <div class="preview-img" id="preview-img"></div>
-                          </div>
-                          <div class="col-8 text-black pt-3 px-1">
-                            <small>Mohon diisi secara lengkap,<br>serta diisi dengan data yang sebenar-benarnya.</small>
-                            <button type="submit" class="btn btn-sm btn-success mt-3 px-5" name="editData">Edit Data</button>
-                          </div>
-                        </div>
-                    </form>
+                    <div class="form-edit"></div>
                 </div>
                 <div class="modal-footer text-center">
                     <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
@@ -323,7 +250,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header text-center">
-                    <img src="img/icon.png" alt="icon" width="55">
+                    <img src="{{asset('img/icon.png')}}" alt="icon" width="55">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -338,7 +265,7 @@
                             </div>
                             <div class="col-9">
                                 <div class="detail">
-                                    <h1 class="detail-judul">Ini Judul Buku</h1>
+                                    <h1 class="detail-judul"></h1>
                                     <span class="badge badge-secondary detail-kategori mb-2">Kategori</span>
                                     <p class="detail detail-penulis">Ditulis oleh : Ilham Shiddiq</p>
                                     <p class="detail detail-penerbit">Diterbitkan oleh : Ilham Shiddiq Publisher</p>
@@ -384,16 +311,154 @@
 @section('more-js')
     <script>
         $('#deleteModal').on('show.bs.modal', function (event) {
-        let button = $(event.relatedTarget) // Button that triggered the modal
-        let id = button.data('id')
-        let modal = $(this)
+            let button = $(event.relatedTarget) // Button that triggered the modal
+            let id = button.data('id')
+            let modal = $(this)
 
-        modal.find('.form-hapus').html(`
-                                        <form action="{{url('/book/${id}')}}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger">Yes</button>
-                                        </form>`)
-                                  });
+            modal.find('.form-hapus').html(`
+                                            <form action="{{url('/book/${id}')}}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger">Yes</button>
+                                            </form>`)
+        });
+        $('#detailDataModal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget) // Button that triggered the modal
+            let id = button.data('id')
+            let title = button.data('title')
+            let category = button.data('category')
+            let author = button.data('author')
+            let publisher = button.data('publisher')
+            let about = button.data('about')
+            let qty = button.data('qty')
+            let image = button.data('image')
+            let modal = $(this)
+
+            modal.find('.detail-judul').html(title)
+            modal.find('.detail-kategori').html(category)
+            modal.find('.detail-penulis').html('Ditulis oleh: '+author)
+            modal.find('.detail-penerbit').html('Diterbitkan oleh: '+publisher)
+            modal.find('.detail-tentang').html(about)
+            modal.find('.detail-stok').html('Tersedia: '+qty+' buku')
+            modal.find('.image-buku').html(`<img src="${image}" alt="${title}" class="full-width full-height fit-cover">`)
+        });
+        $('#editDataModal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget) // Button that triggered the modal
+            let id = button.data('id')
+            let title = button.data('title')
+            let category = button.data('category_id')
+            let author = button.data('author')
+            let publisher = button.data('publisher_id')
+            let about = button.data('about')
+            let qty = button.data('qty')
+            let image = button.data('image')
+            let nameImg = button.data('nameimg')
+            let modal = $(this)
+
+            modal.find('.form-edit').html(`
+                                <form action="{{url('/book/${id}')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('put')
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <small for="judulBuku">Judul Buku</small>
+                                                <input type="text" class="form-control @error('judulBuku') is-invalid @enderror" id="judulBuku" name="judulBuku" placeholder="Isikan disini..." value="${title}">
+                                                @error('judulBuku')
+                                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row form-mg">
+                                        <div class="col-6 pr-1">
+                                            <div class="form-group">
+                                                <small for="penerbitBuku">ID Penerbit Buku</small>
+                                                <input type="number" class="form-control @error('penerbitBuku') is-invalid @enderror" id="penerbitBuku" name="penerbitBuku" placeholder="Isikan disini..." value="${publisher}">
+                                                @error('penerbitBuku')
+                                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-6 pl-1">
+                                            <div class="form-group">
+                                                <small for="kategoriBuku">ID Kategori Buku</small>
+                                                <input type="number" class="form-control @error('kategoriBuku') is-invalid @enderror" id="kategoriBuku" name="kategoriBuku" placeholder="Isikan disini..." value="${category}">
+                                                @error('kategoriBuku')
+                                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row form-mg">
+                                        <div class="col-8 pr-1">
+                                            <div class="form-group">
+                                                <small for="penulisBuku">Penulis Buku</small>
+                                                <input type="text" class="form-control @error('penulisBuku') is-invalid @enderror" id="penulisBuku" name="penulisBuku" placeholder="Isikan disini..." value="${author}">
+                                                @error('penulisBuku')
+                                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-4 pl-1">
+                                            <div class="form-group">
+                                                <small for="stokBuku">Stok Buku</small>
+                                                <input type="number" class="form-control @error('stokBuku') is-invalid @enderror" id="stokBuku" name="stokBuku" placeholder="Isikan disini..." value="${qty}">
+                                                @error('stokBuku')
+                                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row form-mg">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <small for="tentangBuku">Tentang Buku</small>
+                                                <textarea class="form-control @error('tentangBuku') is-invalid @enderror" id="tentangBuku" name="tentangBuku" placeholder="Isikan disini..." rows="3">${about}</textarea>
+                                                @error('tentangBuku')
+                                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row form-mg">
+                                        <div class="col-12">
+                                            <small for="gambarBuku">Gambar Buku</small>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="gambarBuku" name="gambarBuku" onchange="document.getElementById('member-foto-edit').src = window.URL.createObjectURL(this.files[0]), document.getElementById('name-label-edit').innerHTML = this.files[0].name">
+                                                <label class="custom-file-label" for="gambarBuku" id="name-label-edit">${nameImg}</label>
+                                                </div>
+                                            </div>
+                                            @error('gambarBuku')
+                                            <p style="font-size: 80%; color: #dc3545; margin-top: .25rem">{{$message}}</p>
+                                            @enderror
+                                        </div>
+                                        </div>
+                                        <div class="row justify-content-center mt-3">
+                                        <div class="col-4 px-0">
+                                            <div class="preview-img" id="preview-img">
+                                                <img src="${image}" class="full-width full-height fit-cover" id="member-foto-edit">
+                                            </div>
+                                        </div>
+                                        <div class="col-8 text-black pt-3 px-1">
+                                            <small>Mohon diisi secara lengkap,<br>serta diisi dengan data yang sebenar-benarnya.</small>
+                                            <button type="submit" class="btn btn-sm btn-success mt-3 px-5" name="edithData">Edit Data</button>
+                                        </div>
+                                    </div>
+                                </form>`)
+        });
     </script>
 @endsection

@@ -21,7 +21,7 @@ class DataBukuController extends Controller
         $books = DB::table('books')
             ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
             ->join('categories', 'books.category_id', '=', 'categories.id')
-            ->select('books.id', 'books.title', 'books.author', 'books.qty', 'books.image', 'books.about', 'publishers.publisher', 'categories.category')
+            ->select('books.id', 'books.publisher_id', 'books.category_id', 'books.title', 'books.author', 'books.qty', 'books.image', 'books.about', 'publishers.publisher', 'categories.category')
             ->paginate(5);
         
         return view('librarian/data-book', compact('books'));
@@ -123,7 +123,49 @@ class DataBukuController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $validateData = $request->validate([
+            'judulBuku' => 'required',
+            'penerbitBuku' => 'required',
+            'kategoriBuku' => 'required',
+            'penulisBuku' => 'required',
+            'stokBuku' => 'required',
+            'tentangBuku' => 'required',
+            'gambarBuku' => 'mimes:jpeg,jpg,bmp,png|max:2000'
+        ]);
+
+        $cat = Categories::where('id', $request->kategoriBuku)->get();
+        $pub = Publisher::where('id', $request->penerbitBuku)->get();
+
+        if($cat->all() && $pub->all())
+        {
+            $file = $request->file('gambarBuku');
+
+            if($file) $image = $file->getClientOriginalName();
+            else $image = "book-default.png";
+
+            Book::where('id', $book->id)
+                    ->update([
+                        'title' => $request->judulBuku,
+                        'publisher_id' => $request->penerbitBuku,
+                        'category_id' => $request->kategoriBuku,
+                        'author' => $request->penulisBuku,
+                        'qty' => $request->stokBuku,
+                        'about' => $request->tentangBuku,
+                        'image' => $image,
+                        ]);
+
+            if($file) {
+                if($book->image != "book-default.png") File::delete(public_path('uploaded_files/book-cover/'.$book->image));
+                $file->move(public_path('uploaded_files/book-cover/'),$file->getClientOriginalName());
+            }
+
+            return redirect('/book')->with('success', 'Data berhasil diubah');
+        }
+        else if($cat->all() && !($pub->all())) $err = 'ID Penerbit tidak ditemukan';
+        else if(!($cat->all()) && $pub->all()) $err = 'ID Kategori tidak ditemukan';
+        else $err = 'ID Penerbit dan Kategori tidak ditemukan';
+
+        return redirect('/book')->with('failed', $err);
     }
 
     /**

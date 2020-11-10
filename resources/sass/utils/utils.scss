@@ -257,3 +257,14 @@ h1.title-admin {
 .fit-cover {
     object-fit: cover;
 }
+
+.fit-cover-top {
+    object-fit: cover;
+    object-position: top;
+}
+
+.xlsm-font {
+    display: block;
+    font-size: 12px;
+    margin: -3px 0 2px 0 !important;
+}

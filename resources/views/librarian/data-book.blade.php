@@ -58,7 +58,7 @@
                     @foreach ($books as $book)
                         <div class="item-table item-buku shadow">
                             <div class="item-table-header top-absolute">
-                                <h1 class="judul text-white">{{$book->title}} ~ ID : {{$book->id}}</h1>
+                                <h1 class="judul text-white">{{$book->title}}</h1>
                             </div>
                             <div class="item-table-body">
                                 <div class="row">
@@ -87,7 +87,8 @@
                                             <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#detailDataModal" data-id="{{$book->id}}" data-title="{{$book->title}}" data-category="{{$book->category}}" data-author="{{$book->author}}" data-publisher="{{$book->publisher}}" data-about="{{$book->about}}" data-qty="{{$book->qty}}" data-image="{{asset('uploaded_files/book-cover/'.$book->image)}}">Detail Buku</button>
                                         </div>
                                         <div class="col-6 text-right p-0">
-                                            <span class="badge badge-light mr-3 stok">Stok buku : {{$book->qty}}</span>
+                                            <span class="badge badge-light mr-1 stok">Stok buku : {{$book->qty}}</span>
+                                            <span class="badge badge-light mr-3 stok">ID : {{$book->id}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +208,7 @@
                         <div class="row justify-content-center mt-3">
                           <div class="col-4 px-0">
                             <div class="preview-img" id="preview-img">
-                                <img class="full-width full-height fit-cover" id="member-foto">
+                                <img class="full-width full-height fit-cover-top" id="member-foto">
                             </div>
                           </div>
                           <div class="col-8 text-black pt-3 px-1">

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{asset('css/font.css')}}">
     @yield('more-css')
 
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
 
     <title>@yield('title')</title>
   </head>

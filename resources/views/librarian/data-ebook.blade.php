@@ -15,11 +15,11 @@
             <div class="col-12 col-md-12 col-lg-4 p-0">
                 <div class="gray-wrapper radius-admin mt-5">
                     <div class="info-login-pic text-center border-bottom pb-2">
-                        <img src="{{asset('img/photo.png')}}" alt="Ilham Shiddiq" class="rounded-circle" width="70">
+                        <img src="{{asset('uploaded_files/librarian-foto/'.auth()->user()->profile_photo_path)}}" alt="Ilham Shiddiq" class="rounded-circle fit-cover" width="70" height="70">
                     </div>
                     <div class="info-login text-center pt-1">
-                        <p class="m-1">Halo, ilhmshdq (Ilham Shiddiq)</p>
-                        <span class="badge badge-success">Pustakawan</span>
+                        <p class="m-1">Halo, {{auth()->user()->username}} ({{auth()->user()->name}})</p>
+                        <span class="badge badge-success">{{auth()->user()->role}}</span>
                     </div>
                 </div>
                 <div class="gray-wrapper radius-admin">
@@ -84,146 +84,6 @@
                                 </div>
                                 <div class="col-6 text-right p-0">
                                     <span class="badge badge-light mr-3 stok">Size : 9,8 mb</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-table item-buku shadow">
-                    <div class="item-table-header top-absolute">
-                        <h1 class="judul text-white">Ini Judul dari buku</h1>
-                    </div>
-                    <div class="item-table-body">
-                        <div class="row">
-                            <div class="col-6 col-md-8 col-lg-8">
-                                <span class="badge badge-secondary">Kategori</span>
-                                <p class="about mt-2">
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam recusandae voluptatum, ullam at, nihil minima ex dolorum culpa quae.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="image-buku">
-                        <div class="image" style="background-image: url('img/coba2.jpeg')"></div>
-                    </div>
-                    <div class="btn-action bottom-absolute">
-                        <a href="#" class="badge badge-success">Ubah</a>
-                        <a href="#" class="badge badge-danger">Hapus</a>
-                        <a href="#" class="badge badge-info">Riwayat</a>
-                    </div>
-                    <div class="item-table-footer bottom-absolute">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-6 p-0">
-                                    <button type="button" class="btn btn-dark">Detail Buku</button>
-                                </div>
-                                <div class="col-6 text-right p-0">
-                                    <span class="badge badge-light mr-3 stok">Stok buku : 98</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-table item-buku shadow">
-                    <div class="item-table-header top-absolute">
-                        <h1 class="judul text-white">Ini Judul dari buku</h1>
-                    </div>
-                    <div class="item-table-body">
-                        <div class="row">
-                            <div class="col-6 col-md-8 col-lg-8">
-                                <span class="badge badge-secondary">Kategori</span>
-                                <p class="about mt-2">
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam recusandae voluptatum, ullam at, nihil minima ex dolorum culpa quae.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="image-buku">
-                        <div class="image" style="background-image: url('img/coba3.jpg')"></div>
-                    </div>
-                    <div class="btn-action bottom-absolute">
-                        <a href="#" class="badge badge-success">Ubah</a>
-                        <a href="#" class="badge badge-danger">Hapus</a>
-                        <a href="#" class="badge badge-info">Riwayat</a>
-                    </div>
-                    <div class="item-table-footer bottom-absolute">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-6 p-0">
-                                    <button type="button" class="btn btn-dark">Detail Buku</button>
-                                </div>
-                                <div class="col-6 text-right p-0">
-                                    <span class="badge badge-light mr-3 stok">Stok buku : 98</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-table item-buku shadow">
-                    <div class="item-table-header top-absolute">
-                        <h1 class="judul text-white">Ini Judul dari buku</h1>
-                    </div>
-                    <div class="item-table-body">
-                        <div class="row">
-                            <div class="col-6 col-md-8 col-lg-8">
-                                <span class="badge badge-secondary">Kategori</span>
-                                <p class="about mt-2">
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam recusandae voluptatum, ullam at, nihil minima ex dolorum culpa quae.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="image-buku">
-                        <div class="image" style="background-image: url('img/coba4.jpeg')"></div>
-                    </div>
-                    <div class="btn-action bottom-absolute">
-                        <a href="#" class="badge badge-success">Ubah</a>
-                        <a href="#" class="badge badge-danger">Hapus</a>
-                        <a href="#" class="badge badge-info">Riwayat</a>
-                    </div>
-                    <div class="item-table-footer bottom-absolute">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-6 p-0">
-                                    <button type="button" class="btn btn-dark">Detail Buku</button>
-                                </div>
-                                <div class="col-6 text-right p-0">
-                                    <span class="badge badge-light mr-3 stok">Stok buku : 98</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-table item-buku shadow">
-                    <div class="item-table-header top-absolute">
-                        <h1 class="judul text-white">Ini Judul dari buku</h1>
-                    </div>
-                    <div class="item-table-body">
-                        <div class="row">
-                            <div class="col-6 col-md-8 col-lg-8">
-                                <span class="badge badge-secondary">Kategori</span>
-                                <p class="about mt-2">
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam recusandae voluptatum, ullam at, nihil minima ex dolorum culpa quae.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="image-buku">
-                        <div class="image" style="background-image: url('img/coba5.jpg')"></div>
-                    </div>
-                    <div class="btn-action bottom-absolute">
-                        <a href="#" class="badge badge-success">Ubah</a>
-                        <a href="#" class="badge badge-danger">Hapus</a>
-                        <a href="#" class="badge badge-info">Riwayat</a>
-                    </div>
-                    <div class="item-table-footer bottom-absolute">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-6 p-0">
-                                    <button type="button" class="btn btn-dark">Detail Buku</button>
-                                </div>
-                                <div class="col-6 text-right p-0">
-                                    <span class="badge badge-light mr-3 stok">Stok buku : 98</span>
                                 </div>
                             </div>
                         </div>

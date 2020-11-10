@@ -135,9 +135,9 @@ class DataPustakawanController extends Controller
     {
         $id = auth()->user()->id;
         $users = DB::table('users')
-                    ->join('librarians', 'users.id', '=', 'librarians.librarian_id')
-                    ->select('librarians.librarian_id', 'users.profile_photo_path')
-                    ->where('librarians.librarian_id', $id)
+                    ->join('librarians', 'users.id', '=', 'librarians.id')
+                    ->select('librarians.id', 'users.profile_photo_path')
+                    ->where('librarians.id', $id)
                     ->get();
 
         $validateData = $request->validate([
@@ -154,7 +154,7 @@ class DataPustakawanController extends Controller
         if($file) $foto = $file->getClientOriginalName();
         else $foto = $users[0]->profile_photo_path;
 
-        Librarian::where('librarian_id', $id)
+        Librarian::where('id', $id)
                     ->update([
                         'phone' => $request->nomorTelepon,
                         'address' => $request->alamatLibrarian,

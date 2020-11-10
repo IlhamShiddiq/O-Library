@@ -17,13 +17,13 @@
                 <div class="gray-wrapper mt-5 text-center font-weight-bold radius-admin month-report-info">
                     Data Laporan Bulan July
                 </div>
-                <div class="gray-wrapper radius-admin">
+                <div class="gray-wrapper radius-admin mt-5">
                     <div class="info-login-pic text-center border-bottom pb-2">
-                        <img src="{{asset('img/photo.png')}}" alt="Ilham Shiddiq" class="rounded-circle" width="70">
+                        <img src="{{asset('uploaded_files/librarian-foto/'.auth()->user()->profile_photo_path)}}" alt="Ilham Shiddiq" class="rounded-circle fit-cover" width="70" height="70">
                     </div>
                     <div class="info-login text-center pt-1">
-                        <p class="m-1">Halo, ilhmshdq (Ilham Shiddiq)</p>
-                        <span class="badge badge-success">Pustakawan</span>
+                        <p class="m-1">Halo, {{auth()->user()->username}} ({{auth()->user()->name}})</p>
+                        <span class="badge badge-success">{{auth()->user()->role}}</span>
                     </div>
                 </div>
                 <div class="gray-wrapper radius-admin">

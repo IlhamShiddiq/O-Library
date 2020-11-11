@@ -46,6 +46,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::post('/ebook', [DataEbookController::class, 'store']);
     Route::post('/ebook/search', [DataEbookController::class, 'search']);
     Route::delete('/ebook/{ebook}', [DataEbookController::class, 'destroy']);
+    Route::put('/ebook/{ebook}', [DataEbookController::class, 'update']);
 
     Route::get('/publisher', [DataPublisherController::class, 'index']);
     Route::post('/publisher', [DataPublisherController::class, 'store']);

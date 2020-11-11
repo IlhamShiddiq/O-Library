@@ -121,7 +121,50 @@ class DataEbookController extends Controller
      */
     public function update(Request $request, Ebook $ebook)
     {
-        //
+        $validateData = $request->validate([
+            'judulEbook' => 'required',
+            'penerbitEbook' => 'required',
+            'kategoriEbook' => 'required',
+            'penulisEbook' => 'required',
+            'tentangEbook' => 'required',
+            'fileEbook' => 'required|url',
+            'gambarEbook' => 'mimes:jpeg,jpg,bmp,png|max:2000'
+        ]);
+
+        $cat = Categories::where('id', $request->kategoriEbook)->get();
+        $pub = Publisher::where('id', $request->penerbitEbook)->get();
+
+        if($cat->all() && $pub->all())
+        {
+            $file = $request->file('gambarEbook');
+
+            if($file) $image = $file->getClientOriginalName();
+            else $image = $ebook->image;
+
+            Ebook::where('id', $ebook->id)
+                    ->update([
+                        'title' => $request->judulEbook,
+                        'publisher_id' => $request->penerbitEbook,
+                        'category_id' => $request->kategoriEbook,
+                        'author' => $request->penulisEbook,
+                        'link' => $request->fileEbook,
+                        'about' => $request->tentangEbook,
+                        'image' => $image,
+                        ]);
+
+            if($file) {
+                if($ebook->image != "ebook-default.png") File::delete(public_path('uploaded_files/ebook-cover/'.$ebook->image));
+                $file->move(public_path('uploaded_files/ebook-cover/'),$file->getClientOriginalName());
+            }
+
+            return redirect('/ebook')->with('success', 'Data berhasil diubah');
+            // dd($image);
+        }
+        else if($cat->all() && !($pub->all())) $err = 'ID Penerbit tidak ditemukan';
+        else if(!($cat->all()) && $pub->all()) $err = 'ID Kategori tidak ditemukan';
+        else $err = 'ID Penerbit dan Kategori tidak ditemukan';
+
+        return redirect('/ebook')->with('failed', $err);
     }
 
     /**

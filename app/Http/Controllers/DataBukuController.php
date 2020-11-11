@@ -141,7 +141,7 @@ class DataBukuController extends Controller
             $file = $request->file('gambarBuku');
 
             if($file) $image = $file->getClientOriginalName();
-            else $image = "book-default.png";
+            else $image = $book->image;
 
             Book::where('id', $book->id)
                     ->update([

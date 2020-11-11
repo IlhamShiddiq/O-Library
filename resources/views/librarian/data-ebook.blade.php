@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <div class="btn-action bottom-absolute">
-                                <a href="#" class="badge badge-success" data-toggle="modal" data-target="#editDataModal">Ubah</a>
+                                <a href="#" class="badge badge-success" data-toggle="modal" data-target="#editDataModal" data-id="{{$ebook->id}}" data-title="{{$ebook->title}}" data-category_id="{{$ebook->category_id}}" data-author="{{$ebook->author}}" data-publisher_id="{{$ebook->publisher_id}}" data-about="{{$ebook->about}}" data-link="{{$ebook->link}}" data-image="{{asset('uploaded_files/ebook-cover/'.$ebook->image)}}" data-nameimg="{{$ebook->image}}">Ubah</a>
                                 <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$ebook->id}}">Hapus</a>
                                 <a href="{{$ebook->link}}" class="badge badge-info" target="_blank" rel=”noopener”>Buka ebook</a>
                             </div>
@@ -84,7 +84,7 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-6 p-0">
-                                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#detailDataModal">Detail Ebook</button>
+                                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#detailDataModal" data-id="{{$ebook->id}}" data-title="{{$ebook->title}}" data-category="{{$ebook->category}}" data-author="{{$ebook->author}}" data-publisher="{{$ebook->publisher}}" data-about="{{$ebook->about}}" data-image="{{asset('uploaded_files/ebook-cover/'.$ebook->image)}}">Detail Ebook</button>
                                         </div>
                                         <div class="col-6 text-right p-0">
                                             <span class="badge badge-light mr-3 stok">ID : {{$ebook->id}}</span>
@@ -236,85 +236,7 @@
                     </button>
                 </div>
                 <div class="modal-body py-3">
-                    <form>
-                        <div class="row">
-                          <div class="col-12">
-                            <div class="form-group">
-                                <small for="judulEbook">Judul Ebook</small>
-                                <input type="text" class="form-control" id="judulEbook" name="judulEbook" placeholder="Isikan disini...">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row form-mg">
-                            <div class="col-6 pr-1">
-                              <div class="form-group">
-                                  <small for="penerbitEbook">ID Penerbit Ebook</small>
-                                  <input type="number" class="form-control @error('penerbitEbook') is-invalid @enderror" id="penerbitEbook" name="penerbitEbook" placeholder="Isikan disini...">
-                                  @error('penerbitEbook')
-                                    <div id="validationServer03Feedback" class="invalid-feedback">
-                                      {{$message}}
-                                    </div>
-                                  @enderror
-                              </div>
-                            </div>
-                            <div class="col-6 pl-1">
-                              <div class="form-group">
-                                  <small for="kategoriEbook">ID Kategori Ebook</small>
-                                  <input type="number" class="form-control @error('kategoriEbook') is-invalid @enderror" id="kategoriEbook" name="kategoriEbook" placeholder="Isikan disini...">
-                                  @error('kategoriEbook')
-                                    <div id="validationServer03Feedback" class="invalid-feedback">
-                                      {{$message}}
-                                    </div>
-                                  @enderror
-                              </div>
-                            </div>
-                        </div>
-                        <div class="row form-mg">
-                          <div class="col-12">
-                            <div class="form-group">
-                                <small for="penulisEbook">Penulis Ebook</small>
-                                <input type="text" class="form-control" id="penulisEbook" name="penulisEbook" placeholder="Isikan disini...">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row form-mg">
-                          <div class="col-12">
-                            <div class="form-group">
-                                <small for="tentangEbook">Tentang Ebook</small>
-                                <textarea class="form-control" id="tentangEbook" name="tentangEbook" placeholder="Isikan disini..." rows="3"></textarea>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row form-mg">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <small for="fileEbook">Link Drive File Ebook</small>
-                                    <p class="xlsm-font">Pastikan link anda sudah diberi izin akses untuk semua user</p>
-                                    <input type="text" class="form-control" id="fileEbook" name="fileEbook" placeholder="Isikan disini..." autocomplete="off">
-                                </div>
-                            </div>
-                          </div>
-                        <div class="row">
-                          <div class="col-12">
-                            <small for="gambarEbookEdit">Gambar Ebook</small>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="gambarEbookEdit" name="gambarEbookEdit">
-                                  <label class="custom-file-label" for="gambarEbookEdit">Choose file</label>
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row justify-content-center mt-3">
-                          <div class="col-4 px-0">
-                            <div class="preview-img" id="preview-img"></div>
-                          </div>
-                          <div class="col-8 text-black pt-3 px-1">
-                            <small>Mohon diisi secara lengkap,<br>serta diisi dengan data yang sebenar-benarnya.</small>
-                            <button type="submit" class="btn btn-sm btn-success mt-3 px-5" name="editData">Edit Data</button>
-                          </div>
-                        </div>
-                    </form>
+                  <div class="form-edit"></div>
                 </div>
                 <div class="modal-footer text-center">
                     <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
@@ -350,7 +272,6 @@
                                     <p class="detail detail-tentang">
                                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam aspernatur est nisi dolorum vero! Assumenda necessitatibus unde commodi rem labore accusamus cum nobis minima obcaecati vel eos, dignissimos quia possimus.
                                     </p>
-                                    <p class="detail detail-stok">Size : <span>89</span>mb</p>
                                 </div>
                             </div>
                         </div>
@@ -399,6 +320,145 @@
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger">Yes</button>
                                             </form>`)
+        });
+        $('#detailDataModal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget) // Button that triggered the modal
+            let id = button.data('id')
+            let title = button.data('title')
+            let category = button.data('category')
+            let author = button.data('author')
+            let publisher = button.data('publisher')
+            let about = button.data('about')
+            let image = button.data('image')
+            let modal = $(this)
+
+            modal.find('.detail-judul').html(title)
+            modal.find('.detail-kategori').html(category)
+            modal.find('.detail-penulis').html('Ditulis oleh: '+author)
+            modal.find('.detail-penerbit').html('Diterbitkan oleh: '+publisher)
+            modal.find('.detail-tentang').html(about)
+            modal.find('.image-buku').html(`<img src="${image}" alt="${title}" class="full-width full-height fit-cover">`)
+        });
+        $('#editDataModal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget) // Button that triggered the modal
+            let id = button.data('id')
+            let title = button.data('title')
+            let category = button.data('category_id')
+            let author = button.data('author')
+            let publisher = button.data('publisher_id')
+            let about = button.data('about')
+            let link = button.data('link')
+            let image = button.data('image')
+            let nameImg = button.data('nameimg')
+            let modal = $(this)
+
+            modal.find('.form-edit').html(`
+                                  <form action="{{url('/ebook/${id}')}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('put')
+                                    <div class="row">
+                                      <div class="col-12">
+                                        <div class="form-group">
+                                            <small for="judulEbook">Judul Ebook</small>
+                                            <input type="text" class="form-control @error('judulEbook') is-invalid @enderror" id="judulEbook" name="judulEbook" placeholder="Isikan disini..." value="${title}">
+                                            @error('judulEbook')
+                                              <div id="validationServer03Feedback" class="invalid-feedback">
+                                                {{$message}}
+                                              </div>
+                                            @enderror
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row form-mg">
+                                        <div class="col-6 pr-1">
+                                          <div class="form-group">
+                                              <small for="penerbitEbook">ID Penerbit Ebook</small>
+                                              <input type="number" class="form-control @error('penerbitEbook') is-invalid @enderror" id="penerbitEbook" name="penerbitEbook" placeholder="Isikan disini..." value="${publisher}">
+                                              @error('penerbitEbook')
+                                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                                  {{$message}}
+                                                </div>
+                                              @enderror
+                                          </div>
+                                        </div>
+                                        <div class="col-6 pl-1">
+                                          <div class="form-group">
+                                              <small for="kategoriEbook">ID Kategori Ebook</small>
+                                              <input type="number" class="form-control @error('kategoriEbook') is-invalid @enderror" id="kategoriEbook" name="kategoriEbook" placeholder="Isikan disini..." value="${category}">
+                                              @error('kategoriEbook')
+                                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                                  {{$message}}
+                                                </div>
+                                              @enderror
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-mg">
+                                      <div class="col-12">
+                                        <div class="form-group">
+                                            <small for="penulisEbook">Penulis Ebook</small>
+                                            <input type="text" class="form-control @error('penulisEbook') is-invalid @enderror" id="penulisEbook" name="penulisEbook" placeholder="Isikan disini..." value="${author}">
+                                            @error('penulisEbook')
+                                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                                  {{$message}}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row form-mg">
+                                      <div class="col-12">
+                                        <div class="form-group">
+                                            <small for="tentangEbook">Tentang Ebook</small>
+                                            <textarea class="form-control @error('tentangEbook') is-invalid @enderror" id="tentangEbook" name="tentangEbook" placeholder="Isikan disini..." rows="3">${about}</textarea>
+                                            @error('tentangEbook')
+                                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                                  {{$message}}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row form-mg">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <small for="fileEbook">Link Drive File Ebook</small>
+                                                <p class="xlsm-font">Pastikan link anda sudah diberi izin akses untuk semua user</p>
+                                                <input type="text" class="form-control @error('fileEbook') is-invalid @enderror" id="fileEbook" name="fileEbook" placeholder="Isikan disini..." autocomplete="off" value="${link}">
+                                                @error('fileEbook')
+                                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                                  {{$message}}
+                                                </div>
+                                            @enderror
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-12">
+                                        <small for="gambarEbook">Gambar Ebook</small>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                              <input type="file" class="custom-file-input @error('gambarEbook') is-invalid @enderror" id="gambarEbook" name="gambarEbook" onchange="document.getElementById('member-foto-edit').src = window.URL.createObjectURL(this.files[0]), document.getElementById('name-label-edit').innerHTML = this.files[0].name">
+                                              <label class="custom-file-label" for="gambarEbook" id="name-label-edit">${nameImg}</label>
+                                            </div>
+                                        </div>
+                                        @error('gambarEbook')
+                                            <p style="font-size: 80%; color: #dc3545; margin-top: .25rem">{{$message}}</p>
+                                        @enderror
+                                      </div>
+                                    </div>
+                                    <div class="row justify-content-center mt-3">
+                                      <div class="col-4 px-0">
+                                        <div class="preview-img" id="preview-img">
+                                            <img src="${image}" class="full-width full-height fit-cover-top" id="member-foto-edit">
+                                        </div>
+                                      </div>
+                                      <div class="col-8 text-black pt-3 px-1">
+                                        <small>Mohon diisi secara lengkap,<br>serta diisi dengan data yang sebenar-benarnya.</small>
+                                        <button type="submit" class="btn btn-sm btn-success mt-3 px-5" name="ubahData">Ubah Data</button>
+                                      </div>
+                                    </div>
+                                  </form>`)
         });
     </script>
 @endsection

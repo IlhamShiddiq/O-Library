@@ -345,6 +345,10 @@ nav.nav-landing .nav-link {
   font-weight: 500;
 }
 
+nav.nav-landing .nav-link:hover {
+  color: #008864 !important;
+}
+
 nav.nav-landing button {
   font-size: 26px;
   border: none;
@@ -524,6 +528,52 @@ nav.nav-landing button:focus {
 
 .up-btn button:focus {
   box-shadow: 0 0 0 0.2rem rgba(44, 165, 64, 0.575) !important;
+}
+
+.wa-btn {
+  bottom: 50px;
+  left: 0;
+}
+
+.wa-btn a {
+  padding: 0 0 0 20px;
+  width: 100px;
+  height: 50px;
+  background-color: #36c262;
+  font-size: 32px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.wa-btn a:hover {
+  background-color: #2cb658;
+}
+
+.wa-btn a:focus {
+  box-shadow: 0 0 0 0.2rem rgba(44, 165, 64, 0.575) !important;
+}
+
+.msg-btn {
+  bottom: 110px;
+  left: 0;
+}
+
+.msg-btn a {
+  padding: 0 0 0 20px;
+  width: 100px;
+  height: 50px;
+  background-color: #367ec2;
+  font-size: 32px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.msg-btn a:hover {
+  background-color: #2875a1;
+}
+
+.msg-btn a:focus {
+  box-shadow: 0 0 0 0.2rem rgba(44, 92, 165, 0.575) !important;
 }
 
 .show-btn {

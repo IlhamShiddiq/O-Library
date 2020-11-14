@@ -195,6 +195,12 @@
     <div class="up-btn position-fixed" id="up-btn">
         <button class="btn text-center text-white rounded-circle"><i class="fas fa-arrow-up"></i></button>
     </div>
+    <div class="wa-btn position-fixed">
+        <a href="https://api.whatsapp.com/send?phone=6287747961912" class="btn text-white"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <div class="msg-btn position-fixed">
+        <a href="https://m.me/ilham.shiddiq.1" class="btn text-white"><i class="fab fa-facebook-messenger"></i></a>
+    </div>
 @endsection
 
 @section('more-js')

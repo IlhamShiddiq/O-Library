@@ -7,6 +7,9 @@ nav.nav-landing {
     .nav-link {
         color: #013D2D !important;
         font-weight: 500;
+        &:hover {
+            color: #008864 !important;
+        }
     }
     button {
         font-size: 26px;
@@ -161,6 +164,46 @@ nav.nav-landing {
         }
         &:focus {
             box-shadow: 0 0 0 0.2rem rgba(44, 165, 64, 0.575) !important;
+        }
+    }
+}
+
+.wa-btn {
+    bottom: 50px;
+    left: 0;
+    a { 
+        padding: 0 0 0 20px;
+        width: 100px;
+        height: 50px;
+        background-color: #36c262;
+        font-size: 32px;
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+        &:hover {  
+            background-color: #2cb658;
+        }
+        &:focus {
+            box-shadow: 0 0 0 0.2rem rgba(44, 165, 64, 0.575) !important;
+        }
+    }
+}
+
+.msg-btn {
+    bottom: 110px;
+    left: 0;
+    a { 
+        padding: 0 0 0 20px;
+        width: 100px;
+        height: 50px;
+        background-color: #367ec2;
+        font-size: 32px;
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+        &:hover {  
+            background-color: #2875a1;
+        }
+        &:focus {
+            box-shadow: 0 0 0 0.2rem rgba(44, 92, 165, 0.575) !important;
         }
     }
 }

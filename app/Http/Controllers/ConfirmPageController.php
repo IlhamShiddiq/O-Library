@@ -96,6 +96,20 @@ class ConfirmPageController extends Controller
                         'password' => bcrypt($request->password),
                         ]);
 
+                if($user->role == 'Pustakawan' || $user->role == 'Admin')
+                {
+                    Librarian::where('id', $user->id)
+                    ->update([
+                        'confirm_code' => null
+                        ]);
+                }
+                else{
+                    Member::where('id', $user->id)
+                    ->update([
+                        'confirm_code' => null
+                        ]);
+                }
+
                 return redirect('/login')->with('success', 'Akun berhasil dibuat');
             }
             else{

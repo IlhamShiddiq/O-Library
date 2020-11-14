@@ -19,8 +19,8 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/close-message-btn.js', 'public/js')
     .js('resources/js/btn-random.js', 'public/js')
     .sass('resources/sass/style.scss', 'public/css/')
-    .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
-        require('tailwindcss'),
-    ])
+    // .postCss('resources/css/app.css', 'public/css', [
+    //     require('postcss-import'),
+    //     require('tailwindcss'),
+    // ])
     .webpackConfig(require('./webpack.config'));

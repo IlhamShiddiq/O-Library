@@ -19323,17 +19323,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/css/app.css":
-/*!*******************************!*\
-  !*** ./resources/css/app.css ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -19428,15 +19417,14 @@ closeButtonElement.addEventListener("click", function (event) {
 /***/ }),
 
 /***/ 0:
-/*!***************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/style.scss ./resources/css/app.css ***!
-  \***************************************************************************************/
+/*!***************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/style.scss ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! F:\My Projects\Project Work\PerpustakaanOnline\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! F:\My Projects\Project Work\PerpustakaanOnline\resources\sass\style.scss */"./resources/sass/style.scss");
-module.exports = __webpack_require__(/*! F:\My Projects\Project Work\PerpustakaanOnline\resources\css\app.css */"./resources/css/app.css");
+module.exports = __webpack_require__(/*! F:\My Projects\Project Work\PerpustakaanOnline\resources\sass\style.scss */"./resources/sass/style.scss");
 
 
 /***/ })

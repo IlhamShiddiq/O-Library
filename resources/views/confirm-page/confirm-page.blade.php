@@ -12,7 +12,7 @@
 
     <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
 
-    <title>Login</title>
+    <title>Confirm Page</title>
   </head>
   <body>
 
@@ -25,19 +25,6 @@
             </div>
             <div class="message-body">
                 <p>{{session('status')}}</p>
-            </div>
-        </div>
-    @endif
-
-    @if (session('success'))
-        <div class="message message-success position-fixed shadow">
-            <div class="message-header position-relative text-white rounded-top">
-                <h6>Message!!</h6>
-                <button class="btn position-absolute text-white" id="btn-close-message"><i class="fas fa-times"></i></button>
-                <div class="triangle-up position-absolute"></div>
-            </div>
-            <div class="message-body">
-                <p>{{session('success')}}</p>
             </div>
         </div>
     @endif
@@ -54,17 +41,16 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-lg-4 text-center col-form">
-                        <img src="{{asset('img/vectors/admin.png')}}" alt="Admin Icon" width="86">
-                        <h1 class="mb-5">WELCOME</h1>
-                        <form method="POST" action="{{ url('/logged_in') }}" class="mb-5">
+                        <img src="{{asset('img/icon.png')}}" alt="Admin Icon" width="70">
+                        <h2 class="mb-5 mt-1">CONFIRM ACCOUNT</h2>
+                        <form method="POST" action="{{ url('/account/confirm') }}" class="mb-5">
                             @csrf
-                
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-user"></i></div>
                                 </div>
-                                <input type="text" class="form-control @error('username') is-invalid @enderror" id="inlineFormInputGroup" placeholder="Username" name="username" value="{{ old('username') }}" autofocus>
-                                @error('username')
+                                <input type="text" class="form-control @error('nomorInduk') is-invalid @enderror" id="inlineFormInputGroup" placeholder="NIS/NIP" name="nomorInduk" value="{{ old('nomorInduk') }}" autofocus>
+                                @error('nomorInduk')
                                     <div class="invalid-feedback text-left">
                                         {{$message}}
                                     </div>
@@ -74,15 +60,14 @@
                                 <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
                                 </div>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="inlineFormInputGroup" placeholder="Password" name="password">
-                                @error('password')
+                                <input type="number" class="form-control @error('kodeKonfirmasi') is-invalid @enderror" id="inlineFormInputGroup" placeholder="Kode Konfirmasi" name="kodeKonfirmasi">
+                                @error('kodeKonfirmasi')
                                     <div class="invalid-feedback text-left">
                                         {{$message}}
                                     </div>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-green-login text-white mb-1">LOGIN</button>
-                            <a href="{{url('/account/confirm')}}" class="confirm-acc">Konfirmasi Akun</a>
+                            <button type="submit" class="btn btn-green-login text-white mb-1">SUBMIT</button>
                         </form>
                     </div>
                 </div>

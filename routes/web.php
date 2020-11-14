@@ -13,6 +13,7 @@ use App\Http\Controllers\DataMemberController;
 use App\Http\Controllers\DataTransaksiController;
 use App\Http\Controllers\DataReportController;
 use App\Http\Controllers\StaticPageController;
+use App\Http\Controllers\ConfirmPageController;
 use App\Http\Controllers\LoginController;
 
 /*
@@ -30,6 +31,10 @@ Route::get('/', [LandingPageController::class, 'index']);
 Route::post('/logged_in', [LoginController::class, 'authenticate']);
 Route::get('/logout', [DataPustakawanController::class, 'logout']);
 Route::get('/selecting-user', [StaticPageController::class, 'selecting']);
+Route::get('/account/confirm', [ConfirmPageController::class, 'confirmPage']);
+Route::post('/account/confirm', [ConfirmPageController::class, 'confirmPageData']);
+Route::get('/account/confirming/{user}', [ConfirmPageController::class, 'confirmingPage']);
+Route::post('/account/confirming/{user}', [ConfirmPageController::class, 'confirmingPageData']);
 
 Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -63,6 +68,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/librarian', [DataPustakawanController::class, 'index']);
     Route::post('/librarian', [DataPustakawanController::class, 'store']);
     Route::post('/librarian/search', [DataPustakawanController::class, 'search']);
+    Route::post('/librarian/reset-code/{librarian}', [DataPustakawanController::class, 'resetCode']);
     Route::delete('/librarian/{user}', [DataPustakawanController::class, 'destroy']);
     Route::put('/librarian/{user}', [DataPustakawanController::class, 'update']);
 
@@ -75,6 +81,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/member', [DataMemberController::class, 'index']);
     Route::post('/member', [DataMemberController::class, 'store']);
     Route::post('/member/search', [DataMemberController::class, 'search']);
+    Route::post('/member/reset-code/{member}', [DataMemberController::class, 'resetCode']);
     Route::delete('/member/{member}', [DataMemberController::class, 'destroy']);
     Route::get('/member/history', [DataMemberController::class, 'memberHistory']);
 

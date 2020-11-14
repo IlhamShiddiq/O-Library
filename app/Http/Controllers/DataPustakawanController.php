@@ -22,7 +22,7 @@ class DataPustakawanController extends Controller
     {
         $librarians = DB::table('users')
             ->join('librarians', 'users.id', '=', 'librarians.id')
-            ->select('users.id', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'librarians.address', 'librarians.phone')
+            ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'librarians.address', 'librarians.phone', 'librarians.confirm_code')
             ->paginate(5);
 
         return view('librarian.data-librarian', compact('librarians'));
@@ -47,41 +47,51 @@ class DataPustakawanController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
+            'nomorInduk' => 'required',
             'namaLibrarian' => 'required',
             'emailLibrarian' => 'required',
             'nomorTelepon' => 'required',
             'alamatLibrarian' => 'required',
+            'kodeKonfirmasi' => 'required',
             'photoLibrarian' => 'mimes:jpeg,jpg,bmp,png|max:2000'
         ]);
 
-        $file = $request->file('photoLibrarian');
+        $code = Librarian::where('confirm_code', $request->kodeKonfirmasi)->get();
 
-        if($file) $image = $file->getClientOriginalName();
-        else $image = "default.jpg";
-
-        $user = new User;
-        $user->name = $request->namaLibrarian;
-        $user->role = $request->roleLibrarian;
-        $user->email = $request->emailLibrarian;
-        $user->remember_token = Str::random(30);
-        $user->profile_photo_path = $image;
-        $user->save();
-
-        $lastid = DB::table('users')
-            ->select('id')
-            ->orderByDesc('id')
-            ->limit(1)
-            ->get();
-
-        $lib = new Librarian;
-        $lib->id = $lastid[0]->id;
-        $lib->phone = $request->nomorTelepon;
-        $lib->address = $request->alamatLibrarian;
-        $lib->save();
-        
-        if($file) $file->move(public_path('uploaded_files/librarian-foto/'),$file->getClientOriginalName());
-        
-        return redirect('/librarian')->with('success', 'Data '.$request->namaLibrarian.' berhasil disimpan');
+        if($code->all()) return redirect('/librarian')->with('failed', 'Kode konfirmasi yang dibuat sudah ada');
+        else
+        {
+            $file = $request->file('photoLibrarian');
+    
+            if($file) $image = $file->getClientOriginalName();
+            else $image = "default.jpg";
+    
+            $user = new User;
+            $user->nomor_induk = $request->nomorInduk;
+            $user->name = $request->namaLibrarian;
+            $user->role = $request->roleLibrarian;
+            $user->email = $request->emailLibrarian;
+            $user->remember_token = Str::random(30);
+            $user->profile_photo_path = $image;
+            $user->save();
+    
+            $lastid = DB::table('users')
+                ->select('id')
+                ->orderByDesc('id')
+                ->limit(1)
+                ->get();
+    
+            $lib = new Librarian;
+            $lib->id = $lastid[0]->id;
+            $lib->address = $request->alamatLibrarian;
+            $lib->phone = $request->nomorTelepon;
+            $lib->confirm_code = $request->kodeKonfirmasi;
+            $lib->save();
+            
+            if($file) $file->move(public_path('uploaded_files/librarian-foto/'),$file->getClientOriginalName());
+            
+            return redirect('/librarian')->with('success', 'Data '.$request->namaLibrarian.' berhasil disimpan');
+        }
     }
 
     /**
@@ -261,11 +271,31 @@ class DataPustakawanController extends Controller
 
         $librarians = DB::table('users')
             ->join('librarians', 'users.id', '=', 'librarians.id')
-            ->select('users.id', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'librarians.address', 'librarians.phone')
+            ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'librarians.address', 'librarians.phone', 'librarians.confirm_code')
             ->where($tbl, 'like', $search)
             ->paginate(3000);
 
         return view('librarian.data-librarian', compact('librarians'));
         // dd($request->all());
+    }
+    
+    public function resetCode(Request $request, Librarian $librarian)
+    {
+        // dd($member->id);
+        $validateData = $request->validate([
+            'kodeKonfirmasiReset' => 'required',
+        ]);
+
+        $code = Librarian::where('confirm_code', $request->kodeKonfirmasiReset)->get();
+
+        if($code->all()) return redirect('/librarian')->with('failed', 'Kode konfirmasi yang dibuat sudah ada');
+        else {
+            Librarian::where('id', $librarian->id)
+                    ->update([
+                        'confirm_code' => $request->kodeKonfirmasiReset,
+                        ]);
+
+            return redirect('/librarian')->with('success', 'Kode berhasil direset, Kode : '.$request->kodeKonfirmasiReset);
+        }
     }
 }

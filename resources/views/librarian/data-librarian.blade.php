@@ -74,6 +74,9 @@
                                 </h1>
                                 <p class="username" <?php if($red) echo $red; ?>>Username : {{$librarian->username}} ({{$librarian->role}})</p>
                                 <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$librarian->id}}">Hapus</a>
+                                @if ($librarian->confirm_code != '0')
+                                    <a href="#" class="badge badge-success" data-toggle="modal" data-target="#resetKode" data-id="{{$librarian->id}}">Reset Kode</a>
+                                @endif
                                 <a href="#" class="badge badge-info" data-toggle="modal" data-target="#detailDataModal" data-name="{{$librarian->name}}" data-role="{{$librarian->role}}" data-username="{{$librarian->username}}" data-address="{{$librarian->address}}" data-phone="{{$librarian->phone}}" data-image="{{asset('uploaded_files/librarian-foto/'.$librarian->profile_photo_path)}}">Detail</a>
                             </div>
                         </div>
@@ -101,6 +104,19 @@
                     <form action="{{url('/librarian')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
+                          <div class="col-12">
+                            <div class="form-group">
+                                <small for="nomorInduk">Nomor Induk</small>
+                                <input type="text" class="form-control @error('nomorInduk') is-invalid @enderror" id="nomorInduk" name="nomorInduk" placeholder="Isikan disini...">
+                                @error('nomorInduk')
+                                  <div id="validationServer03Feedback" class="invalid-feedback">
+                                    {{$message}}
+                                  </div>
+                                @enderror
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row form-mg">
                           <div class="col-12">
                             <div class="form-group">
                                 <small for="namaLibrarian">Nama Lengkap</small>
@@ -163,6 +179,20 @@
                         </div>
                         <div class="row form-mg">
                           <div class="col-12">
+                            <div class="form-group position-relative">
+                                <small for="kodeKonfirmasi">Kode Konfirmasi</small>
+                                <input type="number" class="form-control kodeKonfirmasi @error('kodeKonfirmasi') is-invalid @enderror" id="kodeKonfirmasi" name="kodeKonfirmasi" placeholder="Isikan disini...">
+                                <button type="button" class="position-absolute btn-random" id="btn-random"><i class="fas fa-dice"></i></button>
+                                @error('kodeKonfirmasi')
+                                  <div id="validationServer03Feedback" class="invalid-feedback">
+                                    {{$message}}
+                                  </div>
+                                @enderror
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row form-mg">
+                          <div class="col-12">
                             <small for="photoLibrarian">Photo</small>
                             <div class="input-group">
                                 <div class="custom-file">
@@ -187,6 +217,27 @@
                           </div>
                         </div>
                     </form>
+                </div>
+                <div class="modal-footer text-center">
+                    <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reset Kode Modal -->
+    <div class="modal modal-admin fade" id="resetKode" tabindex="-1" aria-labelledby="addDataModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <img src="{{asset('img/icon.png')}}" alt="icon" width="55">
+                    <h5>TAMBAH DATA</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body py-3">
+                    <div class="form-reset"></div>
                 </div>
                 <div class="modal-footer text-center">
                     <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
@@ -258,6 +309,7 @@
 @endsection
 
 @section('more-js')
+    <script src="{{asset('js/btn-random.js')}}"></script>
     <script>
         $('#deleteModal').on('show.bs.modal', function (event) {
             let button = $(event.relatedTarget) // Button that triggered the modal
@@ -271,6 +323,51 @@
                                             <button type="submit" class="btn btn-danger">Yes</button>
                                             </form>`)
                                       });
+        $('#resetKode').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget) // Button that triggered the modal
+            let id = button.data('id')
+            let modal = $(this)
+
+            modal.find('.form-reset').html(`
+                                <form action="{{url('/librarian/reset-code/${id}')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-12">
+                                        <div class="row form-mg">
+                                            <div class="col-12">
+                                            <div class="form-group position-relative">
+                                                <small for="kodeKonfirmasiReset">Kode Konfirmasi</small>
+                                                <input type="number" class="form-control kodeKonfirmasiReset @error('kodeKonfirmasiReset') is-invalid @enderror" id="kodeKonfirmasiReset" name="kodeKonfirmasiReset" placeholder="Isikan disini...">
+                                                <button type="button" class="position-absolute btn-random" id="btn-random-reset"><i class="fas fa-dice"></i></button>
+                                                @error('kodeKonfirmasiReset')
+                                                    <div id="validationServer03Feedback" class="invalid-feedback">
+                                                    {{$message}}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-sm btn-success mt-1 px-5" name="tambahData">Ubah Kode</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </form>`)
+
+            const randomReset = document.querySelector("#btn-random-reset");
+            const kodeInputReset = document.querySelector("#kodeKonfirmasiReset");
+
+            randomReset.addEventListener("click", event => {
+                let result           = '';
+                const characters       = '0123456789';
+                const charactersLength = characters.length;
+                for ( let i = 0; i < 6; i++ ) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+
+                kodeInputReset.value = result;
+            })
+        });
         $('#detailDataModal').on('show.bs.modal', function (event) {
             let button = $(event.relatedTarget) // Button that triggered the modal
             let name = button.data('name')

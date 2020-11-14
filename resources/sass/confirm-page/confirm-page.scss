@@ -1,0 +1,62 @@
+body.confirm {
+    background-color: #539451;
+    // overflow-y: hidden;
+    svg {
+        top: 0;
+        right: 0;
+    }
+}
+
+img.vector-confirm {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, 25%);
+    transform: translate(-50%, 25%);
+}
+.row-confirm {
+    background-color: red;
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+.confirm-form-wrapper {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    -ms-transform: translate(-50px, -50%);
+    transform: translate(-50px, -50%);
+    background-color: rgb(255, 255, 255);
+    .confirm-form {
+        width: 400px;
+        .form-wrapper {
+            input {
+                border: none;
+                border-bottom: 1px solid rgb(179, 179, 179);
+                &:focus {
+                    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0) !important;
+                    border-bottom: 1px solid rgb(78, 78, 78);
+                }
+            }
+        }
+    }
+}
+
+.home-btn-confirm {
+    left: 20px;
+    bottom: 20px;
+    a {
+        width: 65px;
+        height: 65px;
+        font-size: 25px;
+        padding-top: 12px;
+        background-color: #fff;
+        &:hover {  
+            background-color: #d3ffd2;
+        }
+        &:focus {
+            box-shadow: 0 0 0 0.2rem rgba(244, 247, 244, 0.575) !important;
+        }
+    }
+}

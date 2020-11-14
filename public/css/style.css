@@ -24,6 +24,15 @@ body {
   background: #388751;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .no-scroll-bar {
   overflow-y: hidden !important;
 }
@@ -892,6 +901,11 @@ nav.nav-landing button:focus {
   font-size: 42px;
 }
 
+.page-login .container-form-login .col-form h2 {
+  font-family: segoe;
+  font-size: 28px;
+}
+
 .page-login .container-form-login .col-form h4 {
   font-family: segoe;
   font-size: 18px;
@@ -926,13 +940,13 @@ nav.nav-landing button:focus {
   width: 100%;
 }
 
-.page-login .container-form-login .col-form form .log-as-admin {
+.page-login .container-form-login .col-form form .confirm-acc {
   font-family: segoe;
   color: #3D3D3D;
   font-size: 15px;
 }
 
-.page-login .container-form-login .col-form form .log-as-admin:hover {
+.page-login .container-form-login .col-form form .confirm-acc:hover {
   text-decoration: none;
   color: #929292;
 }
@@ -1448,7 +1462,7 @@ nav.nav-landing button:focus {
   letter-spacing: 1px;
 }
 
-#random-pass {
+.btn-random {
   right: 8px;
   top: 30px;
   background-color: rgba(255, 255, 255, 0);
@@ -1596,5 +1610,71 @@ button.btn-notif:focus {
   .dashboard-container .more-graphic {
     margin-bottom: 15px;
   }
+}
+
+body.confirm {
+  background-color: #539451;
+}
+
+body.confirm svg {
+  top: 0;
+  right: 0;
+}
+
+img.vector-confirm {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 25%);
+}
+
+.row-confirm {
+  background-color: red;
+  transform: translate(0, 0);
+}
+
+.confirm-form-wrapper {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50px, -50%);
+  background-color: white;
+}
+
+.confirm-form-wrapper .confirm-form {
+  width: 400px;
+}
+
+.confirm-form-wrapper .confirm-form .form-wrapper input {
+  border: none;
+  border-bottom: 1px solid #b3b3b3;
+}
+
+.confirm-form-wrapper .confirm-form .form-wrapper input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0) !important;
+  border-bottom: 1px solid #4e4e4e;
+}
+
+.home-btn-confirm {
+  left: 20px;
+  bottom: 20px;
+}
+
+.home-btn-confirm a {
+  width: 65px;
+  height: 65px;
+  font-size: 25px;
+  padding-top: 12px;
+  background-color: #fff;
+}
+
+.home-btn-confirm a:hover {
+  background-color: #d3ffd2;
+}
+
+.home-btn-confirm a:focus {
+  box-shadow: 0 0 0 0.2rem rgba(244, 247, 244, 0.575) !important;
 }
 

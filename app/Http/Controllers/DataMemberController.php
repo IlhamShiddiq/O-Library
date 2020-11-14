@@ -21,7 +21,7 @@ class DataMemberController extends Controller
     {
         $members = DB::table('users')
             ->join('members', 'users.id', '=', 'members.id')
-            ->select('users.id', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'members.nomor_induk', 'members.address', 'members.phone', 'members.status', 'members.class')
+            ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'members.address', 'members.phone', 'members.status', 'members.class', 'members.confirm_code')
             ->paginate(5);
 
         return view('librarian.data-member', compact('members'));
@@ -56,43 +56,52 @@ class DataMemberController extends Controller
             'telpAnggota' => 'required',
             'emailAnggota' => 'required',
             'alamatAnggota' => 'required',
+            'kodeKonfirmasi' => 'required',
             'photoAnggota' => 'mimes:jpeg,jpg,bmp,png|max:2000'
         ]);
 
-        $file = $request->file('photoAnggota');
+        $code = Member::where('confirm_code', $request->kodeKonfirmasi)->get();
+        // dd($code->all());
 
-        if($file) $image = $file->getClientOriginalName();
-        else $image = "default.jpg";
+        if($code->all()) return redirect('/member')->with('failed', 'Kode konfirmasi yang dibuat sudah ada');
+        else
+        {
+            $file = $request->file('photoAnggota');
 
-        $user = new User;
-        $user->name = $request->namaLengkap;
-        $user->role = 'Member';
-        $user->email = $request->emailAnggota;
-        $user->remember_token = Str::random(30);
-        $user->profile_photo_path = $image;
-        $user->save();
+            if($file) $image = $file->getClientOriginalName();
+            else $image = "default.jpg";
 
-        $lastid = DB::table('users')
-            ->select('id')
-            ->orderByDesc('id')
-            ->limit(1)
-            ->get();
+            $user = new User;
+            $user->nomor_induk = $request->nomorInduk;
+            $user->name = $request->namaLengkap;
+            $user->role = 'Member';
+            $user->email = $request->emailAnggota;
+            $user->remember_token = Str::random(30);
+            $user->profile_photo_path = $image;
+            $user->save();
 
-        if($request->roleAnggota == 'Siswa') $class = $request->tingkatAnggota.'-'.$request->jurusanAnggota.'-'.$request->kelasAnggota;
-        else $class = '';
+            $lastid = DB::table('users')
+                ->select('id')
+                ->orderByDesc('id')
+                ->limit(1)
+                ->get();
 
-        $mem = new Member;
-        $mem->id = $lastid[0]->id;
-        $mem->nomor_induk = $request->nomorInduk;
-        $mem->address = $request->alamatAnggota;
-        $mem->phone = $request->telpAnggota;
-        $mem->status = $request->roleAnggota;
-        $mem->class = $class;
-        $mem->save();
+            if($request->roleAnggota == 'Siswa') $class = $request->tingkatAnggota.'-'.$request->jurusanAnggota.'-'.$request->kelasAnggota;
+            else $class = '';
 
-        if($file) $file->move(public_path('uploaded_files/member-foto/'),$file->getClientOriginalName());
+            $mem = new Member;
+            $mem->id = $lastid[0]->id;
+            $mem->address = $request->alamatAnggota;
+            $mem->phone = $request->telpAnggota;
+            $mem->status = $request->roleAnggota;
+            $mem->class = $class;
+            $mem->confirm_code = $request->kodeKonfirmasi;
+            $mem->save();
 
-        return redirect('/member')->with('success', 'Data '.$request->namaLengkap.' berhasil disimpan');
+            if($file) $file->move(public_path('uploaded_files/member-foto/'),$file->getClientOriginalName());
+
+            return redirect('/member')->with('success', 'Data '.$request->namaLengkap.' berhasil disimpan');
+        }
     }
 
     /**
@@ -155,10 +164,30 @@ class DataMemberController extends Controller
 
         $members = DB::table('users')
             ->join('members', 'users.id', '=', 'members.id')
-            ->select('users.id', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'members.nomor_induk', 'members.address', 'members.phone', 'members.status', 'members.class')
+            ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'members.address', 'members.phone', 'members.status', 'members.class', 'members.confirm_code')
             ->where($tbl, 'like', $search)
             ->paginate(3000);
 
         return view('librarian.data-member', compact('members'));
+    }
+
+    public function resetCode(Request $request, Member $member)
+    {
+        // dd($member->id);
+        $validateData = $request->validate([
+            'kodeKonfirmasiReset' => 'required',
+        ]);
+
+        $code = Member::where('confirm_code', $request->kodeKonfirmasiReset)->get();
+
+        if($code->all()) return redirect('/member')->with('failed', 'Kode konfirmasi yang dibuat sudah ada');
+        else {
+            Member::where('id', $member->id)
+                    ->update([
+                        'confirm_code' => $request->kodeKonfirmasiReset,
+                        ]);
+
+            return redirect('/member')->with('success', 'Kode berhasil direset \n Kode : '.$request->kodeKonfirmasiReset);
+        }
     }
 }

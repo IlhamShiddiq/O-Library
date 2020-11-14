@@ -24,7 +24,12 @@ class DataMemberController extends Controller
             ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'members.address', 'members.phone', 'members.status', 'members.class', 'members.confirm_code')
             ->paginate(5);
 
-        return view('librarian.data-member', compact('members'));
+        $count = DB::table('users')
+            ->join('members', 'users.id', '=', 'members.id')
+            ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'members.address', 'members.phone', 'members.status', 'members.class', 'members.confirm_code')
+            ->count();
+
+        return view('librarian.data-member', compact('members', 'count'));
     }
 
     public function memberHistory()
@@ -168,7 +173,13 @@ class DataMemberController extends Controller
             ->where($tbl, 'like', $search)
             ->paginate(3000);
 
-        return view('librarian.data-member', compact('members'));
+        $count = DB::table('users')
+            ->join('members', 'users.id', '=', 'members.id')
+            ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'members.address', 'members.phone', 'members.status', 'members.class', 'members.confirm_code')
+            ->where($tbl, 'like', $search)
+            ->count();
+
+        return view('librarian.data-member', compact('members', 'count'));
     }
 
     public function resetCode(Request $request, Member $member)

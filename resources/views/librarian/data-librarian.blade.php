@@ -50,6 +50,9 @@
                 <div class="gray-wrapper radius-admin">
                     <button type="button" class="btn btn-success full-width" data-toggle="modal" data-target="#addDataModal"><i class="fas fa-plus"></i> Tambah Data</button>
                 </div>
+                <div class="total-row text-center p-3 border-bottom mb-5">
+                    {{$count}} Data Ditampilkan
+                </div>
             </div>
             <div class="col-12 col-md-12 col-lg-8">
                 <h1 class="title-pagination text-center mb-3">Data Pustakawan</h1>
@@ -72,9 +75,10 @@
                                 <h1 class="name-person py-2 mt-2">
                                     {{$librarian->name}}
                                 </h1>
-                                <p class="username" <?php if($red) echo $red; ?>>Username : {{$librarian->username}} ({{$librarian->role}})</p>
+                                <p class="username m-1" <?php if($red) echo $red; ?>>Username : {{$librarian->username}} ({{$librarian->role}})</p>
+                                <p class="username">&nbsp;{{$librarian->nomor_induk}}</p>
                                 <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$librarian->id}}">Hapus</a>
-                                @if ($librarian->confirm_code != '0')
+                                @if ($librarian->confirm_code != '')
                                     <a href="#" class="badge badge-success" data-toggle="modal" data-target="#resetKode" data-id="{{$librarian->id}}">Reset Kode</a>
                                 @endif
                                 <a href="#" class="badge badge-info" data-toggle="modal" data-target="#detailDataModal" data-name="{{$librarian->name}}" data-role="{{$librarian->role}}" data-username="{{$librarian->username}}" data-address="{{$librarian->address}}" data-phone="{{$librarian->phone}}" data-image="{{asset('uploaded_files/librarian-foto/'.$librarian->profile_photo_path)}}">Detail</a>

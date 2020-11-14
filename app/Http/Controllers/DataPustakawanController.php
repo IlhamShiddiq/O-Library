@@ -25,7 +25,12 @@ class DataPustakawanController extends Controller
             ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'librarians.address', 'librarians.phone', 'librarians.confirm_code')
             ->paginate(5);
 
-        return view('librarian.data-librarian', compact('librarians'));
+        $count = DB::table('users')
+            ->join('librarians', 'users.id', '=', 'librarians.id')
+            ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'librarians.address', 'librarians.phone', 'librarians.confirm_code')
+            ->count();
+
+        return view('librarian.data-librarian', compact('librarians', 'count'));
     }
 
     /**
@@ -275,7 +280,13 @@ class DataPustakawanController extends Controller
             ->where($tbl, 'like', $search)
             ->paginate(3000);
 
-        return view('librarian.data-librarian', compact('librarians'));
+        $count = DB::table('users')
+            ->join('librarians', 'users.id', '=', 'librarians.id')
+            ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'librarians.address', 'librarians.phone', 'librarians.confirm_code')
+            ->where($tbl, 'like', $search)
+            ->count();
+
+        return view('librarian.data-librarian', compact('librarians', 'count'));
         // dd($request->all());
     }
     

@@ -24,7 +24,13 @@ class DataEbookController extends Controller
             ->select('ebooks.id', 'ebooks.publisher_id', 'ebooks.category_id', 'ebooks.title', 'ebooks.author', 'ebooks.link', 'ebooks.image', 'ebooks.about', 'publishers.publisher', 'categories.category')
             ->paginate(5);
 
-        return view('librarian/data-ebook', compact('ebooks'));
+        $count = DB::table('ebooks')
+            ->join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')
+            ->join('categories', 'ebooks.category_id', '=', 'categories.id')
+            ->select('ebooks.id', 'ebooks.publisher_id', 'ebooks.category_id', 'ebooks.title', 'ebooks.author', 'ebooks.link', 'ebooks.image', 'ebooks.about', 'publishers.publisher', 'categories.category')
+            ->count();
+
+        return view('librarian/data-ebook', compact('ebooks', 'count'));
         // dd($ebooks);
     }
 
@@ -198,7 +204,14 @@ class DataEbookController extends Controller
             ->where($tbl, 'like', $search)
             ->paginate(3000);
 
-        return view('librarian.data-ebook', compact('ebooks'));
+        $count = DB::table('ebooks')
+            ->join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')
+            ->join('categories', 'ebooks.category_id', '=', 'categories.id')
+            ->select('ebooks.id', 'ebooks.publisher_id', 'ebooks.category_id', 'ebooks.title', 'ebooks.author', 'ebooks.link', 'ebooks.image', 'ebooks.about', 'publishers.publisher', 'categories.category')
+            ->where($tbl, 'like', $search)
+            ->count();
+
+        return view('librarian.data-ebook', compact('ebooks', 'count'));
         // dd($request->request);
     }
 }

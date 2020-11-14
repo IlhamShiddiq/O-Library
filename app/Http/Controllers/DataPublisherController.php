@@ -16,7 +16,9 @@ class DataPublisherController extends Controller
     {
         $publishers = Publisher::paginate(10);
 
-        return view('librarian/data-publisher', compact('publishers'));
+        $count = Publisher::all()->count();
+
+        return view('librarian/data-publisher', compact('publishers', 'count'));
     }
 
     /**
@@ -110,6 +112,8 @@ class DataPublisherController extends Controller
 
         $publishers = Publisher::where('publisher', 'like', $word)->paginate(1000);
 
-        return view('librarian/data-publisher', compact('publishers'));
+        $count = Publisher::where('publisher', 'like', $word)->count();
+
+        return view('librarian/data-publisher', compact('publishers', 'count'));
     }
 }

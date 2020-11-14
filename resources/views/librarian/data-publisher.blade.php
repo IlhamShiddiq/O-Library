@@ -54,6 +54,9 @@
                 <div class="gray-wrapper radius-admin">
                     <button type="button" class="btn btn-success full-width" data-toggle="modal" data-target="#addDataModal"><i class="fas fa-plus"></i> Tambah Data</button>
                 </div>
+                <div class="total-row text-center p-3 border-bottom mb-5">
+                  {{$count}} Data Ditampilkan
+                </div>
             </div>
             <div class="col-12 col-md-12 col-lg-8">
                 <h1 class="title-pagination text-center mb-3">Data Penerbit</h1>

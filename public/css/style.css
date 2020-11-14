@@ -1507,6 +1507,11 @@ nav.nav-landing button:focus {
   margin-top: -12px;
 }
 
+.total-row {
+  color: #646363;
+  font-family: segoe;
+}
+
 .month-report-info {
   font-family: segoe;
   letter-spacing: 1px;

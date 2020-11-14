@@ -16,7 +16,9 @@ class DataCategoryController extends Controller
     {
         $categories = Categories::paginate(10);
 
-        return view('librarian/data-category', compact('categories'));
+        $count = Categories::all()->count();
+
+        return view('librarian/data-category', compact('categories', 'count'));
     }
 
     /**
@@ -110,6 +112,8 @@ class DataCategoryController extends Controller
 
         $categories = Categories::where('category', 'like', $word)->paginate(1000);
 
-        return view('librarian/data-category', compact('categories'));
+        $count = Categories::where('category', 'like', $word)->count();
+
+        return view('librarian/data-category', compact('categories', 'count'));
     }
 }

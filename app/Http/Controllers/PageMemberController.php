@@ -26,6 +26,11 @@ class PageMemberController extends Controller
         return view('member.data-book');
     }
 
+    public function ebook()
+    {
+        return view('member.data-ebook');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

@@ -1,6 +1,6 @@
 @extends('../templates/base')
 
-@section('title', 'Daftar Buku')
+@section('title', 'Daftar Ebook')
 
 @section('content')
     <div class="member-page-data full-height">
@@ -41,9 +41,9 @@
                 <div class="col-lg-9 col-md-7 col-12">
                     <div class="breadcrumb-container">
                         <ol class="breadcrumb position-relative">
-                            <div class="breadcrumb-title position-absolute top-absolute text-center text-white">DATA BUKU</div>
+                            <div class="breadcrumb-title position-absolute top-absolute text-center text-white">DATA EBOOK</div>
                             <li class="breadcrumb-item active" aria-current="page">Member</li>
-                            <li class="breadcrumb-item"><a href="{{asset('/member/book')}}">Book</a></li>
+                            <li class="breadcrumb-item"><a href="{{asset('/member/ebook')}}">Ebook</a></li>
                         </ol>
                     </div>
                 </div>
@@ -181,7 +181,7 @@
         </footer>
     </div>
 
-    <a href="{{asset('/member/book')}}" class="btn see-all-btn position-fixed text-white py-2 px-4" title="Lihat Semua">
+    <a href="{{asset('/member/ebook')}}" class="btn see-all-btn position-fixed text-white py-2 px-4" title="Lihat Semua">
         <i class="fas fa-eye"></i>
     </a>
 

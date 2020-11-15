@@ -1949,6 +1949,11 @@ img.vector-confirm {
   color: white;
 }
 
+.member-page-data .jumlah-row {
+  color: #4e4d4d;
+  font-family: segoe;
+}
+
 .member-page-data footer {
   background-color: #3AAF87;
 }

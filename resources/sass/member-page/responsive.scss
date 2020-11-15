@@ -13,6 +13,16 @@
             }
         }
     }
+    .member-page-data {
+        .data-content {
+            .breadcrumb-container {
+                padding-bottom: 0;
+            }
+            .form-search {
+                padding-top: 10px;
+            }
+        }
+    }
 }
 
 // Small devices (landscape phones, less than 768px)
@@ -27,6 +37,16 @@
                     font-size: 15px;
                     letter-spacing: 2px;
                 }
+            }
+        }
+    }
+    .member-page-data {
+        .data-content {
+            .breadcrumb-container {
+                padding-bottom: 0;
+            }
+            .form-search {
+                padding-top: 10px;
             }
         }
     }

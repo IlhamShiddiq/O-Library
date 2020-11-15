@@ -99,3 +99,4 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
 });
 
 Route::get('/member/dashboard', [PageMemberController::class, 'index']);
+Route::get('/member/book', [PageMemberController::class, 'book']);

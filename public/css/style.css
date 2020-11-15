@@ -1784,7 +1784,7 @@ img.vector-confirm {
 }
 
 .member-page .form-search .title p.main-title {
-  font-size: 68px;
+  font-size: 64px;
   letter-spacing: 4px;
   margin: 0;
   margin-bottom: -10px;
@@ -1813,6 +1813,158 @@ img.vector-confirm {
   color: #e6e6e6;
 }
 
+.member-page-data nav {
+  background-color: #3AAF87;
+}
+
+.member-page-data nav .icon-nav {
+  background-color: #fff;
+}
+
+.member-page-data nav .dropdown-menu {
+  width: 400px;
+  margin-top: 10px;
+  z-index: 4;
+}
+
+.member-page-data nav .dropdown-menu a {
+  font-size: 15px;
+}
+
+.member-page-data nav .dropdown-menu .short-profile {
+  padding: 15px 25px 20px 25px;
+  border-bottom: 1px solid gray;
+}
+
+.member-page-data nav .dropdown-menu .short-profile p.name {
+  font-size: 14px;
+  font-family: segoe;
+}
+
+.member-page-data nav .dropdown-menu .logout {
+  padding: 0;
+  padding-top: 10px;
+  border-top: 1px solid gray;
+}
+
+.member-page-data nav .dropdown-menu .logout button {
+  width: 100%;
+}
+
+.member-page-data .data-content {
+  min-height: 768px;
+}
+
+.member-page-data .data-content .breadcrumb-container {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.member-page-data .data-content .breadcrumb-container .breadcrumb {
+  background-color: #CDF9E9;
+  padding: 7px 25px 7px 170px;
+  width: 100%;
+  border-radius: 40px;
+  margin: auto;
+}
+
+.member-page-data .data-content .breadcrumb-container .breadcrumb .breadcrumb-title {
+  background-color: #3AAF87;
+  border-radius: 40px;
+  height: 100%;
+  width: 150px;
+  font-weight: bold;
+  padding-top: 7px;
+  font-family: segoe;
+}
+
+.member-page-data .data-content .form-search {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.member-page-data .data-content .form-search input {
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+}
+
+.member-page-data .data-content .form-search button {
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.member-page-data .data-content .card-book {
+  border-top-right-radius: 20px;
+}
+
+.member-page-data .data-content .card-book img {
+  height: 320px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.member-page-data .data-content .card-book .card-body {
+  padding: 15px 15px 15px 25px;
+  min-height: 110px;
+}
+
+.member-page-data .data-content .card-book .card-body .judul-buku {
+  font-family: segoe;
+  text-transform: uppercase;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.member-page-data .data-content .card-book .card-body .btn-wrapper {
+  bottom: 0;
+  right: 0;
+}
+
+.member-page-data .data-content .card-book .card-body .btn-wrapper a {
+  position: relative;
+  background-color: #3AAF87;
+  color: white !important;
+}
+
+.member-page-data .data-content .card-book .card-body .btn-wrapper a::before {
+  transition: all 0.6s cubic-bezier(1, 0.5, 0.265, 1);
+  content: "";
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #175a43 !important;
+}
+
+.member-page-data .data-content .card-book .card-body .btn-wrapper a span {
+  color: white;
+  mix-blend-mode: lighten;
+}
+
+.member-page-data .data-content .card-book .card-body .btn-wrapper a:hover::before {
+  background-color: #175a43 !important;
+  width: 100% !important;
+  color: white;
+}
+
+.member-page-data footer {
+  background-color: #3AAF87;
+}
+
+.see-all-btn {
+  background-color: #3AAF87;
+  right: 0;
+  bottom: 100px;
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+}
+
+.see-all-btn:hover {
+  background-color: #1d7a5a;
+}
+
 @media (max-width: 575.98px) {
   .member-page .form-search .title p.main-title {
     font-size: 42px;
@@ -1821,6 +1973,14 @@ img.vector-confirm {
   .member-page .form-search .title p.sub-title {
     font-size: 14px;
     letter-spacing: 2px;
+  }
+
+  .member-page-data .data-content .breadcrumb-container {
+    padding-bottom: 0;
+  }
+
+  .member-page-data .data-content .form-search {
+    padding-top: 10px;
   }
 }
 
@@ -1832,6 +1992,14 @@ img.vector-confirm {
   .member-page .form-search .title p.sub-title {
     font-size: 15px;
     letter-spacing: 2px;
+  }
+
+  .member-page-data .data-content .breadcrumb-container {
+    padding-bottom: 0;
+  }
+
+  .member-page-data .data-content .form-search {
+    padding-top: 10px;
   }
 }
 

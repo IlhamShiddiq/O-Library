@@ -21,9 +21,9 @@ class PageMemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function book()
     {
-        //
+        return view('member.data-book');
     }
 
     /**

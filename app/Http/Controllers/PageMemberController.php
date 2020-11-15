@@ -26,6 +26,11 @@ class PageMemberController extends Controller
         return view('member.data-book');
     }
 
+    public function bookDetail()
+    {
+        return view('member.detail-book');
+    }
+
     public function ebook()
     {
         return view('member.data-ebook');

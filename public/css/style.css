@@ -1852,7 +1852,7 @@ img.vector-confirm {
 }
 
 .member-page-data .data-content {
-  min-height: 768px;
+  min-height: 700px;
 }
 
 .member-page-data .data-content .breadcrumb-container {
@@ -1949,6 +1949,44 @@ img.vector-confirm {
   color: white;
 }
 
+.member-page-data .data-content .detail img {
+  height: 500px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.member-page-data .data-content .detail h1.judul {
+  font-family: segoe;
+  font-size: 36px;
+  color: #464646;
+  text-transform: uppercase;
+}
+
+.member-page-data .data-content .detail .profile-buku p {
+  font-size: 16px;
+  font-family: segoe;
+  line-height: 10px;
+}
+
+.member-page-data .data-content .detail p.tentang {
+  font-size: 16px;
+  color: #505050;
+}
+
+.member-page-data .data-content .detail .gray-line {
+  background-color: #afafaf;
+}
+
+.member-page-data .data-content .ibsn-buku {
+  width: 300px;
+  margin: auto;
+  background-color: #3AAF87;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  font-size: 15px;
+}
+
 .member-page-data .jumlah-row {
   color: #4e4d4d;
   font-family: segoe;
@@ -1987,6 +2025,10 @@ img.vector-confirm {
   .member-page-data .data-content .form-search {
     padding-top: 10px;
   }
+
+  .member-page-data .data-content .detail h1.judul {
+    font-size: 28px;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -2005,6 +2047,10 @@ img.vector-confirm {
 
   .member-page-data .data-content .form-search {
     padding-top: 10px;
+  }
+
+  .member-page-data .data-content .detail h1.judul {
+    font-size: 28px;
   }
 }
 

@@ -96,7 +96,7 @@
         }
     }
     .data-content {
-        min-height: 768px;
+        min-height: 700px;
         .breadcrumb-container {
             width: 100%;
             padding: 20px 0;
@@ -177,6 +177,42 @@
                     }
                 }
             }
+        }
+        .detail {
+            img {
+                height: 500px;
+                border-top-right-radius: 30px;
+                border-bottom-right-radius: 30px;
+                border-bottom-left-radius: 30px;
+            }
+            h1.judul {
+                font-family: segoe;
+                font-size: 36px;
+                color: rgb(70, 70, 70);
+                text-transform: uppercase;
+            }
+            .profile-buku {
+                p {
+                    font-size: 16px;
+                    font-family: segoe;
+                    line-height: 10px;
+                }
+            }
+            p.tentang {
+                font-size: 16px;
+                color: rgb(80, 80, 80);
+            }
+            .gray-line {
+                background-color: rgb(175, 175, 175);
+            }
+        }
+        .ibsn-buku {
+            width: 300px;
+            margin: auto;
+            background-color: #3AAF87;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            font-size: 15px;
         }
     }
     .jumlah-row {

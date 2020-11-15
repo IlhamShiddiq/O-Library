@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -101,7 +101,7 @@ btn.addEventListener('click', function () {
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /*!*************************************************!*\
   !*** multi ./resources/js/close-message-btn.js ***!
   \*************************************************/

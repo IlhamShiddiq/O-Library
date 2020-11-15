@@ -1,10 +1,9 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/style.css": "/css/style.css",
     "/js/btn-landing-page.js": "/js/btn-landing-page.js",
     "/js/btn-random.js": "/js/btn-random.js",
     "/js/close-message-btn.js": "/js/close-message-btn.js",
     "/js/font-awesome.js": "/js/font-awesome.js",
+    "/css/style.css": "/css/style.css",
     "/js/member-modal.js": "/js/member-modal.js",
     "/js/transaction-modal.js": "/js/transaction-modal.js"
 }

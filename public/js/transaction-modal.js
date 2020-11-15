@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -107,7 +107,7 @@ satu.addEventListener("click", function (event) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 2:
 /*!*************************************************!*\
   !*** multi ./resources/js/transaction-modal.js ***!
   \*************************************************/

@@ -10,6 +10,7 @@ use App\Http\Controllers\DataPublisherController;
 use App\Http\Controllers\DataCategoryController;
 use App\Http\Controllers\DataPustakawanController;
 use App\Http\Controllers\DataMemberController;
+use App\Http\Controllers\PageMemberController;
 use App\Http\Controllers\DataTransaksiController;
 use App\Http\Controllers\DataReportController;
 use App\Http\Controllers\StaticPageController;
@@ -37,6 +38,8 @@ Route::get('/account/confirming/{user}', [ConfirmPageController::class, 'confirm
 Route::post('/account/confirming/{user}', [ConfirmPageController::class, 'confirmingPageData']);
 
 Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(function () {
+
+    // LIBRARIAN OR ADMIN PAGE
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/book', [DataBukuController::class, 'index']);
@@ -86,10 +89,13 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/member/history', [DataMemberController::class, 'memberHistory']);
 
     Route::get('/transaction', [DataTransaksiController::class, 'index']);
-
+    
     Route::get('/report', [DataReportController::class, 'index']);
     Route::get('/report/late', [DataReportController::class, 'indexLate']);
-
+    
     Route::get('/guide', [StaticPageController::class, 'guide']);
+    
+    // MEMBER PAGE
 });
 
+Route::get('/member/dashboard', [PageMemberController::class, 'index']);

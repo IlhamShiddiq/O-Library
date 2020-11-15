@@ -1,0 +1,55 @@
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+    .member-page {
+        .form-search {
+            .title {
+                p.main-title {
+                    font-size: 42px;
+                }
+                p.sub-title {
+                    font-size: 14px;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+    }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (min-width: 576px) and (max-width: 767.98px) { 
+    .member-page {
+        .form-search {
+            .title {
+                p.main-title {
+                    font-size: 44px;
+                }
+                p.sub-title {
+                    font-size: 15px;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+    }
+}
+
+// Medium devices (tablets, less than 992px)
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .member-page {
+        .form-search {
+            .title {
+                p.main-title {
+                    font-size: 48px;
+                }
+                p.sub-title {
+                    font-size: 16px;
+                    letter-spacing: 3px;
+                }
+            }
+        }
+    }
+}
+
+// Large devices (desktops, less than 1200px)
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+
+}

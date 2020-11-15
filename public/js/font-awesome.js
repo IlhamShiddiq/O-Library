@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -5189,14 +5189,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 1:
-/*!********************************************!*\
-  !*** multi ./resources/js/font-awesome.js ***!
-  \********************************************/
+/***/ "./resources/sass/style.scss":
+/*!***********************************!*\
+  !*** ./resources/sass/style.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 0:
+/*!************************************************************************!*\
+  !*** multi ./resources/js/font-awesome.js ./resources/sass/style.scss ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! F:\My Projects\Project Work\PerpustakaanOnline\resources\js\font-awesome.js */"./resources/js/font-awesome.js");
+__webpack_require__(/*! F:\My Projects\Project Work\PerpustakaanOnline\resources\js\font-awesome.js */"./resources/js/font-awesome.js");
+module.exports = __webpack_require__(/*! F:\My Projects\Project Work\PerpustakaanOnline\resources\sass\style.scss */"./resources/sass/style.scss");
 
 
 /***/ })

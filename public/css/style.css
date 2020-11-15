@@ -1117,6 +1117,10 @@ nav.nav-landing button:focus {
   z-index: 1;
 }
 
+.page-admin .nav-green .dropdown-menu a {
+  font-size: 15px;
+}
+
 .page-admin .nav-green .dropdown-menu .short-profile {
   padding: 15px 25px 20px 25px;
   border-bottom: 1px solid gray;
@@ -1731,5 +1735,114 @@ img.vector-confirm {
 
 .home-btn-confirm a:focus {
   box-shadow: 0 0 0 0.2rem rgba(244, 247, 244, 0.575) !important;
+}
+
+.member-page .overlay-black {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.member-page .dropdown-menu {
+  width: 400px;
+  margin-top: 10px;
+  z-index: 1;
+}
+
+.member-page .dropdown-menu a {
+  font-size: 15px;
+}
+
+.member-page .dropdown-menu .short-profile {
+  padding: 15px 25px 20px 25px;
+  border-bottom: 1px solid gray;
+}
+
+.member-page .dropdown-menu .short-profile p.name {
+  font-size: 14px;
+  font-family: segoe;
+}
+
+.member-page .dropdown-menu .logout {
+  padding: 0;
+  padding-top: 10px;
+  border-top: 1px solid gray;
+}
+
+.member-page .dropdown-menu .logout button {
+  width: 100%;
+}
+
+.member-page .form-search {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.member-page .form-search .title {
+  font-family: segoe;
+}
+
+.member-page .form-search .title p.main-title {
+  font-size: 68px;
+  letter-spacing: 4px;
+  margin: 0;
+  margin-bottom: -10px;
+}
+
+.member-page .form-search .title p.sub-title {
+  font-size: 18px;
+  letter-spacing: 5px;
+}
+
+.member-page .form-search input {
+  padding: 24px;
+}
+
+.member-page .form-search select {
+  width: 150px;
+  font-size: 16px !important;
+  height: 48px;
+  z-index: 3;
+}
+
+.member-page footer {
+  font-size: 15px;
+  font-family: segoe;
+  letter-spacing: 1px;
+  color: #e6e6e6;
+}
+
+@media (max-width: 575.98px) {
+  .member-page .form-search .title p.main-title {
+    font-size: 42px;
+  }
+
+  .member-page .form-search .title p.sub-title {
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .member-page .form-search .title p.main-title {
+    font-size: 44px;
+  }
+
+  .member-page .form-search .title p.sub-title {
+    font-size: 15px;
+    letter-spacing: 2px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .member-page .form-search .title p.main-title {
+    font-size: 48px;
+  }
+
+  .member-page .form-search .title p.sub-title {
+    font-size: 16px;
+    letter-spacing: 3px;
+  }
 }
 

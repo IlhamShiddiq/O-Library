@@ -99,6 +99,8 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
 });
 
 Route::get('/member/dashboard', [PageMemberController::class, 'index']);
+Route::get('/member/edit-profile', [PageMemberController::class, 'edit']);
+Route::get('/member/change-password', [PageMemberController::class, 'editPass']);
 Route::get('/member/book', [PageMemberController::class, 'book']);
 Route::get('/member/book/detail', [PageMemberController::class, 'bookDetail']);
 Route::get('/member/ebook', [PageMemberController::class, 'ebook']);

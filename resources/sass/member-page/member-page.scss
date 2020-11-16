@@ -185,22 +185,54 @@
                 border-bottom-right-radius: 30px;
                 border-bottom-left-radius: 30px;
             }
-            h1.judul {
-                font-family: segoe;
-                font-size: 36px;
-                color: rgb(70, 70, 70);
-                text-transform: uppercase;
-            }
-            .profile-buku {
-                p {
-                    font-size: 16px;
+            .detail-wrapper {
+                margin-top: 40px;
+                h1.judul {
                     font-family: segoe;
-                    line-height: 10px;
+                    font-size: 36px;
+                    color: rgb(70, 70, 70);
+                    text-transform: uppercase;
                 }
-            }
-            p.tentang {
-                font-size: 16px;
-                color: rgb(80, 80, 80);
+                .profile-buku {
+                    p {
+                        font-size: 16px;
+                        font-family: segoe;
+                        line-height: 10px;
+                    }
+                }
+                p.tentang {
+                    font-size: 16px;
+                    color: rgb(80, 80, 80);
+                }
+                .btn-ajuan {
+                    position: relative;
+                    background-color: black;
+                    color: black !important;
+                    &::before{
+                        transition: all 0.6s cubic-bezier(1, 0.5, 0.265, 1);
+                        content: '';
+                        width: 0;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        background-color: #0c4934 !important;
+                    }
+                    span {
+                        color: white;
+                        mix-blend-mode: lighten;
+                    }
+                    &:hover{
+                        &::before{
+                            background-color: #0c4934 !important;
+                            width: 100% !important;
+                            color: white;
+                        }
+                    }
+                    &:focus {
+                        box-shadow: 0 0 0 0.2rem rgba(12, 39, 68, 0.25) !important;
+                    }
+                }
             }
             .gray-line {
                 background-color: rgb(175, 175, 175);

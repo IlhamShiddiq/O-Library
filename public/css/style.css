@@ -1956,22 +1956,58 @@ img.vector-confirm {
   border-bottom-left-radius: 30px;
 }
 
-.member-page-data .data-content .detail h1.judul {
+.member-page-data .data-content .detail .detail-wrapper {
+  margin-top: 40px;
+}
+
+.member-page-data .data-content .detail .detail-wrapper h1.judul {
   font-family: segoe;
   font-size: 36px;
   color: #464646;
   text-transform: uppercase;
 }
 
-.member-page-data .data-content .detail .profile-buku p {
+.member-page-data .data-content .detail .detail-wrapper .profile-buku p {
   font-size: 16px;
   font-family: segoe;
   line-height: 10px;
 }
 
-.member-page-data .data-content .detail p.tentang {
+.member-page-data .data-content .detail .detail-wrapper p.tentang {
   font-size: 16px;
   color: #505050;
+}
+
+.member-page-data .data-content .detail .detail-wrapper .btn-ajuan {
+  position: relative;
+  background-color: black;
+  color: black !important;
+}
+
+.member-page-data .data-content .detail .detail-wrapper .btn-ajuan::before {
+  transition: all 0.6s cubic-bezier(1, 0.5, 0.265, 1);
+  content: "";
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #0c4934 !important;
+}
+
+.member-page-data .data-content .detail .detail-wrapper .btn-ajuan span {
+  color: white;
+  mix-blend-mode: lighten;
+}
+
+.member-page-data .data-content .detail .detail-wrapper .btn-ajuan:hover::before {
+  background-color: #0c4934 !important;
+  width: 100% !important;
+  color: white;
+}
+
+.member-page-data .data-content .detail .detail-wrapper .btn-ajuan:focus {
+  box-shadow: 0 0 0 0.2rem rgba(12, 39, 68, 0.25) !important;
 }
 
 .member-page-data .data-content .detail .gray-line {
@@ -2026,7 +2062,11 @@ img.vector-confirm {
     padding-top: 10px;
   }
 
-  .member-page-data .data-content .detail h1.judul {
+  .member-page-data .data-content .detail .detail-wrapper {
+    margin-top: 0;
+  }
+
+  .member-page-data .data-content .detail .detail-wrapper h1.judul {
     font-size: 28px;
   }
 }
@@ -2049,7 +2089,11 @@ img.vector-confirm {
     padding-top: 10px;
   }
 
-  .member-page-data .data-content .detail h1.judul {
+  .member-page-data .data-content .detail .detail-wrapper {
+    margin-top: 0;
+  }
+
+  .member-page-data .data-content .detail .detail-wrapper h1.judul {
     font-size: 28px;
   }
 }
@@ -2062,6 +2106,14 @@ img.vector-confirm {
   .member-page .form-search .title p.sub-title {
     font-size: 16px;
     letter-spacing: 3px;
+  }
+
+  .member-page-data .data-content .detail .detail-wrapper {
+    margin-top: 10px;
+  }
+
+  .member-page-data .data-content .detail .detail-wrapper h1.judul {
+    font-size: 30px;
   }
 }
 

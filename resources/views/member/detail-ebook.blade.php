@@ -41,11 +41,11 @@
                 <div class="col-12">
                     <div class="breadcrumb-container">
                         <ol class="breadcrumb position-relative">
-                            <div class="breadcrumb-title position-absolute top-absolute text-center text-white">DETAIL BUKU</div>
+                            <div class="breadcrumb-title position-absolute top-absolute text-center text-white">DETAIL EBOOK</div>
                             <li class="breadcrumb-item active" aria-current="page">Member</li>
-                            <li class="breadcrumb-item"><a href="{{asset('/member/book')}}">Book</a></li>
+                            <li class="breadcrumb-item"><a href="{{asset('/member/ebook')}}">Ebook</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Detail</li>
-                            <li class="breadcrumb-item"><a href="{{asset('/member/book')}}">10</a></li>
+                            <li class="breadcrumb-item"><a href="{{asset('/member/ebook')}}">10</a></li>
                         </ol>
                     </div>
                 </div>
@@ -64,7 +64,10 @@
                             <p class="profile">Ditulis oleh ini nama penulis</p>
                         </div>
                         <p class="tentang text-justify pl-2 pr-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias laboriosam rem vel provident, neque doloribus, atque harum commodi blanditiis facere est nobis voluptatum corporis officiis natus dolores totam dolorem. Maiores.</p>
-                        <span class="badge badge-success mt-3 px-3 ml-2 mb-3">Tersedia</span>
+                        
+                        <div class="btn-ajuan-wrapper ml-2">
+                            <button type="button" class="btn btn-sm btn-ajuan mt-3 px-3 rounded-0 text-white mb-3" data-toggle="modal" data-target="#ajuanModal"><span>Ajukan Penggunaan Ebook</span></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,6 +81,35 @@
         <footer class="text-center p-2 text-white full-width mt-2">
             SMK Negeri 1 Cimahi &copy; 2020
         </footer>
+    </div>
+
+    <!-- Ajuan Modal -->
+    <div class="modal modal-admin fade" id="ajuanModal" tabindex="-1" aria-labelledby="editDataModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <img src="{{asset('img/icon.png')}}" alt="icon" width="55">
+                    <h5>PENGAJUAN</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body py-2 px-4">
+                    <form>
+                        <div class="form-group">
+                          <small>Alasan pengajuan</small>
+                          <textarea class="form-control" placeholder="Masukkan disini" rows="3"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-sm mb-2 px-5 btn-primary rounded-0">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer text-center">
+                    <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Logout Modal -->

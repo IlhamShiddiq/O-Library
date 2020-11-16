@@ -22,8 +22,11 @@
                 padding-top: 10px;
             }
             .detail {
-                h1.judul {
-                    font-size: 28px;
+                .detail-wrapper {
+                    margin-top: 0;
+                    h1.judul {
+                        font-size: 28px;
+                    }
                 }
             }  
         }
@@ -54,8 +57,11 @@
                 padding-top: 10px;
             }
             .detail {
-                h1.judul {
-                    font-size: 28px;
+                .detail-wrapper {
+                    margin-top: 0;
+                    h1.judul {
+                        font-size: 28px;
+                    }
                 }
             }   
         }
@@ -75,6 +81,18 @@
                     letter-spacing: 3px;
                 }
             }
+        }
+    }
+    .member-page-data {
+        .data-content {
+            .detail {
+                .detail-wrapper {
+                    margin-top: 10px;
+                    h1.judul {
+                        font-size: 30px;
+                    }
+                }
+            }   
         }
     }
 }

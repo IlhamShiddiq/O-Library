@@ -235,6 +235,7 @@ h1.title-admin {
   right: 40px;
   width: 380px;
   border-radius: 15px;
+  z-index: 9;
 }
 
 .message .message-header {
@@ -269,19 +270,16 @@ h1.title-admin {
 .message-admin {
   top: 63px;
   right: 51px;
-  z-index: 2;
 }
 
 .message-member-dashboard {
   top: 70px;
   right: 47px;
-  z-index: 2;
 }
 
 .message-member {
   top: 55px;
   right: 46px;
-  z-index: 9;
 }
 
 .message-danger .message-header {

@@ -27,15 +27,36 @@
 @endsection
 
 @section('content')
-    <div class="col-lg-12 col-md-10 col-12">
-        <div class="judul-preview-ebook pt-2"> </div>
-        <div class="preview-pdf position-relative full-width mt-1">
-            <iframe src="https://drive.google.com/file/d/1tYU2wOOLPmSEEAWnnchs3WzJWJUmaRGp/preview" class="full-width position-absolute top-absolute" frameborder="1">
-            </iframe>
-            <div class="position-absolute p-1 rounded" style="background-color: #d1d1d1; top: 14px; right: 14px;"><img src="{{asset('img/icon.png')}}" width="60" height="60"></div>
+    <div class="col-lg-3 col-md-5 col-10 mb-4">
+        <div class="card card-book" style="width: 100%;">
+            <img src="{{asset('img/coba3.jpg')}}" class="full-width fit-cover" alt="...">
+            <div class="card-body position-relative">
+                <h5 class="judul-buku">ini judul buku yang tertera</h5>
+                <div class="btn-wrapper position-absolute">
+                    <a href="#" class="btn text-white rounded-0 px-4">
+                        <span>Detail Buku</span>
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer pt-0 pb-1 text-center">
+                <small style="color: red; font-style: italic;">Berlaku hingga 29-09-2020</small>
+            </div>
         </div>
-        <div class="info-ebook mt-4 mb-4 full-width text-center">
-            Berlaku hingga 09 September 2020 (14 hari tersisa)
+    </div>
+    <div class="col-lg-3 col-md-5 col-10 mb-4">
+        <div class="card card-book" style="width: 100%;">
+            <img src="{{asset('img/coba3.jpg')}}" class="full-width fit-cover" alt="...">
+            <div class="card-body position-relative">
+                <h5 class="judul-buku">ini judul buku yang tertera</h5>
+                <div class="btn-wrapper position-absolute">
+                    <a href="#" class="btn text-white rounded-0 px-4">
+                        <span>Detail Buku</span>
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer pt-0 pb-1 text-center">
+                <small style="color: red; font-style: italic;">Berlaku hingga 29-09-2020</small>
+            </div>
         </div>
     </div>
 @endsection

@@ -22,12 +22,12 @@
                         </div>
                         <div class="container">
                             <div class="menu-link">
-                                <a class="dropdown-item mb-2" href="#"><i class="fas fa-book mr-3"></i>Daftar Buku</a>
-                                <a class="dropdown-item mb-2" href="#"><i class="fas fa-book mr-3"></i>Daftar Ebook</a>
+                                <a class="dropdown-item mb-2" href="{{asset('/member/book')}}"><i class="fas fa-book mr-3"></i>Daftar Buku</a>
+                                <a class="dropdown-item mb-2" href="{{asset('/member/ebook')}}"><i class="fas fa-book mr-3"></i>Daftar Ebook</a>
                             </div>
                             <div class="profile">
-                                <a class="dropdown-item mb-2" href="#"><i class="fas fa-user-alt mr-3"></i>Edit Profil Saya</a>
-                                <a class="dropdown-item mb-2" href="#"><i class="fas fa-key mr-3"></i>Ganti Password</a>
+                                <a class="dropdown-item mb-2" href="{{asset('/member/edit-profile')}}"><i class="fas fa-user-alt mr-3"></i>Edit Profil Saya</a>
+                                <a class="dropdown-item mb-2" href="{{asset('/member/change-password')}}"><i class="fas fa-key mr-3"></i>Ganti Password</a>
                             </div>
                         </div>
                         <div class="logout">
@@ -35,6 +35,7 @@
                         </div>
                     </div>
                 </div>
+                <a href="#" class="btn btn-sm btn-notif text-white ml-1"><i class="fas fa-book"></i></a>
                 <button class="btn btn-sm btn-notif text-white ml-1"><i class="fas fa-bell"></i></button>
             </div>
         </nav>

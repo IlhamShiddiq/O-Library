@@ -105,3 +105,4 @@ Route::get('/member/book', [PageMemberController::class, 'book']);
 Route::get('/member/book/detail', [PageMemberController::class, 'bookDetail']);
 Route::get('/member/ebook', [PageMemberController::class, 'ebook']);
 Route::get('/member/ebook/detail', [PageMemberController::class, 'ebookDetail']);
+Route::get('/member/my-ebook', [PageMemberController::class, 'myEbook']);

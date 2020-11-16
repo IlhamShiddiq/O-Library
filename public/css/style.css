@@ -8,6 +8,7 @@ body {
 
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -156,6 +157,24 @@ button.btn-admin:focus {
   background-color: #f9f9f9;
   padding: 20px;
   margin-bottom: 10px;
+}
+
+.warning-wrapper {
+  position: relative;
+  background-color: #f9fabb;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.danger-wrapper {
+  position: relative;
+  background-color: #fdc8c8;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.pengajuan-wrapper .total {
+  font-size: 46px;
 }
 
 .white-wrapper {

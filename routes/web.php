@@ -15,6 +15,7 @@ use App\Http\Controllers\DataTransaksiController;
 use App\Http\Controllers\DataReportController;
 use App\Http\Controllers\StaticPageController;
 use App\Http\Controllers\ConfirmPageController;
+use App\Http\Controllers\DataPermissionController;
 use App\Http\Controllers\LoginController;
 
 /*
@@ -93,6 +94,8 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/report', [DataReportController::class, 'index']);
     Route::get('/report/late', [DataReportController::class, 'indexLate']);
     
+    Route::get('/permission', [DataPermissionController::class, 'index']);
+
     Route::get('/guide', [StaticPageController::class, 'guide']);
     
     // MEMBER PAGE

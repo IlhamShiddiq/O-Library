@@ -131,6 +131,26 @@ button.btn-admin {
     margin-bottom: 10px;
 }
 
+.warning-wrapper {
+    position: relative;
+    background-color: rgb(249, 250, 187);
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.danger-wrapper {
+    position: relative;
+    background-color: rgb(253, 200, 200);
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.pengajuan-wrapper {
+    .total {
+        font-size: 46px;
+    }
+}
+
 .white-wrapper {
     position: relative;
     background-color: rgb(255, 255, 255);

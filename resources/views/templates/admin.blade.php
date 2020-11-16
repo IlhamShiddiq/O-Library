@@ -137,6 +137,14 @@
                 </div>
                 <div class="item-menu text-white">
                     <div class="icon-item d-inline-block text-center">
+                        <i class="fas fa-comment-alt"></i>
+                    </div>
+                    <a href="{{ url('/permission') }}" class="dest-item d-inline-block text-white">
+                        Pengajuan
+                    </a>
+                </div>
+                <div class="item-menu text-white">
+                    <div class="icon-item d-inline-block text-center">
                         <i class="fas fa-retweet"></i>
                     </div>
                     <a href="{{ url('/transaction') }}" class="dest-item d-inline-block text-white">

@@ -44,7 +44,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-sm btn-notif text-white ml-1"><i class="fas fa-book"></i></a>
+                    <a href="{{asset('/member/my-ebook')}}" class="btn btn-sm btn-notif text-white ml-1"><i class="fas fa-book"></i></a>
                     <button class="btn btn-sm btn-notif text-white ml-1"><i class="fas fa-bell"></i></button>
                 </div>
             </nav>

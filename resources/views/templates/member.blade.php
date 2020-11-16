@@ -15,6 +15,32 @@
         <title>@yield('title')</title>
     </head>
     <body>
+        @if (session('success'))
+            <div class="message message-success message-member position-absolute shadow">
+                <div class="message-header position-relative text-white rounded-top">
+                    <h6>Message!!</h6>
+                    <button class="btn position-absolute text-white" id="btn-close-message"><i class="fas fa-times"></i></button>
+                    <div class="triangle-up position-absolute"></div>
+                </div>
+                <div class="message-body">
+                    <p>{{session('success')}}</p>
+                </div>
+            </div>
+        @endif
+
+        @if (session('failed'))
+            <div class="message message-danger message-member position-absolute shadow">
+                <div class="message-header position-relative text-white rounded-top">
+                    <h6>Message!!</h6>
+                    <button class="btn position-absolute text-white" id="btn-close-message"><i class="fas fa-times"></i></button>
+                    <div class="triangle-up position-absolute"></div>
+                </div>
+                <div class="message-body">
+                    <p>{{session('failed')}}</p>
+                </div>
+            </div>
+        @endif
+        
         <div class="member-page-data full-height">
             <nav class="navbar nav-member navbar-expand-lg py-2 px-5">
                 <a href="{{url('/member/dashboard')}}" class="icon-nav p-1 rounded-circle my-1"><img src="{{asset('img/icon.png')}}" alt="admin icon" width="33" height="33" class="d-inline rounded-circle fit-cover"></a>
@@ -82,7 +108,7 @@
                     </div>
                     <div class="modal-footer text-center">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <a href="#" class="btn btn-danger">Yes</a>
+                        <a href="{{url('/logout')}}" class="btn btn-danger">Yes</a>
                     </div>
                 </div>
             </div>
@@ -94,6 +120,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
         <script src="{{asset('js/font-awesome.js')}}"></script>
+        <script src="{{asset('js/close-message-btn.js')}}"></script>
         @yield('more-js')
     </body>
 </html>

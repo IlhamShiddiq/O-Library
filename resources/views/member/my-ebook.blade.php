@@ -28,9 +28,7 @@
 
 @section('content')
     <div class="col-lg-12 col-md-10 col-12">
-        <div class="judul-preview-ebook pt-2">
-            {{-- INI JUDUL DARI EBOOK yang dibuka --}}
-        </div>
+        <div class="judul-preview-ebook pt-2"> </div>
         <div class="preview-pdf position-relative full-width mt-1">
             <iframe src="https://drive.google.com/file/d/1tYU2wOOLPmSEEAWnnchs3WzJWJUmaRGp/preview" class="full-width position-absolute top-absolute" frameborder="1">
             </iframe>

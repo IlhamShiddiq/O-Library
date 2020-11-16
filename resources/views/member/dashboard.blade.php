@@ -3,6 +3,19 @@
 @section('title', 'Dasboard')
 
 @section('content')
+    @if (session('success'))
+        <div class="message message-success message-member-dashboard position-absolute shadow">
+            <div class="message-header position-relative text-white rounded-top">
+                <h6>Message!!</h6>
+                <button class="btn position-absolute text-white" id="btn-close-message"><i class="fas fa-times"></i></button>
+                <div class="triangle-up position-absolute"></div>
+            </div>
+            <div class="message-body">
+                <p>{{session('success')}}</p>
+            </div>
+        </div>
+    @endif
+
     <div class="member-page full-height">
         <img src="{{asset('img/bg/bg.jpg')}}" class="position-absolute top-absolute full-width full-height fit-cover">
         <div class="overlay-black position-absolute top-absolute full-width full-height "></div>
@@ -86,9 +99,11 @@
                 </div>
                 <div class="modal-footer text-center">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a href="#" class="btn btn-danger">Yes</a>
+                    <a href="{{url('/logout')}}" class="btn btn-danger">Yes</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="{{asset('js/close-message-btn.js')}}"></script>
 @endsection

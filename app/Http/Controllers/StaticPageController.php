@@ -23,7 +23,7 @@ class StaticPageController extends Controller
             return redirect('/dashboard')->with('success', 'Selamat Datang '.auth()->user()->name);
         }
 
-        return redirect('/book');
+        return redirect('/member/dashboard')->with('success', 'Selamat Datang '.auth()->user()->name);;
         
     }
 }

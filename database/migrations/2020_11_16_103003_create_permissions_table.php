@@ -19,8 +19,9 @@ class CreatePermissionsTable extends Migration
             $table->integer('id_ebook');
             $table->text('reason');
             $table->char('confirmed', 1);
-            $table->char('accepted', 1);
-            $table->date('limit');
+            $table->char('accepted', 1)->nullable();
+            $table->date('submit_date');
+            $table->date('limit_date')->nullable();
             $table->timestamps();
         });
     }

@@ -24,13 +24,13 @@
                 <div class="title py-3 text-center mb-1 mt-5">
                     <h1 class="title-admin">Change Password</h1>
                 </div>
-                <form class="mb-4" action="{{url('/change-password')}}" method="post">
+                <form class="mb-4" action="{{url('/member/change-password')}}" method="post">
                     @csrf
                     <div class="row">
                     <div class="col-6 pr-1">
                         <div class="form-group">
                             <small for="username">Username</small>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Isikan disini..." readonly value="">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Isikan disini..." readonly value="{{$users[0]->username}}">
                         </div>
                     </div>
                     <div class="col-6 pl-1">

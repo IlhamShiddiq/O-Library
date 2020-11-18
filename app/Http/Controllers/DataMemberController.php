@@ -7,6 +7,7 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File; 
 use Auth;
 
@@ -191,7 +192,45 @@ class DataMemberController extends Controller
         
     public function editPass()
     {
-        return view('member/change-password');
+        $id = auth()->user()->id;
+        $users = DB::table('users')
+                    ->select('users.id', 'users.username')
+                    ->where('users.id', $id)
+                    ->get();
+
+        return view('member/change-password', compact('users'));
+    }
+
+    public function updatePass(Request $request)
+    {
+        $id = auth()->user()->id;
+
+        $validateData = $request->validate([
+            'oldPassword' => 'required',
+            'newPassword' => 'required|min:8',
+            'confirmPassword' => 'required|min:8',
+            'checkboxConfirm' => 'required',
+        ]);
+
+        $checkMatches = Hash::check($request->get('oldPassword'), Auth::user()->password);
+
+        if(!($checkMatches))
+        {
+            return redirect('/member/change-password')->with('failed', 'Password yang anda masukkan salah');
+        }
+
+        if(!($request->newPassword == $request->confirmPassword))
+        {
+            return redirect('/member/change-password')->with('failed', 'Password baru tidak cocok saat dikonfirmasi');
+        }
+
+        $newPass = bcrypt($request->newPassword);
+        User::where('id', $id)
+                    ->update([
+                        'password' => $newPass,
+                        ]);
+
+        return redirect('/member/change-password')->with('success', 'Password berhasil diganti');
     }
 
     /**

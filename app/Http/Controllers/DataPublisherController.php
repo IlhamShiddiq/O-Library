@@ -14,6 +14,11 @@ class DataPublisherController extends Controller
      */
     public function index()
     {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         $publishers = Publisher::paginate(10);
 
         $count = Publisher::all()->count();

@@ -14,6 +14,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        if(!(auth()->user()->role == 'Pustakawan' || auth()->user()->role == 'Admin'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
+ 
         $sum_categories = Categories::all()->count();
         $sum_books = Book::all()->count();
         $sum_ebooks = Ebook::all()->count();

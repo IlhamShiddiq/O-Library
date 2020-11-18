@@ -18,6 +18,11 @@ class DataEbookController extends Controller
      */
     public function index()
     {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         $ebooks = DB::table('ebooks')
             ->join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')
             ->join('categories', 'ebooks.category_id', '=', 'categories.id')

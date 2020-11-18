@@ -16,6 +16,19 @@
         </div>
     @endif
 
+    @if (session('failed'))
+        <div class="message message-danger message-member-dashboard position-absolute shadow">
+            <div class="message-header position-relative text-white rounded-top">
+                <h6>Message!!</h6>
+                <button class="btn position-absolute text-white" id="btn-close-message"><i class="fas fa-times"></i></button>
+                <div class="triangle-up position-absolute"></div>
+            </div>
+            <div class="message-body">
+                <p>{{session('failed')}}</p>
+            </div>
+        </div>
+    @endif
+
     <div class="member-page full-height">
         <img src="{{asset('img/bg/bg.jpg')}}" class="position-absolute top-absolute full-width full-height fit-cover">
         <div class="overlay-black position-absolute top-absolute full-width full-height "></div>

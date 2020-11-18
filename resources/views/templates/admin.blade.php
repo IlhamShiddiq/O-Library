@@ -87,7 +87,7 @@
                         Dashboard
                     </a>
                 </div>
-                <div class="item-menu text-white">
+                <div class="item-menu text-white @if(auth()->user()->role == 'Pustakawan') d-none @endif">
                     <div class="icon-item d-inline-block text-center">
                         <i class="fas fa-user-friends"></i>
                     </div>
@@ -95,7 +95,7 @@
                         Data Pustakawan
                     </a>
                 </div>
-                <div class="item-menu text-white">
+                <div class="item-menu text-white @if(auth()->user()->role == 'Admin') d-none @endif">
                     <div class="icon-item d-inline-block text-center">
                         <i class="fas fa-book"></i>
                     </div>
@@ -103,7 +103,7 @@
                         Data Buku
                     </a>
                 </div>
-                <div class="item-menu text-white">
+                <div class="item-menu text-white @if(auth()->user()->role == 'Admin') d-none @endif">
                     <div class="icon-item d-inline-block text-center">
                         <i class="fas fa-users"></i>
                     </div>
@@ -111,7 +111,7 @@
                         Data Anggota
                     </a>
                 </div>
-                <div class="item-menu text-white">
+                <div class="item-menu text-white @if(auth()->user()->role == 'Admin') d-none @endif">
                     <div class="icon-item d-inline-block text-center">
                         <i class="fas fa-book"></i>
                     </div>
@@ -119,7 +119,7 @@
                         Data Ebook
                     </a>
                 </div>
-                <div class="item-menu text-white">
+                <div class="item-menu text-white @if(auth()->user()->role == 'Admin') d-none @endif">
                     <div class="icon-item d-inline-block text-center">
                         <i class="fas fa-upload"></i>
                     </div>
@@ -127,7 +127,7 @@
                         Data Penerbit
                     </a>
                 </div>
-                <div class="item-menu text-white">
+                <div class="item-menu text-white @if(auth()->user()->role == 'Admin') d-none @endif">
                     <div class="icon-item d-inline-block text-center">
                         <i class="fas fa-bookmark"></i>
                     </div>
@@ -135,7 +135,7 @@
                         Data Kategori
                     </a>
                 </div>
-                <div class="item-menu text-white">
+                <div class="item-menu text-white @if(auth()->user()->role == 'Admin') d-none @endif">
                     <div class="icon-item d-inline-block text-center">
                         <i class="fas fa-comment-alt"></i>
                     </div>
@@ -143,7 +143,7 @@
                         Pengajuan
                     </a>
                 </div>
-                <div class="item-menu text-white">
+                <div class="item-menu text-white @if(auth()->user()->role == 'Admin') d-none @endif">
                     <div class="icon-item d-inline-block text-center">
                         <i class="fas fa-retweet"></i>
                     </div>

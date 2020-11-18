@@ -14,6 +14,11 @@ class DataCategoryController extends Controller
      */
     public function index()
     {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         $categories = Categories::paginate(10);
 
         $count = Categories::all()->count();

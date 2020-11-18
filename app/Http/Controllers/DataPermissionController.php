@@ -14,6 +14,11 @@ class DataPermissionController extends Controller
      */
     public function index()
     {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         return view('librarian/data-permission');
     }
 

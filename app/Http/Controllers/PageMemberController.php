@@ -17,6 +17,11 @@ class PageMemberController extends Controller
      */
     public function index()
     {
+        if(!(auth()->user()->role == 'Member'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         return view('member.dashboard');
     }
 
@@ -27,6 +32,11 @@ class PageMemberController extends Controller
      */
     public function book()
     {
+        if(!(auth()->user()->role == 'Member'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         $books = DB::table('books')
             ->select('books.id', 'books.title', 'books.image')
             ->where('books.qty', '>', 0)
@@ -37,6 +47,11 @@ class PageMemberController extends Controller
 
     public function bookDetail(Book $book)
     {
+        if(!(auth()->user()->role == 'Member'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         $id = $book->id;
 
         $datas = DB::table('books')
@@ -86,6 +101,11 @@ class PageMemberController extends Controller
 
     public function ebook()
     {
+        if(!(auth()->user()->role == 'Member'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         $ebooks = DB::table('ebooks')
             ->select('ebooks.id', 'ebooks.title', 'ebooks.image')
             ->paginate(8);
@@ -95,6 +115,11 @@ class PageMemberController extends Controller
 
     public function ebookDetail(Ebook $ebook)
     {
+        if(!(auth()->user()->role == 'Member'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         $id = $ebook->id;
 
         $datas = DB::table('ebooks')
@@ -121,11 +146,21 @@ class PageMemberController extends Controller
 
     public function myEbook()
     {
+        if(!(auth()->user()->role == 'Member'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         return view('member.my-ebook');
     }
 
     public function myEbookPreview()
     {
+        if(!(auth()->user()->role == 'Member'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         return view('member.my-ebook-preview');
     }
 

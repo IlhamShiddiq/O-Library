@@ -20,6 +20,11 @@ class DataPustakawanController extends Controller
      */
     public function index()
     {
+        if(!(auth()->user()->role == 'Admin'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+
         $librarians = DB::table('users')
             ->join('librarians', 'users.id', '=', 'librarians.id')
             ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'librarians.address', 'librarians.phone', 'librarians.confirm_code')
@@ -118,6 +123,11 @@ class DataPustakawanController extends Controller
      */
     public function edit()
     {
+        if(!(auth()->user()->role == 'Pustakawan' || auth()->user()->role == 'Admin'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         $id = auth()->user()->id;
         $users = DB::table('users')
                     ->join('librarians', 'users.id', '=', 'librarians.id')
@@ -192,6 +202,11 @@ class DataPustakawanController extends Controller
 
     public function editPass(User $user)
     {
+        if(!(auth()->user()->role == 'Pustakawan' || auth()->user()->role == 'Admin'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         $id = auth()->user()->id;
         $users = DB::table('users')
                     ->select('users.id', 'users.username')

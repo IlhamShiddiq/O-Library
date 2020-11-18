@@ -20,6 +20,11 @@ class DataMemberController extends Controller
      */
     public function index()
     {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         $members = DB::table('users')
             ->join('members', 'users.id', '=', 'members.id')
             ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'members.address', 'members.phone', 'members.status', 'members.class', 'members.confirm_code')
@@ -129,6 +134,11 @@ class DataMemberController extends Controller
      */
     public function edit(Member $member)
     {
+        if(!(auth()->user()->role == 'Member'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         $id = auth()->user()->id;
         $datas = DB::table('users')
                     ->join('members', 'users.id', '=', 'members.id')
@@ -192,6 +202,11 @@ class DataMemberController extends Controller
         
     public function editPass()
     {
+        if(!(auth()->user()->role == 'Member'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+ 
         $id = auth()->user()->id;
         $users = DB::table('users')
                     ->select('users.id', 'users.username')

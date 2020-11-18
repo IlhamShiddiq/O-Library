@@ -60,17 +60,18 @@
                     <p class="sub-title">Cari buku dan mulai membaca!</p>
                 </div>
                 <div class="col-12">
-                    <form action="">
+                    <form action="{{url('/member/book/search')}}" method="POST">
+                        @csrf
                         <div class="input-group">
-                            <input type="text" class="form-control rounded-left rounded-0 border-0" placeholder="Cari daftar buku berdasarkan ...." autocomplete="off">
+                            <input type="text" class="form-control rounded-left rounded-0 border-0" placeholder="Cari daftar buku berdasarkan ...." autocomplete="off" name="search">
                             <div class="input-group-append" id="button-addon4">
-                                <select class="custom-select rounded-0 border-left" id="inputGroupSelect01">
-                                    <option selected>Choose...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <select class="custom-select rounded-0 border-left" name="by">
+                                    <option value="title">Judul</option>
+                                    <option value="category">Kategori</option>
+                                    <option value="author">Penulis</option>
+                                    <option value="publisher">Penerbit</option>
                                 </select>
-                                <button class="btn btn-success rounded-0" type="button"><i class="fas fa-search"></i></button>
+                                <button class="btn btn-success rounded-0 px-3" type="submit"><i class="fas fa-search"></i></button>
                             </div>
                         </div>
                     </form>

@@ -49,6 +49,41 @@ class PageMemberController extends Controller
         return view('member.detail-book', compact('datas'));
     }
 
+    public function bookSearch(Request $request)
+    {
+        if(!($request->by))
+        {
+            $by = 'books.title';
+        }
+        else
+        {
+            if($request->by == 'title' || $request->by == 'author')
+            {
+                $by = 'books.'.$request->by;
+            }
+            else if($request->by == 'category')
+            {
+                $by = 'categories.'.$request->by;
+            }
+            else
+            {
+                $by = 'publishers.'.$request->by;
+            }
+        }
+        
+        $search = '%'.$request->search.'%';
+        
+        $books = DB::table('books')
+                    ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
+                    ->join('categories', 'books.category_id', '=', 'categories.id')
+                    ->select('books.id', 'books.title', 'books.image')
+                    ->where($by, 'like', $search)
+                    ->where('books.qty', '>', 0)
+                    ->paginate(3000);
+        
+        return view('member.data-book', compact('books'));
+    }
+
     public function ebook()
     {
         $ebooks = DB::table('ebooks')
@@ -70,6 +105,18 @@ class PageMemberController extends Controller
             ->get();
 
         return view('member.detail-ebook', compact('datas'));
+    }
+    
+    public function ebookSearch(Request $request)
+    {
+        $search = '%'.$request->search.'%';
+        
+        $ebooks = DB::table('ebooks')
+            ->select('ebooks.id', 'ebooks.title', 'ebooks.image')
+            ->where('ebooks.title', 'like', $search)
+            ->paginate(3000);
+        
+        return view('member.data-ebook', compact('ebooks'));
     }
 
     public function myEbook()

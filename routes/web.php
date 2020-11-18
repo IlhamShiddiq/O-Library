@@ -107,9 +107,11 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
 
     Route::get('/member/book', [PageMemberController::class, 'book']);
     Route::get('/member/book/detail/{book}', [PageMemberController::class, 'bookDetail']);
-
+    Route::post('/member/book/search', [PageMemberController::class, 'bookSearch']);
+    
     Route::get('/member/ebook', [PageMemberController::class, 'ebook']);
     Route::get('/member/ebook/detail/{ebook}', [PageMemberController::class, 'ebookDetail']);
+    Route::post('/member/ebook/search', [PageMemberController::class, 'ebookSearch']);
     
     Route::get('/member/my-ebook', [PageMemberController::class, 'myEbook']);
     Route::get('/member/my-ebook/preview', [PageMemberController::class, 'myEbookPreview']);

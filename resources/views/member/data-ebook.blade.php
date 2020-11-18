@@ -14,11 +14,12 @@
     </div>
     <div class="col-lg-3 col-md-5 col-12">
         <div class="form-search">
-            <form action="">
+            <form action="{{asset('/member/ebook/search')}}" method="POST">
+                @csrf
                 <div class="input-group full-width">
-                    <input type="text" class="form-control pl-3" placeholder="Search" aria-describedby="button-addon2">
+                    <input type="text" class="form-control pl-3" placeholder="Search" name="search" aria-describedby="button-addon2">
                     <div class="input-group-append">
-                    <button class="btn btn-success pr-3" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-success pr-3" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
             </form>

@@ -83,6 +83,7 @@
                     @yield('content')
                 </div>
                 @yield('more-content')
+                @yield('pagination')
             </div>
 
             <footer class="text-center p-2 text-white full-width mt-2">

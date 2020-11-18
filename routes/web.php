@@ -106,10 +106,10 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/member/change-password', [PageMemberController::class, 'editPass']);
 
     Route::get('/member/book', [PageMemberController::class, 'book']);
-    Route::get('/member/book/detail', [PageMemberController::class, 'bookDetail']);
+    Route::get('/member/book/detail/{book}', [PageMemberController::class, 'bookDetail']);
 
     Route::get('/member/ebook', [PageMemberController::class, 'ebook']);
-    Route::get('/member/ebook/detail', [PageMemberController::class, 'ebookDetail']);
+    Route::get('/member/ebook/detail/{ebook}', [PageMemberController::class, 'ebookDetail']);
     
     Route::get('/member/my-ebook', [PageMemberController::class, 'myEbook']);
     Route::get('/member/my-ebook/preview', [PageMemberController::class, 'myEbookPreview']);

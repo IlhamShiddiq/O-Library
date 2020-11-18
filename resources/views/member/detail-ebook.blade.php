@@ -10,7 +10,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Member</li>
                 <li class="breadcrumb-item"><a href="{{asset('/member/ebook')}}">Ebook</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Detail</li>
-                <li class="breadcrumb-item"><a href="{{asset('/member/ebook')}}">10</a></li>
+                <li class="breadcrumb-item"><a href="{{asset('/member/ebook/detail/'.$datas[0]->id)}}">{{$datas[0]->id}}</a></li>
             </ol>
         </div>
     </div>
@@ -20,18 +20,18 @@
     <div class="detail">
         <div class="row full-width justify-content-center pb-3 border-bottom">
             <div class="col-lg-4 col-md-6 col-11">
-                <img src="{{asset('img/coba3.jpg')}}" alt="" class="full-width fit-cover-top mb-3">
+                <img src="{{asset('uploaded_files/ebook-cover/'.$datas[0]->image)}}" alt="{{$datas[0]->title}}" class="full-width fit-cover-top mb-3">
             </div>
             <div class="col-lg-6 col-md-6 col-11">
                 <div class="detail-wrapper position-relative">
                     <div class="gray-line position-absolute top-absolute full-width pt-1"></div>
-                    <h1 class="judul border-bottom py-3 px-2">ini judul yang akan tertera disini</h1>
-                    <h5 class="kategori"><span class="badge badge-secondary px-3 ml-2">Komputer dan Internet</span></h5>
+                    <h1 class="judul border-bottom py-3 px-2">{{$datas[0]->title}}</h1>
+                    <h5 class="kategori"><span class="badge badge-secondary px-3 ml-2">{{$datas[0]->category}}</span></h5>
                     <div class="profile-buku pl-2 my-4 border-bottom">
-                        <p class="profile">Diterbitkan oleh Ini nama penerbit</p>
-                        <p class="profile">Ditulis oleh ini nama penulis</p>
+                        <p class="profile">Diterbitkan oleh {{$datas[0]->publisher}}</p>
+                        <p class="profile">Ditulis oleh ini {{$datas[0]->author}}</p>
                     </div>
-                    <p class="tentang text-justify pl-2 pr-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias laboriosam rem vel provident, neque doloribus, atque harum commodi blanditiis facere est nobis voluptatum corporis officiis natus dolores totam dolorem. Maiores.</p>
+                    <p class="tentang text-justify pl-2 pr-5">{{$datas[0]->about}}</p>
                     
                     <div class="btn-ajuan-wrapper ml-2">
                         <button type="button" class="btn btn-sm btn-ajuan mt-3 px-3 rounded-0 text-white mb-3" data-toggle="modal" data-target="#ajuanModal"><span>Ajukan Penggunaan Ebook</span></button>

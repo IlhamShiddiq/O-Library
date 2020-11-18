@@ -27,107 +27,28 @@
 @endsection
 
 @section('content')
-    <div class="col-lg-3 col-md-5 col-10 mb-4">
-        <div class="card card-book" style="width: 100%;">
-            <img src="{{asset('img/coba3.jpg')}}" class="full-width fit-cover" alt="...">
-            <div class="card-body position-relative">
-            <h5 class="judul-buku">ini judul buku yang tertera</h5>
-            <div class="btn-wrapper position-absolute">
-                <a href="#" class="btn text-white rounded-0 px-4">
-                    <span>Detail Buku</span>
-                </a>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-5 col-10 mb-4">
-        <div class="card card-book" style="width: 100%;">
-            <img src="{{asset('img/coba4.jpeg')}}" class="full-width fit-cover" alt="...">
-            <div class="card-body position-relative">
-            <h5 class="judul-buku">ini judul buku yang tertera</h5>
-            <div class="btn-wrapper position-absolute">
-                <a href="#" class="btn text-white rounded-0 px-4">
-                    <span>Detail Buku</span>
-                </a>
-            </div>
+    @foreach ($books as $book)
+        <div class="col-lg-3 col-md-5 col-10 mb-4">
+            <div class="card card-book" style="width: 100%;">
+                <img src="{{asset('uploaded_files/book-cover/'.$book->image)}}" class="full-width fit-cover-top" alt="...">
+                <div class="card-body position-relative">
+                <h5 class="judul-buku">{{$book->title}}</h5>
+                <div class="btn-wrapper position-absolute">
+                    <a href="{{url('/member/book/detail/'.$book->id)}}" class="btn text-white rounded-0 px-4">
+                        <span>Detail Buku</span>
+                    </a>
+                </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-3 col-md-5 col-10 mb-4">
-        <div class="card card-book" style="width: 100%;">
-            <img src="{{asset('img/coba3.jpg')}}" class="full-width fit-cover" alt="...">
-            <div class="card-body position-relative">
-            <h5 class="judul-buku">ini judul buku yang tertera</h5>
-            <div class="btn-wrapper position-absolute">
-                <a href="#" class="btn text-white rounded-0 px-4">
-                    <span>Detail Buku</span>
-                </a>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-5 col-10 mb-4">
-        <div class="card card-book" style="width: 100%;">
-            <img src="{{asset('img/coba4.jpeg')}}" class="full-width fit-cover" alt="...">
-            <div class="card-body position-relative">
-            <h5 class="judul-buku">ini judul buku yang tertera</h5>
-            <div class="btn-wrapper position-absolute">
-                <a href="#" class="btn text-white rounded-0 px-4">
-                    <span>Detail Buku</span>
-                </a>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-5 col-10 mb-4">
-        <div class="card card-book" style="width: 100%;">
-            <img src="{{asset('img/coba3.jpg')}}" class="full-width fit-cover" alt="...">
-            <div class="card-body position-relative">
-            <h5 class="judul-buku">ini judul buku yang tertera</h5>
-            <div class="btn-wrapper position-absolute">
-                <a href="#" class="btn text-white rounded-0 px-4">
-                    <span>Detail Buku</span>
-                </a>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-5 col-10 mb-4">
-        <div class="card card-book" style="width: 100%;">
-            <img src="{{asset('img/coba4.jpeg')}}" class="full-width fit-cover" alt="...">
-            <div class="card-body position-relative">
-            <h5 class="judul-buku">ini judul buku yang tertera</h5>
-            <div class="btn-wrapper position-absolute">
-                <a href="#" class="btn text-white rounded-0 px-4">
-                    <span>Detail Buku</span>
-                </a>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-5 col-10 mb-4">
-        <div class="card card-book" style="width: 100%;">
-            <img src="{{asset('img/coba3.jpg')}}" class="full-width fit-cover" alt="...">
-            <div class="card-body position-relative">
-            <h5 class="judul-buku">ini judul buku yang tertera</h5>
-            <div class="btn-wrapper position-absolute">
-                <a href="#" class="btn text-white rounded-0 px-4">
-                    <span>Detail Buku</span>
-                </a>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-5 col-10 mb-4">
-        <div class="card card-book" style="width: 100%;">
-            <img src="{{asset('img/coba4.jpeg')}}" class="full-width fit-cover" alt="...">
-            <div class="card-body position-relative">
-            <h5 class="judul-buku">ini judul buku yang tertera</h5>
-            <div class="btn-wrapper position-absolute">
-                <a href="#" class="btn text-white rounded-0 px-4">
-                    <span>Detail Buku</span>
-                </a>
-            </div>
+    @endforeach
+@endsection
+
+@section('pagination')
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="pagination-wrapper position-relative full-width p-2 my-3">
+                {{$books->links()}}
             </div>
         </div>
     </div>

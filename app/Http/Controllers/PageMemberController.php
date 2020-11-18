@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Ebook;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageMemberController extends Controller
 {
@@ -23,22 +27,49 @@ class PageMemberController extends Controller
      */
     public function book()
     {
-        return view('member.data-book');
+        $books = DB::table('books')
+            ->select('books.id', 'books.title', 'books.image')
+            ->where('books.qty', '>', 0)
+            ->paginate(8);
+        
+        return view('member.data-book', compact('books'));
     }
 
-    public function bookDetail()
+    public function bookDetail(Book $book)
     {
-        return view('member.detail-book');
+        $id = $book->id;
+
+        $datas = DB::table('books')
+            ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
+            ->join('categories', 'books.category_id', '=', 'categories.id')
+            ->select('books.id', 'books.title', 'books.author', 'books.qty', 'books.image', 'books.about', 'publishers.publisher', 'categories.category')
+            ->where('books.id', $id)
+            ->get();
+
+        return view('member.detail-book', compact('datas'));
     }
 
     public function ebook()
     {
-        return view('member.data-ebook');
+        $ebooks = DB::table('ebooks')
+            ->select('ebooks.id', 'ebooks.title', 'ebooks.image')
+            ->paginate(8);
+
+        return view('member.data-ebook', compact('ebooks'));
     }
 
-    public function ebookDetail()
+    public function ebookDetail(Ebook $ebook)
     {
-        return view('member.detail-ebook');
+        $id = $ebook->id;
+
+        $datas = DB::table('ebooks')
+            ->join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')
+            ->join('categories', 'ebooks.category_id', '=', 'categories.id')
+            ->select('ebooks.id', 'ebooks.title', 'ebooks.author', 'ebooks.image', 'ebooks.about', 'publishers.publisher', 'categories.category')
+            ->where('ebooks.id', $id)
+            ->get();
+
+        return view('member.detail-ebook', compact('datas'));
     }
 
     public function myEbook()

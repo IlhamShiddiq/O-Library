@@ -1842,41 +1842,41 @@ img.vector-confirm {
   color: #e6e6e6;
 }
 
-.member-page-data nav {
+.member-page-data nav.nav-member {
   background-color: #3AAF87;
 }
 
-.member-page-data nav .icon-nav {
+.member-page-data nav.nav-member .icon-nav {
   background-color: #fff;
 }
 
-.member-page-data nav .dropdown-menu {
+.member-page-data nav.nav-member .dropdown-menu {
   width: 400px;
   margin-top: 10px;
   z-index: 4;
 }
 
-.member-page-data nav .dropdown-menu a {
+.member-page-data nav.nav-member .dropdown-menu a {
   font-size: 15px;
 }
 
-.member-page-data nav .dropdown-menu .short-profile {
+.member-page-data nav.nav-member .dropdown-menu .short-profile {
   padding: 15px 25px 20px 25px;
   border-bottom: 1px solid gray;
 }
 
-.member-page-data nav .dropdown-menu .short-profile p.name {
+.member-page-data nav.nav-member .dropdown-menu .short-profile p.name {
   font-size: 14px;
   font-family: segoe;
 }
 
-.member-page-data nav .dropdown-menu .logout {
+.member-page-data nav.nav-member .dropdown-menu .logout {
   padding: 0;
   padding-top: 10px;
   border-top: 1px solid gray;
 }
 
-.member-page-data nav .dropdown-menu .logout button {
+.member-page-data nav.nav-member .dropdown-menu .logout button {
   width: 100%;
 }
 
@@ -1941,7 +1941,7 @@ img.vector-confirm {
 .member-page-data .data-content .card-book .card-body .judul-buku {
   font-family: segoe;
   text-transform: uppercase;
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: 1px;
 }
 
@@ -2092,6 +2092,14 @@ img.vector-confirm {
 
 .preview-pdf iframe {
   height: 100vh;
+}
+
+.pagination-wrapper nav {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media (max-width: 575.98px) {

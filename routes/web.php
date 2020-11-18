@@ -101,9 +101,10 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     // MEMBER PAGE
     Route::get('/member/dashboard', [PageMemberController::class, 'index']);
 
-    Route::get('/member/edit-profile', [PageMemberController::class, 'edit']);
+    Route::get('/member/edit-profile', [DataMemberController::class, 'edit']);
+    Route::post('/member/edit-profile', [DataMemberController::class, 'update']);
 
-    Route::get('/member/change-password', [PageMemberController::class, 'editPass']);
+    Route::get('/member/change-password', [DataMemberController::class, 'editPass']);
 
     Route::get('/member/book', [PageMemberController::class, 'book']);
     Route::get('/member/book/detail/{book}', [PageMemberController::class, 'bookDetail']);

@@ -183,7 +183,7 @@ class DataPustakawanController extends Controller
                         ]);
 
         if($file) {
-            if($users[0]->profile_photo_path != "barang.jpg") File::delete(public_path('uploaded_files/librarian-foto/'.$users[0]->profile_photo_path));
+            if($users[0]->profile_photo_path != "default.jpg") File::delete(public_path('uploaded_files/librarian-foto/'.$users[0]->profile_photo_path));
             $file->move(public_path('uploaded_files/librarian-foto/'),$file->getClientOriginalName());
         }
         

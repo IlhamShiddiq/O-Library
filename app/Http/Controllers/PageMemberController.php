@@ -159,12 +159,7 @@ class PageMemberController extends Controller
      */
     public function edit()
     {
-        return view('member/edit-profile');
-    }
-
-    public function editPass()
-    {
-        return view('member/change-password');
+        
     }
 
     /**

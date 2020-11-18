@@ -30,7 +30,7 @@
                 <div class="col-7 pr-1">
                   <div class="form-group">
                       <small for="namaMember">Nama Lengkap</small>
-                      <input type="text" class="form-control @error('namaMember') is-invalid @enderror" id="namaMember" name="namaMember" placeholder="Isikan disini..." value="">
+                      <input type="text" class="form-control @error('namaMember') is-invalid @enderror" id="namaMember" name="namaMember" placeholder="Isikan disini..." value="{{$datas[0]->name}}">
                       @error('namaMember')
                         <div id="validationServer03Feedback" class="invalid-feedback">
                           {{$message}}
@@ -41,7 +41,7 @@
                 <div class="col-5 pl-1">
                   <div class="form-group">
                       <small for="usernameMember">Username</small>
-                      <input type="text" class="form-control @error('usernameMember') is-invalid @enderror" id="usernameMember" name="usernameMember" placeholder="Isikan disini..." readonly value="">
+                      <input type="text" class="form-control @error('usernameMember') is-invalid @enderror" id="usernameMember" name="usernameMember" placeholder="Isikan disini..." readonly value="{{$datas[0]->username}}">
                       @error('usernameMember')
                         <div id="validationServer03Feedback" class="invalid-feedback">
                           {{$message}}
@@ -54,7 +54,7 @@
                 <div class="col-7 pr-1">
                   <div class="form-group">
                       <small for="nomorTelepon">Nomor Telepon</small>
-                      <input type="text" class="form-control  @error('nomorTelepon') is-invalid @enderror" id="nomorTelepon" name="nomorTelepon" placeholder="Isikan disini..." value="">
+                      <input type="text" class="form-control  @error('nomorTelepon') is-invalid @enderror" id="nomorTelepon" name="nomorTelepon" placeholder="Isikan disini..." value="{{$datas[0]->phone}}">
                       @error('nomorTelepon')
                         <div id="validationServer03Feedback" class="invalid-feedback">
                           {{$message}}
@@ -66,8 +66,8 @@
                   <div class="form-group">
                       <small for="statusMember">Status</small>
                       <select class="form-control" id="statusMember" name="statusMember" disabled>
-                        <option value="Guru">Guru</option>
-                        <option value="Siswa">Siswa</option>
+                        <option @if ($datas[0]->status == 'Guru') selected @endif value="Guru">Guru</option>
+                        <option @if ($datas[0]->status == 'Siswa') selected @endif value="Siswa">Siswa</option>
                       </select>
                   </div>
                 </div>
@@ -76,7 +76,7 @@
                 <div class="col-12">
                   <div class="form-group">
                       <small for="emailMember">Email</small>
-                      <input type="email" class="form-control @error('emailMember') is-invalid @enderror" id="emailMember" name="emailMember" placeholder="Isikan disini..." value="">
+                      <input type="email" class="form-control @error('emailMember') is-invalid @enderror" id="emailMember" name="emailMember" placeholder="Isikan disini..." value="{{$datas[0]->email}}">
                       @error('emailMember')
                         <div id="validationServer03Feedback" class="invalid-feedback">
                           {{$message}}
@@ -89,7 +89,7 @@
                 <div class="col-12">
                   <div class="form-group">
                       <small for="alamatMember">Alamat</small>
-                      <textarea class="form-control @error('alamatMember') is-invalid @enderror" id="alamatMember" name="alamatMember" placeholder="Isikan disini..." rows="3"></textarea>
+                      <textarea class="form-control @error('alamatMember') is-invalid @enderror" id="alamatMember" name="alamatMember" placeholder="Isikan disini..." rows="3">{{$datas[0]->address}}</textarea>
                       @error('alamatMember')
                         <div id="validationServer03Feedback" class="invalid-feedback">
                           {{$message}}
@@ -104,7 +104,7 @@
                   <div class="input-group">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input @error('photoMember') is-invalid @enderror" id="photoMember" name="photoMember" onchange="document.getElementById('member-foto').src = window.URL.createObjectURL(this.files[0]), document.getElementById('name-label').innerHTML = this.files[0].name">
-                        <label class="custom-file-label" for="photoMember" id="name-label"></label>
+                        <label class="custom-file-label" for="photoMember" id="name-label">{{$datas[0]->profile_photo_path}}</label>
                       </div>
                   </div>
                   @error('photoMember')
@@ -115,7 +115,7 @@
               <div class="row justify-content-center mt-3">
                 <div class="col-4 px-0">
                   <div class="preview-img" id="preview-img">
-                    <img src="" alt="" class="full-width full-height fit-cover" id="member-foto">
+                    <img src="{{asset('uploaded_files/member-foto/'.$datas[0]->profile_photo_path)}}" alt="{{$datas[0]->name}}" class="full-width full-height fit-cover" id="member-foto">
                   </div>
                 </div>
                 <div class="col-8 text-black pt-3 px-1">

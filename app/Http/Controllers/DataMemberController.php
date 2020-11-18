@@ -128,7 +128,14 @@ class DataMemberController extends Controller
      */
     public function edit(Member $member)
     {
-        //
+        $id = auth()->user()->id;
+        $datas = DB::table('users')
+                    ->join('members', 'users.id', '=', 'members.id')
+                    ->select('users.id', 'users.name', 'users.email', 'users.username', 'users.profile_photo_path', 'users.role', 'members.*')
+                    ->where('users.id', $id)
+                    ->get();
+
+        return view('member/edit-profile', compact('datas'));
     }
 
     /**
@@ -138,9 +145,53 @@ class DataMemberController extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $member)
+    public function update(Request $request)
     {
-        //
+        $id = auth()->user()->id;
+
+        $users = DB::table('users')
+                    ->join('members', 'users.id', '=', 'members.id')
+                    ->select('members.id', 'users.profile_photo_path')
+                    ->where('members.id', $id)
+                    ->get();
+
+        $validateData = $request->validate([
+            'namaMember' => 'required',
+            'nomorTelepon' => 'required',
+            'emailMember' => 'required',
+            'alamatMember' => 'required',
+            'photoMember' => 'mimes:jpeg,jpg,bmp,png|max:2000'
+        ]);
+
+        $file = $request->file('photoMember');
+
+        if($file) $foto = $file->getClientOriginalName();
+        else $foto = $users[0]->profile_photo_path;
+
+        Member::where('id', $id)
+                    ->update([
+                        'phone' => $request->nomorTelepon,
+                        'address' => $request->alamatMember,
+                        ]);
+
+        User::where('id', $id)
+                    ->update([
+                        'name' => $request->namaMember,
+                        'email' => $request->emailMember,
+                        'profile_photo_path' => $foto
+                        ]);
+        
+        if($file) {
+            if($users[0]->profile_photo_path != "default.jpg") File::delete(public_path('uploaded_files/member-foto/'.$users[0]->profile_photo_path));
+            $file->move(public_path('uploaded_files/member-foto/'),$file->getClientOriginalName());
+        }
+        
+        return redirect('/member/edit-profile')->with('success', 'Data Profile berhasil diubah');
+    }
+        
+    public function editPass()
+    {
+        return view('member/change-password');
     }
 
     /**

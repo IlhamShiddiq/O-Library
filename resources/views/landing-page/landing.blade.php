@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-lg-2 col-md-4 info-item info-item-green">
+                    <div class="col-lg-2 col-md-4 info-item info-item-green" data-aos="fade-down" data-aos-duration="800">
                         <div class="icon-item text-center">
                             <div class="icon-wrapper info-item-gray">
                                 <i class="fas fa-book-open"></i>
@@ -69,14 +69,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-4 info-item info-item-gray">
+                    <div class="col-lg-2 col-md-4 info-item info-item-gray" data-aos="fade-up" data-aos-duration="800">
                         <div class="icon-item text-center text-white">
                             <div class="icon-wrapper info-item-green">
                                 <i class="fas fa-book"></i>
                             </div>
                         </div>
                         <div class="counter-data text-center">
-                            <div class="title mt-3">
+                            <div class="title mt-3" data-aos="fade-up">
                                 <p>Jumlah<br>Ebook</p>
                             </div>
                             <div class="value mt-4">
@@ -84,7 +84,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-4 info-item info-item-green">
+                    <div class="col-lg-2 col-md-4 info-item info-item-green" data-aos="fade-down" data-aos-duration="800">
                         <div class="icon-item text-center">
                             <div class="icon-wrapper info-item-gray">
                                 <i class="fas fa-bookmark"></i>
@@ -117,30 +117,30 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery">
+                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
                         <div class="gallery-item"></div>
                     </div>
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery">
+                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-right" data-aos-duration="800">
                         <div class="gallery-item"></div>
                     </div>
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery">
+                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
                         <div class="gallery-item"></div>
                     </div>
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery">
+                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-right" data-aos-duration="800">
                         <div class="gallery-item"></div>
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery">
+                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-right" data-aos-duration="800">
                         <div class="gallery-item"></div>
                     </div>
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery">
+                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
                         <div class="gallery-item"></div>
                     </div>
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery">
+                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-right" data-aos-duration="800">
                         <div class="gallery-item"></div>
                     </div>
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery">
+                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
                         <div class="gallery-item"></div>
                     </div>
                 </div>
@@ -202,5 +202,6 @@
 @endsection
 
 @section('more-js')
+    <script src="{{asset('js/aos.js')}}"></script>
     <script src="{{asset('js/btn-landing-page.js')}}"></script>
 @endsection

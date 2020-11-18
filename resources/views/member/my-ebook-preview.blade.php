@@ -3,7 +3,7 @@
 @section('title', 'My Ebook')
 
 @section('breadcrumb')
-    <div class="col-lg-9 col-md-7 col-12">
+    <div class="col-lg-12 col-md-12 col-12">
         <div class="breadcrumb-container">
             <ol class="breadcrumb position-relative">
                 <div class="breadcrumb-title position-absolute top-absolute text-center text-white">MY EBOOK</div>
@@ -12,18 +12,6 @@
                 <li class="breadcrumb-item active" aria-current="page">Preview</li>
                 <li class="breadcrumb-item"><a href="{{asset('/member/my-ebook/preview')}}">11</a></li>
             </ol>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-5 col-12">
-        <div class="form-search">
-            <form action="">
-                <div class="input-group full-width">
-                    <input type="text" class="form-control pl-3" placeholder="Search" aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                    <button class="btn btn-success pr-3" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
 @endsection

@@ -12,7 +12,8 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/font-awesome.js', 'public/js')
-// .js('resources/js/app.js', 'public/js')
+    .js('resources/js/app.js', 'public/js')
+    .js('resources/js/aos.js', 'public/js')
     .js('resources/js/member-modal.js', 'public/js')
     .js('resources/js/transaction-modal.js', 'public/js')
     .js('resources/js/btn-landing-page.js', 'public/js')

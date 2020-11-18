@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -109,7 +109,7 @@ random.addEventListener("click", function (event) {
 
 /***/ }),
 
-/***/ 5:
+/***/ 7:
 /*!******************************************!*\
   !*** multi ./resources/js/btn-random.js ***!
   \******************************************/

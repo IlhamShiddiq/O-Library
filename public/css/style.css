@@ -582,6 +582,16 @@ nav.nav-landing button:focus {
   box-shadow: 0 0 0 0.2rem rgba(44, 165, 64, 0.575) !important;
 }
 
+.wa-btn:before {
+  content: "";
+  margin-left: -75px;
+}
+
+.wa-btn:hover:before {
+  content: "";
+  margin-left: 0;
+}
+
 .msg-btn {
   bottom: 110px;
   left: 0;
@@ -603,6 +613,16 @@ nav.nav-landing button:focus {
 
 .msg-btn a:focus {
   box-shadow: 0 0 0 0.2rem rgba(44, 92, 165, 0.575) !important;
+}
+
+.msg-btn:before {
+  content: "";
+  margin-left: -75px;
+}
+
+.msg-btn:hover:before {
+  content: "";
+  margin-left: 0;
 }
 
 .show-btn {

@@ -186,6 +186,16 @@ nav.nav-landing {
             box-shadow: 0 0 0 0.2rem rgba(44, 165, 64, 0.575) !important;
         }
     }
+    &:before {
+        content: '';
+        margin-left: -75px;
+    }
+    &:hover {
+        &:before {
+            content: '';
+            margin-left: 0;
+        }
+    }
 }
 
 .msg-btn {
@@ -204,6 +214,16 @@ nav.nav-landing {
         }
         &:focus {
             box-shadow: 0 0 0 0.2rem rgba(44, 92, 165, 0.575) !important;
+        }
+    }
+    &:before {
+        content: '';
+        margin-left: -75px;
+    }
+    &:hover {
+        &:before {
+            content: '';
+            margin-left: 0;
         }
     }
 }

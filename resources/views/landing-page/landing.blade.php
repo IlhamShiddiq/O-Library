@@ -144,13 +144,11 @@
                         <div class="gallery-item"></div>
                     </div>
                 </div>
-                <div class="row mt-5 mb-5" id="show-more">
-                    <button class="btn btn-green btn-more-gallery text-white" type="button" data-toggle="collapse" data-target="#more-gallery" aria-expanded="false" aria-controls="collapseExample">
+                <div class="row mt-5 mb-5">
+                    <button class="btn btn-green btn-more-gallery text-white" type="button" data-toggle="collapse" data-target="#more-gallery" aria-expanded="false"id="show-more">
                         <i class="fas fa-arrow-down"></i> TAMPILKAN LEBIH BANYAK
                     </button>
-                </div>
-                <div class="row mt-5 mb-5 d-none" id="show-less">
-                    <button class="btn btn-green btn-more-gallery text-white" type="button" data-toggle="collapse" data-target="#more-gallery" aria-expanded="false" aria-controls="collapseExample">
+                    <button class="btn btn-green btn-more-gallery text-white d-none" type="button" data-toggle="collapse" data-target="#more-gallery" aria-expanded="false" id="show-less">
                         <i class="fas fa-arrow-up"></i> TAMPILKAN LEBIH SEDIKIT
                     </button>
                 </div>

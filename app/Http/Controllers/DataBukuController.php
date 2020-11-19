@@ -26,7 +26,7 @@ class DataBukuController extends Controller
         $books = DB::table('books')
             ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
             ->join('categories', 'books.category_id', '=', 'categories.id')
-            ->select('books.id', 'books.publisher_id', 'books.category_id', 'books.title', 'books.author', 'books.qty', 'books.image', 'books.about', 'publishers.publisher', 'categories.category')
+            ->select('books.id', 'books.isbn', 'books.publisher_id', 'books.category_id', 'books.title', 'books.author', 'books.qty', 'books.image', 'books.about', 'books.publish_year', 'publishers.publisher', 'categories.category')
             ->paginate(5);
 
         $count = DB::table('books')
@@ -68,6 +68,8 @@ class DataBukuController extends Controller
             'kategoriBuku' => 'required',
             'penulisBuku' => 'required',
             'stokBuku' => 'required',
+            'isbnBuku' => 'required',
+            'tahunTerbit' => 'required|max:4',
             'tentangBuku' => 'required',
             'gambarBuku' => 'mimes:jpeg,jpg,bmp,png|max:2000'
         ]);
@@ -83,6 +85,7 @@ class DataBukuController extends Controller
             else $image = "book-default.png";
 
             $book = new Book;
+            $book->isbn = $request->isbnBuku;
             $book->title = $request->judulBuku;
             $book->publisher_id = $request->penerbitBuku;
             $book->author = $request->penulisBuku;
@@ -90,6 +93,7 @@ class DataBukuController extends Controller
             $book->qty = $request->stokBuku;
             $book->image = $image;
             $book->about = $request->tentangBuku;
+            $book->publish_year = $request->tahunTerbit;
             $book->save();
 
             if($file) $file->move(public_path('uploaded_files/book-cover/'),$file->getClientOriginalName());
@@ -140,6 +144,8 @@ class DataBukuController extends Controller
             'kategoriBuku' => 'required',
             'penulisBuku' => 'required',
             'stokBuku' => 'required',
+            'isbnBuku' => 'required',
+            'tahunTerbit' => 'required|max:4',
             'tentangBuku' => 'required',
             'gambarBuku' => 'mimes:jpeg,jpg,bmp,png|max:2000'
         ]);
@@ -156,12 +162,14 @@ class DataBukuController extends Controller
 
             Book::where('id', $book->id)
                     ->update([
+                        'isbn' => $request->isbnBuku,
                         'title' => $request->judulBuku,
                         'publisher_id' => $request->penerbitBuku,
                         'category_id' => $request->kategoriBuku,
                         'author' => $request->penulisBuku,
                         'qty' => $request->stokBuku,
                         'about' => $request->tentangBuku,
+                        'publish_year' => $request->tahunTerbit,
                         'image' => $image,
                         ]);
 

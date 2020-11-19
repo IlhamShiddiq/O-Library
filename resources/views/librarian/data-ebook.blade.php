@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                             <div class="btn-action bottom-absolute">
-                                <a href="#" class="badge badge-success" data-toggle="modal" data-target="#editDataModal" data-id="{{$ebook->id}}" data-title="{{$ebook->title}}" data-category_id="{{$ebook->category_id}}" data-author="{{$ebook->author}}" data-publisher_id="{{$ebook->publisher_id}}" data-about="{{$ebook->about}}" data-link="{{$ebook->link}}" data-image="{{asset('uploaded_files/ebook-cover/'.$ebook->image)}}" data-nameimg="{{$ebook->image}}">Ubah</a>
+                                <a href="#" class="badge badge-success" data-toggle="modal" data-target="#editDataModal" data-id="{{$ebook->id}}" data-isbn="{{$ebook->isbn}}" data-title="{{$ebook->title}}" data-category_id="{{$ebook->category_id}}" data-author="{{$ebook->author}}" data-publisher_id="{{$ebook->publisher_id}}" data-about="{{$ebook->about}}" data-terbit="{{$ebook->publish_year}}" data-link="{{$ebook->link}}" data-image="{{asset('uploaded_files/ebook-cover/'.$ebook->image)}}" data-nameimg="{{$ebook->image}}">Ubah</a>
                                 <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$ebook->id}}">Hapus</a>
                                 <a href="{{$ebook->link}}" class="badge badge-info" target="_blank" rel=”noopener”>Buka ebook</a>
                             </div>
@@ -162,6 +162,30 @@
                                     <div id="validationServer03Feedback" class="invalid-feedback">
                                       {{$message}}
                                     </div>
+                                @enderror
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row form-mg">
+                          <div class="col-6 pr-1">
+                            <div class="form-group">
+                                <small for="isbnEbook">Kode ISBN Ebook (xxx-xxx-xxxx-xx-x)</small>
+                                <input type="text" class="form-control @error('isbnEbook') is-invalid @enderror" id="isbnEbook" name="isbnEbook" placeholder="Isikan disini...">
+                                @error('isbnEbook')
+                                  <div id="validationServer03Feedback" class="invalid-feedback">
+                                    {{$message}}
+                                  </div>
+                                @enderror
+                            </div>
+                          </div>
+                          <div class="col-6 pl-1">
+                            <div class="form-group">
+                                <small for="tahunTerbit">Tahun Terbit</small>
+                                <input type="number" class="form-control @error('tahunTerbit') is-invalid @enderror" id="tahunTerbit" name="tahunTerbit" placeholder="Isikan disini...">
+                                @error('tahunTerbit')
+                                  <div id="validationServer03Feedback" class="invalid-feedback">
+                                    {{$message}}
+                                  </div>
                                 @enderror
                             </div>
                           </div>
@@ -350,6 +374,8 @@
             let author = button.data('author')
             let publisher = button.data('publisher_id')
             let about = button.data('about')
+            let isbn = button.data('isbn')
+            let terbit = button.data('terbit')
             let link = button.data('link')
             let image = button.data('image')
             let nameImg = button.data('nameimg')
@@ -410,6 +436,30 @@
                                       </div>
                                     </div>
                                     <div class="row form-mg">
+                                      <div class="col-6 pr-1">
+                                        <div class="form-group">
+                                            <small for="isbnEbook">Kode ISBN Ebook (xxx-xxx-xxxx-xx-x)</small>
+                                            <input type="text" class="form-control @error('isbnEbook') is-invalid @enderror" id="isbnEbook" name="isbnEbook" placeholder="Isikan disini..." value="${isbn}">
+                                            @error('isbnEbook')
+                                              <div id="validationServer03Feedback" class="invalid-feedback">
+                                                {{$message}}
+                                              </div>
+                                            @enderror
+                                        </div>
+                                      </div>
+                                      <div class="col-6 pl-1">
+                                        <div class="form-group">
+                                            <small for="tahunTerbit">Tahun Terbit</small>
+                                            <input type="number" class="form-control @error('tahunTerbit') is-invalid @enderror" id="tahunTerbit" name="tahunTerbit" placeholder="Isikan disini..." value="${terbit}">
+                                            @error('tahunTerbit')
+                                              <div id="validationServer03Feedback" class="invalid-feedback">
+                                                {{$message}}
+                                              </div>
+                                            @enderror
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row form-mg">
                                       <div class="col-12">
                                         <div class="form-group">
                                             <small for="tentangEbook">Tentang Ebook</small>
@@ -429,12 +479,12 @@
                                                 <p class="xlsm-font">Pastikan link anda sudah diberi izin akses untuk semua user</p>
                                                 <input type="text" class="form-control @error('fileEbook') is-invalid @enderror" id="fileEbook" name="fileEbook" placeholder="Isikan disini..." autocomplete="off" value="${link}">
                                                 @error('fileEbook')
-                                                <div id="validationServer03Feedback" class="invalid-feedback">
-                                                  {{$message}}
-                                                </div>
-                                            @enderror
+                                                    <div id="validationServer03Feedback" class="invalid-feedback">
+                                                      {{$message}}
+                                                    </div>
+                                                @enderror
                                             </div>
-                                          </div>
+                                        </div>
                                     </div>
                                     <div class="row">
                                       <div class="col-12">

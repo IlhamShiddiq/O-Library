@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                             <div class="btn-action bottom-absolute">
-                                <a href="#" class="badge badge-success" data-toggle="modal" data-target="#editDataModal" data-id="{{$book->id}}" data-title="{{$book->title}}" data-category_id="{{$book->category_id}}" data-author="{{$book->author}}" data-publisher_id="{{$book->publisher_id}}" data-about="{{$book->about}}" data-qty="{{$book->qty}}" data-image="{{asset('uploaded_files/book-cover/'.$book->image)}}" data-nameimg="{{$book->image}}">Ubah</a>
+                                <a href="#" class="badge badge-success" data-toggle="modal" data-target="#editDataModal" data-id="{{$book->id}}" data-isbn="{{$book->isbn}}" data-title="{{$book->title}}" data-category_id="{{$book->category_id}}" data-author="{{$book->author}}" data-publisher_id="{{$book->publisher_id}}" data-about="{{$book->about}}" data-terbit="{{$book->publish_year}}" data-qty="{{$book->qty}}" data-image="{{asset('uploaded_files/book-cover/'.$book->image)}}" data-nameimg="{{$book->image}}">Ubah</a>
                                 <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$book->id}}">Hapus</a>
                                 <a href="{{ url('/book/history') }}" class="badge badge-info">Riwayat</a>
                             </div>
@@ -174,6 +174,30 @@
                                 <small for="stokBuku">Stok Buku</small>
                                 <input type="number" class="form-control @error('stokBuku') is-invalid @enderror" id="stokBuku" name="stokBuku" placeholder="Isikan disini...">
                                 @error('stokBuku')
+                                  <div id="validationServer03Feedback" class="invalid-feedback">
+                                    {{$message}}
+                                  </div>
+                                @enderror
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row form-mg">
+                          <div class="col-8 pr-1">
+                            <div class="form-group">
+                                <small for="isbnBuku">Kode ISBN (xxx-xxx-xxxx-xx-x)</small>
+                                <input type="text" class="form-control @error('isbnBuku') is-invalid @enderror" id="isbnBuku" name="isbnBuku" placeholder="Isikan disini...">
+                                @error('isbnBuku')
+                                  <div id="validationServer03Feedback" class="invalid-feedback">
+                                    {{$message}}
+                                  </div>
+                                @enderror
+                            </div>
+                          </div>
+                          <div class="col-4 pl-1">
+                            <div class="form-group">
+                                <small for="tahunTerbit">Tahun Terbit</small>
+                                <input type="number" class="form-control @error('tahunTerbit') is-invalid @enderror" id="tahunTerbit" name="tahunTerbit" placeholder="Isikan disini...">
+                                @error('tahunTerbit')
                                   <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{$message}}
                                   </div>
@@ -349,11 +373,13 @@
         $('#editDataModal').on('show.bs.modal', function (event) {
             let button = $(event.relatedTarget) // Button that triggered the modal
             let id = button.data('id')
+            let isbn = button.data('isbn')
             let title = button.data('title')
             let category = button.data('category_id')
             let author = button.data('author')
             let publisher = button.data('publisher_id')
             let about = button.data('about')
+            let terbit = button.data('terbit')
             let qty = button.data('qty')
             let image = button.data('image')
             let nameImg = button.data('nameimg')
@@ -375,8 +401,8 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        </div>
-                                        <div class="row form-mg">
+                                    </div>
+                                    <div class="row form-mg">
                                         <div class="col-6 pr-1">
                                             <div class="form-group">
                                                 <small for="penerbitBuku">ID Penerbit Buku</small>
@@ -399,8 +425,8 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        </div>
-                                        <div class="row form-mg">
+                                    </div>
+                                    <div class="row form-mg">
                                         <div class="col-8 pr-1">
                                             <div class="form-group">
                                                 <small for="penulisBuku">Penulis Buku</small>
@@ -423,8 +449,32 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row form-mg">
+                                        <div class="col-8 pr-1">
+                                            <div class="form-group">
+                                                <small for="isbnBuku">Kode ISBN (xxx-xxx-xxxx-xx-x)</small>
+                                                <input type="text" class="form-control @error('isbnBuku') is-invalid @enderror" id="isbnBuku" name="isbnBuku" placeholder="Isikan disini..." value="${isbn}">
+                                                @error('isbnBuku')
+                                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                                @enderror
+                                            </div>
                                         </div>
-                                        <div class="row form-mg">
+                                        <div class="col-4 pl-1">
+                                            <div class="form-group">
+                                                <small for="tahunTerbit">Tahun Terbit</small>
+                                                <input type="number" class="form-control @error('tahunTerbit') is-invalid @enderror" id="tahunTerbit" name="tahunTerbit" placeholder="Isikan disini..." value="${terbit}">
+                                                @error('tahunTerbit')
+                                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-mg">
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <small for="tentangBuku">Tentang Buku</small>
@@ -436,8 +486,8 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        </div>
-                                        <div class="row form-mg">
+                                    </div>
+                                    <div class="row form-mg">
                                         <div class="col-12">
                                             <small for="gambarBuku">Gambar Buku</small>
                                             <div class="input-group">
@@ -450,8 +500,8 @@
                                             <p style="font-size: 80%; color: #dc3545; margin-top: .25rem">{{$message}}</p>
                                             @enderror
                                         </div>
-                                        </div>
-                                        <div class="row justify-content-center mt-3">
+                                    </div>
+                                    <div class="row justify-content-center mt-3">
                                         <div class="col-4 px-0">
                                             <div class="preview-img" id="preview-img">
                                                 <img src="${image}" class="full-width full-height fit-cover" id="member-foto-edit">

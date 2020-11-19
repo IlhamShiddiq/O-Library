@@ -45,7 +45,7 @@
 @section('more-content')
     <div class="full-width">
         <div class="ibsn-buku px-3 py-2 text-center text-white mb-4">
-            ISBN : 002-30-0201-010
+            ISBN : {{$datas[0]->isbn}}
         </div>
     </div>
 @endsection

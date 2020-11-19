@@ -57,7 +57,7 @@ class PageMemberController extends Controller
         $datas = DB::table('books')
             ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
             ->join('categories', 'books.category_id', '=', 'categories.id')
-            ->select('books.id', 'books.title', 'books.author', 'books.qty', 'books.image', 'books.about', 'publishers.publisher', 'categories.category')
+            ->select('books.id', 'books.isbn', 'books.title', 'books.author', 'books.qty', 'books.image', 'books.about', 'publishers.publisher', 'categories.category')
             ->where('books.id', $id)
             ->get();
 
@@ -125,7 +125,7 @@ class PageMemberController extends Controller
         $datas = DB::table('ebooks')
             ->join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')
             ->join('categories', 'ebooks.category_id', '=', 'categories.id')
-            ->select('ebooks.id', 'ebooks.title', 'ebooks.author', 'ebooks.image', 'ebooks.about', 'publishers.publisher', 'categories.category')
+            ->select('ebooks.id', 'ebooks.isbn', 'ebooks.title', 'ebooks.author', 'ebooks.image', 'ebooks.about', 'publishers.publisher', 'categories.category')
             ->where('ebooks.id', $id)
             ->get();
 

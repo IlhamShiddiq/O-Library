@@ -26,7 +26,7 @@ class DataEbookController extends Controller
         $ebooks = DB::table('ebooks')
             ->join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')
             ->join('categories', 'ebooks.category_id', '=', 'categories.id')
-            ->select('ebooks.id', 'ebooks.publisher_id', 'ebooks.category_id', 'ebooks.title', 'ebooks.author', 'ebooks.link', 'ebooks.image', 'ebooks.about', 'publishers.publisher', 'categories.category')
+            ->select('ebooks.id', 'ebooks.isbn', 'ebooks.publisher_id', 'ebooks.category_id', 'ebooks.title', 'ebooks.author', 'ebooks.link', 'ebooks.image', 'ebooks.about', 'ebooks.publish_year', 'publishers.publisher', 'categories.category')
             ->paginate(5);
 
         $count = DB::table('ebooks')
@@ -62,6 +62,8 @@ class DataEbookController extends Controller
             'penerbitEbook' => 'required',
             'kategoriEbook' => 'required',
             'penulisEbook' => 'required',
+            'isbnEbook' => 'required',
+            'tahunTerbit' => 'required',
             'tentangEbook' => 'required',
             'fileEbook' => 'required|url',
             'gambarEbook' => 'mimes:jpeg,jpg,bmp,png|max:2000'
@@ -78,6 +80,7 @@ class DataEbookController extends Controller
             else $image = "ebook-default.png";
 
             $ebook = new Ebook;
+            $ebook->isbn = $request->isbnEbook;
             $ebook->title = $request->judulEbook;
             $ebook->publisher_id = $request->penerbitEbook;
             $ebook->author = $request->penulisEbook;
@@ -85,6 +88,7 @@ class DataEbookController extends Controller
             $ebook->link = $request->fileEbook;
             $ebook->image = $image;
             $ebook->about = $request->tentangEbook;
+            $ebook->publish_year = $request->tahunTerbit;
             $ebook->save();
 
             if($file) $file->move(public_path('uploaded_files/ebook-cover/'),$file->getClientOriginalName());
@@ -137,6 +141,8 @@ class DataEbookController extends Controller
             'penerbitEbook' => 'required',
             'kategoriEbook' => 'required',
             'penulisEbook' => 'required',
+            'isbnEbook' => 'required',
+            'tahunTerbit' => 'required',
             'tentangEbook' => 'required',
             'fileEbook' => 'required|url',
             'gambarEbook' => 'mimes:jpeg,jpg,bmp,png|max:2000'
@@ -154,12 +160,14 @@ class DataEbookController extends Controller
 
             Ebook::where('id', $ebook->id)
                     ->update([
+                        'isbn' => $request->isbnEbook,
                         'title' => $request->judulEbook,
                         'publisher_id' => $request->penerbitEbook,
                         'category_id' => $request->kategoriEbook,
                         'author' => $request->penulisEbook,
                         'link' => $request->fileEbook,
                         'about' => $request->tentangEbook,
+                        'publish_year' => $request->tahunTerbit,
                         'image' => $image,
                         ]);
 

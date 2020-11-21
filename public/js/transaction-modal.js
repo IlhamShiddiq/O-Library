@@ -98,10 +98,8 @@ var satu = document.querySelector('#satuBuku');
 var dua = document.querySelector('#duaBuku');
 dua.addEventListener("click", function (event) {
   row.classList.remove("d-none");
-  row.classList.toggle("d-inline");
 });
 satu.addEventListener("click", function (event) {
-  row.classList.remove("d-inline");
   row.classList.toggle("d-none");
 });
 

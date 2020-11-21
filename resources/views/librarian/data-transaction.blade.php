@@ -240,11 +240,13 @@
                           </div>
                         <div class="row form-mg">
                             <div class="col-6">
-                                <small for="idBukuPertama">ID Buku</small>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" id="idBukuPertama" name="idBukuPertama" placeholder="Isikan disini...">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary btn-sm-text px-2" id="cekBukuPertama"><i class="fas fa-search"></i></button>
+                                <div class="form-group">
+                                    <small for="idBukuPertama">ID Buku</small>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" id="idBukuPertama" name="idBukuPertama" placeholder="Isikan disini...">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-primary btn-sm-text px-2" id="cekBukuPertama"><i class="fas fa-search"></i></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -257,15 +259,17 @@
                         </div>
                         <div class="row form-mg d-none" id="row-buku-dua">
                             <div class="col-6 d-inline-block">
-                                <small for="idBukuKedua">ID Buku kedua</small>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" id="idBukuKedua" name="idBukuKedua" placeholder="Isikan disini...">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary mb-1 btn-sm-text px-2" id="cekBukuKedua"><i class="fas fa-search"></i></button>
+                                <div class="form-group">
+                                    <small for="idBukuKedua">ID Buku kedua</small>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" id="idBukuKedua" name="idBukuKedua" placeholder="Isikan disini...">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-primary mb-1 btn-sm-text px-2 full-height" id="cekBukuKedua"><i class="fas fa-search"></i></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 d-inline-block">
+                            <div class="col-6 pl-1 d-inline-block">
                                 <div class="form-group">
                                     <small for="judulBukuKedua">Judul Buku kedua</small>
                                     <input type="text" class="form-control" id="judulBukuKedua" name="judulBukuKedua" placeholder="Isikan disini..." readonly>

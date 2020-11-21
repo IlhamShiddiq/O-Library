@@ -26,7 +26,7 @@
             <div class="col-11 col-md-4 col-lg-4 p-1">
                 <div class="warning-wrapper pengajuan-wrapper radius-admin">
                   <div class="info-login-pic text-center border-bottom pb-2">
-                      <div class="total">23</div>
+                      <div class="total">{{$expired}}</div>
                   </div>
                   <div class="info-login text-center pt-1">
                       <p class="m-1">Jumlah daftar kadaluarsa</p>
@@ -37,7 +37,7 @@
             <div class="col-11 col-md-4 col-lg-4 p-1">
                 <div class="danger-wrapper pengajuan-wrapper radius-admin">
                   <div class="info-login-pic text-center border-bottom pb-2">
-                    <div class="total">51</div>
+                    <div class="total">{{$refused}}</div>
                   </div>
                   <div class="info-login text-center pt-1">
                       <p class="m-1">Jumlah daftar ditolak</p>
@@ -48,9 +48,9 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <h1 class="title-pagination text-center mt-3">Data Kategori</h1>
+                <h1 class="title-pagination text-center mt-3">Data Pengajuan</h1>
                 <div class="total-row text-center mb-3">
-                    Data Ditampilkan
+                    {{$count}} data ditampilkan, {{$requested}} daftar menungu dikonfirmasi
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover" style="width: 1100px">
@@ -65,61 +65,36 @@
                           </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td> officiis nisi quam, quae, iure reiciendis sit, rem maxime at ducimus</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur</td>
-                                <td class="text-center"><span class="badge badge-success px-2 py-2 rounded-circle"> </span></td>
-                                <td class="text-center">-</td>
-                                <td>2020-03-20</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td> officiis nisi quam, quae, iure reiciendis sit, rem maxime at ducimus</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur corrupti similique</td>
-                                <td class="text-center"><span class="badge badge-danger px-2 py-2 rounded-circle"> </span></td>
-                                <td class="text-center">-</td>
-                                <td>2020-03-20</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td> officiis nisi quam, quae, iure reiciendis sit, rem maxime at ducimus</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur corrupti similique</td>
-                                <td class="text-center">-</td>
-                                <td class="text-center"><button class="btn btn-sm btn-success" data-toggle="modal" data-target="#acceptModal"><i class="fas fa-check"></i></button> <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#refuseModal"><i class="fas fa-times"></i></button></td>
-                                <td>2020-03-20</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td> officiis nisi quam, quae, iure reiciendis sit, rem maxime at ducimus</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur corrupti similique</td>
-                                <td class="text-center">-</td>
-                                <td class="text-center"><button class="btn btn-sm btn-success" data-toggle="modal" data-target="#acceptModal"><i class="fas fa-check"></i></button> <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#refuseModal"><i class="fas fa-times"></i></button></td>
-                                <td>2020-03-20</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td> officiis nisi quam, quae, iure reiciendis sit, rem maxime at ducimus</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur corrupti similique</td>
-                                <td class="text-center">-</td>
-                                <td class="text-center"><button class="btn btn-sm btn-success" data-toggle="modal" data-target="#acceptModal"><i class="fas fa-check"></i></button> <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#refuseModal"><i class="fas fa-times"></i></button></td>
-                                <td>2020-03-20</td>
-                            </tr>
-                          {{-- @foreach ($categories as $category)  
-                          <tr>
-                            <th scope="row" class="text-center">{{$category->id}}</th>
-                            <td>{{$category->category}}</td>
-                            <td>
-                              <a href="#" class="badge badge-success" data-toggle="modal" data-target="#editDataModal" data-id="{{$category->id}}" data-category="{{$category->category}}">Edit</a>
-                              <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$category->id}}">Hapus</a>
-                            </td>
-                          </tr>
-                          @endforeach --}}
+                            @foreach ($permissions as $permission)
+                                <tr>
+                                    <td class="text-center">{{$permission->id_member}}</td>
+                                    <td>{{$permission->title}}</td>
+                                    <td>{{$permission->reason}}</td>
+                                    @if ($permission->confirmed == '1')
+                                        @if ($permission->accepted == '1')
+                                            <td class="text-center"><span class="badge badge-success px-2 py-2 rounded-circle"> </span></td>
+                                            <td class="text-center">-</td>
+                                            <td @if($permission->limit_date < date('Y-m-d')) style="color: red; font-style: italic" @endif class="text-center">{{$permission->limit_date}}</td>
+                                        @else
+                                            <td class="text-center"><span class="badge badge-danger px-2 py-2 rounded-circle"> </span></td>
+                                            <td class="text-center">-</td>
+                                            <td class="text-center">-</td>
+                                        @endif
+                                    @else 
+                                        <td class="text-center"><span class="badge badge-warning px-2 py-2 rounded-circle"> </span></td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#acceptModal" data-id='{{$permission->id}}'><i class="fas fa-check"></i></button>
+                                            <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#refuseModal" data-id='{{$permission->id}}'><i class="fas fa-times"></i></button>
+                                        </td>
+                                        <td class="text-center">-</td>
+                                    @endif
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
-                </div>
-                <div class="pagination-btn position-relative mr-2">
-                  {{-- {{ $categories->links() }} --}}
+                    <div class="pagination-btn position-relative mb-3 mr-2">
+                        {{ $permissions->links() }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,8 +115,12 @@
                     <h5>Terima pengajuan ini?</h5>
                 </div>
                 <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a href="#" class="btn btn-success">Yes</a>
+                    <button type="button" class="btn btn-secondary d-inline-block" data-dismiss="modal">Cancel</button>
+                    <form action="{{url('/permission/accept')}}" method="post" class="d-inline-block">
+                        @csrf
+                        <div class="form-hidden"></div>
+                        <button type="submit" class="btn btn-success d-inline-block">Yes</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -162,7 +141,11 @@
                 </div>
                 <div class="modal-footer text-center">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a href="#" class="btn btn-danger">Yes</a>
+                    <form action="{{url('/permission/refuse')}}" method="post" class="d-inline-block">
+                        @csrf
+                        <div class="form-hidden"></div>
+                        <button type="submit" class="btn btn-danger d-inline-block">Yes</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -183,7 +166,7 @@
                 </div>
                 <div class="modal-footer text-center">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a href="#" class="btn btn-danger">Yes</a>
+                    <a href="{{url('/permission/delete/expired')}}" class="btn btn-danger">Yes</a>
                 </div>
             </div>
         </div>
@@ -204,7 +187,7 @@
                 </div>
                 <div class="modal-footer text-center">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a href="#" class="btn btn-danger">Yes</a>
+                    <a href="{{url('/permission/delete/refused')}}" class="btn btn-danger">Yes</a>
                 </div>
             </div>
         </div>
@@ -213,41 +196,23 @@
 
 @section('more-js')
     <script>
-      $('#deleteModal').on('show.bs.modal', function (event) {
-        let button = $(event.relatedTarget) // Button that triggered the modal
-        let id = button.data('id')
-        let modal = $(this)
+        $('#acceptModal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget) // Button that triggered the modal
+            let id = button.data('id')
+            let modal = $(this)
 
-        modal.find('.form-hapus').html(`
-                                        <form action="{{url('/category/${id}')}}" method="POST">
-                                          @csrf
-                                          @method('delete')
-                                          <button type="submit" class="btn btn-danger">Yes</button>
-                                        </form>`)
-                                      });
+            modal.find('.form-hidden').html(`
+                                            <input type="hidden" name="id" value="${id}">
+                                        `)
+        });
+        $('#refuseModal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget) // Button that triggered the modal
+            let id = button.data('id')
+            let modal = $(this)
 
-      $('#editDataModal').on('show.bs.modal', function (event) {
-        let button = $(event.relatedTarget) // Button that triggered the modal
-        let id = button.data('id')
-        let category = button.data('category')
-        let modal = $(this)
-
-        modal.find('.form-edit').html(`
-                                        <form action="{{url('/category/${id}')}}" method="POST">
-                                          @method('put')
-                                          @csrf
-                                          <div class="row">
-                                            <div class="col-9 pl-4 pr-1">
-                                              <div class="form-group">
-                                                  <small for="kategoriBuku">Kategori Buku</small>
-                                                  <input type="text" class="form-control" id="kategoriBuku" name="kategoriBuku" placeholder="Isikan disini..." value="${category}">
-                                              </div>
-                                            </div>
-                                            <div class="col-3 pl-1 pr-4">
-                                              <button type="submit" class="btn btn-success mt-4 full-width" name="editData">Edit Data</button>
-                                            </div>
-                                          </div>
-                                        </form>`)
-                                      });
+            modal.find('.form-hidden').html(`
+                                            <input type="hidden" name="id" value="${id}">
+                                        `)
+        });
     </script>
 @endsection

@@ -303,7 +303,7 @@ class DataMemberController extends Controller
                         'confirm_code' => $request->kodeKonfirmasiReset,
                         ]);
 
-            return redirect('/member')->with('success', 'Kode berhasil direset \n Kode : '.$request->kodeKonfirmasiReset);
+            return redirect('/member')->with('success', 'Kode berhasil direset. Kode : '.$request->kodeKonfirmasiReset);
         }
     }
 }

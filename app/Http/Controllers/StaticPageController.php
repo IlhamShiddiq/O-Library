@@ -14,16 +14,13 @@ class StaticPageController extends Controller
     public function selecting()
     {
         $role = auth()->user()->role;
-        if($role == 'Pustakawan')
+        if($role == 'Pustakawan' || $role == 'Admin')
         {
             return redirect('/dashboard')->with('success', 'Selamat Datang '.auth()->user()->name);
         }
-        else if($role == 'Admin')
+        else
         {
-            return redirect('/dashboard')->with('success', 'Selamat Datang '.auth()->user()->name);
+            return redirect('/member/dashboard')->with('success', 'Selamat Datang '.auth()->user()->name);
         }
-
-        return redirect('/member/dashboard')->with('success', 'Selamat Datang '.auth()->user()->name);;
-        
     }
 }

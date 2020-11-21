@@ -63,13 +63,22 @@
                     </button>
                 </div>
                 <div class="modal-body py-2 px-4">
-                    <form>
-                        <div class="form-group">
-                          <small>Alasan pengajuan</small>
-                          <textarea class="form-control" placeholder="Masukkan disini" rows="3"></textarea>
+                    <form action="{{'/member/ebook/permission/'.$datas[0]->id}}" method="post">
+                        @csrf
+                        <div class="form-group mb-3">
+                            <small>Alasan pengajuan</small>
+                            <textarea class="form-control @error('alasan') is-invalid @enderror" id="alasan" name="alasan" placeholder="Isikan disini..." rows="3"></textarea>
+                            @error('alasan')
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                            @enderror
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-sm mb-2 px-5 btn-primary rounded-0">Submit</button>
+                            <div>
+                                <small class="text-left">Mohon berikan alasan yang jelas mengenai pengajuan pemakaian ebook. <span style="font-weight: bold;">Alasan yang bersifat asal-asalan dan tidak jelas akan langsung ditolak oleh Admin.</span></small>
+                            </div>
                         </div>
                     </form>
                 </div>

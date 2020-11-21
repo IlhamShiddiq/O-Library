@@ -150,18 +150,35 @@ class PageMemberController extends Controller
         {
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
         }
+
+        $id = auth()->user()->id;
+
+        $ebooks = DB::table('ebooks')
+            ->join('permissions', 'permissions.id_ebook', '=', 'ebooks.id')
+            ->select('ebooks.id', 'ebooks.title', 'ebooks.image', 'permissions.confirmed', 'permissions.accepted', 'permissions.limit_date')
+            ->where('permissions.id_member', $id)
+            ->get();
  
-        return view('member.my-ebook');
+        return view('member.my-ebook', compact('ebooks'));
     }
 
-    public function myEbookPreview()
+    public function myEbookPreview(Ebook $ebook)
     {
         if(!(auth()->user()->role == 'Member'))
         {
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
         }
- 
-        return view('member.my-ebook-preview');
+
+        $ebooks = DB::table('ebooks')
+            ->join('permissions', 'permissions.id_ebook', '=', 'ebooks.id')
+            ->select('ebooks.id', 'ebooks.title', 'ebooks.link', 'permissions.limit_date')
+            ->where('permissions.id_member', auth()->user()->id)
+            ->where('permissions.id_ebook', $ebook->id)
+            ->get();
+
+        $link = substr($ebooks[0]->link, 0, strpos($ebooks[0]->link, 'view?usp=sharing')).'preview';
+
+        return view('member.my-ebook-preview', compact('ebooks', 'link'));
     }
 
     /**

@@ -95,6 +95,10 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/report/late', [DataReportController::class, 'indexLate']);
     
     Route::get('/permission', [DataPermissionController::class, 'index']);
+    Route::post('/permission/accept', [DataPermissionController::class, 'permissionAccept']);
+    Route::post('/permission/refuse', [DataPermissionController::class, 'permissionRefuse']);
+    Route::get('/permission/delete/expired', [DataPermissionController::class, 'deleteExpired']);
+    Route::get('/permission/delete/refused', [DataPermissionController::class, 'deleteRefused']);
 
     Route::get('/guide', [StaticPageController::class, 'guide']);
     
@@ -113,9 +117,10 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     
     Route::get('/member/ebook', [PageMemberController::class, 'ebook']);
     Route::get('/member/ebook/detail/{ebook}', [PageMemberController::class, 'ebookDetail']);
+    Route::post('/member/ebook/permission/{ebook}', [DataPermissionController::class, 'store']);
     Route::post('/member/ebook/search', [PageMemberController::class, 'ebookSearch']);
     
     Route::get('/member/my-ebook', [PageMemberController::class, 'myEbook']);
-    Route::get('/member/my-ebook/preview', [PageMemberController::class, 'myEbookPreview']);
+    Route::get('/member/my-ebook/preview/{ebook}', [PageMemberController::class, 'myEbookPreview']);
 });
 

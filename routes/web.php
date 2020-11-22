@@ -92,6 +92,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/transaction', [DataTransaksiController::class, 'index']);
     
     Route::get('/report', [DataReportController::class, 'index']);
+    Route::post('/report/search', [DataReportController::class, 'reportSearch']);
     Route::get('/report/late', [DataReportController::class, 'indexLate']);
     
     Route::get('/permission', [DataPermissionController::class, 'index']);

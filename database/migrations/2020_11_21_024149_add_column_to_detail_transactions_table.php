@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailTransactionsTable extends Migration
+class AddColumnToDetailTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateDetailTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('detail_transactions', function (Blueprint $table) {
-            $table->integer('transaction_id');
-            $table->integer('book_id');
-            $table->char('status', 1);
-            $table->timestamps();
+        Schema::table('detail_transactions', function (Blueprint $table) {
+            $table->date('date_of_return')->after('book_id');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateDetailTransactionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_transactions');
+        Schema::table('detail_transactions', function (Blueprint $table) {
+            //
+        });
     }
 }

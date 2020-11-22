@@ -15,6 +15,7 @@ class ChangeColumnTransactionsTable extends Migration
     {
         Schema::table('transactions', function ($table) {
             $table->renameColumn('transaction_id', 'id');
+            $table->date('borrow_date')->after('librarian_id');
         });
     }
 

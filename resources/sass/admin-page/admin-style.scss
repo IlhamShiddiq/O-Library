@@ -348,9 +348,16 @@
     font-family: segoe;
 }
 
+.line-report {
+    background-color: #3dd39f;
+    padding-top: 4px;
+}
+
 .month-report-info {
     font-family: segoe;
-    letter-spacing: 1px;
+    background-color: #3AAF87;
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
 }
 
 .btn-random {

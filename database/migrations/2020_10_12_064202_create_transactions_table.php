@@ -17,7 +17,6 @@ class CreateTransactionsTable extends Migration
             $table->id('transaction_id');
             $table->integer('member_id');
             $table->integer('librarian_id');
-            $table->timestamp('borrow_date');
             $table->timestamps();
         });
     }

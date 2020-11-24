@@ -1,0 +1,41 @@
+.pdf-report-wrapper {
+    width: 100%;
+    margin: auto;
+    .line-green {
+        padding-top: 3px;
+        background-color:#269b72;
+    }
+    .pdf-report {
+        width: 95%;
+        margin: auto;
+        font-family: segoe;
+        background-color: #fff;
+        .header {
+            background-color:#269b72;
+            h1.title {
+                font-size: 34px;
+                letter-spacing: 2px;
+            }
+            h2.sub-title {
+                font-size: 20px;
+                margin-top: -7px;
+            }
+        }
+        .info {
+            border-bottom: 4px solid #3AAF87;
+            font-size: 16px;
+        }
+        .konten {
+            table {
+                width: 90%;
+                margin: auto;
+                thead {
+                    background-color:#0f6b3d;
+                }
+            }
+        }
+        .footer {
+            background-color:#269b72;
+        }
+    }
+}

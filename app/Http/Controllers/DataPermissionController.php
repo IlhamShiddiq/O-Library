@@ -16,6 +16,7 @@ class DataPermissionController extends Controller
      */
     public function index()
     {
+        date_default_timezone_set('Asia/Jakarta');
         if(!(auth()->user()->role == 'Pustakawan'))
         {
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
@@ -52,6 +53,7 @@ class DataPermissionController extends Controller
      */
     public function store(Request $request, Ebook $ebook)
     {
+        date_default_timezone_set('Asia/Jakarta');
         $validateData = $request->validate([
             'alasan' => 'required'
         ]);
@@ -123,6 +125,7 @@ class DataPermissionController extends Controller
 
     public function permissionAccept(Request $request)
     {
+        date_default_timezone_set('Asia/Jakarta');
         $limit = date('Y-m-d', strtotime('+14 days', strtotime( date('Y-m-d') )));
 
         Permission::where('id', $request->id)
@@ -148,6 +151,7 @@ class DataPermissionController extends Controller
 
     public function deleteExpired()
     {
+        date_default_timezone_set('Asia/Jakarta');
         Permission::where('limit_date', '<', date('Y-m-d'))->delete();
 
         return redirect('permission')->with('success', 'Daftar yang kadaluarsa berhasil dihapus');

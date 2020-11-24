@@ -1588,6 +1588,38 @@ button.btn-notif:focus {
   outline: 1px auto rgba(112, 112, 112, 0.247) !important;
 }
 
+.message-report-wrapper {
+  border-top: 4px solid #76e4a7;
+  border-bottom: 4px solid #76e4a7;
+}
+
+.load {
+  width: 10px;
+  height: 10px;
+  -webkit-animation: load 0.6s infinite linear alternate;
+          animation: load 0.6s infinite linear alternate;
+}
+
+@-webkit-keyframes load {
+  0% {
+    background-color: #1c8a63;
+  }
+
+  100% {
+    background-color: #b8eedb;
+  }
+}
+
+@keyframes load {
+  0% {
+    background-color: #1c8a63;
+  }
+
+  100% {
+    background-color: #b8eedb;
+  }
+}
+
 .dashboard-container .calendar {
   box-shadow: 0 0 0 black !important;
 }
@@ -2200,5 +2232,54 @@ img.vector-confirm {
   .member-page-data .data-content .detail .detail-wrapper h1.judul {
     font-size: 30px;
   }
+}
+
+.pdf-report-wrapper {
+  width: 100%;
+  margin: auto;
+}
+
+.pdf-report-wrapper .line-green {
+  padding-top: 3px;
+  background-color: #269b72;
+}
+
+.pdf-report-wrapper .pdf-report {
+  width: 95%;
+  margin: auto;
+  font-family: segoe;
+  background-color: #fff;
+}
+
+.pdf-report-wrapper .pdf-report .header {
+  background-color: #269b72;
+}
+
+.pdf-report-wrapper .pdf-report .header h1.title {
+  font-size: 34px;
+  letter-spacing: 2px;
+}
+
+.pdf-report-wrapper .pdf-report .header h2.sub-title {
+  font-size: 20px;
+  margin-top: -7px;
+}
+
+.pdf-report-wrapper .pdf-report .info {
+  border-bottom: 4px solid #3AAF87;
+  font-size: 16px;
+}
+
+.pdf-report-wrapper .pdf-report .konten table {
+  width: 90%;
+  margin: auto;
+}
+
+.pdf-report-wrapper .pdf-report .konten table thead {
+  background-color: #0f6b3d;
+}
+
+.pdf-report-wrapper .pdf-report .footer {
+  background-color: #269b72;
 }
 

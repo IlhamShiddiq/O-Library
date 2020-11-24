@@ -102,6 +102,8 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/permission/delete/refused', [DataPermissionController::class, 'deleteRefused']);
 
     Route::get('/guide', [StaticPageController::class, 'guide']);
+    Route::get('/pdf-report', [StaticPageController::class, 'pdfReport']);
+    Route::post('/pdf-report', [StaticPageController::class, 'pdfReportMessage']);
     
     // MEMBER PAGE
     Route::get('/member/dashboard', [PageMemberController::class, 'index']);

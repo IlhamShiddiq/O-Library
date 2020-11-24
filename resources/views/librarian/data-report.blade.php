@@ -52,7 +52,14 @@
                     <a href="{{ url('/report') }}" class="btn btn-success full-width"><i class="fas fa-eye"></i> See All</a>
                 </div>
                 <div class="gray-wrapper radius-admin">
-                    <a href="{{ url('/report/late') }}" class="btn btn-danger full-width"><i class="fas fa-clock"></i> Data Keterlambatan</a>
+                    <div class="row">
+                        <div class="col-9 pr-1">
+                            <a href="{{ url('/report/late') }}" class="btn btn-danger full-width"><i class="fas fa-clock"></i> Data Keterlambatan</a>
+                        </div>
+                        <div class="col-3 pl-1">
+                            <a href="{{ url('/pdf-report') }}" class="btn btn-primary full-width"><i class="fas fa-print"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-12 col-md-12 col-lg-8">

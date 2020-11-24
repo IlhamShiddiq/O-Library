@@ -15,6 +15,7 @@ class DataReportController extends Controller
      */
     public function index()
     {
+        date_default_timezone_set('Asia/Jakarta');
         $this_month = date('n');
         $reports = Transaction::select('transaction_id', 'name', 'nomor_induk', 'librarian_id', 'borrow_date', 'date_of_return', 'title')
                                 ->join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
@@ -30,6 +31,7 @@ class DataReportController extends Controller
 
     public function indexLate()
     {
+        date_default_timezone_set('Asia/Jakarta');
         $this_month = date('n');
         $reports = Transaction::select('transaction_id', 'name', 'nomor_induk', 'librarian_id', 'borrow_date', 'date_of_return', 'title')
                                 ->join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
@@ -117,6 +119,8 @@ class DataReportController extends Controller
         else $tbl = 'detail_transactions.'.$request->by;
 
         $search = '%'.$request->search.'%';
+
+        date_default_timezone_set('Asia/Jakarta');
         $this_month = date('n');
 
         $reports = Transaction::select('transaction_id', 'name', 'nomor_induk', 'librarian_id', 'borrow_date', 'date_of_return', 'title')

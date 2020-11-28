@@ -1600,6 +1600,17 @@ button.btn-notif:focus {
           animation: load 0.6s infinite linear alternate;
 }
 
+.denda-wrapper {
+  width: 85%;
+  background-color: #fa8383;
+}
+
+.denda-line {
+  width: 85%;
+  padding-top: 3px;
+  background-color: #d63737;
+}
+
 @-webkit-keyframes load {
   0% {
     background-color: #1c8a63;

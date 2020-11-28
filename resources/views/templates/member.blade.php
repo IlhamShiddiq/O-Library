@@ -53,7 +53,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                             <div class="short-profile mb-2 text-center">
                                 <img src="{{asset('uploaded_files/member-foto/'.auth()->user()->profile_photo_path)}}" alt="admin icon" width="33" height="33" class="d-inline rounded-circle fit-cover">
-                                <p class="d-inline ml-2 name">Ilham Shiddiq</p>
+                                <p class="d-inline ml-2 name">{{auth()->user()->name}}</p>
                             </div>
                             <div class="container">
                                 <div class="menu-link">

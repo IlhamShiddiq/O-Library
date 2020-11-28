@@ -204,11 +204,6 @@ class DataBukuController extends Controller
         // dd($book);
     }
 
-    public function returnBook()
-    {
-        return view('librarian/return-book');
-    }
-
     public function search(Request $request)
     {
         if($request->by == 'category') $tbl = 'categories.'.$request->by;

@@ -1,5 +1,9 @@
 @extends('../templates/admin')
 
+@section('more-meta')
+    <meta name="_token" content="{{ csrf_token() }}">
+@endsection
+
 @section('title', 'Data Transaksi')
 
 @section('breadcrumb')
@@ -23,23 +27,22 @@
                     </div>
                 </div>
                 <div class="gray-wrapper radius-admin">
-                    <form>
+                    <form action="{{url('/transaction/search')}}" method="POST">
+                        @csrf
                         <div class="form-row">
                           <div class="col-4">
                             <div class="form-group">
-                                <select class="form-control">
-                                    <option>All</option>
-                                    <option>Nama</option>
-                                    <option>Role</option>
-                                    <option>Alamat</option>
+                                <select class="form-control" name="by">
+                                    <option value="nomor_induk">NIS/NIP</option>
+                                    <option value="name">Nama</option>
                                 </select>
                             </div>
                           </div>
                           <div class="col-8">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                                <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" name="search">
                                 <div class="input-group-append">
-                                  <button class="btn btn-primary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                                  <button class="btn btn-primary" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
                                 </div>
                             </div>
                           </div>
@@ -53,126 +56,34 @@
             </div>
             <div class="col-12 col-md-12 col-lg-8">
                 <h1 class="title-pagination text-center mb-3">Data Transaksi</h1>
-                <div class="transaction-item-wrapper position-relative shadow mb-3">
-                    <div class="transaction-item position-absolute full-width py-2">
-                        <div class="container-fluid full-height position-relative">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h1 class="id-transaksi py-2">Id Transaksi : 1</h1>
-                                    <p class="person">0024633245 / Ilham Shiddiq</p>
-                                    <div class="info">
-                                        <p class="info-transaksi d-inline-block">Jumlah pinjam : <span class="badge badge-secondary mt-2">2 buku</span> , </p>
-                                        <p class="info-transaksi d-inline-block">Jumlah kembali : <span class="badge badge-success mt-2">0 buku</span></p>
+                @foreach ($datas as $data)
+                    <div class="transaction-item-wrapper position-relative shadow mb-3">
+                        <div class="transaction-item position-absolute full-width py-2">
+                            <div class="container-fluid full-height position-relative">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h1 class="id-transaksi py-2">Id Transaksi : {{$data->id}}</h1>
+                                        <p class="person">{{$data->nomor_induk}} / {{$data->name}}</p>
+                                        <div class="info">
+                                            <p class="info-transaksi d-inline-block">Jumlah buku yang masih dipinjam : <span class="badge badge-secondary mt-2">{{$data->sum}} buku</span></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="btn-wrapper position-absolute bottom-absolute full-width pl-3">
-                                <div class="container position-relative">
-                                    <a href="{{url('/return-book')}}" class="btn btn-sm btn-purple position-absolute bottom-absolute text-right rounded-0" title="Pengembalian"><i class="fas fa-exchange-alt"></i></a>
-                                    <button type="button" class="btn btn-sm btn-info position-absolute bottom-absolute text-right rounded-0" title="Info" data-toggle="modal" data-target="#detailDataModal"><i class="fas fa-info-circle"></i></button>
-                                    <button type="button" class="btn btn-sm btn-danger position-absolute bottom-absolute text-right rounded-0" title="Hapus" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash"></i></button>
-                                    <button type="button" class="btn btn-sm btn-success position-absolute bottom-absolute rounded-0" title="Edit" data-toggle="modal" data-target="#editDataModal"><i class="fas fa-edit"></i></button>
+                                <div class="btn-wrapper position-absolute bottom-absolute full-width pl-3">
+                                    <div class="container position-relative">
+                                        <a href="{{url('/transaction/return-book/'.$data->id)}}" class="btn btn-sm btn-purple position-absolute bottom-absolute text-right rounded-0" title="Pengembalian"><i class="fas fa-exchange-alt"></i></a>
+                                        <button type="button" class="btn btn-sm btn-info position-absolute bottom-absolute text-right rounded-0" title="Info" data-toggle="modal" data-target="#detailDataModal" data-id="{{$data->id}}" data-nomor="{{$data->nomor_induk}}"><i class="fas fa-info-circle"></i></button>
+                                        <button type="button" class="btn btn-sm btn-danger position-absolute bottom-absolute text-right rounded-0" title="Hapus" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash"></i></button>
+                                        <button type="button" class="btn btn-sm btn-success position-absolute bottom-absolute rounded-0" title="Edit" data-toggle="modal" data-target="#editDataModal"><i class="fas fa-edit"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="transaction-item-wrapper position-relative shadow mb-3">
-                    <div class="transaction-item position-absolute full-width py-2">
-                        <div class="container-fluid full-height position-relative">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h1 class="id-transaksi py-2">Id Transaksi : 1</h1>
-                                    <p class="person">0024633245 / Ilham Shiddiq</p>
-                                    <div class="info">
-                                        <p class="info-transaksi d-inline-block">Jumlah pinjam : <span class="badge badge-secondary mt-2">2 buku</span> , </p>
-                                        <p class="info-transaksi d-inline-block">Jumlah kembali : <span class="badge badge-success mt-2">0 buku</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="btn-wrapper position-absolute bottom-absolute full-width pl-3">
-                                <div class="container position-relative">
-                                    <button type="button" class="btn btn-sm btn-purple position-absolute bottom-absolute text-right rounded-0"><i class="fas fa-exchange-alt"></i></button>
-                                    <button type="button" class="btn btn-sm btn-info position-absolute bottom-absolute text-right rounded-0"><i class="fas fa-info-circle"></i></button>
-                                    <button type="button" class="btn btn-sm btn-danger position-absolute bottom-absolute text-right rounded-0"><i class="fas fa-trash"></i></button>
-                                    <button type="button" class="btn btn-sm btn-success position-absolute bottom-absolute rounded-0"><i class="fas fa-edit"></i></button>
-                                </div>
-                            </div>
-                        </div>
+                    @endforeach
+                    <div class="pagination-btn position-relative mb-3 mr-2">
+                        {{ $datas->links() }}
                     </div>
-                </div>
-                <div class="transaction-item-wrapper position-relative shadow mb-3">
-                    <div class="transaction-item position-absolute full-width py-2">
-                        <div class="container-fluid full-height position-relative">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h1 class="id-transaksi py-2">Id Transaksi : 1</h1>
-                                    <p class="person">0024633245 / Ilham Shiddiq</p>
-                                    <div class="info">
-                                        <p class="info-transaksi d-inline-block">Jumlah pinjam : <span class="badge badge-secondary mt-2">2 buku</span> , </p>
-                                        <p class="info-transaksi d-inline-block">Jumlah kembali : <span class="badge badge-success mt-2">0 buku</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="btn-wrapper position-absolute bottom-absolute full-width pl-3">
-                                <div class="container position-relative">
-                                    <button type="button" class="btn btn-sm btn-purple position-absolute bottom-absolute text-right rounded-0"><i class="fas fa-exchange-alt"></i></button>
-                                    <button type="button" class="btn btn-sm btn-info position-absolute bottom-absolute text-right rounded-0"><i class="fas fa-info-circle"></i></button>
-                                    <button type="button" class="btn btn-sm btn-danger position-absolute bottom-absolute text-right rounded-0"><i class="fas fa-trash"></i></button>
-                                    <button type="button" class="btn btn-sm btn-success position-absolute bottom-absolute rounded-0"><i class="fas fa-edit"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="transaction-item-wrapper position-relative shadow mb-3">
-                    <div class="transaction-item position-absolute full-width py-2">
-                        <div class="container-fluid full-height position-relative">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h1 class="id-transaksi py-2">Id Transaksi : 1</h1>
-                                    <p class="person">0024633245 / Ilham Shiddiq</p>
-                                    <div class="info">
-                                        <p class="info-transaksi d-inline-block">Jumlah pinjam : <span class="badge badge-secondary mt-2">2 buku</span> , </p>
-                                        <p class="info-transaksi d-inline-block">Jumlah kembali : <span class="badge badge-success mt-2">0 buku</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="btn-wrapper position-absolute bottom-absolute full-width pl-3">
-                                <div class="container position-relative">
-                                    <button type="button" class="btn btn-sm btn-purple position-absolute bottom-absolute text-right rounded-0"><i class="fas fa-exchange-alt"></i></button>
-                                    <button type="button" class="btn btn-sm btn-info position-absolute bottom-absolute text-right rounded-0"><i class="fas fa-info-circle"></i></button>
-                                    <button type="button" class="btn btn-sm btn-danger position-absolute bottom-absolute text-right rounded-0"><i class="fas fa-trash"></i></button>
-                                    <button type="button" class="btn btn-sm btn-success position-absolute bottom-absolute rounded-0"><i class="fas fa-edit"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="transaction-item-wrapper position-relative shadow mb-3">
-                    <div class="transaction-item position-absolute full-width py-2">
-                        <div class="container-fluid full-height position-relative">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h1 class="id-transaksi py-2">Id Transaksi : 1</h1>
-                                    <p class="person">0024633245 / Ilham Shiddiq</p>
-                                    <div class="info">
-                                        <p class="info-transaksi d-inline-block">Jumlah pinjam : <span class="badge badge-secondary mt-2">2 buku</span> , </p>
-                                        <p class="info-transaksi d-inline-block">Jumlah kembali : <span class="badge badge-success mt-2">0 buku</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="btn-wrapper position-absolute bottom-absolute full-width pl-3">
-                                <div class="container position-relative">
-                                    <button type="button" class="btn btn-sm btn-purple position-absolute bottom-absolute text-right rounded-0"><i class="fas fa-exchange-alt"></i></button>
-                                    <button type="button" class="btn btn-sm btn-info position-absolute bottom-absolute text-right rounded-0"><i class="fas fa-info-circle"></i></button>
-                                    <button type="button" class="btn btn-sm btn-danger position-absolute bottom-absolute text-right rounded-0"><i class="fas fa-trash"></i></button>
-                                    <button type="button" class="btn btn-sm btn-success position-absolute bottom-absolute rounded-0"><i class="fas fa-edit"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -189,28 +100,29 @@
                     </button>
                 </div>
                 <div class="modal-body py-3">
-                    <form>
+                    <form action="{{url('/transaction')}}" method="POST">
+                        @csrf
                         <div class="row">
                           <div class="col-6 pr-1">
                             <div class="form-group">
                                 <small for="nameLibrarian">Nama Pustakawan (Librarian in charge)</small>
-                                <input type="text" class="form-control" id="nameLibrarian" name="nameLibrarian" placeholder="Isikan disini..." readonly>
+                                <input type="text" class="form-control" id="nameLibrarian" name="nameLibrarian" placeholder="Isikan disini..." value="{{auth()->user()->name}}" readonly>
                             </div>
                           </div>
                           <div class="col-6 pl-1">
                             <div class="form-group">
                                 <small for="nomorIndukLibrarian">NIP</small>
-                                <input type="text" class="form-control" id="nomorIndukLibrarian" name="nomorIndukLibrarian" placeholder="Isikan disini..." readonly>
+                                <input type="text" class="form-control" id="nomorIndukLibrarian" name="nomorIndukLibrarian" placeholder="Isikan disini..." value="{{auth()->user()->nomor_induk}}" readonly>
                             </div>
                           </div>
                         </div>
                         <div class="row form-mg">
-                          <div class="col-6">
+                          <div class="col-6 pr-1">
                             <small for="nomorIndukMember">NIS/NIP Anggota</small>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" id="nomorIndukMember" name="nomorIndukMember" placeholder="Isikan disini...">
+                                <input type="number" class="form-control @error('nomorIndukMember') is-invalid @enderror" id="nomorIndukMember" name="nomorIndukMember" placeholder="Isikan disini...">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary btn-sm-text px-2" id="cekAnggota"><i class="fas fa-search"></i></button>
+                                    <button type="button" class="btn btn-primary btn-sm-text px-2" id="cekAnggota"><i class="fas fa-search"></i></button>
                                 </div>
                             </div>
                           </div>
@@ -227,23 +139,23 @@
                             </div>
                             <div class="col-6 text-right pr-1">
                               <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jumlahPinjam" id="satuBuku" value="Guru" checked>
+                                <input class="form-check-input" type="radio" name="jumlahPinjam" id="satuBuku" value="1" checked>
                                 <label class="form-check-label" for="satuBuku">1 Buku</label>
                               </div>
                             </div>
                             <div class="col-6 pl-1">
                               <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jumlahPinjam" id="duaBuku" value="Siswa">
+                                <input class="form-check-input" type="radio" name="jumlahPinjam" id="duaBuku" value="2">
                                 <label class="form-check-label" for="duaBuku">2 Buku</label>
                               </div>
                             </div>
                           </div>
                         <div class="row form-mg">
-                            <div class="col-6">
+                            <div class="col-6 pr-1">
                                 <div class="form-group">
                                     <small for="idBukuPertama">ID Buku</small>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" id="idBukuPertama" name="idBukuPertama" placeholder="Isikan disini...">
+                                        <input type="number" class="form-control @error('idBukuPertama') is-invalid @enderror" id="idBukuPertama" name="idBukuPertama" placeholder="Isikan disini...">
                                         <div class="input-group-append">
                                             <button type="button" class="btn btn-primary btn-sm-text px-2" id="cekBukuPertama"><i class="fas fa-search"></i></button>
                                         </div>
@@ -258,11 +170,11 @@
                             </div>
                         </div>
                         <div class="row form-mg d-none" id="row-buku-dua">
-                            <div class="col-6 d-inline-block">
+                            <div class="col-6 pr-1 d-inline-block">
                                 <div class="form-group">
                                     <small for="idBukuKedua">ID Buku kedua</small>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" id="idBukuKedua" name="idBukuKedua" placeholder="Isikan disini...">
+                                        <input type="number" class="form-control" id="idBukuKedua" name="idBukuKedua" placeholder="Isikan disini...">
                                         <div class="input-group-append">
                                             <button type="button" class="btn btn-primary mb-1 btn-sm-text px-2 full-height" id="cekBukuKedua"><i class="fas fa-search"></i></button>
                                         </div>
@@ -333,7 +245,7 @@
                           <div class="col-6 pl-1">
                             <div class="form-group">
                                 <small for="judulBukuKeduaEdit" >Judul Buku Kedua</small>
-                                <input type="text" class="form-control" id="judulBukuPertamaEdit" name="judulBukuKeduaEdit" placeholder="Isikan disini..." readonly>
+                                <input type="text" class="form-control" id="judulBukuKeduaEdit" name="judulBukuKeduaEdit" placeholder="Isikan disini..." readonly>
                             </div>
                         </div>
                     </div>
@@ -388,39 +300,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="detail">
-                                    <h1 class="detail-nama text-center">ID TRANSAKSI : 1</h1>
-                                    <p class="detail detail-username text-center mb-3">NIS/NIP : 0024633245</p>
+                                    <h1 class="detail-nama text-center"></h1>
+                                    <p class="detail detail-username text-center mb-3"></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="row form-mg">
-                            <div class="col-6 pr-1">
-                                <div class="form-group">
-                                    <small for="idBukuPertamaDetail">ID Buku</small>
-                                    <input type="text" class="form-control" id="idBukuPertamaDetail" name="idBukuPertamaDetail" placeholder="Isikan disini..." readonly>
-                                </div>
-                              </div>
-                              <div class="col-6 pl-1">
-                                <div class="form-group">
-                                    <small for="judulBukuPertamaDetail">Judul Buku</small>
-                                    <input type="text" class="form-control" id="judulBukuPertamaDetail" name="judulBukuPertamaDetail" placeholder="Isikan disini..." readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row form-mg" id="detail-row-buku-dua">
-                            <div class="col-6 pr-1">
-                                <div class="form-group">
-                                    <small for="idBukuKeduaDetail">ID Buku kedua</small>
-                                    <input type="text" class="form-control" id="idBukuKeduaDetail" name="idBukuKeduaDetail" placeholder="Isikan disini..." readonly>
-                                </div>
-                              </div>
-                              <div class="col-6 pl-1">
-                                <div class="form-group">
-                                    <small for="judulBukuKeduaDetail">Judul Buku kedua</small>
-                                    <input type="text" class="form-control" id="judulBukuKeduaDetail" name="judulBukuKeduaDetail" placeholder="Isikan disini..." readonly>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="wrapper"></div>
                     </div>
                 </div>
                 <div class="modal-footer text-center">
@@ -433,4 +318,116 @@
 
 @section('more-js')
     <script src="js/transaction-modal.js"></script>
+    <script>
+        $('#detailDataModal').on('show.bs.modal', function (event) {
+            const button = $(event.relatedTarget)
+            const id = button.data('id')
+            const nomor = button.data('nomor')
+            let wrapper = '';
+
+            const modal = $(this)
+            modal.find('.wrapper').html(`
+                                        <div class="text-center">
+                                            <div class='load d-inline-block rounded-circle mr-1'></div>
+                                            <div class='load d-inline-block rounded-circle'></div>
+                                            <div class='load d-inline-block rounded-circle ml-1'></div>
+                                        </div>`)
+            modal.find('.detail-nama').html(`ID TRANSAKSI : ${id}`)
+            modal.find('.detail-username').html(`NIS/NIP : ${nomor}`)
+            
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ url('/check-detail') }}",
+                method: 'post',
+                data: {
+                    id: id
+                },
+                success: function(result){
+                    let splits = result.split('~');
+                    splits.forEach((split) => {
+                        if(split == '') return;
+
+                        wrapper += `
+                                    <div class="row form-mg">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <small for="judulBukuPertamaDetail">Buku yang dipinjam</small>
+                                                <input type="text" class="form-control" name="judulBukuPertamaDetail" value="${split}" readonly>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                    })
+                    modal.find('.wrapper').html(wrapper)
+                }
+            });
+        })
+    </script>
+    <script>
+        jQuery('#cekAnggota').click(function(e){
+            jQuery('#namaMember').val("");
+            jQuery('#namaMember').attr("placeholder", "Mohon Tunggu");
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ url('/check-member') }}",
+                method: 'post',
+                data: {
+                    nomor_induk: jQuery('#nomorIndukMember').val()
+                },
+                success: function(result){
+                    jQuery('#namaMember').val(result);
+                }
+            });
+        });
+
+        jQuery('#cekBukuPertama').click(function(e){
+            jQuery('#judulBukuPertama').val("");
+            jQuery('#judulBukuPertama').attr("placeholder", "Mohon Tunggu...");
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ url('/check-book') }}",
+                method: 'post',
+                data: {
+                    id: jQuery('#idBukuPertama').val()
+                },
+                success: function(result){
+                    jQuery('#judulBukuPertama').val(result);
+                }
+            });
+        });
+
+        jQuery('#cekBukuKedua').click(function(e){
+            jQuery('#judulBukuKedua').val("");
+            jQuery('#judulBukuKedua').attr("placeholder", "Mohon Tunggu...");
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ url('/check-book') }}",
+                method: 'post',
+                data: {
+                    id: jQuery('#idBukuKedua').val()
+                },
+                success: function(result){
+                    jQuery('#judulBukuKedua').val(result);
+                }
+            });
+        });
+    </script>
 @endsection

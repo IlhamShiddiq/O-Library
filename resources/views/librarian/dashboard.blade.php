@@ -155,7 +155,7 @@
                 labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum\'at'],
                 datasets: [{
                     label: 'Jumlah transaksi',
-                    data: [25, 19, 3, 5, 2],
+                    data: [{{$monday_transaction}}, {{$tuesday_transaction}}, {{$wednesday_transaction}}, {{$thursday_transaction}}, {{$friday_transaction}}],
                     backgroundColor: [
                         'rgba(255, 99, 132)',
                         'rgba(54, 162, 235)',

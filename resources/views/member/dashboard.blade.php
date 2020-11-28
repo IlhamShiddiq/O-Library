@@ -36,15 +36,15 @@
         <nav class="navbar nav-member navbar-expand-lg py-4 px-5">
             <a href="{{url('/member/dashboard')}}"><img src="{{asset('img/icon.png')}}" alt="admin icon" width="55" height="55" class="d-inline rounded-circle fit-cover"></a>
             <div class="profile ml-auto">
-                <img src="{{asset('img/photo.png')}}" alt="admin icon" width="35" height="35" class="d-inline rounded-circle fit-cover">
+                <img src="{{asset('uploaded_files/member-foto/'.auth()->user()->profile_photo_path)}}" alt="admin icon" width="35" height="35" class="d-inline rounded-circle fit-cover">
                 <div class="dropdown d-inline">
                     <button class="btn-admin text-white ml-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-caret-down"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                         <div class="short-profile mb-2 text-center">
-                            <img src="{{asset('img/photo.png')}}" alt="admin icon" width="33" height="33" class="d-inline rounded-circle fit-cover">
-                            <p class="d-inline ml-2 name">Ilham Shiddiq</p>
+                            <img src="{{asset('uploaded_files/member-foto/'.auth()->user()->profile_photo_path)}}" alt="admin icon" width="33" height="33" class="d-inline rounded-circle fit-cover">
+                            <p class="d-inline ml-2 name">{{auth()->user()->name}}</p>
                         </div>
                         <div class="container">
                             <div class="menu-link">

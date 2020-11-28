@@ -5,7 +5,8 @@
 @section('breadcrumb')
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Admin</li>
-        <li class="breadcrumb-item"><a href="{{ url('/return-book') }}">Return Book</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/transaction') }}">Transaction</a></li>
+        <li class="breadcrumb-item active">Return Book</li>
     </ol>
 @endsection
 
@@ -20,18 +21,19 @@
                     <div class="title py-3 text-center mb-1 mt-5">
                         <h1 class="title-admin">Pengembalian Buku</h1>
                     </div>
-                    <form class="mb-4">
+                    <form class="mb-4" action="{{url('/transaction/return-book/'.$id_transaction)}}" method="POST">
+                        @csrf
                         <div class="row">
                           <div class="col-6 pr-1">
                             <div class="form-group">
                                 <small for="atasNama">Atas Nama</small>
-                                <input type="text" class="form-control" id="atasNama" name="atasNama" placeholder="Isikan disini..." readonly>
+                                <input type="text" class="form-control" id="atasNama" name="atasNama" placeholder="Isikan disini..." value="{{$data->name}}" readonly>
                             </div>
                           </div>
                           <div class="col-6 pl-1">
                             <div class="form-group">
                                 <small for="atasNamaNomorInduk">NIS/NIP</small>
-                                <input type="text" class="form-control" id="atasNamaNomorInduk" name="atasNamaNomorInduk" placeholder="Isikan disini..." readonly>
+                                <input type="text" class="form-control" id="atasNamaNomorInduk" name="atasNamaNomorInduk" placeholder="Isikan disini..." value="{{$data->nomor_induk}}" readonly>
                             </div>
                           </div>
                         </div>
@@ -45,25 +47,29 @@
                             <div class="input-group mb-3">
                               <div class="input-group-prepend" style="background-color: rgba(255, 255, 255, 0)">
                                 <div class="input-group-text border-0" style="background-color: rgb(105, 105, 105)">
-                                  <input type="checkbox" aria-label="Checkbox for following text input">
+                                  <input type="checkbox" aria-label="Checkbox for following text input" name="returnBuku">
                                 </div>
                               </div>
-                              <input type="text" class="form-control border border-top-0 border-left-0 border-right-0 border-dark" aria-label="Text input with checkbox" id="judulBuku" name="judulBuku" style="background-color: rgba(255, 255, 255, 0)">
+                              <input type="text" class="form-control border border-top-0 border-left-0 border-right-0 border-dark" aria-label="Text input with checkbox" id="judulBuku" name="judulBuku" style="background-color: rgba(255, 255, 255, 0)" value="{{$book_title[0]->title}}">
+                              <input type="hidden" name="idBuku" value="{{$book_title[0]->id}}">
                             </div>
                           </div>
                         </div>
-                        <div class="row justify-content-center">
-                          <div class="col-12 col-md-11 col-lg-10">
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend" style="background-color: rgba(255, 255, 255, 0)">
-                                <div class="input-group-text border-0" style="background-color: rgb(105, 105, 105)">
-                                  <input type="checkbox" aria-label="Checkbox for following text input">
+                        @if ($count_book == 2)
+                          <div class="row justify-content-center">
+                            <div class="col-12 col-md-11 col-lg-10">
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend" style="background-color: rgba(255, 255, 255, 0)">
+                                  <div class="input-group-text border-0" style="background-color: rgb(105, 105, 105)">
+                                    <input type="checkbox" aria-label="Checkbox for following text input" name="returnBukuKedua">
+                                  </div>
                                 </div>
+                                <input type="text" class="form-control border border-top-0 border-left-0 border-right-0 border-dark" aria-label="Text input with checkbox" id="judulBukuKedua" name="judulBukuKedua" style="background-color: rgba(255, 255, 255, 0)" value="{{$book_title[1]->title}}">
+                                <input type="hidden" name="idBukuKedua" value="{{$book_title[1]->id}}">
                               </div>
-                              <input type="text" class="form-control border border-top-0 border-left-0 border-right-0 border-dark" aria-label="Text input with checkbox" id="judulBukuKedua" name="judulBukuKedua" style="background-color: rgba(255, 255, 255, 0)">
                             </div>
                           </div>
-                        </div>
+                        @endif
                         <div class="row justify-content-center">
                           <div class="col-12 text-center">
                             <button type="submit" class="btn btn-sm btn-success px-5 mt-3" name="tambahData">Submit</button>

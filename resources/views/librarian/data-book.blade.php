@@ -81,7 +81,7 @@
                             <div class="btn-action bottom-absolute">
                                 <a href="#" class="badge badge-success" data-toggle="modal" data-target="#editDataModal" data-id="{{$book->id}}" data-isbn="{{$book->isbn}}" data-title="{{$book->title}}" data-category_id="{{$book->category_id}}" data-author="{{$book->author}}" data-publisher_id="{{$book->publisher_id}}" data-about="{{$book->about}}" data-terbit="{{$book->publish_year}}" data-qty="{{$book->qty}}" data-image="{{asset('uploaded_files/book-cover/'.$book->image)}}" data-nameimg="{{$book->image}}">Ubah</a>
                                 <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$book->id}}">Hapus</a>
-                                <a href="{{ url('/book/history') }}" class="badge badge-info">Riwayat</a>
+                                <a href="{{ url('/book/history/'.$book->id) }}" class="badge badge-info">Riwayat</a>
                             </div>
                             <div class="item-table-footer bottom-absolute">
                                 <div class="container-fluid">

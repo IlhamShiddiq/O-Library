@@ -17,9 +17,9 @@
 @endsection
 
 @section('content')
-    <div class="detail">
+    <div class="detail full-width">
         <div class="row full-width justify-content-center pb-3 border-bottom">
-            <div class="col-lg-4 col-md-6 col-11 mb-3">
+            <div class="col-lg-4 col-md-6 col-11">
                 <img src="{{asset('uploaded_files/book-cover/'.$datas[0]->image)}}" alt="{{$datas[0]->title}}" class="full-width fit-cover-top mb-3">
             </div>
             <div class="col-lg-6 col-md-6 col-11">

@@ -23,7 +23,8 @@ class DataPermissionController extends Controller
         }
 
         $permissions = Permission::join('ebooks', 'permissions.id_ebook', '=', 'ebooks.id')
-                                ->select('ebooks.title', 'permissions.*')
+                                ->join('users', 'permissions.id_member', '=', 'users.id')
+                                ->select('ebooks.title', 'users.nomor_induk', 'permissions.*')
                                 ->orderByDesc('id')
                                 ->paginate(10);
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Member;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -38,9 +39,15 @@ class DataMemberController extends Controller
         return view('librarian.data-member', compact('members', 'count'));
     }
 
-    public function memberHistory()
+    public function memberHistory(Member $member)
     {
-        return view('librarian/data-member-history');
+
+        $histories = Transaction::join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
+                                ->join('books', 'books.id', '=', 'detail_transactions.book_id')
+                                ->where('member_id', $member->id)
+                                ->get();
+
+        return view('librarian/data-member-history', compact('histories'));
     }
 
     /**

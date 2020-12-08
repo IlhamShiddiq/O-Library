@@ -35,66 +35,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Ilham Shiddiq / 181113836</td>
-                        <td>2020/09/09</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ilham Shiddiq / 181113836</td>
-                        <td>2020/09/09</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ilham Shiddiq / 181113836</td>
-                        <td>2020/09/09</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ilham Shiddiq / 181113836</td>
-                        <td>2020/09/09</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ilham Shiddiq / 181113836</td>
-                        <td>2020/09/09</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ilham Shiddiq / 181113836</td>
-                        <td>2020/09/09</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ilham Shiddiq / 181113836</td>
-                        <td>2020/09/09</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ilham Shiddiq / 181113836</td>
-                        <td>2020/09/09</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ilham Shiddiq / 181113836</td>
-                        <td>2020/09/09</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ilham Shiddiq / 181113836</td>
-                        <td>2020/09/09</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ilham Shiddiq / 181113836</td>
-                        <td>2020/09/09</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ilham Shiddiq / 181113836</td>
-                        <td>2020/09/09</td>
-                    </tr>
+                    @foreach ($histories as $history)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$history->name}} / {{$history->nomor_induk}}</td>
+                            <td>{{$history->borrow_date}}</td>
+                        </tr>
+                    @endforeach
                   </tbody>
                 </table>
             </div>

@@ -89,7 +89,7 @@
                             @if ($member->confirm_code != '0')
                               <a href="#" class="badge badge-success" data-toggle="modal" data-target="#resetKode" data-id="{{$member->id}}">Reset Kode</a>
                             @endif
-                            <a href="{{ url('/member/history') }}" class="badge badge-info">Riwayat</a>
+                            <a href="{{ url('/member/history/'.$member->id) }}" class="badge badge-info">Riwayat</a>
                         </div>
                         <div class="detail-wrapper position-absolute bottom-absolute shadow">
                           <button class="btn btn-dark" data-toggle="modal" data-target="#detailDataModal" data-name="{{$member->name}}" data-status="{{$member->status}}" data-username="{{$member->username}}" data-kelas="{{$member->class}}" data-email="{{$member->email}}" data-address="{{$member->address}}" data-phone="{{$member->phone}}" data-image="{{asset('uploaded_files/member-foto/'.$member->profile_photo_path)}}">Detail</button>

@@ -46,7 +46,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/book', [DataBukuController::class, 'index']);
     Route::post('/book', [DataBukuController::class, 'store']);
     Route::post('/book/search', [DataBukuController::class, 'search']);
-    Route::get('/book/history', [DataBukuController::class, 'bookHistory']);
+    Route::get('/book/history/{book}', [DataBukuController::class, 'bookHistory']);
     Route::delete('/book/{book}', [DataBukuController::class, 'destroy']);
     Route::put('/book/{book}', [DataBukuController::class, 'update']);
 
@@ -86,7 +86,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::post('/member/search', [DataMemberController::class, 'search']);
     Route::post('/member/reset-code/{member}', [DataMemberController::class, 'resetCode']);
     Route::delete('/member/{member}', [DataMemberController::class, 'destroy']);
-    Route::get('/member/history', [DataMemberController::class, 'memberHistory']);
+    Route::get('/member/history/{member}', [DataMemberController::class, 'memberHistory']);
 
     Route::get('/transaction', [DataTransaksiController::class, 'index']);
     Route::post('/transaction', [DataTransaksiController::class, 'store']);

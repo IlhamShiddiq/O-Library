@@ -56,7 +56,7 @@
                     <table class="table table-hover" style="width: 1100px">
                         <thead class="thead-light">
                           <tr>
-                            <th scope="col" style="width: 90px" class="text-center">ID Mem.</th>
+                            <th scope="col" style="width: 90px" class="text-center">NIS/NIP</th>
                             <th scope="col" style="width: 330px" class="text-center">Judul Ebook</th>
                             <th scope="col" style="width: 330px" class="text-center">Alasan</th>
                             <th scope="col" style="width: 90px" class="text-center">Status</th>
@@ -67,7 +67,7 @@
                         <tbody>
                             @foreach ($permissions as $permission)
                                 <tr>
-                                    <td class="text-center">{{$permission->id_member}}</td>
+                                    <td class="text-center">{{$permission->nomor_induk}}</td>
                                     <td>{{$permission->title}}</td>
                                     <td>{{$permission->reason}}</td>
                                     @if ($permission->confirmed == '1')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Categories;
 use App\Models\Publisher;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File; 
@@ -39,9 +40,14 @@ class DataBukuController extends Controller
         // dd($books);
     }
 
-    public function bookHistory()
+    public function bookHistory(Book $book)
     {
-        return view('librarian/data-book-history');
+        $histories = Transaction::join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
+                                ->join('users', 'transactions.member_id', '=', 'users.id')
+                                ->where('book_id', $book->id)
+                                ->get();
+
+        return view('librarian/data-book-history', compact('histories'));
     }
 
     /**
@@ -166,7 +172,7 @@ class DataBukuController extends Controller
                         'title' => $request->judulBuku,
                         'publisher_id' => $request->penerbitBuku,
                         'category_id' => $request->kategoriBuku,
-                        'author' => $request->penulisBuku,
+                        'author' => $request->penulisBuku, 
                         'qty' => $request->stokBuku,
                         'about' => $request->tentangBuku,
                         'publish_year' => $request->tahunTerbit,

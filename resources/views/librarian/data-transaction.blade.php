@@ -73,17 +73,16 @@
                                     <div class="container position-relative">
                                         <a href="{{url('/transaction/return-book/'.$data->id)}}" class="btn btn-sm btn-purple position-absolute bottom-absolute text-right rounded-0" title="Pengembalian"><i class="fas fa-exchange-alt"></i></a>
                                         <button type="button" class="btn btn-sm btn-info position-absolute bottom-absolute text-right rounded-0" title="Info" data-toggle="modal" data-target="#detailDataModal" data-id="{{$data->id}}" data-nomor="{{$data->nomor_induk}}"><i class="fas fa-info-circle"></i></button>
-                                        <button type="button" class="btn btn-sm btn-danger position-absolute bottom-absolute text-right rounded-0" title="Hapus" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash"></i></button>
-                                        <button type="button" class="btn btn-sm btn-success position-absolute bottom-absolute rounded-0" title="Edit" data-toggle="modal" data-target="#editDataModal"><i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btn btn-sm btn-success position-absolute bottom-absolute rounded-0" title="Edit" data-toggle="modal" data-target="#editDataModal" data-id="{{$data->id}}"><i class="fas fa-edit"></i></button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                    <div class="pagination-btn position-relative mb-3 mr-2">
-                        {{ $datas->links() }}
-                    </div>
+                @endforeach
+                <div class="pagination-btn position-relative mb-3 mr-2">
+                    {{ $datas->links() }}
+                </div>
             </div>
         </div>
     </div>
@@ -207,79 +206,17 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header text-center">
-                    <img src="img/icon.png" alt="icon" width="55">
+                    <img src="{{asset('img/icon.png')}}" alt="icon" width="55">
                     <h5>EDIT DATA</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body py-3">
-                  <form>
-                    <div class="row form-mg">
-                        <div class="col-5 pr-1">
-                            <div class="form-group">
-                                <small for="idBukuPertamaEdit">ID Buku</small>
-                                <input type="text" class="form-control" id="idBukuPertamaEdit" name="idBukuPertamaEdit" placeholder="Isikan disini...">
-                            </div>
-                          </div>
-                          <div class="col-1 pl-1">
-                              <button class="btn btn-primary mt-4 btn-sm-text px-2" id="cekBukuPertamaEdit"><i class="fas fa-search"></i></button>
-                          </div>
-                          <div class="col-6 pl-1">
-                            <div class="form-group">
-                                <small for="judulBukuPertamaEdit">Judul Buku</small>
-                                <input type="text" class="form-control" id="judulBukuPertamaEdit" name="judulBukuPertamaEdit" placeholder="Isikan disini..." readonly>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row form-mg" id="row-buku-dua-detail">
-                        <div class="col-5 pr-1">
-                            <div class="form-group">
-                                <small for="idBukuKeduaEdit">ID Buku kedua</small>
-                                <input type="text" class="form-control" id="idBukuKeduaEdit" name="idBukuKeduaEdit" placeholder="Isikan disini...">
-                            </div>
-                          </div>
-                          <div class="col-1 pl-1">
-                              <button class="btn btn-primary mt-4 btn-sm-text px-2" id="cekBukuKeduaEdit"><i class="fas fa-search"></i></button>
-                          </div>
-                          <div class="col-6 pl-1">
-                            <div class="form-group">
-                                <small for="judulBukuKeduaEdit" >Judul Buku Kedua</small>
-                                <input type="text" class="form-control" id="judulBukuKeduaEdit" name="judulBukuKeduaEdit" placeholder="Isikan disini..." readonly>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center">
-                      <div class="col-12 text-center px-1">
-                        <button type="submit" class="btn btn-success mt-3 px-5" name="editData">Edit Data</button>
-                      </div>
-                    </div>
-                  </form>
+                  
                 </div>
                 <div class="modal-footer text-center">
                     <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Hapus Modal -->
-    <div class="modal modal-admin fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h5 class="modal-title py-2" id="exampleModalLabel">PLEASE CONFIRM..</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center py-3 text-center">
-                    <h2>Yakin ingin Menghapus Data?</h2>
-                    <p class="pt-2">Data yang dihapus tidak akan bisa<br>dipulihkan kembali.</p>
-                </div>
-                <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger">Yes</button>
                 </div>
             </div>
         </div>
@@ -362,6 +299,137 @@
                                     </div>`;
                     })
                     modal.find('.wrapper').html(wrapper)
+                }
+            });
+        })
+
+        $('#editDataModal').on('show.bs.modal', function (event) {
+            const button = $(event.relatedTarget)
+            const id = button.data('id')
+            let wrapper = '';
+
+            const modal = $(this)
+            modal.find('.modal-body').html(`
+                                        <form action="{{url('transaction/edit/${id}')}}" method="POST">
+                                            @csrf
+                                            <div class="wrapper"></div>
+                                        </form>`)
+
+            modal.find('.wrapper').html(`
+                                        <div class="text-center">
+                                            <div class='load d-inline-block rounded-circle mr-1'></div>
+                                            <div class='load d-inline-block rounded-circle'></div>
+                                            <div class='load d-inline-block rounded-circle ml-1'></div>
+                                        </div>`)
+            
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ url('/check-detail-edit') }}",
+                method: 'post',
+                data: {
+                    id: id
+                },
+                success: function(result){
+                    let splits = result.split('~');
+                    console.log(splits)
+                    const count = splits[0];
+                    
+                    wrapper += `
+                            <div class="row form-mg">
+                                <div class="col-5 pr-1">
+                                    <div class="form-group">
+                                        <small for="idBukuPertamaEdit">ID Buku</small>
+                                        <input type="text" class="form-control" id="idBukuPertamaEdit" name="idBukuPertamaEdit" placeholder="Isikan disini..." value="${splits[1]}">
+                                    </div>
+                                </div>
+                                <div class="col-1 pl-1">
+                                    <button type="button" class="btn btn-primary mt-4 btn-sm-text px-2" id="cekBukuPertamaEdit"><i class="fas fa-search"></i></button>
+                                </div>
+                                <div class="col-6 pl-1">
+                                    <div class="form-group">
+                                        <small for="judulBukuPertamaEdit">Judul Buku</small>
+                                        <input type="text" class="form-control" id="judulBukuPertamaEdit" name="judulBukuPertamaEdit" placeholder="Isikan disini..." readonly value="${splits[2]}">
+                                    </div>
+                                </div>
+                            </div>`
+
+                    if(count == '2')
+                    {
+                        wrapper += `
+                            <div class="row form-mg" id="row-buku-dua-detail">
+                                <div class="col-5 pr-1">
+                                    <div class="form-group">
+                                        <small for="idBukuKeduaEdit">ID Buku kedua</small>
+                                        <input type="text" class="form-control" id="idBukuKeduaEdit" name="idBukuKeduaEdit" placeholder="Isikan disini..." value="${splits[3]}">
+                                    </div>
+                                </div>
+                                <div class="col-1 pl-1">
+                                    <button type="button" class="btn btn-primary mt-4 btn-sm-text px-2" id="cekBukuKeduaEdit"><i class="fas fa-search"></i></button>
+                                </div>
+                                <div class="col-6 pl-1">
+                                    <div class="form-group">
+                                        <small for="judulBukuKeduaEdit" >Judul Buku Kedua</small>
+                                        <input type="text" class="form-control" id="judulBukuKeduaEdit" name="judulBukuKeduaEdit" placeholder="Isikan disini..." readonly value="${splits[4]}">
+                                    </div>
+                                </div>
+                            </div>`
+                    }
+
+                    wrapper += `
+                            <div class="row justify-content-center">
+                                <div class="col-12 text-center px-1 btn-wrapper">
+                                    <button type="submit" class="btn btn-sm btn-success px-4">Edit Data</button>
+                                </div>
+                            </div>`
+
+                    modal.find('.wrapper').html(wrapper)
+
+                    
+                    jQuery('#cekBukuPertamaEdit').click(function(e){
+                        jQuery('#judulBukuPertamaEdit').val("");
+                        jQuery('#judulBukuPertamaEdit').attr("placeholder", "Mohon Tunggu...");
+                        e.preventDefault();
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                            }
+                        });
+                        jQuery.ajax({
+                            url: "{{ url('/check-book') }}",
+                            method: 'post',
+                            data: {
+                                id: jQuery('#idBukuPertamaEdit').val()
+                            },
+                            success: function(result){
+                                jQuery('#judulBukuPertamaEdit').val(result);
+                            }
+                        });
+                    });
+                    
+                    jQuery('#cekBukuKeduaEdit').click(function(e){
+                        jQuery('#judulBukuKeduaEdit').val("");
+                        jQuery('#judulBukuKeduaEdit').attr("placeholder", "Mohon Tunggu...");
+                        e.preventDefault();
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                            }
+                        });
+                        jQuery.ajax({
+                            url: "{{ url('/check-book') }}",
+                            method: 'post',
+                            data: {
+                                id: jQuery('#idBukuKeduaEdit').val()
+                            },
+                            success: function(result){
+                                jQuery('#judulBukuKeduaEdit').val(result);
+                            }
+                        });
+                    });
                 }
             });
         })

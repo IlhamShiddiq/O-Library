@@ -1534,16 +1534,12 @@ nav.nav-landing button:focus {
   width: 33px;
 }
 
-.transaction-item-wrapper .transaction-item .btn-wrapper .btn-danger {
+.transaction-item-wrapper .transaction-item .btn-wrapper .btn-info {
   width: 66px;
 }
 
-.transaction-item-wrapper .transaction-item .btn-wrapper .btn-info {
-  width: 99px;
-}
-
 .transaction-item-wrapper .transaction-item .btn-wrapper .btn-purple {
-  width: 132px;
+  width: 99px;
 }
 
 .transaction-item-wrapper .transaction-item .info-book {

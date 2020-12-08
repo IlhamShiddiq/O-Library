@@ -188,7 +188,88 @@ class DataTransaksiController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        $id = Detail_Transactions::where('transaction_id', $transaction->id)
+                                ->where('status', '0')
+                                ->get();
+
+        if($request->idBukuPertamaEdit && $request->idBukuKeduaEdit) {
+            if($request->idBukuPertamaEdit == $request->idBukuKeduaEdit) {
+                return redirect('/transaction')->with('failed', 'ID Buku Tidak boleh sama');
+            }
+
+            if(($request->idBukuPertamaEdit == $id[1]->book_id) && ($id[0]->book_id == $request->idBukuKeduaEdit)) {
+                return redirect('/transaction')->with('failed', 'Pengubahan ditolak');
+            }
+        }
+
+        if($request->idBukuPertamaEdit)
+        {
+            $check = Book::where('id', $request->idBukuPertamaEdit)->count();
+            if($check == 0) return redirect('/transaction')->with('failed', 'ID Buku(1) tidak terdaftar di sistem');
+
+            $checkQTY = Book::where('id', $request->idBukuPertamaEdit)->get();
+            if($checkQTY[0]->qty == '0') return redirect('/transaction')->with('failed', 'Buku(1) tidak tersedia');
+
+            $updateID = Detail_Transactions::where('transaction_id', $transaction->id)
+                                    ->where('book_id', $id[0]->book_id)
+                                    ->update([
+                                        'book_id' => $request->idBukuPertamaEdit
+                                        ]);
+
+            $qty = Book::select('qty')
+                        ->where('id', $request->idBukuPertamaEdit)
+                        ->get();
+                                    
+            $dicrease_qty = Book::where('id', $request->idBukuPertamaEdit)
+                                    ->update([
+                                        'qty' => $qty[0]->qty - 1
+                                        ]);
+
+            $qtyNew = Book::select('qty')
+                        ->where('id', $id[0]->book_id)
+                        ->get();
+                
+                                    
+            $increase_qty = Book::where('id', $id[0]->book_id)
+                                    ->update([
+                                        'qty' => $qtyNew[0]->qty + 1
+                                        ]);
+        }
+
+        if($request->idBukuKeduaEdit)
+        {
+            $check = Book::where('id', $request->idBukuKeduaEdit)->count();
+            if($check == 0) return redirect('/transaction')->with('failed', 'ID Buku(2) tidak terdaftar di sistem');
+
+            $checkQTY = Book::where('id', $request->idBukuKeduaEdit)->get();
+            if($checkQTY[0]->qty == '0') return redirect('/transaction')->with('failed', 'Buku(2) tidak tersedia');
+
+            $updateID = Detail_Transactions::where('transaction_id', $transaction->id)
+                                    ->where('book_id', $id[1]->book_id)
+                                    ->update([
+                                        'book_id' => $request->idBukuKeduaEdit
+                                        ]);
+
+            $qty = Book::select('qty')
+                        ->where('id', $request->idBukuKeduaEdit)
+                        ->get();
+                        
+            $dicrease_qty = Book::where('id', $request->idBukuKeduaEdit)
+                                    ->update([
+                                        'qty' => $qty[0]->qty - 1
+                                        ]);
+
+            $qtyNew = Book::select('qty')
+                        ->where('id', $id[1]->book_id)
+                        ->get();
+                      
+            $increase_qty = Book::where('id', $id[1]->book_id)
+                                    ->update([
+                                        'qty' => $qtyNew[0]->qty + 1
+                                        ]);
+        }
+
+        return redirect('/transaction')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -347,6 +428,31 @@ class DataTransaksiController extends Controller
         $title_response = '';
         foreach($titles as $title)
         {
+            $title_response .= $title->title.'~';
+        }
+
+        echo $title_response;
+    }
+
+    public function checkDetailEdit(Request $request)
+    {
+        $id = $request->id;
+
+        $titles = Detail_Transactions::select('id', 'title')
+                                    ->join('books', 'books.id', '=', 'detail_transactions.book_id')
+                                    ->where('transaction_id', $id)
+                                    ->where('status', '0')
+                                    ->get();
+
+        $count = Detail_Transactions::join('books', 'books.id', '=', 'detail_transactions.book_id')
+                                    ->where('transaction_id', $id)
+                                    ->where('status', '0')
+                                    ->count();
+
+        $title_response = $count.'~';
+        foreach($titles as $title)
+        {
+            $title_response .= $title->id.'~';
             $title_response .= $title->title.'~';
         }
 

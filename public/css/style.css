@@ -525,6 +525,13 @@ nav.nav-landing button:focus {
   height: 175px;
 }
 
+.page-3 .gallery-container .col-gallery .gallery-item img {
+  width: 100%;
+  height: 175px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .page-3 .gallery-container button.btn-more-gallery {
   margin: auto;
   width: 350px;

@@ -118,30 +118,46 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
-                        <div class="gallery-item"></div>
+                        <div class="gallery-item">
+                            <img src="{{asset('img/galleries/gallery-1.jpg')}}" alt="Gallery Photo">
+                        </div>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-right" data-aos-duration="800">
-                        <div class="gallery-item"></div>
+                        <div class="gallery-item">
+                            <img src="{{asset('img/galleries/gallery-2.jpg')}}" alt="Gallery Photo">
+                        </div>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
-                        <div class="gallery-item"></div>
+                        <div class="gallery-item">
+                            <img src="{{asset('img/galleries/gallery-3.jpg')}}" alt="Gallery Photo">
+                        </div>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-right" data-aos-duration="800">
-                        <div class="gallery-item"></div>
+                        <div class="gallery-item">
+                            <img src="{{asset('img/galleries/gallery-4.jpg')}}" alt="Gallery Photo">
+                        </div>
                     </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-right" data-aos-duration="800">
-                        <div class="gallery-item"></div>
+                        <div class="gallery-item">
+                            <img src="{{asset('img/galleries/gallery-5.jpg')}}" alt="Gallery Photo">
+                        </div>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
-                        <div class="gallery-item"></div>
+                        <div class="gallery-item">
+                            <img src="{{asset('img/galleries/gallery-6.jpg')}}" alt="Gallery Photo">
+                        </div>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-right" data-aos-duration="800">
-                        <div class="gallery-item"></div>
+                        <div class="gallery-item">
+                            <img src="{{asset('img/galleries/gallery-7.jpg')}}" alt="Gallery Photo">
+                        </div>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
-                        <div class="gallery-item"></div>
+                        <div class="gallery-item">
+                            <img src="{{asset('img/galleries/gallery-8.jpg')}}" alt="Gallery Photo">
+                        </div>
                     </div>
                 </div>
                 <div class="row mt-5 mb-5">
@@ -156,30 +172,46 @@
                     <div class="card collapse-gallery card-body">
                         <div class="row justify-content-center">
                             <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item"></div>
+                                <div class="gallery-item">
+                                    <img src="{{asset('img/galleries/gallery-1.jpg')}}" alt="Gallery Photo">
+                                </div>
                             </div>
                             <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item"></div>
+                                <div class="gallery-item">
+                                    <img src="{{asset('img/galleries/gallery-2.jpg')}}" alt="Gallery Photo">
+                                </div>
                             </div>
                             <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item"></div>
+                                <div class="gallery-item">
+                                    <img src="{{asset('img/galleries/gallery-3.jpg')}}" alt="Gallery Photo">
+                                </div>
                             </div>
                             <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item"></div>
+                                <div class="gallery-item">
+                                    <img src="{{asset('img/galleries/gallery-4.jpg')}}" alt="Gallery Photo">
+                                </div>
                             </div>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item"></div>
+                                <div class="gallery-item">
+                                    <img src="{{asset('img/galleries/gallery-5.jpg')}}" alt="Gallery Photo">
+                                </div>
                             </div>
                             <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item"></div>
+                                <div class="gallery-item">
+                                    <img src="{{asset('img/galleries/gallery-6.jpg')}}" alt="Gallery Photo">
+                                </div>
                             </div>
                             <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item"></div>
+                                <div class="gallery-item">
+                                    <img src="{{asset('img/galleries/gallery-7.jpg')}}" alt="Gallery Photo">
+                                </div>
                             </div>
                             <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item"></div>
+                                <div class="gallery-item">
+                                    <img src="{{asset('img/galleries/gallery-8.jpg')}}" alt="Gallery Photo">
+                                </div>
                             </div>
                         </div>
                     </div>

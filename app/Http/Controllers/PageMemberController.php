@@ -155,13 +155,13 @@ class PageMemberController extends Controller
 
         $ebooks = DB::table('ebooks')
             ->join('permissions', 'permissions.id_ebook', '=', 'ebooks.id')
-            ->select('ebooks.id', 'ebooks.title', 'ebooks.image', 'permissions.confirmed', 'permissions.accepted', 'permissions.limit_date')
+            ->select('ebooks.id', 'ebooks.title', 'ebooks.image', 'permissions.confirmed', 'permissions.accepted', 'permissions.limit_date', 'permissions.reason_for_rejection')
             ->where('permissions.id_member', $id)
             ->get();
  
         return view('member.my-ebook', compact('ebooks'));
     }
-
+     
     public function myEbookPreview(Ebook $ebook)
     {
         if(!(auth()->user()->role == 'Member'))

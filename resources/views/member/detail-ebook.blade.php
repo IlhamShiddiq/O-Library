@@ -77,7 +77,8 @@
                         <div class="text-center">
                             <button type="submit" class="btn btn-sm mb-2 px-5 btn-primary rounded-0">Submit</button>
                             <div>
-                                <small class="text-left">Mohon berikan alasan yang jelas mengenai pengajuan pemakaian ebook. <span style="font-weight: bold;">Alasan yang bersifat asal-asalan dan tidak jelas akan langsung ditolak oleh Admin.</span></small>
+                                <small class="text-left">Mohon berikan alasan yang jelas mengenai pengajuan pemakaian ebook. <span style="font-weight: bold;">Alasan yang bersifat asal-asalan dan tidak jelas akan langsung ditolak oleh Admin.</span></small><br>
+                                <small class="text-left"><span style="font-weight: bold;">Ajuan akan di proses 1x24 jam, tidak termasuk hari libur.</span></small>
                             </div>
                         </div>
                     </form>

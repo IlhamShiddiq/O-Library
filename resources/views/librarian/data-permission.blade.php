@@ -136,16 +136,22 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body text-center py-3 text-center">
-                    <h5>Tolak pengajuan ini?</h5>
+                <div class="modal-body py-2 py-3">
+                    <h5 class="text-center">Tolak pengajuan ini?</h5>
+                    <form action="{{url('/permission/refuse')}}" method="post">
+                        @csrf
+                        <div class="form-group mb-3">
+                            <small>Alasan penolakan</small>
+                            <textarea class="form-control" id="alasan" name="alasan" placeholder="Isikan disini..." rows="3"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-sm btn-danger px-5">No</button>
+                        </div>
+                        <div class="form-hidden"></div>
+                    </form>
                 </div>
                 <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <form action="{{url('/permission/refuse')}}" method="post" class="d-inline-block">
-                        @csrf
-                        <div class="form-hidden"></div>
-                        <button type="submit" class="btn btn-danger d-inline-block">Yes</button>
-                    </form>
+
                 </div>
             </div>
         </div>

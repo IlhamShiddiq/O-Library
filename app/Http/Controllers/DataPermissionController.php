@@ -141,11 +141,13 @@ class DataPermissionController extends Controller
 
     public function permissionRefuse(Request $request)
     {
+        if(!$request->alasan) return redirect('permission')->with('failed', 'Field alasan penolakan harus diisi');
         Permission::where('id', $request->id)
                     ->update([
                         'confirmed' => '1',
                         'accepted' => '0',
-                        ]);
+                        'reason_for_rejection' => $request->alasan
+                    ]);
 
         return redirect('/permission')->with('success', 'Ajuan telah ditolak');
     }

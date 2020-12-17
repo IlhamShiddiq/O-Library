@@ -34,7 +34,8 @@
                                     </a>
                                 @endif
                             @else
-                                <a href="{{url('/member/ebook/detail/'.$ebook->id)}}" class="btn text-white rounded-0 px-4">
+                                <span href="#" class="badge badge-danger px-2 py-1 rounded-circle" style="cursor: pointer" data-toggle="modal" data-target="#refusedModal" data-reason="{{$ebook->reason_for_rejection}}"><i class="fas fa-info"></i></span>
+                                <a href="{{url('/member/ebook/detail/'.$ebook->id)}}" class="btn d-inline-block text-white rounded-0 px-4">
                                     <span>Detail Ebook</span>
                                 </a>
                             @endif
@@ -63,4 +64,36 @@
             </div>
         </div>
     @endforeach
+
+    <!-- Refused Modal -->
+    <div class="modal modal-admin fade" id="refusedModal" tabindex="-1" aria-labelledby="editDataModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <img src="{{asset('img/icon.png')}}" alt="icon" width="55">
+                    <h5>ALASAN PENOLAKAN</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body py-2 px-4">
+                    <div class="reason text-center"></div>
+                </div>
+                <div class="modal-footer text-center">
+                    <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('more-js')
+    <script>
+        $('#refusedModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var reason = button.data('reason') 
+            var modal = $(this)
+            modal.find('.reason').html(reason)
+        })
+    </script>
 @endsection

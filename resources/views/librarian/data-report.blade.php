@@ -61,6 +61,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="total-row text-center p-3 border-bottom mb-5">
+                    {{$count}} Data Ditampilkan
+                </div>
             </div>
             <div class="col-12 col-md-12 col-lg-8">
                 <h1 class="title-pagination text-center mb-3">Laporan</h1>

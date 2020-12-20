@@ -47,7 +47,12 @@ class DataMemberController extends Controller
                                 ->where('member_id', $member->id)
                                 ->get();
 
-        return view('librarian/data-member-history', compact('histories'));
+        $count = Transaction::join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
+                            ->join('books', 'books.id', '=', 'detail_transactions.book_id')
+                            ->where('member_id', $member->id)
+                            ->count();
+
+        return view('librarian/data-member-history', compact('histories', 'count'));
     }
 
     /**

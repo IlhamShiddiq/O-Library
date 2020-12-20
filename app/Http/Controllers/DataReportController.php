@@ -25,8 +25,15 @@ class DataReportController extends Controller
                                 ->whereMonth('detail_transactions.date_of_return', $this_month)
                                 ->orderByDesc('date_of_return')
                                 ->paginate(5);
+
+        $count = Transaction::join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
+                            ->join('users', 'transactions.member_id', '=', 'users.id')
+                            ->join('books', 'detail_transactions.book_id', '=', 'books.id')
+                            ->where('detail_transactions.status', '1')
+                            ->whereMonth('detail_transactions.date_of_return', $this_month)
+                            ->count();
         
-        return view('librarian/data-report', compact('reports'));
+        return view('librarian/data-report', compact('reports', 'count'));
     }
 
     public function indexLate()
@@ -43,7 +50,15 @@ class DataReportController extends Controller
                                 ->orderByDesc('date_of_return')
                                 ->paginate(5);
 
-        return view('librarian/data-late-report', compact('reports'));
+        $count = Transaction::join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
+                            ->join('users', 'transactions.member_id', '=', 'users.id')
+                            ->join('books', 'detail_transactions.book_id', '=', 'books.id')
+                            ->where('detail_transactions.status', '1')
+                            ->where(DB::raw('DATEDIFF(date_of_return, borrow_date)'), '>', '14')
+                            ->whereMonth('detail_transactions.date_of_return', $this_month)
+                            ->count();
+
+        return view('librarian/data-late-report', compact('reports', 'count'));
     }
 
     /**

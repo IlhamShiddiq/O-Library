@@ -47,7 +47,12 @@ class DataBukuController extends Controller
                                 ->where('book_id', $book->id)
                                 ->get();
 
-        return view('librarian/data-book-history', compact('histories'));
+        $count = Transaction::join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
+                                ->join('users', 'transactions.member_id', '=', 'users.id')
+                                ->where('book_id', $book->id)
+                                ->count();
+
+        return view('librarian/data-book-history', compact('histories', 'count'));
     }
 
     /**

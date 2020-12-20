@@ -31,14 +31,23 @@
     @foreach ($books as $book)
         <div class="col-lg-3 col-md-5 col-10 mb-4">
             <div class="card card-book" style="width: 100%;">
-                <img src="{{asset('uploaded_files/book-cover/'.$book->image)}}" class="full-width fit-cover-top" alt="...">
-                <div class="card-body position-relative">
-                <h5 class="judul-buku">{{$book->title}}</h5>
-                <div class="btn-wrapper position-absolute">
-                    <a href="{{url('/member/book/detail/'.$book->id)}}" class="btn text-white rounded-0 px-4">
-                        <span>Detail Buku</span>
-                    </a>
+                <div class="position-relaive">
+                    <img src="{{asset('uploaded_files/book-cover/'.$book->image)}}" class="full-width fit-cover-top" alt="...">
+                    @if ($book->qty == 0)
+                        <div class="position-absolute top-absolute full-width no-stock">
+                            <div class="position-relative full-width-width teks-wrapper">
+                                <div class="teks position-absolute text-center">TIDAK TERSEDIA</div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
+                <div class="card-body position-relative">
+                    <h5 class="judul-buku">{{$book->title}}</h5>
+                    <div class="btn-wrapper position-absolute">
+                        <a href="{{url('/member/book/detail/'.$book->id)}}" class="btn text-white rounded-0 px-4">
+                            <span>Detail Buku</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

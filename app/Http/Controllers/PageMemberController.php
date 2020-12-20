@@ -19,7 +19,7 @@ class PageMemberController extends Controller
     {
         if(!(auth()->user()->role == 'Member'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
  
         return view('member.dashboard');
@@ -34,12 +34,11 @@ class PageMemberController extends Controller
     {
         if(!(auth()->user()->role == 'Member'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
  
         $books = DB::table('books')
-            ->select('books.id', 'books.title', 'books.image')
-            ->where('books.qty', '>', 0)
+            ->select('books.id', 'books.title', 'books.image', 'books.qty')
             ->paginate(8);
         
         return view('member.data-book', compact('books'));
@@ -93,7 +92,6 @@ class PageMemberController extends Controller
                     ->join('categories', 'books.category_id', '=', 'categories.id')
                     ->select('books.id', 'books.title', 'books.image')
                     ->where($by, 'like', $search)
-                    ->where('books.qty', '>', 0)
                     ->paginate(3000);
         
         return view('member.data-book', compact('books'));
@@ -117,7 +115,7 @@ class PageMemberController extends Controller
     {
         if(!(auth()->user()->role == 'Member'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
  
         $id = $ebook->id;
@@ -148,7 +146,7 @@ class PageMemberController extends Controller
     {
         if(!(auth()->user()->role == 'Member'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
 
         $id = auth()->user()->id;
@@ -166,7 +164,7 @@ class PageMemberController extends Controller
     {
         if(!(auth()->user()->role == 'Member'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
 
         $ebooks = DB::table('ebooks')

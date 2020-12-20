@@ -2006,6 +2006,27 @@ img.vector-confirm {
   border-bottom-left-radius: 20px;
 }
 
+.member-page-data .data-content .card-book .no-stock {
+  background-color: rgba(49, 49, 49, 0.7);
+  height: 320px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.member-page-data .data-content .card-book .no-stock .teks-wrapper {
+  height: 320px;
+}
+
+.member-page-data .data-content .card-book .no-stock .teks-wrapper .teks {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: segoe;
+  font-size: 26px;
+  color: #d6d4d4;
+}
+
 .member-page-data .data-content .card-book .card-body {
   padding: 15px 15px 15px 25px;
   min-height: 110px;

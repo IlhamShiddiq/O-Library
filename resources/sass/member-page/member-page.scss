@@ -137,6 +137,25 @@
                 border-bottom-right-radius: 20px;
                 border-bottom-left-radius: 20px;
             }
+            .no-stock {
+                background-color: rgba(49, 49, 49, 0.7);
+                height: 320px;
+                border-top-right-radius: 20px;
+                border-bottom-right-radius: 20px;
+                border-bottom-left-radius: 20px;
+                .teks-wrapper {
+                    height: 320px;
+                    .teks {
+                        top: 50%;
+                        left: 50%;
+                        -ms-transform: translate(-50%, -50%);
+                        transform: translate(-50%, -50%);
+                        font-family: segoe;
+                        font-size: 26px;
+                        color: rgb(214, 212, 212);
+                    }
+                }
+            }
             .card-body {
                 padding: 15px 15px 15px 25px;
                 min-height: 110px;

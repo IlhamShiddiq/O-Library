@@ -36,7 +36,7 @@
                 <h5 class="judul-buku">{{$ebook->title}}</h5>
                 <div class="btn-wrapper position-absolute">
                     <a href="{{url('/member/ebook/detail/'.$ebook->id)}}" class="btn text-white rounded-0 px-4">
-                        <span>Detail Buku</span>
+                        <span>Detail Ebook</span>
                     </a>
                 </div>
                 </div>
@@ -47,7 +47,10 @@
 
 @section('pagination')
     <div class="row justify-content-center">
-        <div class="col">
+        <div class="col-12 text-center mb-2">
+            <small class="counter-text">{{$counter}} Data Ditampilkan, Maks. 8 Data per Page</small>
+        </div>
+        <div class="col-12">
             <div class="pagination-wrapper position-relative full-width p-2 my-3">
                 {{$ebooks->links()}}
             </div>

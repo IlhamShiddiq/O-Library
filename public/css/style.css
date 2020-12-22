@@ -339,6 +339,12 @@ h1.title-admin {
   margin: -3px 0 2px 0 !important;
 }
 
+small.counter-text {
+  color: #5f5f5f;
+  font-size: 15px;
+  font-family: segoe;
+}
+
 @-webkit-keyframes menu-hover {
   0% {
     background-color: #27303A;

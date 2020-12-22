@@ -18,7 +18,7 @@
     @foreach ($ebooks as $ebook)
         <div class="col-lg-3 col-md-5 col-10 mb-4">
             <div class="card card-book" style="width: 100%;">
-                <img src="{{asset('uploaded_files/ebook-cover/'.$ebook->image)}}" class="full-width fit-cover" alt="...">
+                <img src="{{asset('uploaded_files/ebook-cover/'.$ebook->image)}}" class="full-width fit-cover-top" alt="...">
                 <div class="card-body position-relative">
                     <h5 class="judul-buku">{{$ebook->title}}</h5>
                     <div class="btn-wrapper position-absolute">
@@ -34,7 +34,7 @@
                                     </a>
                                 @endif
                             @else
-                                <span href="#" class="badge badge-danger px-2 py-1 rounded-circle" style="cursor: pointer" data-toggle="modal" data-target="#refusedModal" data-reason="{{$ebook->reason_for_rejection}}"><i class="fas fa-info"></i></span>
+                                <span href="#" class="badge badge-danger px-2 py-1 rounded-circle mr-2" style="cursor: pointer" data-toggle="modal" data-target="#refusedModal" data-reason="{{$ebook->reason_for_rejection}}"><i class="fas fa-info"></i></span>
                                 <a href="{{url('/member/ebook/detail/'.$ebook->id)}}" class="btn d-inline-block text-white rounded-0 px-4">
                                     <span>Detail Ebook</span>
                                 </a>

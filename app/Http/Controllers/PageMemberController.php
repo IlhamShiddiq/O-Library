@@ -40,8 +40,12 @@ class PageMemberController extends Controller
         $books = DB::table('books')
             ->select('books.id', 'books.title', 'books.image', 'books.qty')
             ->paginate(8);
+ 
+        $counter = DB::table('books')
+            ->select('books.id', 'books.title', 'books.image', 'books.qty')
+            ->count();
         
-        return view('member.data-book', compact('books'));
+        return view('member.data-book', compact('books', 'counter'));
     }
 
     public function bookDetail(Book $book)
@@ -90,11 +94,18 @@ class PageMemberController extends Controller
         $books = DB::table('books')
                     ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
                     ->join('categories', 'books.category_id', '=', 'categories.id')
-                    ->select('books.id', 'books.title', 'books.image')
+                    ->select('books.id', 'books.title', 'books.image', 'books.qty')
                     ->where($by, 'like', $search)
                     ->paginate(3000);
         
-        return view('member.data-book', compact('books'));
+        $counter = DB::table('books')
+                    ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
+                    ->join('categories', 'books.category_id', '=', 'categories.id')
+                    ->select('books.id', 'books.title', 'books.image', 'books.qty')
+                    ->where($by, 'like', $search)
+                    ->count();
+        
+        return view('member.data-book', compact('books', 'counter'));
     }
 
     public function ebook()
@@ -107,8 +118,12 @@ class PageMemberController extends Controller
         $ebooks = DB::table('ebooks')
             ->select('ebooks.id', 'ebooks.title', 'ebooks.image')
             ->paginate(8);
+ 
+        $counter = DB::table('ebooks')
+            ->select('ebooks.id', 'ebooks.title', 'ebooks.image')
+            ->count();
 
-        return view('member.data-ebook', compact('ebooks'));
+        return view('member.data-ebook', compact('ebooks', 'counter'));
     }
 
     public function ebookDetail(Ebook $ebook)
@@ -135,11 +150,16 @@ class PageMemberController extends Controller
         $search = '%'.$request->search.'%';
         
         $ebooks = DB::table('ebooks')
-            ->select('ebooks.id', 'ebooks.title', 'ebooks.image')
-            ->where('ebooks.title', 'like', $search)
-            ->paginate(3000);
+                    ->select('ebooks.id', 'ebooks.title', 'ebooks.image')
+                    ->where('ebooks.title', 'like', $search)
+                    ->paginate(3000);
         
-        return view('member.data-ebook', compact('ebooks'));
+        $counter = DB::table('ebooks')
+                    ->select('ebooks.id', 'ebooks.title', 'ebooks.image')
+                    ->where('ebooks.title', 'like', $search)
+                    ->count();
+        
+        return view('member.data-ebook', compact('ebooks', 'counter'));
     }
 
     public function myEbook()

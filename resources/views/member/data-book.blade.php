@@ -42,7 +42,7 @@
                     @endif
                 </div>
                 <div class="card-body position-relative">
-                    <h5 class="judul-buku">{{$book->title}}</h5>
+                    <h5 class="judul-buku" @if($book->qty == 0) style="color: red;" @endif>{{$book->title}}</h5>
                     <div class="btn-wrapper position-absolute">
                         <a href="{{url('/member/book/detail/'.$book->id)}}" class="btn text-white rounded-0 px-4">
                             <span>Detail Buku</span>
@@ -56,7 +56,10 @@
 
 @section('pagination')
     <div class="row justify-content-center">
-        <div class="col">
+        <div class="col-12 text-center mb-2">
+            <small class="counter-text">{{$counter}} Data Ditampilkan, Maks. 8 Data per Page</small>
+        </div>
+        <div class="col-12">
             <div class="pagination-wrapper position-relative full-width p-2 my-3">
                 {{$books->links()}}
             </div>

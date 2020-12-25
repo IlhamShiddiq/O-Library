@@ -364,9 +364,14 @@
     border: 0 solid black !important;
 }
 
-button.btn-notif {
+.btn-notif {
+    color: white;
+    &:hover {
+        color: rgb(87, 87, 87);
+    }
     &:focus {
-        outline: 1px auto rgba(112, 112, 112, 0.247) !important;
+        color: rgb(87, 87, 87);
+        outline: 1px auto rgba(141, 141, 141, 0.253) !important;
     }
 }
 
@@ -390,6 +395,50 @@ button.btn-notif {
     width: 85%;
     padding-top: 3px;
     background-color: rgb(214, 55, 55);
+}
+
+p.config-title {
+    font-family: segoe;
+    font-size: 18px;
+}
+
+p.config-title {
+    font-family: segoe;
+}
+
+input.input-admin {
+    &:focus {
+        box-shadow: 0 0 0 0.1rem rgba(10, 128, 49, 0.795) !important;
+    }
+}
+
+.line-config {
+    height: 5px;
+    background-color: rgb(153, 150, 150);
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+.input-grup-text-config {
+    background-color: rgb(5, 58, 14)
+}
+
+.preview-gallery {
+    height: 170px;
+}
+
+.preview-bg {
+    img#preview-bg {
+        height: 430px;
+    }
+    
+    .input-bg {
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
 }
 
 @keyframes load {

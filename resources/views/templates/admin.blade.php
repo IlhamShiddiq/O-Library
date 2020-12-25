@@ -65,7 +65,8 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-sm btn-notif text-white ml-1"><i class="fas fa-bell"></i></button>
+                <a href="{{url('/config')}}" class="btn btn-sm btn-notif ml-1"><i class="fas fa-cog"></i></a>
+                <button class="btn btn-sm btn-notif"><i class="fas fa-bell"></i></button>
             </div>
         </nav>
         <div class="breadcrumb-container">

@@ -17,6 +17,7 @@ use App\Http\Controllers\StaticPageController;
 use App\Http\Controllers\ConfirmPageController;
 use App\Http\Controllers\DataPermissionController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ConfigController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,6 +111,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/permission/delete/refused', [DataPermissionController::class, 'deleteRefused']);
 
     Route::get('/guide', [StaticPageController::class, 'guide']);
+    Route::get('/config', [ConfigController::class, 'index']);
     Route::get('/pdf-report', [StaticPageController::class, 'pdfReport']);
     Route::post('/pdf-report', [StaticPageController::class, 'pdfReportMessage']);
     

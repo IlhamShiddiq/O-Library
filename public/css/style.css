@@ -1593,8 +1593,17 @@ nav.nav-landing button:focus {
   border: 0 solid black !important;
 }
 
-button.btn-notif:focus {
-  outline: 1px auto rgba(112, 112, 112, 0.247) !important;
+.btn-notif {
+  color: white;
+}
+
+.btn-notif:hover {
+  color: #575757;
+}
+
+.btn-notif:focus {
+  color: #575757;
+  outline: 1px auto rgba(141, 141, 141, 0.253) !important;
 }
 
 .message-report-wrapper {
@@ -1618,6 +1627,45 @@ button.btn-notif:focus {
   width: 85%;
   padding-top: 3px;
   background-color: #d63737;
+}
+
+p.config-title {
+  font-family: segoe;
+  font-size: 18px;
+}
+
+p.config-title {
+  font-family: segoe;
+}
+
+input.input-admin:focus {
+  box-shadow: 0 0 0 0.1rem rgba(10, 128, 49, 0.795) !important;
+}
+
+.line-config {
+  height: 5px;
+  background-color: #999696;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+}
+
+.input-grup-text-config {
+  background-color: #053a0e;
+}
+
+.preview-gallery {
+  height: 170px;
+}
+
+.preview-bg img#preview-bg {
+  height: 430px;
+}
+
+.preview-bg .input-bg {
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @-webkit-keyframes load {

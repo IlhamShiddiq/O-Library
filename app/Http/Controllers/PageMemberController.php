@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Ebook;
+use App\Models\Config;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,8 +22,12 @@ class PageMemberController extends Controller
         {
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
+
+        $data = Config::select('bg_member')
+                    ->where('id', 1)
+                    ->get();
  
-        return view('member.dashboard');
+        return view('member.dashboard', ['bg' => $data[0]->bg_member]);
     }
 
     /**

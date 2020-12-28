@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Categories;
 use App\Models\Publisher;
 use App\Models\Transaction;
+use App\Models\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File; 
@@ -23,12 +24,14 @@ class DataBukuController extends Controller
         {
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
         }
+
+        $paginate = Config::all();
  
         $books = DB::table('books')
             ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
             ->join('categories', 'books.category_id', '=', 'categories.id')
             ->select('books.id', 'books.isbn', 'books.publisher_id', 'books.category_id', 'books.title', 'books.author', 'books.qty', 'books.image', 'books.about', 'books.publish_year', 'publishers.publisher', 'categories.category')
-            ->paginate(5);
+            ->paginate($paginate[0]->book_list_page);
 
         $count = DB::table('books')
             ->join('publishers', 'books.publisher_id', '=', 'publishers.id')

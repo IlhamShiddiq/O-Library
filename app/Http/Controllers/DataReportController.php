@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Transaction;
+use App\Models\Config;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DataReportController extends Controller
@@ -17,6 +18,10 @@ class DataReportController extends Controller
     {
         date_default_timezone_set('Asia/Jakarta');
         $this_month = date('n');
+
+        $paginate = Config::all();
+        $config = $paginate;
+
         $reports = Transaction::select('transaction_id', 'name', 'nomor_induk', 'librarian_id', 'borrow_date', 'date_of_return', 'title')
                                 ->join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
                                 ->join('users', 'transactions.member_id', '=', 'users.id')
@@ -24,7 +29,7 @@ class DataReportController extends Controller
                                 ->where('detail_transactions.status', '1')
                                 ->whereMonth('detail_transactions.date_of_return', $this_month)
                                 ->orderByDesc('date_of_return')
-                                ->paginate(5);
+                                ->paginate($paginate[0]->report_list_page);
 
         $count = Transaction::join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
                             ->join('users', 'transactions.member_id', '=', 'users.id')
@@ -33,11 +38,14 @@ class DataReportController extends Controller
                             ->whereMonth('detail_transactions.date_of_return', $this_month)
                             ->count();
         
-        return view('librarian/data-report', compact('reports', 'count'));
+        return view('librarian/data-report', compact('reports', 'count', 'config'));
     }
 
     public function indexLate()
     {
+
+        $config = Config::all();
+
         date_default_timezone_set('Asia/Jakarta');
         $this_month = date('n');
         $reports = Transaction::select('transaction_id', 'name', 'nomor_induk', 'librarian_id', 'borrow_date', 'date_of_return', 'title')
@@ -45,7 +53,7 @@ class DataReportController extends Controller
                                 ->join('users', 'transactions.member_id', '=', 'users.id')
                                 ->join('books', 'detail_transactions.book_id', '=', 'books.id')
                                 ->where('detail_transactions.status', '1')
-                                ->where(DB::raw('DATEDIFF(date_of_return, borrow_date)'), '>', '14')
+                                ->where(DB::raw('DATEDIFF(date_of_return, borrow_date)'), '>', $config[0]->loan_deadline)
                                 ->whereMonth('detail_transactions.date_of_return', $this_month)
                                 ->orderByDesc('date_of_return')
                                 ->paginate(5);
@@ -54,11 +62,11 @@ class DataReportController extends Controller
                             ->join('users', 'transactions.member_id', '=', 'users.id')
                             ->join('books', 'detail_transactions.book_id', '=', 'books.id')
                             ->where('detail_transactions.status', '1')
-                            ->where(DB::raw('DATEDIFF(date_of_return, borrow_date)'), '>', '14')
+                            ->where(DB::raw('DATEDIFF(date_of_return, borrow_date)'), '>', $config[0]->loan_deadline)
                             ->whereMonth('detail_transactions.date_of_return', $this_month)
                             ->count();
 
-        return view('librarian/data-late-report', compact('reports', 'count'));
+        return view('librarian/data-late-report', compact('reports', 'count', 'config'));
     }
 
     /**

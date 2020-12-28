@@ -51,9 +51,9 @@
                                                     <p class="info-transaksi d-inline-block">Tanggal kembali : <span class="badge badge-success mt-2">{{$report->date_of_return}}</span></p>
                                                 </div>
                                                 <div class="info-late">
-                                                    @if(date_diff(date_create($report->borrow_date), date_create($report->date_of_return))->format('%a') > 14)
+                                                    @if(date_diff(date_create($report->borrow_date), date_create($report->date_of_return))->format('%a') > $config[0]->load_deadline)
                                                         <p class="info-transaksi d-inline-block">Terlambat : <span class="badge badge-danger mt-2">Yes</span></p> ,
-                                                        <p class="info-transaksi d-inline-block">denda : Rp {{(date_diff(date_create($report->borrow_date), date_create($report->date_of_return))->format('%a') - 14) * 1000}}</p>
+                                                        <p class="info-transaksi d-inline-block">denda : Rp {{(date_diff(date_create($report->borrow_date), date_create($report->date_of_return))->format('%a') - $config[0]->loan_deadline) * $config[0]->late_charge}}</p>
                                                     @else
                                                         <p class="info-transaksi d-inline-block">Terlambat : <span class="badge badge-success mt-2">No</span></p> ,
                                                         <p class="info-transaksi d-inline-block">denda : Rp -</p>

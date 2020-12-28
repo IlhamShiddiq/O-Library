@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use App\Models\Config;
 use Illuminate\Http\Request;
 
 class DataCategoryController extends Controller
@@ -18,8 +19,10 @@ class DataCategoryController extends Controller
         {
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
         }
+
+        $paginate = Config::all();
  
-        $categories = Categories::paginate(10);
+        $categories = Categories::paginate($paginate[0]->category_list_page);
 
         $count = Categories::all()->count();
 

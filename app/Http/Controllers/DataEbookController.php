@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ebook;
 use App\Models\Categories;
 use App\Models\Publisher;
+use App\Models\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File; 
@@ -22,12 +23,14 @@ class DataEbookController extends Controller
         {
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
         }
+
+        $paginate = Config::all();
  
         $ebooks = DB::table('ebooks')
             ->join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')
             ->join('categories', 'ebooks.category_id', '=', 'categories.id')
             ->select('ebooks.id', 'ebooks.isbn', 'ebooks.publisher_id', 'ebooks.category_id', 'ebooks.title', 'ebooks.author', 'ebooks.link', 'ebooks.image', 'ebooks.about', 'ebooks.publish_year', 'publishers.publisher', 'categories.category')
-            ->paginate(5);
+            ->paginate($paginate[0]->ebook_list_page);
 
         $count = DB::table('ebooks')
             ->join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')

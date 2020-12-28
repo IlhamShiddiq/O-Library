@@ -110,8 +110,13 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/permission/delete/expired', [DataPermissionController::class, 'deleteExpired']);
     Route::get('/permission/delete/refused', [DataPermissionController::class, 'deleteRefused']);
 
-    Route::get('/guide', [StaticPageController::class, 'guide']);
     Route::get('/config', [ConfigController::class, 'index']);
+    Route::post('/config/return-config', [ConfigController::class, 'returnConfig']);
+    Route::post('/config/data-list-config', [ConfigController::class, 'dataListConfig']);
+    Route::post('/config/member-bg', [ConfigController::class, 'memberBg']);
+    Route::post('/config/gallery', [ConfigController::class, 'galleryConfig']);
+
+    Route::get('/guide', [StaticPageController::class, 'guide']);
     Route::get('/pdf-report', [StaticPageController::class, 'pdfReport']);
     Route::post('/pdf-report', [StaticPageController::class, 'pdfReportMessage']);
     

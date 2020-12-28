@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Publisher;
+use App\Models\Config;
 use Illuminate\Http\Request;
 
 class DataPublisherController extends Controller
@@ -18,8 +19,10 @@ class DataPublisherController extends Controller
         {
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
         }
+
+        $paginate = Config::all();
  
-        $publishers = Publisher::paginate(10);
+        $publishers = Publisher::paginate($paginate[0]->publisher_list_page);
 
         $count = Publisher::all()->count();
 

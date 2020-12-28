@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Librarian;
 use App\Models\User;
+use App\Models\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -25,10 +26,12 @@ class DataPustakawanController extends Controller
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
         }
 
+        $paginate = Config::all();
+
         $librarians = DB::table('users')
             ->join('librarians', 'users.id', '=', 'librarians.id')
             ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'librarians.address', 'librarians.phone', 'librarians.confirm_code')
-            ->paginate(5);
+            ->paginate($paginate[0]->librarian_list_page);
 
         $count = DB::table('users')
             ->join('librarians', 'users.id', '=', 'librarians.id')

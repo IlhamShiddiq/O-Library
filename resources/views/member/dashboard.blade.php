@@ -30,7 +30,7 @@
     @endif
 
     <div class="member-page full-height">
-        <img src="{{asset('img/bg/bg.jpg')}}" class="position-absolute top-absolute full-width full-height fit-cover">
+        <img src="{{asset('img/bg/'.$bg)}}" class="position-absolute top-absolute full-width full-height fit-cover">
         <div class="overlay-black position-absolute top-absolute full-width full-height "></div>
         
         <nav class="navbar nav-member navbar-expand-lg py-4 px-5">

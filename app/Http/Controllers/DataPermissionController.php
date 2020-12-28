@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Permission;
 use App\Models\Ebook;
+use App\Models\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,11 +23,13 @@ class DataPermissionController extends Controller
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
         }
 
+        $paginate = Config::all();
+
         $permissions = Permission::join('ebooks', 'permissions.id_ebook', '=', 'ebooks.id')
                                 ->join('users', 'permissions.id_member', '=', 'users.id')
                                 ->select('ebooks.title', 'users.nomor_induk', 'permissions.*')
                                 ->orderByDesc('id')
-                                ->paginate(10);
+                                ->paginate($paginate[0]->permission_list_page);
 
         $count = Permission::all()->count();
         $requested = Permission::where('confirmed', 0)->count();

@@ -345,6 +345,12 @@ small.counter-text {
   font-family: segoe;
 }
 
+.invalid-feedback-input-group {
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+
 @-webkit-keyframes menu-hover {
   0% {
     background-color: #27303A;

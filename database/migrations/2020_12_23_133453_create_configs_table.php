@@ -14,6 +14,7 @@ class CreateConfigsTable extends Migration
     public function up()
     {
         Schema::create('configs', function (Blueprint $table) {
+            $table->id();
             $table->integer('late_charge');
             $table->integer('loan_deadline');
             $table->integer('book_list_page');
@@ -25,6 +26,7 @@ class CreateConfigsTable extends Migration
             $table->integer('permission_list_page');
             $table->integer('transaction_list_page');
             $table->integer('report_list_page');
+            $table->timestamps();
         });
     }
 

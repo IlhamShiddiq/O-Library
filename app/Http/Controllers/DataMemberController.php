@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Member;
 use App\Models\Transaction;
+use App\Models\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -25,11 +26,13 @@ class DataMemberController extends Controller
         {
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
         }
+
+        $paginate = Config::all();
  
         $members = DB::table('users')
             ->join('members', 'users.id', '=', 'members.id')
             ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'members.address', 'members.phone', 'members.status', 'members.class', 'members.confirm_code')
-            ->paginate(5);
+            ->paginate($paginate[0]->member_list_page);
 
         $count = DB::table('users')
             ->join('members', 'users.id', '=', 'members.id')

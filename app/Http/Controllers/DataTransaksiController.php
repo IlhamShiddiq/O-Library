@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use App\Models\Detail_Transactions;
 use App\Models\User;
 use App\Models\Book;
+use App\Models\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,13 +24,15 @@ class DataTransaksiController extends Controller
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
         }
 
+        $paginate = Config::all();
+
         $datas = Transaction::select('transactions.id', 'users.nomor_induk', 'users.name', DB::raw('COUNT("transaction_id") as sum'))
                             ->join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
                             ->join('users', 'transactions.member_id', '=', 'users.id')
                             ->where('detail_transactions.status', '0')
                             ->groupBy('transactions.id', 'users.name', 'users.nomor_induk')
                             ->orderBy('transactions.id')
-                            ->paginate(5);
+                            ->paginate($paginate[0]->transaction_list_page);
 
         return view('librarian/data-transaction', compact('datas'));
     }
@@ -320,6 +323,9 @@ class DataTransaksiController extends Controller
 
     public function returnBookUpdate(Request $request, Transaction $transaction)
     {
+
+        $config = Config::all();
+
         $id_transaksi = $transaction->id;
 
         date_default_timezone_set('Asia/Jakarta');
@@ -350,7 +356,7 @@ class DataTransaksiController extends Controller
                                         'qty' => $qty_book1[0]->qty + 1
                                         ]);
 
-            $denda += (date_diff(date_create($today), date_create($borrow_date[0]->borrow_date))->format('%a') - 14) * 1000;
+            $denda += (date_diff(date_create($today), date_create($borrow_date[0]->borrow_date))->format('%a') - $config[0]->loan_deadline) * $config[0]->late_charge;
         }
 
         if($request->returnBukuKedua)
@@ -373,7 +379,7 @@ class DataTransaksiController extends Controller
                                         'qty' => $qty_book2[0]->qty + 1
                                         ]);
 
-            $denda += (date_diff(date_create($today), date_create($borrow_date[0]->borrow_date))->format('%a') - 14) * 1000;
+            $denda += (date_diff(date_create($today), date_create($borrow_date[0]->borrow_date))->format('%a') - $config[0]->loan_deadline) * $config[0]->late_charge;
 
         }
         

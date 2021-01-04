@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Member;
 use App\Models\Librarian;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Welcoming;
 
 class ConfirmPageController extends Controller
 {
@@ -109,8 +111,10 @@ class ConfirmPageController extends Controller
                         'confirm_code' => null
                         ]);
                 }
+                
+                Mail::to($user->email, $user->name)->send(new Welcoming($user));
 
-                return redirect('/login')->with('success', 'Akun berhasil dibuat');
+                return redirect('/login')->with('success', 'Akun berhasil dibuat, silakan untuk login kembali.');
             }
             else{
                 return redirect('/account/confirming/'.$user->id)->with('status', 'Password tidak cocok saat dikonfirmasi');

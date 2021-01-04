@@ -86,7 +86,7 @@
                             <p class="contact-person">{{$member->phone}} / {{$member->email}}</p>
                             <p class="contact-person" style="margin-top: -15px; margin-bottom: 10px; {{$red}}">Username : {{$member->username}}</p>
                             <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$member->id}}">Hapus</a>
-                            @if ($member->confirm_code != '0')
+                            @if ($member->confirm_code != '')
                               <a href="#" class="badge badge-success" data-toggle="modal" data-target="#resetKode" data-id="{{$member->id}}">Reset Kode</a>
                             @endif
                             <a href="{{ url('/member/history/'.$member->id) }}" class="badge badge-info">Riwayat</a>
@@ -122,7 +122,7 @@
                           <div class="col-12">
                             <div class="form-group">
                                 <small for="nomorInduk">NIS/NIP</small>
-                                <input type="text" class="form-control @error('nomorInduk') is-invalid @enderror" id="nomorInduk" name="nomorInduk" placeholder="Isikan disini...">
+                                <input type="number" class="form-control @error('nomorInduk') is-invalid @enderror" id="nomorInduk" name="nomorInduk" placeholder="Isikan disini...">
                                 @error('nomorInduk')
                                   <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{$message}}
@@ -220,20 +220,6 @@
                                 <small for="alamatAnggota">Alamat</small>
                                 <textarea class="form-control @error('alamatAnggota') is-invalid @enderror" id="alamatAnggota" name="alamatAnggota" placeholder="Isikan disini..." rows="3"></textarea>
                                 @error('alamatAnggota')
-                                  <div id="validationServer03Feedback" class="invalid-feedback">
-                                    {{$message}}
-                                  </div>
-                                @enderror
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row form-mg">
-                          <div class="col-12">
-                            <div class="form-group position-relative">
-                                <small for="kodeKonfirmasi">Kode Konfirmasi</small>
-                                <input type="number" class="form-control kodeKonfirmasi @error('kodeKonfirmasi') is-invalid @enderror" id="kodeKonfirmasi" name="kodeKonfirmasi" placeholder="Isikan disini..." readonly>
-                                <button type="button" class="position-absolute btn-random" id="btn-random"><i class="fas fa-dice"></i></button>
-                                @error('kodeKonfirmasi')
                                   <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{$message}}
                                   </div>
@@ -361,7 +347,6 @@
 @endsection
 
 @section('more-js')
-    <script src="{{asset('js/btn-random.js')}}"></script>
     <script src="{{asset('js/member-modal.js')}}"></script>
     <script>
       $('#deleteModal').on('show.bs.modal', function (event) {
@@ -388,38 +373,14 @@
                                     <div class="col-12">
                                       <div class="row form-mg">
                                         <div class="col-12">
-                                          <div class="form-group position-relative">
-                                              <small for="kodeKonfirmasiReset">Kode Konfirmasi</small>
-                                              <input type="number" class="form-control kodeKonfirmasiReset @error('kodeKonfirmasiReset') is-invalid @enderror" id="kodeKonfirmasiReset" name="kodeKonfirmasiReset" placeholder="Isikan disini...">
-                                              <button type="button" class="position-absolute btn-random" id="btn-random-reset"><i class="fas fa-dice"></i></button>
-                                              @error('kodeKonfirmasiReset')
-                                                <div id="validationServer03Feedback" class="invalid-feedback">
-                                                  {{$message}}
-                                                </div>
-                                              @enderror
-                                          </div>
-                                          <div class="text-center">
-                                            <button type="submit" class="btn btn-sm btn-success mt-1 px-5" name="tambahData">Ubah Kode</button>
+                                          <div class="text-center pt-1">
+                                            <button type="submit" class="btn btn-sm btn-success mt-2 px-5" name="tambahData">Ubah Kode Untuk User Ini</button>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
                               </form>`)
-
-        const randomReset = document.querySelector("#btn-random-reset");
-        const kodeInputReset = document.querySelector("#kodeKonfirmasiReset");
-
-        randomReset.addEventListener("click", event => {
-            let result           = '';
-            const characters       = '0123456789';
-            const charactersLength = characters.length;
-            for ( let i = 0; i < 6; i++ ) {
-                result += characters.charAt(Math.floor(Math.random() * charactersLength));
-            }
-
-            kodeInputReset.value = result;
-        })
       });
       $('#detailDataModal').on('show.bs.modal', function (event) {
         let button = $(event.relatedTarget) // Button that triggered the modal

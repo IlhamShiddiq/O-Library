@@ -441,6 +441,48 @@ input.input-admin {
     }
 }
 
+.btn-late {
+    bottom: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    z-index: 2;
+    font-size: 21px;
+    padding-bottom: 8px;
+    transition: all .3s ease-out;
+    overflow: hidden;
+    &:hover {
+        width: 180px;
+    }
+    .icon {
+        border-radius: 40px;
+        margin-bottom: 10px;
+    }
+    span {
+        font-size: 17px;
+        font-family: segoe;
+    }
+}
+
+.late-card {
+    background-color: rgb(204, 61, 61);
+    .user {
+        font-family: segoe;
+        text-transform: uppercase;
+    }
+    .title {
+        font-size: 10px !important;
+        font-family: segoe;
+        text-transform: uppercase;
+    }
+}
+
+.btn-email {
+    right: 6px;
+    top: 8px;
+}
+
 @keyframes load {
     0% {
         background-color: #1c8a63;

@@ -11,6 +11,9 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendVerification;
+use App\Mail\ResendVerification;
 use Auth;
 
 class DataMemberController extends Controller
@@ -58,22 +61,6 @@ class DataMemberController extends Controller
         return view('librarian/data-member-history', compact('histories', 'count'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validateData = $request->validate([
@@ -82,51 +69,52 @@ class DataMemberController extends Controller
             'telpAnggota' => 'required',
             'emailAnggota' => 'required',
             'alamatAnggota' => 'required',
-            'kodeKonfirmasi' => 'required',
             'photoAnggota' => 'mimes:jpeg,jpg,bmp,png|max:2000'
         ]);
 
-        $code = Member::where('confirm_code', $request->kodeKonfirmasi)->get();
+        $code_generate = '';
+        for($i=0; $i<6; $i++){
+            $code_generate .= rand(0, 9);
+        }
+
+        $code = Member::where('confirm_code', $code_generate)->get();
         // dd($code->all());
 
         if($code->all()) return redirect('/member')->with('failed', 'Kode konfirmasi yang dibuat sudah ada');
         else
         {
+
             $file = $request->file('photoAnggota');
 
             if($file) $image = $file->getClientOriginalName();
             else $image = "default.jpg";
 
-            $user = new User;
-            $user->nomor_induk = $request->nomorInduk;
-            $user->name = $request->namaLengkap;
-            $user->role = 'Member';
-            $user->email = $request->emailAnggota;
-            $user->remember_token = Str::random(30);
-            $user->profile_photo_path = $image;
-            $user->save();
-
-            $lastid = DB::table('users')
-                ->select('id')
-                ->orderByDesc('id')
-                ->limit(1)
-                ->get();
+            $user = User::create([
+                'nomor_induk' => $request->nomorInduk,
+                'name' => $request->namaLengkap,
+                'role' => 'Member',
+                'email' => $request->emailAnggota,
+                'remember_token' => Str::random(30),
+                'profile_photo_path' => $image,
+            ]);
 
             if($request->roleAnggota == 'Siswa') $class = $request->tingkatAnggota.'-'.$request->jurusanAnggota.'-'.$request->kelasAnggota;
             else $class = '';
 
-            $mem = new Member;
-            $mem->id = $lastid[0]->id;
-            $mem->address = $request->alamatAnggota;
-            $mem->phone = $request->telpAnggota;
-            $mem->status = $request->roleAnggota;
-            $mem->class = $class;
-            $mem->confirm_code = $request->kodeKonfirmasi;
-            $mem->save();
+            $mem = Member::create([
+                'id' => $user->id,
+                'address' => $request->alamatAnggota,
+                'phone' => $request->telpAnggota,
+                'status' => $request->roleAnggota,
+                'class' => $class,
+                'confirm_code' => $code_generate,
+            ]);
 
             if($file) $file->move(public_path('uploaded_files/member-foto/'),$file->getClientOriginalName());
 
-            return redirect('/member')->with('success', 'Data '.$request->namaLengkap.' berhasil disimpan');
+            Mail::to($user->email, $user->name)->send(new SendVerification($user));
+
+            return redirect('/member')->with('success', 'Data '.$request->namaLengkap.' berhasil disimpan dan kode verifikasi telah berhasil terkirim');
         }
     }
 
@@ -304,21 +292,24 @@ class DataMemberController extends Controller
 
     public function resetCode(Request $request, Member $member)
     {
-        // dd($member->id);
-        $validateData = $request->validate([
-            'kodeKonfirmasiReset' => 'required',
-        ]);
+        $code_generate = '';
+        for($i=0; $i<6; $i++){
+            $code_generate .= rand(0, 9);
+        }
 
-        $code = Member::where('confirm_code', $request->kodeKonfirmasiReset)->get();
+        $code = Member::where('confirm_code', $code_generate)->get();
 
         if($code->all()) return redirect('/member')->with('failed', 'Kode konfirmasi yang dibuat sudah ada');
         else {
             Member::where('id', $member->id)
                     ->update([
-                        'confirm_code' => $request->kodeKonfirmasiReset,
+                        'confirm_code' => $code_generate,
                         ]);
+                        
+            $user = User::find($member->id);
+            Mail::to($user->email, $user->name)->send(new ResendVerification($user));
 
-            return redirect('/member')->with('success', 'Kode berhasil direset. Kode : '.$request->kodeKonfirmasiReset);
+            return redirect('/member')->with('success', 'Kode berhasil direset. Kode telah dikirim ke email pengguna');
         }
     }
 }

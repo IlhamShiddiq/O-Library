@@ -183,20 +183,6 @@
                         </div>
                         <div class="row form-mg">
                           <div class="col-12">
-                            <div class="form-group position-relative">
-                                <small for="kodeKonfirmasi">Kode Konfirmasi</small>
-                                <input type="number" class="form-control kodeKonfirmasi @error('kodeKonfirmasi') is-invalid @enderror" id="kodeKonfirmasi" name="kodeKonfirmasi" placeholder="Isikan disini...">
-                                <button type="button" class="position-absolute btn-random" id="btn-random"><i class="fas fa-dice"></i></button>
-                                @error('kodeKonfirmasi')
-                                  <div id="validationServer03Feedback" class="invalid-feedback">
-                                    {{$message}}
-                                  </div>
-                                @enderror
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row form-mg">
-                          <div class="col-12">
                             <small for="photoLibrarian">Photo</small>
                             <div class="input-group">
                                 <div class="custom-file">
@@ -313,7 +299,6 @@
 @endsection
 
 @section('more-js')
-    <script src="{{asset('js/btn-random.js')}}"></script>
     <script>
         $('#deleteModal').on('show.bs.modal', function (event) {
             let button = $(event.relatedTarget) // Button that triggered the modal
@@ -339,38 +324,14 @@
                                         <div class="col-12">
                                         <div class="row form-mg">
                                             <div class="col-12">
-                                            <div class="form-group position-relative">
-                                                <small for="kodeKonfirmasiReset">Kode Konfirmasi</small>
-                                                <input type="number" class="form-control kodeKonfirmasiReset @error('kodeKonfirmasiReset') is-invalid @enderror" id="kodeKonfirmasiReset" name="kodeKonfirmasiReset" placeholder="Isikan disini...">
-                                                <button type="button" class="position-absolute btn-random" id="btn-random-reset"><i class="fas fa-dice"></i></button>
-                                                @error('kodeKonfirmasiReset')
-                                                    <div id="validationServer03Feedback" class="invalid-feedback">
-                                                    {{$message}}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                            <div class="text-center">
-                                                <button type="submit" class="btn btn-sm btn-success mt-1 px-5" name="tambahData">Ubah Kode</button>
-                                            </div>
+                                                <div class="text-center pt-1">
+                                                    <button type="submit" class="btn btn-sm btn-success mt-2 px-5" name="tambahData">Ubah Kode Untuk Pengguna Ini</button>
+                                                </div>
                                             </div>
                                         </div>
                                         </div>
                                     </div>
                                 </form>`)
-
-            const randomReset = document.querySelector("#btn-random-reset");
-            const kodeInputReset = document.querySelector("#kodeKonfirmasiReset");
-
-            randomReset.addEventListener("click", event => {
-                let result           = '';
-                const characters       = '0123456789';
-                const charactersLength = characters.length;
-                for ( let i = 0; i < 6; i++ ) {
-                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-                }
-
-                kodeInputReset.value = result;
-            })
         });
         $('#detailDataModal').on('show.bs.modal', function (event) {
             let button = $(event.relatedTarget) // Button that triggered the modal

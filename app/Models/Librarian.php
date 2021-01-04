@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Librarian extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'address',
+        'phone',
+        'confirm_code'
+    ];
 }

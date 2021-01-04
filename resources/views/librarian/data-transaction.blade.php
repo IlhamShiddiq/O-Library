@@ -87,6 +87,11 @@
         </div>
     </div>
 
+    <button class="btn btn-danger text-white btn-late position-fixed text-center" data-toggle="modal" data-target="#keterlambatanModal" data-today="{{$today}}">
+        <div class="icon text-center d-inline-block"><i class="fas fa-stopwatch"></i></div>
+        <span class="mb-5 d-inline-block ml-1">Keterlambatan</span>
+    </button>
+
     <!-- Add Data Modal -->
     <div class="modal modal-admin fade" id="addDataModal" tabindex="-1" aria-labelledby="addDataModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -242,6 +247,29 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="wrapper"></div>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Keterlambatan Modal -->
+    <div class="modal modal-admin fade" id="keterlambatanModal" tabindex="-1" aria-labelledby="detailDataModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <img src="img/icon.png" alt="icon" width="55"><br>
+                    <small style="color: gray">Berikut data anggota yang belum mengembalikan buku hingga batas waktu yang seharusnya</small>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body py-3">
+                    <div class="container-fluid">
                         <div class="wrapper"></div>
                     </div>
                 </div>
@@ -497,5 +525,59 @@
                 }
             });
         });
+        $('#keterlambatanModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) 
+            const today = button.data('today')
+
+            var modal = $(this)
+            modal.find('.wrapper').html(`
+                                        <div class="text-center">
+                                            <div class='load d-inline-block rounded-circle mr-1'></div>
+                                            <div class='load d-inline-block rounded-circle'></div>
+                                            <div class='load d-inline-block rounded-circle ml-1'></div>
+                                        </div>`)
+            
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ url('/late-transaction') }}",
+                method: 'post',
+                data: {},
+                success: function(result){
+                    datas = result.split('~')
+                    datas.splice(datas.length - 1)
+
+                    let array_datas = []
+                    while(datas.length > 0) {
+
+                        let new_array = datas.splice(0, 8)
+
+                        array_datas.push(new_array)
+                    }
+
+                    let content = '';
+                    array_datas.forEach((data) => {
+                        if(data[7] > today) return
+
+                        content += `
+                                <div class="card late-card text-white bg-danger full-width mb-2 shadow">
+                                    <div class="card-header user position-relative">
+                                        ${data[4]} (${data[3]}/${data[5]})
+                                        <a href="{{url('/send-reminder/${data[0]}')}}" class="btn btn-light btn-sm btn-email position-absolute"><i class="fas fa-envelope-open"></i></a>
+                                    </div>
+                                    <div class="card-body py-2">
+                                        <p class="card-text m-0">${data[6]}</p>
+                                        <small class="text-white">Tenggang waktu : ${data[1]} s/d ${data[7]}</small>
+                                    </div>
+                                </div>
+                                `
+                    })
+                    modal.find('.wrapper').html(content)
+                }
+            });
+        })
     </script>
 @endsection

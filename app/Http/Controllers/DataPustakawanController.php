@@ -10,6 +10,9 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendVerification;
+use App\Mail\ResendVerification;
 use Auth;
 
 class DataPustakawanController extends Controller
@@ -41,22 +44,6 @@ class DataPustakawanController extends Controller
         return view('librarian.data-librarian', compact('librarians', 'count'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validateData = $request->validate([
@@ -65,11 +52,15 @@ class DataPustakawanController extends Controller
             'emailLibrarian' => 'required',
             'nomorTelepon' => 'required',
             'alamatLibrarian' => 'required',
-            'kodeKonfirmasi' => 'required',
             'photoLibrarian' => 'mimes:jpeg,jpg,bmp,png|max:2000'
         ]);
 
-        $code = Librarian::where('confirm_code', $request->kodeKonfirmasi)->get();
+        $code_generate = '';
+        for($i=0; $i<6; $i++){
+            $code_generate .= rand(0, 9);
+        }
+
+        $code = Librarian::where('confirm_code', $code_generate)->get();
 
         if($code->all()) return redirect('/librarian')->with('failed', 'Kode konfirmasi yang dibuat sudah ada');
         else
@@ -79,31 +70,27 @@ class DataPustakawanController extends Controller
             if($file) $image = $file->getClientOriginalName();
             else $image = "default.jpg";
     
-            $user = new User;
-            $user->nomor_induk = $request->nomorInduk;
-            $user->name = $request->namaLibrarian;
-            $user->role = $request->roleLibrarian;
-            $user->email = $request->emailLibrarian;
-            $user->remember_token = Str::random(30);
-            $user->profile_photo_path = $image;
-            $user->save();
-    
-            $lastid = DB::table('users')
-                ->select('id')
-                ->orderByDesc('id')
-                ->limit(1)
-                ->get();
-    
-            $lib = new Librarian;
-            $lib->id = $lastid[0]->id;
-            $lib->address = $request->alamatLibrarian;
-            $lib->phone = $request->nomorTelepon;
-            $lib->confirm_code = $request->kodeKonfirmasi;
-            $lib->save();
+            $user = User::create([
+                'nomor_induk' => $request->nomorInduk,
+                'name' => $request->namaLibrarian,
+                'role' => $request->roleLibrarian,
+                'email' => $request->emailLibrarian,
+                'remember_token' => Str::random(30),
+                'profile_photo_path' => $image,
+            ]);
+
+            $lib = Librarian::create([
+                'id' => $user->id,
+                'address' => $request->alamatLibrarian,
+                'phone' => $request->nomorTelepon,
+                'confirm_code' => $code_generate,
+            ]);
             
             if($file) $file->move(public_path('uploaded_files/librarian-foto/'),$file->getClientOriginalName());
+
+            Mail::to($user->email, $user->name)->send(new SendVerification($user));
             
-            return redirect('/librarian')->with('success', 'Data '.$request->namaLibrarian.' berhasil disimpan');
+            return redirect('/librarian')->with('success', 'Data '.$request->namaLibrarian.' berhasil disimpan. Kode verifikasi berhasil terkirim');
         }
     }
 
@@ -310,21 +297,24 @@ class DataPustakawanController extends Controller
     
     public function resetCode(Request $request, Librarian $librarian)
     {
-        // dd($member->id);
-        $validateData = $request->validate([
-            'kodeKonfirmasiReset' => 'required',
-        ]);
+        $code_generate = '';
+        for($i=0; $i<6; $i++){
+            $code_generate .= rand(0, 9);
+        }
 
-        $code = Librarian::where('confirm_code', $request->kodeKonfirmasiReset)->get();
+        $code = Librarian::where('confirm_code', $code_generate)->get();
 
         if($code->all()) return redirect('/librarian')->with('failed', 'Kode konfirmasi yang dibuat sudah ada');
         else {
             Librarian::where('id', $librarian->id)
                     ->update([
-                        'confirm_code' => $request->kodeKonfirmasiReset,
+                        'confirm_code' => $code_generate,
                         ]);
 
-            return redirect('/librarian')->with('success', 'Kode berhasil direset, Kode : '.$request->kodeKonfirmasiReset);
+            $user = User::find($librarian->id);
+            Mail::to($user->email, $user->name)->send(new ResendVerification($user));
+
+            return redirect('/librarian')->with('success', 'Kode berhasil direset, Kode verifikasi berhasil dikirim ke email pengguna');
         }
     }
 }

@@ -18,6 +18,7 @@ use App\Http\Controllers\ConfirmPageController;
 use App\Http\Controllers\DataPermissionController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ConfigController;
+use App\Http\Controllers\SendEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,6 +100,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::post('/check-book', [DataTransaksiController::class, 'checkBook']);
     Route::post('/check-detail', [DataTransaksiController::class, 'checkDetail']);
     Route::post('/check-detail-edit', [DataTransaksiController::class, 'checkDetailEdit']);
+    Route::post('/late-transaction', [DataTransaksiController::class, 'lateTransaction']);
     
     Route::get('/report', [DataReportController::class, 'index']);
     Route::post('/report/search', [DataReportController::class, 'reportSearch']);
@@ -119,6 +121,8 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/guide', [StaticPageController::class, 'guide']);
     Route::get('/pdf-report', [StaticPageController::class, 'pdfReport']);
     Route::post('/pdf-report', [StaticPageController::class, 'pdfReportMessage']);
+    
+    Route::get('/send-reminder/{transaction}', [SendEmailController::class, 'sendReminder']);
     
     // MEMBER PAGE
     Route::get('/member/dashboard', [PageMemberController::class, 'index']);

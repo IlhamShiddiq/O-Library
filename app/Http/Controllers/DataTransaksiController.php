@@ -25,6 +25,8 @@ class DataTransaksiController extends Controller
         }
 
         $paginate = Config::all();
+        date_default_timezone_set('Asia/Jakarta');
+        $today = date('Y-m-d');
 
         $datas = Transaction::select('transactions.id', 'users.nomor_induk', 'users.name', DB::raw('COUNT("transaction_id") as sum'))
                             ->join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
@@ -34,7 +36,7 @@ class DataTransaksiController extends Controller
                             ->orderBy('transactions.id')
                             ->paginate($paginate[0]->transaction_list_page);
 
-        return view('librarian/data-transaction', compact('datas'));
+        return view('librarian/data-transaction', compact('datas', 'today'));
     }
 
     /**
@@ -463,5 +465,34 @@ class DataTransaksiController extends Controller
         }
 
         echo $title_response;
+    }
+
+    public function lateTransaction()
+    {
+        $config = Config::all();
+
+        $datas = Transaction::join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
+                            ->join('users', 'users.id', '=', 'transactions.member_id')
+                            ->join('members', 'members.id', '=', 'users.id')
+                            ->join('books', 'books.id', '=', 'detail_transactions.book_id')
+                            ->select('transactions.id', 'transactions.borrow_date', 'transactions.member_id', 'users.nomor_induk', 'users.name', 'users.email', 'members.class', 'books.title', DB::raw('DATE_ADD(transactions.borrow_date, INTERVAL '.$config[0]->loan_deadline.' DAY) as back'))
+                            ->where('detail_transactions.status', '0')
+                            ->get();
+
+        $string_datas = '';
+        foreach ($datas as $data) {
+            $string_datas .= $data->id.'~';
+            $string_datas .= $data->borrow_date.'~';
+            $string_datas .= $data->member_id.'~';
+            $string_datas .= $data->nomor_induk.'~';
+            $string_datas .= $data->name.'~';
+
+            if($data->class == null) $string_datas .= '-~';
+            else $string_datas .= $data->class.'~';
+            
+            $string_datas .= $data->title.'~';
+            $string_datas .= $data->back.'~';
+        }
+        echo $string_datas;
     }
 }

@@ -1674,6 +1674,53 @@ input.input-admin:focus {
   transform: translate(-50%, -50%);
 }
 
+.btn-late {
+  bottom: 15px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 40px;
+  z-index: 2;
+  font-size: 21px;
+  padding-bottom: 8px;
+  transition: all 0.3s ease-out;
+  overflow: hidden;
+}
+
+.btn-late:hover {
+  width: 180px;
+}
+
+.btn-late .icon {
+  border-radius: 40px;
+  margin-bottom: 10px;
+}
+
+.btn-late span {
+  font-size: 17px;
+  font-family: segoe;
+}
+
+.late-card {
+  background-color: #cc3d3d;
+}
+
+.late-card .user {
+  font-family: segoe;
+  text-transform: uppercase;
+}
+
+.late-card .title {
+  font-size: 10px !important;
+  font-family: segoe;
+  text-transform: uppercase;
+}
+
+.btn-email {
+  right: 6px;
+  top: 8px;
+}
+
 @-webkit-keyframes load {
   0% {
     background-color: #1c8a63;
@@ -2376,5 +2423,49 @@ img.vector-confirm {
 
 .pdf-report-wrapper .pdf-report .footer {
   background-color: #269b72;
+}
+
+.header-mail {
+  background-color: #3AAF87;
+}
+
+.header-mail .title-mail {
+  width: 200px;
+  height: 40px;
+  margin-bottom: -20px;
+}
+
+.header-mail .title-mail h1 {
+  font-size: 21px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+.content-mail .icon {
+  font-size: 78px;
+}
+
+.content-mail .head-title {
+  font-size: 24px;
+}
+
+.content-mail .sub-title {
+  font-size: 14px;
+  color: #3a3a3a;
+}
+
+.content-mail .message-mail {
+  font-size: 14px;
+}
+
+.content-mail .icon-wa a {
+  font-size: 14px;
+}
+
+.content-mail small {
+  color: gray;
+}
+
+.footer-mail {
+  background-color: #3AAF87;
 }
 

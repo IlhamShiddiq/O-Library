@@ -19,6 +19,7 @@ mix.js('resources/js/font-awesome.js', 'public/js')
     .js('resources/js/btn-landing-page.js', 'public/js')
     .js('resources/js/close-message-btn.js', 'public/js')
     .js('resources/js/btn-random.js', 'public/js')
+    .js('resources/js/checkbox-script.js', 'public/js')
     .sass('resources/sass/style.scss', 'public/css/')
     // .postCss('resources/css/app.css', 'public/css', [
     //     require('postcss-import'),

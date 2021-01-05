@@ -1721,6 +1721,38 @@ input.input-admin:focus {
   top: 8px;
 }
 
+.checkbox-wrapper-unchecked {
+  background-color: #169b28;
+  transition: all 0.2s ease-in-out;
+}
+
+.checkbox-wrapper-checked {
+  background-color: #113f17;
+  transition: all 0.2s ease-in-out;
+}
+
+.checkbox-wrapper {
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.checkbox-wrapper .line-checkbox {
+  background-color: #585858;
+  width: 4px;
+  height: 40px;
+  top: 0;
+  left: -7px;
+}
+
+.checkbox-wrapper input {
+  cursor: pointer;
+}
+
+.checkbox-wrapper h6 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: lighter;
+}
+
 @-webkit-keyframes load {
   0% {
     background-color: #1c8a63;
@@ -2423,49 +2455,5 @@ img.vector-confirm {
 
 .pdf-report-wrapper .pdf-report .footer {
   background-color: #269b72;
-}
-
-.header-mail {
-  background-color: #3AAF87;
-}
-
-.header-mail .title-mail {
-  width: 200px;
-  height: 40px;
-  margin-bottom: -20px;
-}
-
-.header-mail .title-mail h1 {
-  font-size: 21px;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-}
-
-.content-mail .icon {
-  font-size: 78px;
-}
-
-.content-mail .head-title {
-  font-size: 24px;
-}
-
-.content-mail .sub-title {
-  font-size: 14px;
-  color: #3a3a3a;
-}
-
-.content-mail .message-mail {
-  font-size: 14px;
-}
-
-.content-mail .icon-wa a {
-  font-size: 14px;
-}
-
-.content-mail small {
-  color: gray;
-}
-
-.footer-mail {
-  background-color: #3AAF87;
 }
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\Permission;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ReportExport;
 
 class StaticPageController extends Controller
 {
@@ -68,5 +70,15 @@ class StaticPageController extends Controller
                                     ->count();
 
         return view('report/report-pdf', compact('borrow_teacher', 'borrow_student', 'return_on_time', 'return_late', 'accepted_request', 'refused_request', 'message'));
+    }
+
+    public function excelReportMessage(Request $request)
+    {
+        if($request->queue == null) return redirect('/report')->with('success', 'Tidak ada data yang dapat dieksport menjadi file excel');
+        $lists = '';
+        foreach($request->queue as $entry) {
+            $lists .= $entry.'~';
+        }
+        return Excel::download(new ReportExport($lists), 'report.xlsx');
     }
 }

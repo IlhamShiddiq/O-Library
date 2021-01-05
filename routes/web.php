@@ -39,6 +39,7 @@ Route::get('/account/confirm', [ConfirmPageController::class, 'confirmPage']);
 Route::post('/account/confirm', [ConfirmPageController::class, 'confirmPageData']);
 Route::get('/account/confirming/{user}', [ConfirmPageController::class, 'confirmingPage']);
 Route::post('/account/confirming/{user}', [ConfirmPageController::class, 'confirmingPageData']);
+Route::post('/excel-report', [StaticPageController::class, 'excelReportMessage']);
 
 Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(function () {
 

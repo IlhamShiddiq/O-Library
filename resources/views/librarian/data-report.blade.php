@@ -53,10 +53,13 @@
                 </div>
                 <div class="gray-wrapper radius-admin">
                     <div class="row">
-                        <div class="col-9 pr-1">
+                        <div class="col-8 pr-1">
                             <a href="{{ url('/report/late') }}" class="btn btn-danger full-width"><i class="fas fa-clock"></i> Data Keterlambatan</a>
                         </div>
-                        <div class="col-3 pl-1">
+                        <div class="col-2 pr-1">
+                            <button href="button" class="btn btn-success full-width" data-toggle="modal" data-target="#excelsModal"><i class="fas fa-file-excel"></i></button>
+                        </div>
+                        <div class="col-2 pl-1">
                             <a href="{{ url('/pdf-report') }}" class="btn btn-primary full-width"><i class="fas fa-print"></i></a>
                         </div>
                     </div>
@@ -107,4 +110,83 @@
             </div>
         </div>
     </div>
+
+        <!-- Excels Modal -->
+        <div class="modal modal-admin fade" id="excelsModal" tabindex="-1" aria-labelledby="addDataModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <img src="img/icon.png" alt="icon" width="55">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body py-2 px-5">
+                        <div class="container-fluid">
+                            <form action="{{url('/excel-report')}}" method="POST">
+                                @csrf
+                                <div class="text-center mb-3">Data apa saja yang ingin anda export menjadi file excel?</div>
+                                <div class="form-check mb-2">
+                                    <div class="checkbox-wrapper checkbox-wrapper-unchecked text-white position-relative full-width p-2" id="wrapper-buku">
+                                        <div class="line-checkbox py-1 position-absolute"></div>
+                                        <input class="ml-2" name="queue[]" type="checkbox" value="Book" id="check-buku">
+                                        <h6 class="d-inline-block m-0 ml-2">DATA BUKU</h6>
+                                    </div>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <div class="checkbox-wrapper checkbox-wrapper-unchecked text-white position-relative full-width p-2" id="wrapper-ebook">
+                                        <div class="line-checkbox py-1 position-absolute"></div>
+                                        <input class="ml-2" name="queue[]" type="checkbox" value="Ebook" id="check-ebook">
+                                        <h6 class="d-inline-block m-0 ml-2">DATA EBOOK</h6>
+                                    </div>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <div class="checkbox-wrapper checkbox-wrapper-unchecked text-white position-relative full-width p-2" id="wrapper-member">
+                                        <div class="line-checkbox py-1 position-absolute"></div>
+                                        <input class="ml-2" name="queue[]" type="checkbox" value="Member" id="check-member">
+                                        <h6 class="d-inline-block m-0 ml-2">DATA ANGGOTA</h6>
+                                    </div>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <div class="checkbox-wrapper checkbox-wrapper-unchecked text-white position-relative full-width p-2" id="wrapper-librarian">
+                                        <div class="line-checkbox py-1 position-absolute"></div>
+                                        <input class="ml-2" name="queue[]" type="checkbox" value="Librarian" id="check-librarian">
+                                        <h6 class="d-inline-block m-0 ml-2">DATA PUSTAKAWAN</h6>
+                                    </div>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <div class="checkbox-wrapper checkbox-wrapper-unchecked text-white position-relative full-width p-2" id="wrapper-publisher">
+                                        <div class="line-checkbox py-1 position-absolute"></div>
+                                        <input class="ml-2" name="queue[]" type="checkbox" value="Publisher" id="check-publisher">
+                                        <h6 class="d-inline-block m-0 ml-2">DATA PENERBIT</h6>
+                                    </div>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <div class="checkbox-wrapper checkbox-wrapper-unchecked text-white position-relative full-width p-2" id="wrapper-category">
+                                        <div class="line-checkbox py-1 position-absolute"></div>
+                                        <input class="ml-2" name="queue[]" type="checkbox" value="Category" id="check-category">
+                                        <h6 class="d-inline-block m-0 ml-2">DATA KATEGORI</h6>
+                                    </div>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <div class="checkbox-wrapper checkbox-wrapper-unchecked text-white position-relative full-width p-2" id="wrapper-report">
+                                        <div class="line-checkbox py-1 position-absolute"></div>
+                                        <input class="ml-2" name="queue[]" type="checkbox" value="Report" id="check-report">
+                                        <h6 class="d-inline-block m-0 ml-2">DATA SELURUH LAPORAN</h6>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary rounded-0 full-width ml-2">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endsection
+
+@section('more-js')
+    <script src="{{asset('js/checkbox-script.js')}}"></script>
 @endsection

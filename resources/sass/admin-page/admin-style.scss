@@ -483,6 +483,35 @@ input.input-admin {
     top: 8px;
 }
 
+.checkbox-wrapper-unchecked {
+    background-color: rgb(22, 155, 40);
+    transition: all .2s ease-in-out;
+}
+
+.checkbox-wrapper-checked {
+    background-color: rgb(17, 63, 23);
+    transition: all .2s ease-in-out;
+}
+
+.checkbox-wrapper {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    .line-checkbox {
+        background-color: rgb(88, 88, 88);
+        width: 4px;
+        height: 40px;
+        top: 0;
+        left: -7px;
+    }
+    input {
+        cursor: pointer;
+    }
+    h6 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: lighter;
+    }
+}
+
 @keyframes load {
     0% {
         background-color: #1c8a63;

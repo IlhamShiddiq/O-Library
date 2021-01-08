@@ -67,7 +67,7 @@ class DataPustakawanController extends Controller
         {
             $file = $request->file('photoLibrarian');
     
-            if($file) $image = $file->getClientOriginalName();
+            if($file) $image = $request->nomorInduk.'/'.$file->getClientOriginalName();
             else $image = "default.jpg";
     
             $user = User::create([
@@ -86,7 +86,7 @@ class DataPustakawanController extends Controller
                 'confirm_code' => $code_generate,
             ]);
             
-            if($file) $file->move(public_path('uploaded_files/librarian-foto/'),$file->getClientOriginalName());
+            if($file) $file->move(public_path('uploaded_files/librarian-foto/'.$request->nomorInduk.'/'),$file->getClientOriginalName());
 
             Mail::to($user->email, $user->name)->send(new SendVerification($user));
             
@@ -151,7 +151,7 @@ class DataPustakawanController extends Controller
         $id = auth()->user()->id;
         $users = DB::table('users')
                     ->join('librarians', 'users.id', '=', 'librarians.id')
-                    ->select('librarians.id', 'users.profile_photo_path')
+                    ->select('nomor_induk', 'librarians.id', 'users.profile_photo_path')
                     ->where('librarians.id', $id)
                     ->get();
 
@@ -166,7 +166,7 @@ class DataPustakawanController extends Controller
 
         $file = $request->file('photoLibrarian');
 
-        if($file) $foto = $file->getClientOriginalName();
+        if($file) $foto = $users[0]->nomor_induk.'/'.$file->getClientOriginalName();
         else $foto = $users[0]->profile_photo_path;
 
         Librarian::where('id', $id)
@@ -184,7 +184,7 @@ class DataPustakawanController extends Controller
 
         if($file) {
             if($users[0]->profile_photo_path != "default.jpg") File::delete(public_path('uploaded_files/librarian-foto/'.$users[0]->profile_photo_path));
-            $file->move(public_path('uploaded_files/librarian-foto/'),$file->getClientOriginalName());
+            $file->move(public_path('uploaded_files/librarian-foto/'.$users[0]->nomor_induk.'/'),$file->getClientOriginalName());
         }
         
         return redirect('/edit-profile')->with('success', 'Data Profile berhasil diubah');

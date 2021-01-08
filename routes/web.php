@@ -122,6 +122,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/guide', [StaticPageController::class, 'guide']);
     Route::get('/pdf-report', [StaticPageController::class, 'pdfReport']);
     Route::post('/pdf-report', [StaticPageController::class, 'pdfReportMessage']);
+    Route::post('/card-member', [StaticPageController::class, 'cardMember']);
     
     Route::get('/send-reminder/{transaction}', [SendEmailController::class, 'sendReminder']);
     

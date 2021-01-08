@@ -2457,3 +2457,116 @@ img.vector-confirm {
   background-color: #269b72;
 }
 
+body {
+  margin: 0;
+}
+
+.member-card-wrapper {
+  width: 590px;
+  margin: auto;
+  background-color: #fff;
+}
+
+.member-card-wrapper .member-card {
+  background-color: #fff;
+  position: relative;
+  display: inline-block;
+  width: 285px;
+  height: 430px;
+  border-radius: 30px;
+}
+
+.member-card-wrapper .member-card .header {
+  width: 100%;
+  height: 140px;
+}
+
+.member-card-wrapper .member-card .header .img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.member-card-wrapper .member-card .profile {
+  width: 100%;
+  min-height: 10px;
+}
+
+.member-card-wrapper .member-card .profile .foto {
+  margin: auto;
+  width: 100px;
+  position: relative;
+}
+
+.member-card-wrapper .member-card .profile .foto img {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  border-radius: 100%;
+  box-shadow: 0 0 10px #757575;
+}
+
+.member-card-wrapper .member-card .name-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.member-card-wrapper .member-card .name-wrapper .name {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+
+.profile .name h1 {
+  margin-top: 50px;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile .name h2 {
+  font-size: 11px;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #a5a1a1;
+  margin-top: -5px;
+}
+
+.profile .rules-wrapper {
+  width: 100%;
+  position: relative;
+  margin-top: -40px;
+}
+
+.profile .rules {
+  width: 85%;
+  height: 250px;
+  background-color: #bfffc2;
+  border-radius: 8px;
+  margin: auto;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 12px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background-color: #04503c;
+  color: white;
+}
+

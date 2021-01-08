@@ -86,7 +86,7 @@ class DataMemberController extends Controller
 
             $file = $request->file('photoAnggota');
 
-            if($file) $image = $file->getClientOriginalName();
+            if($file) $image = $request->nomorInduk.'/'.$file->getClientOriginalName();
             else $image = "default.jpg";
 
             $user = User::create([
@@ -110,7 +110,7 @@ class DataMemberController extends Controller
                 'confirm_code' => $code_generate,
             ]);
 
-            if($file) $file->move(public_path('uploaded_files/member-foto/'),$file->getClientOriginalName());
+            if($file) $file->move(public_path('uploaded_files/member-foto/'.$request->nomorInduk.'/'),$file->getClientOriginalName());
 
             Mail::to($user->email, $user->name)->send(new SendVerification($user));
 
@@ -165,7 +165,7 @@ class DataMemberController extends Controller
 
         $users = DB::table('users')
                     ->join('members', 'users.id', '=', 'members.id')
-                    ->select('members.id', 'users.profile_photo_path')
+                    ->select('nomor_induk', 'members.id', 'users.profile_photo_path')
                     ->where('members.id', $id)
                     ->get();
 
@@ -179,7 +179,7 @@ class DataMemberController extends Controller
 
         $file = $request->file('photoMember');
 
-        if($file) $foto = $file->getClientOriginalName();
+        if($file) $foto = $users[0]->nomor_induk.'/'.$file->getClientOriginalName();
         else $foto = $users[0]->profile_photo_path;
 
         Member::where('id', $id)
@@ -197,7 +197,7 @@ class DataMemberController extends Controller
         
         if($file) {
             if($users[0]->profile_photo_path != "default.jpg") File::delete(public_path('uploaded_files/member-foto/'.$users[0]->profile_photo_path));
-            $file->move(public_path('uploaded_files/member-foto/'),$file->getClientOriginalName());
+            $file->move(public_path('uploaded_files/member-foto/'.$users[0]->nomor_induk),$file->getClientOriginalName());
         }
         
         return redirect('/member/edit-profile')->with('success', 'Data Profile berhasil diubah');

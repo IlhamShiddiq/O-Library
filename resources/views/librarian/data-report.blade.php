@@ -172,7 +172,7 @@
                                     <div class="checkbox-wrapper checkbox-wrapper-unchecked text-white position-relative full-width p-2" id="wrapper-report">
                                         <div class="line-checkbox py-1 position-absolute"></div>
                                         <input class="ml-2" name="queue[]" type="checkbox" value="Report" id="check-report">
-                                        <h6 class="d-inline-block m-0 ml-2">DATA SELURUH LAPORAN</h6>
+                                        <h6 class="d-inline-block m-0 ml-2">DATA SELURUH LAPORAN TRANSAKSI</h6>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary rounded-0 full-width ml-2">Submit</button>

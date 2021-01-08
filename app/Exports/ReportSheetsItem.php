@@ -93,7 +93,7 @@ class ReportSheetsItem implements FromCollection, WithTitle, WithHeadings, Shoul
                         ->get();
         }
         else if($this->item == 'Report') {
-            $data = Transaction::select('transactions.id', 'users.name', 'librarian_id', 'borrow_date', 'books.title', 'date_of_return', 'status')
+            $data = Transaction::select('transactions.id', 'users.name', 'librarian_id',     'borrow_date', 'books.title', 'date_of_return', 'status')
                         ->join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
                         ->join('users', 'transactions.member_id', '=', 'users.id')
                         ->join('books', 'detail_transactions.book_id', '=', 'books.id')
@@ -108,6 +108,6 @@ class ReportSheetsItem implements FromCollection, WithTitle, WithHeadings, Shoul
      */
     public function title(): string
     {
-        return 'Data '.$this->item;
+        return $this->item;
     }
 }

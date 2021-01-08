@@ -49,7 +49,14 @@
                     <a href="{{ url('/member') }}" class="btn btn-success full-width"><i class="fas fa-eye"></i> See All</a>
                 </div>
                 <div class="gray-wrapper radius-admin">
-                    <button type="button" class="btn btn-success full-width" data-toggle="modal" data-target="#addDataModal"><i class="fas fa-plus"></i> Tambah Data</button>
+                    <div class="row">
+                      <div class="col-10 pr-1">
+                          <button type="button" class="btn btn-success full-width" data-toggle="modal" data-target="#addDataModal"><i class="fas fa-plus"></i> Tambah Data</button>
+                      </div>
+                      <div class="col-2 pl-1">
+                          <button type="button" class="btn btn-purple full-width" data-toggle="modal" data-target="#printCard"><i class="fas fa-id-card"></i></button>
+                      </div>
+                    </div>
                 </div>
                 <div class="total-row text-center p-3 border-bottom mb-5">
                   {{$count}} Data Ditampilkan
@@ -300,6 +307,34 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <div class="form-hapus d-inline-block"></div>
                 </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cetak Member Card Modal -->
+    <div class="modal modal-admin fade" id="printCard" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <img src="{{asset('img/icon.png')}}" alt="icon" width="55">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center py-3 text-center">
+                  <form action="{{url('/card-member')}}" method="post">
+                    @csrf
+                    <div class="form-group">
+                      <label class="text-left">Nomor Induk Anggota</label>
+                      <input type="number" class="form-control @error('nomor_induk') is-invalid @enderror" name="nomor_induk" placeholder="Masukkan disini..">
+                      @error('nomor_induk')
+                        <p style="font-size: 80%; color: #dc3545; margin-top: .25rem">{{$message}}</p>
+                      @enderror
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary px-5">Submit</button>
+                  </form>
+                </div>
+                <div class="modal-footer text-center"> </div>
             </div>
         </div>
     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\Permission;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ReportExport;
@@ -80,5 +81,15 @@ class StaticPageController extends Controller
             $lists .= $entry.'~';
         }
         return Excel::download(new ReportExport($lists), 'report.xlsx');
+    }
+
+    public function cardMember(Request $request) {
+        $validateData = $request->validate([
+            'nomor_induk' => 'required'
+        ]);
+
+        // Query SQL ambil data member berdasarkan nomor induk
+
+        return view('member-card/card');
     }
 }

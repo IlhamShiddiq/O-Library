@@ -2481,7 +2481,7 @@ body {
   height: 140px;
 }
 
-.member-card-wrapper .member-card .header .img {
+.member-card-wrapper .member-card .header img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;

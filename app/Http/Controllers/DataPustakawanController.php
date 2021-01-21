@@ -261,7 +261,7 @@ class DataPustakawanController extends Controller
         Librarian::destroy($user->id);
         User::destroy($user->id);
         if($user->profile_photo_path) {
-            if($user->profile_photo_path != "default.jpg") File::delete(public_path('uploaded_files/librarian-foto/'.$user->profile_photo_path));
+            if($user->profile_photo_path != "default.jpg") File::deleteDirectory(public_path('uploaded_files/librarian-foto/'.$user->nomor_induk));
         }
 
         return redirect('/librarian')->with('success', 'Data '.$user->name.' berhasil dihapus');

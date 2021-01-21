@@ -2511,6 +2511,36 @@ body {
   box-shadow: 0 0 10px #757575;
 }
 
+.member-card-wrapper .member-card .profile .name h1 {
+  margin-top: 50px;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.member-card-wrapper .member-card .profile .name h2 {
+  font-size: 11px;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #a5a1a1;
+  margin-top: -5px;
+}
+
+.member-card-wrapper .member-card .profile .rules-wrapper {
+  width: 100%;
+  position: relative;
+  margin-top: -40px;
+}
+
+.member-card-wrapper .member-card .profile .rules {
+  width: 85%;
+  height: 250px;
+  background-color: #bfffc2;
+  border-radius: 8px;
+  margin: auto;
+}
+
 .member-card-wrapper .member-card .name-wrapper {
   position: relative;
   width: 100%;
@@ -2524,37 +2554,7 @@ body {
   text-align: center;
 }
 
-.profile .name h1 {
-  margin-top: 50px;
-  font-size: 16px;
-  text-transform: uppercase;
-  text-align: center;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.profile .name h2 {
-  font-size: 11px;
-  text-align: center;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #a5a1a1;
-  margin-top: -5px;
-}
-
-.profile .rules-wrapper {
-  width: 100%;
-  position: relative;
-  margin-top: -40px;
-}
-
-.profile .rules {
-  width: 85%;
-  height: 250px;
-  background-color: #bfffc2;
-  border-radius: 8px;
-  margin: auto;
-}
-
-.footer {
+.member-card-wrapper .member-card .footer {
   position: absolute;
   bottom: 0;
   left: 0;

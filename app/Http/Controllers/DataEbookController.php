@@ -82,19 +82,26 @@ class DataEbookController extends Controller
             if($file) $image = $file->getClientOriginalName();
             else $image = "ebook-default.png";
 
-            $ebook = new Ebook;
-            $ebook->isbn = $request->isbnEbook;
-            $ebook->title = $request->judulEbook;
-            $ebook->publisher_id = $request->penerbitEbook;
-            $ebook->author = $request->penulisEbook;
-            $ebook->category_id = $request->kategoriEbook;
-            $ebook->link = $request->fileEbook;
-            $ebook->image = $image;
-            $ebook->about = $request->tentangEbook;
-            $ebook->publish_year = $request->tahunTerbit;
-            $ebook->save();
+            $ebook = Ebook::create([
+                'isbn' => $request->isbnEbook,
+                'title' => $request->judulEbook,
+                'publisher_id' => $request->penerbitEbook,
+                'author' => $request->penulisEbook,
+                'category_id' => $request->kategoriEbook,
+                'link' => $request->fileEbook,
+                'image' => $image,
+                'about' => $request->tentangEbook,
+                'publish_year' => $request->tahunTerbit,
+            ]);
 
-            if($file) $file->move(public_path('uploaded_files/ebook-cover/'),$file->getClientOriginalName());
+            if($image != 'ebook-default.png') {
+                Ebook::where('id', $ebook->id)
+                    ->update([
+                        'image' => $ebook->id.'/'.$image,
+                        ]);
+            }
+
+            if($file) $file->move(public_path('uploaded_files/ebook-cover/'.$ebook->id.'/'),$file->getClientOriginalName());
 
             return redirect('/ebook')->with('success', 'Data berhasil ditambah');
             // dd($image);
@@ -158,7 +165,7 @@ class DataEbookController extends Controller
         {
             $file = $request->file('gambarEbook');
 
-            if($file) $image = $file->getClientOriginalName();
+            if($file) $image = $ebook->id.'/'.$file->getClientOriginalName();
             else $image = $ebook->image;
 
             Ebook::where('id', $ebook->id)
@@ -176,7 +183,7 @@ class DataEbookController extends Controller
 
             if($file) {
                 if($ebook->image != "ebook-default.png") File::delete(public_path('uploaded_files/ebook-cover/'.$ebook->image));
-                $file->move(public_path('uploaded_files/ebook-cover/'),$file->getClientOriginalName());
+                $file->move(public_path('uploaded_files/ebook-cover/'.$ebook->id.'/'),$file->getClientOriginalName());
             }
 
             return redirect('/ebook')->with('success', 'Data berhasil diubah');
@@ -199,7 +206,7 @@ class DataEbookController extends Controller
     {
         Ebook::destroy($ebook->id);
         if($ebook->image) {
-            if($ebook->image != "ebook-default.png") File::delete(public_path('uploaded_files/ebook-cover/'.$ebook->image));
+            if($ebook->image != "ebook-default.png") File::deleteDirectory(public_path('uploaded_files/ebook-cover/'.$ebook->id));
         }
 
         return redirect('/ebook')->with('success', 'Data '.$ebook->title.' berhasil dihapus');

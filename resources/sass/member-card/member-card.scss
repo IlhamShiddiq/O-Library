@@ -40,6 +40,32 @@ body {
                     box-shadow: 0 0 10px rgb(117, 117, 117);
                 }
             }
+            .name h1 {
+                margin-top: 50px;
+                font-size: 16px;
+                text-transform: uppercase;
+                text-align: center;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            .name h2 {
+                font-size: 11px;
+                text-align: center;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                color: rgb(165, 161, 161);
+                margin-top: -5px;
+            }
+            .rules-wrapper {
+                width: 100%;
+                position: relative;
+                margin-top: -40px;
+            }
+            .rules {
+                width: 85%;
+                height: 250px;
+                background-color: rgb(191, 255, 194);
+                border-radius: 8px;
+                margin: auto;
+            }
         }
         .name-wrapper {
             position: relative;;
@@ -52,46 +78,20 @@ body {
                 text-align: center;
             }
         }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 12px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            background-color: #04503c;
+            color: white;
+        }
     }
-}
-.profile .name h1 {
-    margin-top: 50px;
-    font-size: 16px;
-    text-transform: uppercase;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.profile .name h2 {
-    font-size: 11px;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: rgb(165, 161, 161);
-    margin-top: -5px;
-}
-.profile .rules-wrapper {
-    width: 100%;
-    position: relative;
-    margin-top: -40px;
-}
-.profile .rules {
-    width: 85%;
-    height: 250px;
-    background-color: rgb(191, 255, 194);
-    border-radius: 8px;
-    margin: auto;
-}
-.footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 12px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    background-color: #04503c;
-    color: white;
 }

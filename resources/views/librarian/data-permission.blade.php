@@ -145,7 +145,7 @@
                             <textarea class="form-control" id="alasan" name="alasan" placeholder="Isikan disini..." rows="3"></textarea>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-sm btn-danger px-5">No</button>
+                            <button type="submit" class="btn btn-sm btn-primary px-5">Submit</button>
                         </div>
                         <div class="form-hidden"></div>
                     </form>

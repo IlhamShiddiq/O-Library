@@ -262,7 +262,7 @@ class DataMemberController extends Controller
         Member::destroy($member->id);
         User::destroy($member->id);
         if($member->profile_photo_path) {
-            if($member->profile_photo_path != "default.jpg") File::delete(public_path('uploaded_files/member-foto/'.$member->profile_photo_path));
+            if($member->profile_photo_path != "default.jpg") File::deleteDirectory(public_path('uploaded_files/member-foto/'.$member->nomor_induk));
         }
 
         return redirect('/member')->with('success', 'Data '.$member->name.' berhasil dihapus');

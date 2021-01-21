@@ -98,19 +98,26 @@ class DataBukuController extends Controller
             if($file) $image = $file->getClientOriginalName();
             else $image = "book-default.png";
 
-            $book = new Book;
-            $book->isbn = $request->isbnBuku;
-            $book->title = $request->judulBuku;
-            $book->publisher_id = $request->penerbitBuku;
-            $book->author = $request->penulisBuku;
-            $book->category_id = $request->kategoriBuku;
-            $book->qty = $request->stokBuku;
-            $book->image = $image;
-            $book->about = $request->tentangBuku;
-            $book->publish_year = $request->tahunTerbit;
-            $book->save();
+            $book = Book::create([
+                'isbn' => $request->isbnBuku,
+                'title' => $request->judulBuku,
+                'publisher_id' => $request->penerbitBuku,
+                'author' => $request->penulisBuku,
+                'category_id' => $request->kategoriBuku,
+                'qty' => $request->stokBuku,
+                'image' => $image,
+                'about' => $request->tentangBuku,
+                'publish_year' => $request->tahunTerbit,
+            ]);
 
-            if($file) $file->move(public_path('uploaded_files/book-cover/'),$file->getClientOriginalName());
+            if($image != 'book-default.png') {
+                Book::where('id', $book->id)
+                    ->update([
+                        'image' => $book->id.'/'.$image,
+                        ]);
+            }
+
+            if($file) $file->move(public_path('uploaded_files/book-cover/'.$book->id.'/'),$file->getClientOriginalName());
 
             return redirect('/book')->with('success', 'Data berhasil ditambah');
         }
@@ -171,7 +178,7 @@ class DataBukuController extends Controller
         {
             $file = $request->file('gambarBuku');
 
-            if($file) $image = $file->getClientOriginalName();
+            if($file) $image = $book->id.'/'.$file->getClientOriginalName();
             else $image = $book->image;
 
             Book::where('id', $book->id)
@@ -189,7 +196,7 @@ class DataBukuController extends Controller
 
             if($file) {
                 if($book->image != "book-default.png") File::delete(public_path('uploaded_files/book-cover/'.$book->image));
-                $file->move(public_path('uploaded_files/book-cover/'),$file->getClientOriginalName());
+                $file->move(public_path('uploaded_files/book-cover/'.$book->id.'/'),$file->getClientOriginalName());
             }
 
             return redirect('/book')->with('success', 'Data berhasil diubah');
@@ -211,7 +218,7 @@ class DataBukuController extends Controller
     {
         Book::destroy($book->id);
         if($book->image) {
-            if($book->image != "book-default.png") File::delete(public_path('uploaded_files/book-cover/'.$book->image));
+            if($book->image != "book-default.png") File::deleteDirectory(public_path('uploaded_files/book-cover/'.$book->id));
         }
 
         return redirect('/book')->with('success', 'Data '.$book->title.' berhasil dihapus');

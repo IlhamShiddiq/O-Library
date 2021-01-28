@@ -13,7 +13,7 @@
     <div class="row justify-content-center pdf-report-wrapper mt-2 mb-5">
         <div class="col-lg-9 col-md-10 col-11">
             <div class="print-pdf d-inline-block">
-                <button id="print-card" class="btn btn-sm btn-success"><i class="fas fa-download"></i></button>
+                <a href="{{url('/member/card/'.$data->id)}}" id="print-card" class="btn btn-sm btn-success"><i class="fas fa-download"></i></a>
             </div>
             <div class="a d-none" id="load">
                 <div class="ml-2 d-inline-block load rounded-circle"></div>
@@ -35,20 +35,20 @@
                             </div>
                             <div class="profile">
                                 <div class="foto">
-                                    <img src="{{asset('img/photo.png')}}" alt="Foto" class="rounded-circle object-fit" style="border-radius: 100%;">
+                                    <img src="{{asset('uploaded_files/member-foto/'.$data->profile_photo_path)}}" alt="Foto" class="object-fit">
                                 </div>
                                 <div class="name-wrapper">
                                     <div class="name">
-                                        <h1>ilham shiddiq</h1>
+                                        <h1>{{$data->name}}</h1>
                                         <h2>Kartu Anggota</h2>
                                     </div>
                                 </div>
                             </div>
-                            <div class="footer">
+                            {{-- <div class="footer">
                                 Perpustakaan SMKN 1 Cimahi
-                            </div>
+                            </div> --}}
                         </div>
-                        <div class="member-card shadow border belakang">
+                        {{-- <div class="member-card shadow border belakang">
                             <div class="header">
                                 <img src="{{asset('img/bg-card.jpg')}}" alt="">
                             </div>
@@ -60,7 +60,7 @@
                             <div class="footer">
                                 Perpustakaan SMKN 1 Cimahi
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -69,25 +69,5 @@
 @endsection
 
 @section('more-js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
-    <script>
-        const load = document.querySelector('#load');
-        $(document).on('click','#print-card',function(){
-
-            load.classList.remove('d-none');
-            load.classList.add('d-inline-block');
-
-            let pdf = new jsPDF();
-            let section=$('.cetak-kartu');
-            let page= function() {
-                pdf.save('Kartu Anggota');
-            
-            };
-
-            pdf.addHTML(section,page);
-            
-
-        })
-    </script>
+    <script src="{{asset('js/print-pdf.js')}}"></script>
 @endsection

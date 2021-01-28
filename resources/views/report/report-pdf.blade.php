@@ -13,7 +13,7 @@
     <div class="row justify-content-center pdf-report-wrapper mt-2 mb-5">
         <div class="col-lg-9 col-md-10 col-11">
             <div class="print-pdf d-inline-block">
-                <button id="print-pdf" class="btn btn-sm btn-success"><i class="fas fa-download"></i></button>
+                <a href="{{url('/pdf-report-print')}}" id="print-pdf" class="btn btn-sm btn-success"><i class="fas fa-download"></i></a>
             </div>
             <div class="a d-none" id="load">
                 <div class="ml-2 d-inline-block load rounded-circle"></div>
@@ -121,18 +121,6 @@
                             </tbody>
                         </table>
         
-                        <table class="table table-bordered mt-4">
-                            <thead class="text-white">
-                            <tr>
-                                <th scope="col">Message</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{$message}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
                         <div class="more-info mt-3">
                             <small>Dicetak oleh : {{auth()->user()->name}} ({{auth()->user()->role}}/{{auth()->user()->nomor_induk}})</small>
                         </div>
@@ -147,25 +135,13 @@
 @endsection
 
 @section('more-js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
     <script>
         const load = document.querySelector('#load');
         $(document).on('click','#print-pdf',function(){
 
             load.classList.remove('d-none');
             load.classList.add('d-inline-block');
-
-            let pdf = new jsPDF();
-            let section=$('.pdf-report');
-            let page= function() {
-                pdf.save('{{"Report ".date("Y-m-d H:i:s")}}.pdf');
             
-            };
-
-            pdf.addHTML(section,page);
-            
-
         })
     </script>
 @endsection

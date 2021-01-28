@@ -90,6 +90,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::post('/member/reset-code/{member}', [DataMemberController::class, 'resetCode']);
     Route::delete('/member/{member}', [DataMemberController::class, 'destroy']);
     Route::get('/member/history/{member}', [DataMemberController::class, 'memberHistory']);
+    Route::get('//member/card/{user}', [StaticPageController::class, 'printCard']);
 
     Route::get('/transaction', [DataTransaksiController::class, 'index']);
     Route::post('/transaction', [DataTransaksiController::class, 'store']);
@@ -121,7 +122,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
 
     Route::get('/guide', [StaticPageController::class, 'guide']);
     Route::get('/pdf-report', [StaticPageController::class, 'pdfReport']);
-    Route::post('/pdf-report', [StaticPageController::class, 'pdfReportMessage']);
+    Route::get('/pdf-report-print', [StaticPageController::class, 'pdfReportPrint']);
     Route::post('/card-member', [StaticPageController::class, 'cardMember']);
     
     Route::get('/send-reminder/{transaction}', [SendEmailController::class, 'sendReminder']);

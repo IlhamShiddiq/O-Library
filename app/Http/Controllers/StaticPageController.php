@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ReportExport;
+use PDF;
 
 class StaticPageController extends Controller
 {
@@ -32,15 +33,9 @@ class StaticPageController extends Controller
 
     public function pdfReport()
     {
-        return view('report/report-pdf-message');
-    }
-
-    public function pdfReportMessage(Request $request)
-    {
         date_default_timezone_set('Asia/Jakarta');
 
-        if($request->message) $message = $request->message;
-        else $message = '-';
+        $message = '-';
 
         $this_month = date('n');
         $borrow_teacher = Transaction::join('users', 'transactions.member_id', '=', 'users.id')
@@ -73,6 +68,46 @@ class StaticPageController extends Controller
         return view('report/report-pdf', compact('borrow_teacher', 'borrow_student', 'return_on_time', 'return_late', 'accepted_request', 'refused_request', 'message'));
     }
 
+    public function pdfReportPrint()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+
+        $message = '-';
+
+        $this_month = date('n');
+        $this_month_name = date('F Y');
+        $borrow_teacher = Transaction::join('users', 'transactions.member_id', '=', 'users.id')
+                                    ->join('members', 'members.id', '=','users.id')
+                                    ->where('members.status', 'Guru')
+                                    ->whereMonth('transactions.borrow_date', $this_month)
+                                    ->count();
+        $borrow_student = Transaction::join('users', 'transactions.member_id', '=', 'users.id')
+                                    ->join('members', 'members.id', '=','users.id')
+                                    ->where('members.status', 'Siswa')
+                                    ->whereMonth('transactions.borrow_date', $this_month)
+                                    ->count();
+        $return_on_time = Transaction::join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
+                                    ->where(DB::raw('DATEDIFF(date_of_return, borrow_date)'), '<', '14')
+                                    ->whereMonth('detail_transactions.date_of_return', $this_month)
+                                    ->count();
+        $return_late = Transaction::join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
+                                    ->where(DB::raw('DATEDIFF(date_of_return, borrow_date)'), '>', '14')
+                                    ->whereMonth('detail_transactions.date_of_return', $this_month)
+                                    ->count();
+        $accepted_request = Permission::where('confirmed', 1)
+                                    ->where('accepted', 1)
+                                    ->whereMonth('submit_date', $this_month)
+                                    ->count();
+        $refused_request = Permission::where('confirmed', 1)
+                                    ->where('accepted', 0)
+                                    ->whereMonth('submit_date', $this_month)
+                                    ->count();
+
+        // return view('report/report', compact('borrow_teacher', 'borrow_student', 'return_on_time', 'return_late', 'accepted_request', 'refused_request', 'message'));
+        $pdf = PDF::loadView('report/report', compact('borrow_teacher', 'borrow_student', 'return_on_time', 'return_late', 'accepted_request', 'refused_request', 'message'));
+        return $pdf->download($this_month_name.' Report');
+    }
+
     public function excelReportMessage(Request $request)
     {
         if($request->queue == null) return redirect('/report')->with('success', 'Tidak ada data yang dapat dieksport menjadi file excel');
@@ -88,8 +123,19 @@ class StaticPageController extends Controller
             'nomor_induk' => 'required'
         ]);
 
-        // Query SQL ambil data member berdasarkan nomor induk
+        $data = User::where('nomor_induk', $request->nomor_induk)
+                    ->where('role', 'Member')
+                    ->first();
 
-        return view('member-card/card');
+        if($data) {
+            return view('member-card/card', compact('data'));
+        } else {
+            return redirect('/member')->with('failed', 'Anggota tidak ditemukan');
+        }
+    }
+
+    public function printCard(User $user) {
+        $pdf = PDF::loadView('member-card.card-member', compact('user'));
+        return $pdf->download($user->nomor_induk.'-'.$user->name);
     }
 }

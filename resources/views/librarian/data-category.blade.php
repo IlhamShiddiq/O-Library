@@ -75,8 +75,8 @@
                       <th scope="row" class="text-center">{{$category->id}}</th>
                       <td>{{$category->category}}</td>
                       <td>
-                        <a href="#" class="badge badge-success" data-toggle="modal" data-target="#editDataModal" data-id="{{$category->id}}" data-category="{{$category->category}}">Edit</a>
-                        <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$category->id}}">Hapus</a>
+                        <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#editDataModal" data-id="{{$category->id}}" data-category="{{$category->category}}"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$category->id}}"><i class="fas fa-trash"></i></a>
                       </td>
                     </tr>
                     @endforeach

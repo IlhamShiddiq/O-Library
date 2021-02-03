@@ -74,8 +74,8 @@
                         <th scope="row" class="text-center">{{$publisher->id}}</th>
                         <td>{{$publisher->publisher}}</td>
                         <td>
-                          <a href="#" class="badge badge-success" data-toggle="modal" data-target="#editDataModal" data-id="{{$publisher->id}}" data-publisher="{{$publisher->publisher}}">Edit</a>
-                          <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$publisher->id}}">Hapus</a>
+                          <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#editDataModal" data-id="{{$publisher->id}}" data-publisher="{{$publisher->publisher}}"><i class="fas fa-edit"></i></a>
+                          <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$publisher->id}}"><i class="fas fa-trash"></i></a>
                         </td>
                       </tr>
                     @endforeach

@@ -18,8 +18,8 @@
         <div class="dashboard-container">
             <div class="row mb-3">
                 <div class="col col-12 col-lg-9">
-                    <div class="about-user radius-admin gray-bg pt-5 pb-4">
-                        <div class="container-fluid">
+                    <div class="about-user radius-admin gray-bg">
+                        <div class="container-fluid py-1">
                             <div class="row">
                                 <div class="col-md-6 col-lg-7">
                                     <img src="img/vectors/vector-3.png" alt="vector" class="vector">

@@ -72,7 +72,7 @@
                                 <div class="btn-wrapper position-absolute bottom-absolute full-width pl-3">
                                     <div class="container position-relative">
                                         <a href="{{url('/transaction/return-book/'.$data->id)}}" class="btn btn-sm btn-purple position-absolute bottom-absolute text-right rounded-0" title="Pengembalian"><i class="fas fa-exchange-alt"></i></a>
-                                        <button type="button" class="btn btn-sm btn-info position-absolute bottom-absolute text-right rounded-0" title="Info" data-toggle="modal" data-target="#detailDataModal" data-id="{{$data->id}}" data-nomor="{{$data->nomor_induk}}"><i class="fas fa-info-circle"></i></button>
+                                        <button type="button" class="btn btn-sm btn-info position-absolute bottom-absolute text-right rounded-0 text-white" title="Info" data-toggle="modal" data-target="#detailDataModal" data-id="{{$data->id}}" data-nomor="{{$data->nomor_induk}}"><i class="fas fa-info-circle"></i></button>
                                         <button type="button" class="btn btn-sm btn-success position-absolute bottom-absolute rounded-0" title="Edit" data-toggle="modal" data-target="#editDataModal" data-id="{{$data->id}}"><i class="fas fa-edit"></i></button>
                                     </div>
                                 </div>

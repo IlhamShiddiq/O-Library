@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     @yield('more-meta')
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/font.css')}}">
@@ -193,6 +192,7 @@
     
     <!-- Optional JavaScript -->
     <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/drawer.js')}}"></script>
     <script src="{{asset('js/font-awesome.js')}}"></script>
     <script src="{{asset('js/close-message-btn.js')}}"></script>
     @yield('more-js')

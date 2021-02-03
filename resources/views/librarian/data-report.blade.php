@@ -19,7 +19,7 @@
                 </div>
                 <div class="gray-wrapper radius-admin">
                     <div class="info-login-pic text-center border-bottom pb-2">
-                        <img src="{{asset('uploaded_files/librarian-foto/'.auth()->user()->profile_photo_path)}}" alt="Ilham Shiddiq" class="rounded-circle fit-cover" width="70" height="70">
+                        <img src="{{asset('uploaded_files/librarian-foto/'.auth()->user()->profile_photo_path)}}" alt="Foto" class="rounded-circle fit-cover" width="70" height="70">
                     </div>
                     <div class="info-login text-center pt-1">
                         <p class="m-1">Halo, {{auth()->user()->username}} ({{auth()->user()->name}})</p>
@@ -78,7 +78,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <h1 class="id-transaksi py-2">id transaksi : {{$report->transaction_id}}</h1>
-                                            <p class="person"><span class="badge badge-info">{{$report->nomor_induk}} / {{$report->name}}</span></p>
+                                            <p class="person"><span class="badge badge-info text-white">{{$report->nomor_induk}} / {{$report->name}}</span></p>
                                             <div class="info">
                                                 <div class="info-book">
                                                     <p class="info-transaksi">"{{$report->title}}"</p>

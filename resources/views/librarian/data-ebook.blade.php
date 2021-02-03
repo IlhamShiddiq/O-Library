@@ -79,9 +79,9 @@
                                 </div>
                             </div>
                             <div class="btn-action bottom-absolute">
-                                <a href="#" class="badge badge-success" data-toggle="modal" data-target="#editDataModal" data-id="{{$ebook->id}}" data-isbn="{{$ebook->isbn}}" data-title="{{$ebook->title}}" data-category_id="{{$ebook->category_id}}" data-author="{{$ebook->author}}" data-publisher_id="{{$ebook->publisher_id}}" data-about="{{$ebook->about}}" data-terbit="{{$ebook->publish_year}}" data-link="{{$ebook->link}}" data-image="{{asset('uploaded_files/ebook-cover/'.$ebook->image)}}" data-nameimg="{{$ebook->image}}">Ubah</a>
-                                <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$ebook->id}}">Hapus</a>
-                                <a href="{{$ebook->link}}" class="badge badge-info" target="_blank" rel=”noopener”>Buka ebook</a>
+                                <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#editDataModal" data-id="{{$ebook->id}}" data-isbn="{{$ebook->isbn}}" data-title="{{$ebook->title}}" data-category_id="{{$ebook->category_id}}" data-author="{{$ebook->author}}" data-publisher_id="{{$ebook->publisher_id}}" data-about="{{$ebook->about}}" data-terbit="{{$ebook->publish_year}}" data-link="{{$ebook->link}}" data-image="{{asset('uploaded_files/ebook-cover/'.$ebook->image)}}" data-nameimg="{{$ebook->image}}">Ubah</a>
+                                <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$ebook->id}}">Hapus</a>
+                                <a href="{{$ebook->link}}" class="btn btn-sm btn-info text-white" target="_blank" rel=”noopener”>Buka ebook</a>
                             </div>
                             <div class="item-table-footer bottom-absolute">
                                 <div class="container-fluid">

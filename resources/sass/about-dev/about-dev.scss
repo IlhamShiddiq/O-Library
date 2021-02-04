@@ -1,0 +1,41 @@
+.about-dev-wrapper {
+    min-height: 768px;
+    background-color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    .header {
+        background-color: #388751;
+        h1 {
+            font-size: 24px;
+            padding: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    }
+    .about-me {
+        font-size: 16px;
+    }
+    .pendidikan, .prestasi {
+        ul {
+            li {
+                font-size: 16px;   
+            }
+        }
+    }
+    .btn-gray {
+        background-color: rgb(145, 145, 145);
+        &:hover {
+            background-color: rgb(105, 105, 105);
+        }
+    }
+    .btn-github {
+        background-color: rgb(56, 55, 55);
+        &:hover {
+            background-color: rgb(80, 79, 79);
+        }
+    }
+    .btn-ig {
+        background-color: rgb(185, 32, 96);
+        &:hover {
+            background-color: rgb(209, 52, 118);
+        }
+    }
+}

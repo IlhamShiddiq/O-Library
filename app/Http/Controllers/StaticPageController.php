@@ -138,4 +138,8 @@ class StaticPageController extends Controller
         $pdf = PDF::loadView('member-card.card-member', compact('user'));
         return $pdf->download($user->nomor_induk.'-'.$user->name);
     }
+
+    public function aboutDev() {
+        return view('about-dev');
+    }
 }

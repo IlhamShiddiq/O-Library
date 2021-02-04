@@ -166,58 +166,59 @@
                 </div>
             </div>
         </div>
-        <footer class="text-center text-white">
-            <div class="container">
-                <div class="row my-4">
-                    <div class="col-lg-4 col-md-6 col-12 text-left">
-                        <h5 class="mb-3 brand">O'Library.</h5>
-                        <p class="text-justify">Web resmi perpustakaan milik SMK Negeri 1 Kota Cimahi. Hanya dapat diakses oleh siswa dan guru SMK Negeri 1 Cimahi.</p>
-                        <p class="address mt-3">Jalan Maharmartanegara No 48, Kelurahan Leuwigajah</p>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-12 text-left">
-                        <h5 class="mb-3">Pintasan</h5>
-                        <ul>
-                            <li><a href="#">Info Perpustakaan</a></li>
-                            <li><a href="#">Galeri</a></li>
-                            <li><a href="#">Konfirmasi Akun</a></li>
-                            <li><a href="#">Login</a></li>
-                            <li><a href="#">About Developer</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-12 text-left">
-                        <h5 class="mb-3">Jam Buka</h5>
-                        <table class="full-width">
-                            <tr>
-                                <td class="day">Senin</td>
-                                <td class="time">08.00 - 17.00</td>
-                            </tr>
-                            <tr>
-                                <td class="day">Selasa</td>
-                                <td class="time">08.00 - 17.00</td>
-                            </tr>
-                            <tr>
-                                <td class="day">Rabu</td>
-                                <td class="time">08.00 - 17.00</td>
-                            </tr>
-                            <tr>
-                                <td class="day">Kamis</td>
-                                <td class="time">08.00 - 17.00</td>
-                            </tr>
-                            <tr>
-                                <td class="day">Jumat</td>
-                                <td class="time">08.00 - 17.00</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12 text-left">
-                        <h5 class="mb-3">Tentang</h5>
-                        <p class="text-justify">O'Library merupakan web perpustakaan online yang digunakan sebagai portal untuk siswa untuk mengakses perbukuan yang tersedia di perpustakaan SMK Negeri 1 Cimahi.</p>
-                    </div>
+    </div>
+    <footer class="text-center text-white">
+        <div class="container">
+            <div class="row my-4">
+                <div class="col-lg-4 col-md-6 col-12 text-left">
+                    <h5 class="mb-3 brand">O'Library.</h5>
+                    <p class="text-justify pr-3">Web resmi perpustakaan milik SMK Negeri 1 Kota Cimahi. Hanya dapat diakses oleh siswa dan guru SMK Negeri 1 Cimahi.</p>
+                    <p class="email"><i class="far fa-envelope"></i> perpustakaansmkn01@gmail.com</p>
+                    <p class="address mt-3">Jalan Maharmartanegara No 48, Kelurahan Leuwigajah</p>
+                </div>
+                <div class="col-lg-2 col-md-6 col-12 text-left">
+                    <h5 class="mb-3">Pintasan</h5>
+                    <ul>
+                        <li><a href="#info">Info Perpustakaan</a></li>
+                        <li><a href="#galeri">Galeri</a></li>
+                        <li><a href="{{url('/account/confirm')}}">Konfirmasi Akun</a></li>
+                        <li><a href="{{url('/login')}}">Login</a></li>
+                        <li><a href="{{url('/about-dev')}}">About Developer</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 col-12 text-left">
+                    <h5 class="mb-3">Jam Buka</h5>
+                    <table class="full-width">
+                        <tr>
+                            <td class="day">Senin</td>
+                            <td class="time">08.00 - 17.00</td>
+                        </tr>
+                        <tr>
+                            <td class="day">Selasa</td>
+                            <td class="time">08.00 - 17.00</td>
+                        </tr>
+                        <tr>
+                            <td class="day">Rabu</td>
+                            <td class="time">08.00 - 17.00</td>
+                        </tr>
+                        <tr>
+                            <td class="day">Kamis</td>
+                            <td class="time">08.00 - 17.00</td>
+                        </tr>
+                        <tr>
+                            <td class="day">Jumat</td>
+                            <td class="time">08.00 - 17.00</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 text-left">
+                    <h5 class="mb-3">Tentang</h5>
+                    <p class="text-justify">O'Library merupakan web perpustakaan online yang digunakan sebagai portal untuk siswa untuk mengakses perbukuan yang tersedia di perpustakaan SMK Negeri 1 Cimahi.</p>
                 </div>
             </div>
-            O'Library &copy; 2020, SMKN 1 Cimahi
-        </footer>
-    </div>
+        </div>
+        O'Library &copy; 2020, SMKN 1 Cimahi
+    </footer>
     <div class="up-btn position-fixed" id="up-btn">
         <button class="btn text-center text-white rounded-circle"><i class="fas fa-arrow-up"></i></button>
     </div>

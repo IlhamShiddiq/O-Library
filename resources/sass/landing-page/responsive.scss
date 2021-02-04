@@ -36,14 +36,14 @@
                 font-size: 22px;
             }
         }
-        footer {
-            .container {
-                padding: 0 50px !important;
-                .col-12 {
-                    margin-bottom: 15px;
-                    table {
-                        margin-bottom: 8px;
-                    }
+    }
+    footer {
+        .container {
+            padding: 0 50px !important;
+            .col-12 {
+                margin-bottom: 15px;
+                table {
+                    margin-bottom: 8px;
                 }
             }
         }
@@ -120,15 +120,13 @@
             }
         }
     }
-    .page-3 {
-        footer {
-            .container {
-                .col-12 {
-                    margin-bottom: 10px;
-                    // table {
-                    //     margin-bottom: 8px;
-                    // }
-                }
+    footer {
+        .container {
+            .col-12 {
+                margin-bottom: 10px;
+                // table {
+                //     margin-bottom: 8px;
+                // }
             }
         }
     }

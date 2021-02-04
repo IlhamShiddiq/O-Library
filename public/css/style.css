@@ -554,35 +554,41 @@ nav.nav-landing button:focus {
   border: 0px solid black !important;
 }
 
-.page-3 footer {
+footer {
   background-color: #388751;
   padding: 25px 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.page-3 footer h5 {
+footer h5 {
   font-size: 19px;
 }
 
-.page-3 footer .address {
+footer .email {
+  color: white;
+  font-size: 13px;
+  margin-bottom: -14px;
+}
+
+footer .address {
   color: white;
   font-size: 11px;
 }
 
-.page-3 footer ul li {
+footer ul li {
   margin-left: -20px;
 }
 
-.page-3 footer ul li a {
+footer ul li a {
   color: white;
 }
 
-.page-3 footer ul li a:hover {
+footer ul li a:hover {
   text-decoration: none;
   color: #d8d8d8;
 }
 
-.page-3 footer table tr {
+footer table tr {
   width: 50%;
 }
 
@@ -820,15 +826,15 @@ nav.nav-landing button:focus {
     font-size: 22px;
   }
 
-  .page-3 footer .container {
+  footer .container {
     padding: 0 50px !important;
   }
 
-  .page-3 footer .container .col-12 {
+  footer .container .col-12 {
     margin-bottom: 15px;
   }
 
-  .page-3 footer .container .col-12 table {
+  footer .container .col-12 table {
     margin-bottom: 8px;
   }
 }
@@ -1012,7 +1018,7 @@ nav.nav-landing button:focus {
     display: inline-block;
   }
 
-  .page-3 footer .container .col-12 {
+  footer .container .col-12 {
     margin-bottom: 10px;
   }
 }
@@ -2628,5 +2634,54 @@ body {
   border-bottom-right-radius: 30px;
   background-color: #04503c;
   color: white;
+}
+
+.about-dev-wrapper {
+  min-height: 768px;
+  background-color: #fff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.about-dev-wrapper .header {
+  background-color: #388751;
+}
+
+.about-dev-wrapper .header h1 {
+  font-size: 24px;
+  padding: 30px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.about-dev-wrapper .about-me {
+  font-size: 16px;
+}
+
+.about-dev-wrapper .pendidikan ul li,
+.about-dev-wrapper .prestasi ul li {
+  font-size: 16px;
+}
+
+.about-dev-wrapper .btn-gray {
+  background-color: #919191;
+}
+
+.about-dev-wrapper .btn-gray:hover {
+  background-color: dimgray;
+}
+
+.about-dev-wrapper .btn-github {
+  background-color: #383737;
+}
+
+.about-dev-wrapper .btn-github:hover {
+  background-color: #504f4f;
+}
+
+.about-dev-wrapper .btn-ig {
+  background-color: #b92060;
+}
+
+.about-dev-wrapper .btn-ig:hover {
+  background-color: #d13476;
 }
 

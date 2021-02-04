@@ -515,7 +515,7 @@ nav.nav-landing button:focus {
 }
 
 .page-3 {
-  height: 645px;
+  min-height: 645px;
 }
 
 .page-3 .gallery-container {

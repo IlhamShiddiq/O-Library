@@ -108,7 +108,7 @@
             </div>
         </div>
     </div>
-    <div class="page page-3" id="galeri">
+    <div class="page-3 full-width position-relative" id="galeri">
         <div class="gallery-container">
             <div class="container">
                 <div class="row mb-4">

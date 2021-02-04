@@ -550,11 +550,40 @@ nav.nav-landing button:focus {
 }
 
 .page-3 .gallery-container .collapse-gallery {
+  background-color: #f8fafc;
   border: 0px solid black !important;
 }
 
 .page-3 footer {
-  padding-top: 48px;
+  background-color: #388751;
+  padding: 25px 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-3 footer h5 {
+  font-size: 19px;
+}
+
+.page-3 footer .address {
+  color: white;
+  font-size: 11px;
+}
+
+.page-3 footer ul li {
+  margin-left: -20px;
+}
+
+.page-3 footer ul li a {
+  color: white;
+}
+
+.page-3 footer ul li a:hover {
+  text-decoration: none;
+  color: #d8d8d8;
+}
+
+.page-3 footer table tr {
+  width: 50%;
 }
 
 .up-btn {
@@ -790,6 +819,18 @@ nav.nav-landing button:focus {
   .page-3 .gallery-container h1.title-page {
     font-size: 22px;
   }
+
+  .page-3 footer .container {
+    padding: 0 50px !important;
+  }
+
+  .page-3 footer .container .col-12 {
+    margin-bottom: 15px;
+  }
+
+  .page-3 footer .container .col-12 table {
+    margin-bottom: 8px;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -884,6 +925,18 @@ nav.nav-landing button:focus {
   .page-3 .gallery-container h1.title-page {
     font-size: 23px;
   }
+
+  footer .container {
+    padding: 0 20px !important;
+  }
+
+  footer .container .col-12 {
+    margin-bottom: 15px;
+  }
+
+  footer .container .col-12 table {
+    margin-bottom: 8px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -957,6 +1010,10 @@ nav.nav-landing button:focus {
   .page-1 .vector .vector-2 img {
     width: 370px;
     display: inline-block;
+  }
+
+  .page-3 footer .container .col-12 {
+    margin-bottom: 10px;
   }
 }
 

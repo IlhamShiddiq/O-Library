@@ -37,7 +37,6 @@ Route::get('/logout', [DataPustakawanController::class, 'logout']);
 Route::get('/selecting-user', [StaticPageController::class, 'selecting']);
 Route::get('/account/confirm', [ConfirmPageController::class, 'confirmPage']);
 Route::post('/account/confirm', [ConfirmPageController::class, 'confirmPageData']);
-Route::get('/account/confirming/{user}', [ConfirmPageController::class, 'confirmingPage']);
 Route::post('/account/confirming/{user}', [ConfirmPageController::class, 'confirmingPageData']);
 Route::post('/excel-report', [StaticPageController::class, 'excelReportMessage']);
 

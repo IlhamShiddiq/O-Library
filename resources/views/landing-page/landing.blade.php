@@ -102,7 +102,7 @@
                 </div>
                 <div class="row justify-content-center mt-4">
                     <div class="col-lg-6 col-md-10 col-12 date-info info-item-gray text-center">
-                        <p>Sesuai data hari Sabtu, tanggal 10 Oktober 2020</p>
+                        <p>Sesuai data hari {{$today}}</p>
                     </div>
                 </div>
             </div>
@@ -117,48 +117,22 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
-                        <div class="gallery-item">
-                            <img src="{{asset('img/galleries/gallery-1/'.$gallery[0]->gallery_picture)}}" alt="Gallery Photo">
+                    @for ($i = 0; $i < 4; $i++)
+                        <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
+                            <div class="gallery-item">
+                                <img src="{{asset('img/galleries/gallery-'.($i + 1).'/'.$gallery[$i]->gallery_picture)}}" alt="Gallery Photo">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-right" data-aos-duration="800">
-                        <div class="gallery-item">
-                            <img src="{{asset('img/galleries/gallery-2/'.$gallery[1]->gallery_picture)}}" alt="Gallery Photo">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
-                        <div class="gallery-item">
-                            <img src="{{asset('img/galleries/gallery-3/'.$gallery[2]->gallery_picture)}}" alt="Gallery Photo">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-right" data-aos-duration="800">
-                        <div class="gallery-item">
-                            <img src="{{asset('img/galleries/gallery-4/'.$gallery[3]->gallery_picture)}}" alt="Gallery Photo">
-                        </div>
-                    </div>
+                    @endfor
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-right" data-aos-duration="800">
-                        <div class="gallery-item">
-                            <img src="{{asset('img/galleries/gallery-5/'.$gallery[4]->gallery_picture)}}" alt="Gallery Photo">
+                    @for ($i = 4; $i < 8; $i++)
+                        <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
+                            <div class="gallery-item">
+                                <img src="{{asset('img/galleries/gallery-'.($i + 1).'/'.$gallery[$i]->gallery_picture)}}" alt="Gallery Photo">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
-                        <div class="gallery-item">
-                            <img src="{{asset('img/galleries/gallery-6/'.$gallery[5]->gallery_picture)}}" alt="Gallery Photo">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-right" data-aos-duration="800">
-                        <div class="gallery-item">
-                            <img src="{{asset('img/galleries/gallery-7/'.$gallery[6]->gallery_picture)}}" alt="Gallery Photo">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
-                        <div class="gallery-item">
-                            <img src="{{asset('img/galleries/gallery-8/'.$gallery[7]->gallery_picture)}}" alt="Gallery Photo">
-                        </div>
-                    </div>
+                    @endfor
                 </div>
                 <div class="row mt-5 mb-5">
                     <button class="btn btn-green btn-more-gallery text-white" type="button" data-toggle="collapse" data-target="#more-gallery" aria-expanded="false"id="show-more">
@@ -171,55 +145,77 @@
                 <div class="collapse mb-3" id="more-gallery">
                     <div class="card collapse-gallery card-body">
                         <div class="row justify-content-center">
-                            <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item">
-                                    <img src="{{asset('img/galleries/gallery-9/'.$gallery[8]->gallery_picture)}}" alt="Gallery Photo">
+                            @for ($i = 8; $i < 12; $i++)
+                                <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
+                                    <div class="gallery-item">
+                                        <img src="{{asset('img/galleries/gallery-'.($i + 1).'/'.$gallery[$i]->gallery_picture)}}" alt="Gallery Photo">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item">
-                                    <img src="{{asset('img/galleries/gallery-10/'.$gallery[9]->gallery_picture)}}" alt="Gallery Photo">
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item">
-                                    <img src="{{asset('img/galleries/gallery-11/'.$gallery[10]->gallery_picture)}}" alt="Gallery Photo">
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item">
-                                    <img src="{{asset('img/galleries/gallery-12/'.$gallery[11]->gallery_picture)}}" alt="Gallery Photo">
-                                </div>
-                            </div>
+                            @endfor
                         </div>
                         <div class="row justify-content-center">
-                            <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item">
-                                    <img src="{{asset('img/galleries/gallery-13/'.$gallery[12]->gallery_picture)}}" alt="Gallery Photo">
+                            @for ($i = 12; $i < 16; $i++)
+                                <div class="col-6 col-md-4 col-lg-2 col-gallery" data-aos="flip-left" data-aos-duration="1000">
+                                    <div class="gallery-item">
+                                        <img src="{{asset('img/galleries/gallery-'.($i + 1).'/'.$gallery[$i]->gallery_picture)}}" alt="Gallery Photo">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item">
-                                    <img src="{{asset('img/galleries/gallery-14/'.$gallery[13]->gallery_picture)}}" alt="Gallery Photo">
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item">
-                                    <img src="{{asset('img/galleries/gallery-15/'.$gallery[14]->gallery_picture)}}" alt="Gallery Photo">
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2 col-gallery">
-                                <div class="gallery-item">
-                                    <img src="{{asset('img/galleries/gallery-16/'.$gallery[15]->gallery_picture)}}" alt="Gallery Photo">
-                                </div>
-                            </div>
+                            @endfor
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <footer class="green-square text-center text-white">
-            <p>O'Library &copy; 2020, SMKN 1 Cimahi</p>
+        <footer class="text-center text-white">
+            <div class="container">
+                <div class="row my-4">
+                    <div class="col-lg-4 col-md-6 col-12 text-left">
+                        <h5 class="mb-3 brand">O'Library.</h5>
+                        <p class="text-justify">Web resmi perpustakaan milik SMK Negeri 1 Kota Cimahi. Hanya dapat diakses oleh siswa dan guru SMK Negeri 1 Cimahi.</p>
+                        <p class="address mt-3">Jalan Maharmartanegara No 48, Kelurahan Leuwigajah</p>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-12 text-left">
+                        <h5 class="mb-3">Pintasan</h5>
+                        <ul>
+                            <li><a href="#">Info Perpustakaan</a></li>
+                            <li><a href="#">Galeri</a></li>
+                            <li><a href="#">Konfirmasi Akun</a></li>
+                            <li><a href="#">Login</a></li>
+                            <li><a href="#">About Developer</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-12 text-left">
+                        <h5 class="mb-3">Jam Buka</h5>
+                        <table class="full-width">
+                            <tr>
+                                <td class="day">Senin</td>
+                                <td class="time">08.00 - 17.00</td>
+                            </tr>
+                            <tr>
+                                <td class="day">Selasa</td>
+                                <td class="time">08.00 - 17.00</td>
+                            </tr>
+                            <tr>
+                                <td class="day">Rabu</td>
+                                <td class="time">08.00 - 17.00</td>
+                            </tr>
+                            <tr>
+                                <td class="day">Kamis</td>
+                                <td class="time">08.00 - 17.00</td>
+                            </tr>
+                            <tr>
+                                <td class="day">Jumat</td>
+                                <td class="time">08.00 - 17.00</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 text-left">
+                        <h5 class="mb-3">Tentang</h5>
+                        <p class="text-justify">O'Library merupakan web perpustakaan online yang digunakan sebagai portal untuk siswa untuk mengakses perbukuan yang tersedia di perpustakaan SMK Negeri 1 Cimahi.</p>
+                    </div>
+                </div>
+            </div>
+            O'Library &copy; 2020, SMKN 1 Cimahi
         </footer>
     </div>
     <div class="up-btn position-fixed" id="up-btn">

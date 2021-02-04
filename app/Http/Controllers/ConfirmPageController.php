@@ -43,7 +43,7 @@ class ConfirmPageController extends Controller
 
                 if ($code->all())
                 {
-                    return redirect('/account/confirming/'.$id);
+                    return view('confirm-page.confirming-page', compact('id'));
                 }
                 else 
                 {
@@ -57,7 +57,7 @@ class ConfirmPageController extends Controller
 
                 if ($code->all())
                 {
-                    return redirect('/account/confirming/'.$id);
+                    return view('confirm-page.confirming-page', compact('id'));
                 }
                 else 
                 {
@@ -70,12 +70,6 @@ class ConfirmPageController extends Controller
         }
     }
 
-    public function confirmingPage(User $user)
-    {
-        $id = $user->id;
-
-        return view('confirm-page.confirming-page', compact('id'));
-    }
 
     public function confirmingPageData(Request $request, User $user)
     {

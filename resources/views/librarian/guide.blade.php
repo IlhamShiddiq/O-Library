@@ -12,7 +12,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-11 col-md-9 col-lg-6 white-wrapper radius-admin mb-4">
+            <div class="col-11 col-md-9 col-lg-6 white-wrapper radius-admin mb-4 mt-5 mt--5">
                 <div class="guide-user position-relative py-5 shadow px-2 radius-admin">
                     <div class="header text-center py-3 px-3 position-absolute top-absolute bg-dark full-width text-white radius-admin">
                         <img src="{{asset('img/icon.png')}}" width="55" class="rounded-circle p-2" style="background-color: rgb(248, 248, 248)">

@@ -236,14 +236,14 @@ class DataBukuController extends Controller
         $books = DB::table('books')
             ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
             ->join('categories', 'books.category_id', '=', 'categories.id')
-            ->select('books.id', 'books.publisher_id', 'books.category_id', 'books.title', 'books.author', 'books.qty', 'books.image', 'books.about', 'publishers.publisher', 'categories.category')
+            ->select('books.*', 'publishers.publisher', 'categories.category')
             ->where($tbl, 'like', $search)
             ->paginate(3000);
 
         $count = DB::table('books')
             ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
             ->join('categories', 'books.category_id', '=', 'categories.id')
-            ->select('books.id', 'books.publisher_id', 'books.category_id', 'books.title', 'books.author', 'books.qty', 'books.image', 'books.about', 'publishers.publisher', 'categories.category')
+            ->select('books.*', 'publishers.publisher', 'categories.category')
             ->where($tbl, 'like', $search)
             ->count();
 

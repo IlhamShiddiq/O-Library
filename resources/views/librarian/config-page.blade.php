@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-12 col-lg-4 p-0">
-                <div class="gray-wrapper radius-admin">
+                <div class="gray-wrapper radius-admin mt-5 mt--5">
                     <div class="info-login-pic text-center border-bottom pb-2">
                         <img src="{{asset('uploaded_files/librarian-foto/'.auth()->user()->profile_photo_path)}}" alt="Ilham Shiddiq" class="rounded-circle fit-cover" width="70" height="70">
                     </div>
@@ -26,7 +26,7 @@
                 <button class="btn btn-sm btn-success full-width mt-2 mb-3" data-toggle="modal" data-target="#dashboardMemberModal">Member Background Configuration</button>
             </div>
             <div class="col-12 col-md-12 col-lg-8 mb-3">
-                <div class="gray-wrapper radius-admin px-4 position-relative">
+                <div class="gray-wrapper radius-admin px-4 position-relative mt-5 mt--5">
                     <div class="line-config position-absolute top-absolute full-width"></div>
                     <form action="{{url('/config/return-config')}}" method="POST">
                         @csrf

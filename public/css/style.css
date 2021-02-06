@@ -554,41 +554,41 @@ nav.nav-landing button:focus {
   border: 0px solid black !important;
 }
 
-footer {
+footer.footer-lp {
   background-color: #388751;
   padding: 25px 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-footer h5 {
+footer.footer-lp h5 {
   font-size: 19px;
 }
 
-footer .email {
+footer.footer-lp .email {
   color: white;
   font-size: 13px;
   margin-bottom: -14px;
 }
 
-footer .address {
+footer.footer-lp .address {
   color: white;
   font-size: 11px;
 }
 
-footer ul li {
+footer.footer-lp ul li {
   margin-left: -20px;
 }
 
-footer ul li a {
+footer.footer-lp ul li a {
   color: white;
 }
 
-footer ul li a:hover {
+footer.footer-lp ul li a:hover {
   text-decoration: none;
   color: #d8d8d8;
 }
 
-footer table tr {
+footer.footer-lp table tr {
   width: 50%;
 }
 
@@ -826,15 +826,15 @@ footer table tr {
     font-size: 22px;
   }
 
-  footer .container {
+  footer.footer-lp .container {
     padding: 0 50px !important;
   }
 
-  footer .container .col-12 {
+  footer.footer-lp .container .col-12 {
     margin-bottom: 15px;
   }
 
-  footer .container .col-12 table {
+  footer.footer-lp .container .col-12 table {
     margin-bottom: 8px;
   }
 }
@@ -932,15 +932,15 @@ footer table tr {
     font-size: 23px;
   }
 
-  footer .container {
+  footer.footer-lp .container {
     padding: 0 20px !important;
   }
 
-  footer .container .col-12 {
+  footer.footer-lp .container .col-12 {
     margin-bottom: 15px;
   }
 
-  footer .container .col-12 table {
+  footer.footer-lp .container .col-12 table {
     margin-bottom: 8px;
   }
 }
@@ -1018,7 +1018,7 @@ footer table tr {
     display: inline-block;
   }
 
-  footer .container .col-12 {
+  footer.footer-lp .container .col-12 {
     margin-bottom: 10px;
   }
 }
@@ -1976,6 +1976,32 @@ input.input-admin:focus {
 
   .dashboard-container .more-graphic {
     margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .breadcrumb-container {
+    margin-bottom: -45px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .breadcrumb-container {
+    margin-bottom: -45px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .breadcrumb-container {
+    margin-bottom: -45px;
+  }
+}
+
+@media (min-width: 992px) {
+  .about-user-db,
+  .calendar,
+  .mt--5 {
+    margin-top: 0px !important;
   }
 }
 

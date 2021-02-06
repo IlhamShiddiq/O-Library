@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-11 col-md-4 col-lg-4 p-1">
-                <div class="gray-wrapper radius-admin">
+                <div class="gray-wrapper radius-admin mt-5 mt--5">
                   <div class="info-login-pic text-center border-bottom pb-2">
                       <img src="{{asset('uploaded_files/librarian-foto/'.auth()->user()->profile_photo_path)}}" alt="Ilham Shiddiq" class="rounded-circle fit-cover" width="70" height="70">
                   </div>
@@ -23,7 +23,7 @@
                   </div>
                 </div>
             </div>
-            <div class="col-11 col-md-4 col-lg-4 p-1">
+            <div class="col-11 col-md-4 col-lg-4 p-1 mt-5 mt--5">
                 <div class="warning-wrapper pengajuan-wrapper radius-admin">
                   <div class="info-login-pic text-center border-bottom pb-2">
                       <div class="total">{{$expired}}</div>
@@ -34,7 +34,7 @@
                   </div>
                 </div>
             </div>
-            <div class="col-11 col-md-4 col-lg-4 p-1">
+            <div class="col-11 col-md-4 col-lg-4 p-1 mt-5 mt--5">
                 <div class="danger-wrapper pengajuan-wrapper radius-admin">
                   <div class="info-login-pic text-center border-bottom pb-2">
                     <div class="total">{{$refused}}</div>

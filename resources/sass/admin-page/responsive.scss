@@ -1,0 +1,27 @@
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+    .breadcrumb-container {
+        margin-bottom: -45px;
+    }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (min-width: 576px) and (max-width: 767.98px) { 
+    .breadcrumb-container {
+        margin-bottom: -45px;
+    }
+}
+
+// Medium devices (tablets, less than 992px)
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .breadcrumb-container {
+        margin-bottom: -45px;
+    }
+}
+
+// Large devices (desktops, less than 1200px)
+@media (min-width: 992px) { 
+    .about-user-db, .calendar, .mt--5 {
+        margin-top: 0px !important;
+    }
+}

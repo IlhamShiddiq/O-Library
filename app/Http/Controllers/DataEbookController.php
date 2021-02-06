@@ -223,14 +223,14 @@ class DataEbookController extends Controller
         $ebooks = DB::table('ebooks')
             ->join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')
             ->join('categories', 'ebooks.category_id', '=', 'categories.id')
-            ->select('ebooks.id', 'ebooks.publisher_id', 'ebooks.category_id', 'ebooks.title', 'ebooks.author', 'ebooks.link', 'ebooks.image', 'ebooks.about', 'publishers.publisher', 'categories.category')
+            ->select('ebooks.*', 'publishers.publisher', 'categories.category')
             ->where($tbl, 'like', $search)
             ->paginate(3000);
 
         $count = DB::table('ebooks')
             ->join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')
             ->join('categories', 'ebooks.category_id', '=', 'categories.id')
-            ->select('ebooks.id', 'ebooks.publisher_id', 'ebooks.category_id', 'ebooks.title', 'ebooks.author', 'ebooks.link', 'ebooks.image', 'ebooks.about', 'publishers.publisher', 'categories.category')
+            ->select('ebooks.*', 'publishers.publisher', 'categories.category')
             ->where($tbl, 'like', $search)
             ->count();
 

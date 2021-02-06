@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    <div class="row justify-content-center pdf-report-wrapper mt-2 mb-5">
+    <div class="row justify-content-center pdf-report-wrapper mt-2 mb-5 mt-5 mt--5">
         <div class="col-lg-9 col-md-10 col-11">
             <div class="print-pdf d-inline-block">
                 <a href="{{url('/pdf-report-print')}}" id="print-pdf" class="btn btn-sm btn-success"><i class="fas fa-download"></i></a>

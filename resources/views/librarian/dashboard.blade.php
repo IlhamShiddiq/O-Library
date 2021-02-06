@@ -18,7 +18,7 @@
         <div class="dashboard-container">
             <div class="row mb-3">
                 <div class="col col-12 col-lg-9">
-                    <div class="about-user radius-admin gray-bg">
+                    <div class="about-user about-user-db radius-admin gray-bg mt-5">
                         <div class="container-fluid py-1">
                             <div class="row">
                                 <div class="col-md-6 col-lg-7">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="col col-12 col-lg-3">
-                    <div class="calendar radius-admin gray-bg p-0" id="calendar">
+                    <div class="calendar radius-admin gray-bg p-0 mt-5" id="calendar">
                         
                     </div>
                 </div>

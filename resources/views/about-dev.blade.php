@@ -107,7 +107,7 @@
             </div>
         </div>
     </div>
-    <footer class="text-center text-white">
+    <footer class="text-center text-white footer-lp">
         <div class="container">
             <div class="row my-4">
                 <div class="col-lg-4 col-md-6 col-12 text-left">

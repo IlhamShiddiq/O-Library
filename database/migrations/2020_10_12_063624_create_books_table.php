@@ -19,7 +19,7 @@ class CreateBooksTable extends Migration
             $table->integer('publisher_id');
             $table->string('author');
             $table->integer('category_id');
-            $table->char('qty', 4);
+            $table->integer('qty', 4);
             $table->string('image');
             $table->text('about')->nullable();
             $table->timestamps();

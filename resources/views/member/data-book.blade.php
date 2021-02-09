@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-md-5 col-12">
-        <div class="form-search">
+        <div class="form-search form-search-member-side">
             <form action="{{url('/member/book/search')}}" method="POST">
                 @csrf
                 <div class="input-group full-width">

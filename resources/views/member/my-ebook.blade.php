@@ -4,7 +4,7 @@
 
 @section('breadcrumb')
     <div class="col-lg-12 col-md-12 col-12">
-        <div class="breadcrumb-container">
+        <div class="breadcrumb-container breadcrumb-container-member">
             <ol class="breadcrumb position-relative">
                 <div class="breadcrumb-title position-absolute top-absolute text-center text-white">MY EBOOK</div>
                 <li class="breadcrumb-item active" aria-current="page">Member</li>

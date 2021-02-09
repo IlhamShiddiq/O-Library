@@ -2430,12 +2430,21 @@ img.vector-confirm {
 
 @media (max-width: 575.98px) {
   .member-page .form-search .title p.main-title {
-    font-size: 42px;
+    font-size: 32px;
   }
 
   .member-page .form-search .title p.sub-title {
-    font-size: 14px;
-    letter-spacing: 2px;
+    font-size: 13px;
+    margin-top: 5px;
+    letter-spacing: 0;
+  }
+
+  .member-page .form-search .pilihan-search {
+    display: none;
+  }
+
+  .member-page footer {
+    font-size: 11px;
   }
 
   .member-page-data .data-content .breadcrumb-container {
@@ -2452,6 +2461,40 @@ img.vector-confirm {
 
   .member-page-data .data-content .detail .detail-wrapper h1.judul {
     font-size: 28px;
+  }
+
+  .dropdown-menu-member {
+    width: 230px !important;
+  }
+
+  .form-search-member-side {
+    margin-top: 50px;
+  }
+
+  .breadcrumb-container-member {
+    margin-bottom: 10px;
+  }
+
+  .form-edit-profile-member {
+    margin-top: 40px;
+  }
+
+  .username-edit-member {
+    padding-left: 15px !important;
+    margin-top: -15px !important;
+  }
+
+  .name-edit-member {
+    padding-right: 15px !important;
+  }
+
+  .petunjuk-edit {
+    padding-left: 25px !important;
+  }
+
+  .petunjuk-edit button {
+    padding-left: 35px !important;
+    padding-right: 35px !important;
   }
 }
 
@@ -2480,6 +2523,18 @@ img.vector-confirm {
   .member-page-data .data-content .detail .detail-wrapper h1.judul {
     font-size: 28px;
   }
+
+  .dropdown-menu-member {
+    width: 230px !important;
+  }
+
+  .form-search-member-side {
+    margin-top: 50px;
+  }
+
+  .breadcrumb-container-member {
+    margin-bottom: 10px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -2498,6 +2553,10 @@ img.vector-confirm {
 
   .member-page-data .data-content .detail .detail-wrapper h1.judul {
     font-size: 30px;
+  }
+
+  .breadcrumb-container-member {
+    margin-bottom: 5px;
   }
 }
 

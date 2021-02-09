@@ -41,20 +41,26 @@
                     <button class="btn-admin text-white ml-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-caret-down"></i>
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-member" aria-labelledby="dropdownMenuButton">
                         <div class="short-profile mb-2 text-center">
                             <img src="{{asset('uploaded_files/member-foto/'.auth()->user()->profile_photo_path)}}" alt="admin icon" width="33" height="33" class="d-inline rounded-circle fit-cover">
                             <p class="d-inline ml-2 name">{{auth()->user()->name}}</p>
                         </div>
                         <div class="container">
-                            <div class="menu-link">
-                                <a class="dropdown-item mb-2" href="{{asset('/member/book')}}"><i class="fas fa-book mr-3"></i>Daftar Buku</a>
-                                <a class="dropdown-item mb-2" href="{{asset('/member/ebook')}}"><i class="fas fa-book mr-3"></i>Daftar Ebook</a>
-                            </div>
-                            <div class="profile">
-                                <a class="dropdown-item mb-2" href="{{asset('/member/edit-profile')}}"><i class="fas fa-user-alt mr-3"></i>Edit Profil Saya</a>
-                                <a class="dropdown-item mb-2" href="{{asset('/member/change-password')}}"><i class="fas fa-key mr-3"></i>Ganti Password</a>
-                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-6">
+                                    <div class="menu-link">
+                                        <a class="dropdown-item mb-2" href="{{asset('/member/book')}}"><i class="fas fa-book mr-3"></i>Daftar Buku</a>
+                                        <a class="dropdown-item mb-2" href="{{asset('/member/ebook')}}"><i class="fas fa-book mr-3"></i>Daftar Ebook</a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-6">
+                                    <div class="profile">
+                                        <a class="dropdown-item mb-2" href="{{asset('/member/edit-profile')}}"><i class="fas fa-user-alt mr-3"></i>Edit Profil Saya</a>
+                                        <a class="dropdown-item mb-2" href="{{asset('/member/change-password')}}"><i class="fas fa-key mr-3"></i>Ganti Password</a>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
                         <div class="logout">
                             <button class="btn btn-sm btn-danger btn-logout" data-toggle="modal" data-target="#logoutModal">Logout</button>
@@ -66,7 +72,7 @@
             </div>
         </nav>
 
-        <div class="form-search full-width p-3">
+        <div class="form-search full-width p-2">
             <div class="container">
                 <div class="col-12 text-white title text-center mb-4">
                     <p class="main-title">PERPUSTAKAAN</p>
@@ -76,10 +82,10 @@
                     <form action="{{url('/member/book/search')}}" method="POST">
                         @csrf
                         <div class="input-group">
-                            <input type="text" class="form-control rounded-left rounded-0 border-0" placeholder="Cari daftar buku berdasarkan ...." autocomplete="off" name="search">
+                            <input type="text" class="form-control rounded-left rounded-0 border-0" placeholder="Cari daftar buku" autocomplete="off" name="search">
                             <div class="input-group-append" id="button-addon4">
-                                <select class="custom-select rounded-0 border-left" name="by">
-                                    <option value="title">Judul</option>
+                                <select class="custom-select rounded-0 border-left pilihan-search" name="by">
+                                    <option value="title" selected>Judul</option>
                                     <option value="category">Kategori</option>
                                     <option value="author">Penulis</option>
                                     <option value="publisher">Penerbit</option>

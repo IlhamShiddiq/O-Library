@@ -16,7 +16,7 @@
 
 @section('content')
   <div class="col-lg-9 col-md-10 col-12">
-    <div class="form-edit-profile">
+    <div class="form-edit-profile form-edit-profile-member">
       <div class="gray-wrapper radius-admin full-width px-5 mb-3 position-relative py-5">
           <div class="header text-center py-3 px-3 position-absolute top-absolute bg-dark full-width text-white radius-admin">
             <img src="{{asset('img/icon.png')}}" width="55" class="rounded-circle p-2" style="background-color: rgb(248, 248, 248)">
@@ -27,7 +27,7 @@
           <form action="{{url('/member/edit-profile')}}" method="post" enctype="multipart/form-data" class="mb-4">
               @csrf
               <div class="row">
-                <div class="col-7 pr-1">
+                <div class="col-12 col-lg-7 col-md-7 pr-1 name-edit-member">
                   <div class="form-group">
                       <small for="namaMember">Nama Lengkap</small>
                       <input type="text" class="form-control @error('namaMember') is-invalid @enderror" id="namaMember" name="namaMember" placeholder="Isikan disini..." value="{{$datas[0]->name}}">
@@ -38,7 +38,7 @@
                       @enderror
                   </div>
                 </div>
-                <div class="col-5 pl-1">
+                <div class="col-12 col-lg-5 col-md-5 pl-1 username-edit-member">
                   <div class="form-group">
                       <small for="usernameMember">Username</small>
                       <input type="text" class="form-control @error('usernameMember') is-invalid @enderror" id="usernameMember" name="usernameMember" placeholder="Isikan disini..." readonly value="{{$datas[0]->username}}">
@@ -118,7 +118,7 @@
                     <img src="{{asset('uploaded_files/member-foto/'.$datas[0]->profile_photo_path)}}" alt="{{$datas[0]->name}}" class="full-width full-height fit-cover" id="member-foto">
                   </div>
                 </div>
-                <div class="col-8 text-black pt-3 px-1">
+                <div class="col-8 text-black pt-3 px-1 petunjuk-edit">
                   <small>Mohon diisi secara lengkap,<br>serta diisi dengan data yang sebenar-benarnya.</small> <br>
                   <button type="submit" class="btn btn-sm btn-success mt-3 px-5">Edit Data</button>
                 </div>

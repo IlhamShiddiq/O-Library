@@ -114,7 +114,7 @@
                               <img src="{{asset('uploaded_files/librarian-foto/'.$data['photo'])}}" alt="{{$data['name']}}" class="full-width full-height fit-cover" id="member-foto">
                             </div>
                           </div>
-                          <div class="col-8 text-black pt-3 px-1">
+                          <div class="col-8 text-black pt-3 px-1 petunjuk-edit">
                             <small>Mohon diisi secara lengkap,<br>serta diisi dengan data yang sebenar-benarnya.</small> <br>
                             <button type="submit" class="btn btn-sm btn-success mt-3 px-5">Edit Data</button>
                           </div>

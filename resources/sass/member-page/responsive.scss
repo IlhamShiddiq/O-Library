@@ -4,13 +4,20 @@
         .form-search {
             .title {
                 p.main-title {
-                    font-size: 42px;
+                    font-size: 32px;
                 }
                 p.sub-title {
-                    font-size: 14px;
-                    letter-spacing: 2px;
+                    font-size: 13px;
+                    margin-top: 5px;
+                    letter-spacing: 0;
                 }
             }
+            .pilihan-search {
+                display: none;
+            }
+        }
+        footer {
+            font-size: 11px;
         }
     }
     .member-page-data {
@@ -29,6 +36,32 @@
                     }
                 }
             }  
+        }
+    }
+    .dropdown-menu-member {
+        width: 230px !important;
+    }
+    .form-search-member-side {
+        margin-top: 50px;
+    }
+    .breadcrumb-container-member {
+        margin-bottom: 10px;
+    }
+    .form-edit-profile-member {
+        margin-top: 40px;
+    }
+    .username-edit-member {
+        padding-left: 15px !important;
+        margin-top: -15px !important;
+    }
+    .name-edit-member {
+        padding-right: 15px !important;
+    }
+    .petunjuk-edit {
+        padding-left: 25px !important;
+        button {
+            padding-left: 35px !important;
+            padding-right: 35px !important;
         }
     }
 }
@@ -66,6 +99,15 @@
             }   
         }
     }
+    .dropdown-menu-member {
+        width: 230px !important;
+    }
+    .form-search-member-side {
+        margin-top: 50px;
+    }
+    .breadcrumb-container-member {
+        margin-bottom: 10px;
+    }
 }
 
 // Medium devices (tablets, less than 992px)
@@ -94,6 +136,9 @@
                 }
             }   
         }
+    }
+    .breadcrumb-container-member {
+        margin-bottom: 5px;
     }
 }
 

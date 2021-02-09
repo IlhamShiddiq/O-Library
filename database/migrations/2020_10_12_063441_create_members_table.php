@@ -15,7 +15,6 @@ class CreateMembersTable extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id('member_id');
-            $table->char('nomor_induk', 15)->unique();
             $table->text('address');
             $table->char('phone', 16);
             $table->string('status');

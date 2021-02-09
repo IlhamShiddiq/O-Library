@@ -30,7 +30,7 @@ class AdminSeeder extends Seeder
         $lib = Librarian::create([
             'id' => $user->id,
             'address' => 'Default Address',
-            'phone' => '373373',
+            'phone' => '37337s3',
             'confirm_code' => '0'
         ]);
     }

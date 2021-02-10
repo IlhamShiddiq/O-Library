@@ -73,11 +73,12 @@ class ConfirmPageController extends Controller
 
     public function confirmingPageData(Request $request, User $user)
     {
-        $validateData = $request->validate([
-            'username' => 'required|min:5',
-            'password' => 'required|min:8',
-            'confirmPassword' => 'required|min:8',
-        ]);
+        if(strlen($request->username) < 5) {
+            return redirect('/account/confirm')->with('status', 'Minimal username terdiri atas 4 karakter angka/huruf');
+        }
+        else if(strlen($request->password) < 8) {
+            return redirect('/account/confirm')->with('status', 'Minimal password terdiri atas 8 karakter angka/huruf');
+        }
 
         $username = User::where('username', $request->username)
                         ->get();
@@ -111,12 +112,12 @@ class ConfirmPageController extends Controller
                 return redirect('/login')->with('success', 'Akun berhasil dibuat, silakan untuk login kembali.');
             }
             else{
-                return redirect('/account/confirming/'.$user->id)->with('status', 'Password tidak cocok saat dikonfirmasi');
+                return redirect('/account/confirm/')->with('status', 'Password tidak cocok saat dikonfirmasi');
             }
         }
         else
         {
-            return redirect('/account/confirming/'.$user->id)->with('status', 'Username telah dipakai oleh user lain');
+            return redirect('/account/confirm/')->with('status', 'Username telah dipakai oleh user lain');
         }
     }
 }

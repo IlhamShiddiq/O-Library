@@ -50,36 +50,27 @@
                                 <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-user"></i></div>
                                 </div>
-                                <input type="text" class="form-control @error('username') is-invalid @enderror" id="inlineFormInputGroup" placeholder="Username" name="username" value="{{ session('id') }}" autofocus>
-                                @error('username')
-                                    <div class="invalid-feedback text-left">
-                                        {{$message}}
-                                    </div>
-                                @enderror
+                                <input type="text" class="form-control @error('username') is-invalid @enderror" id="inlineFormInputGroup" placeholder="Username" name="username" value="{{ session('id') }}" autofocus required>
                             </div>
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
                                 </div>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="inlineFormInputGroup" placeholder="Password" name="password">
-                                @error('password')
-                                    <div class="invalid-feedback text-left">
-                                        {{$message}}
-                                    </div>
-                                @enderror
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="inlineFormInputGroup" placeholder="Password" name="password" required>
                             </div>
-                            <div class="input-group mb-5">
+                            <div class="input-group mb-4">
                                 <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
                                 </div>
-                                <input type="password" class="form-control @error('confirmPassword') is-invalid @enderror" id="inlineFormInputGroup" placeholder="Konfirmasi Password" name="confirmPassword">
-                                @error('confirmPassword')
-                                    <div class="invalid-feedback text-left">
-                                        {{$message}}
-                                    </div>
-                                @enderror
+                                <input type="password" class="form-control @error('confirmPassword') is-invalid @enderror" id="inlineFormInputGroup" placeholder="Konfirmasi Password" name="confirmPassword" required>
                             </div>
                             <button type="submit" class="btn btn-green-login text-white mb-1">SUBMIT</button>
+                            <div class="text-center" style="color: red;">
+                                <small>*Username minimal 5 karakter</small>
+                            </div>
+                            <div class="text-center mb-2" style="color: red; margin-top: -7px;">
+                                <small>*Password minimal 8 karakter</small>
+                            </div>
                         </form>
                     </div>
                 </div>

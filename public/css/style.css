@@ -351,6 +351,12 @@ small.counter-text {
   color: #dc3545;
 }
 
+@media (max-width: 575.98px) {
+  .message {
+    width: 280px;
+  }
+}
+
 @-webkit-keyframes menu-hover {
   0% {
     background-color: #27303A;

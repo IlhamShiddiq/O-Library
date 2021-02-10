@@ -319,3 +319,10 @@ small.counter-text {
     font-size: 80%;
     color: #dc3545;
 }
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+    .message {
+        width: 280px;
+    }
+}

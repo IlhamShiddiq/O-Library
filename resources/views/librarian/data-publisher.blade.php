@@ -52,7 +52,14 @@
                     <a href="{{ url('/publisher') }}" class="btn btn-success full-width"><i class="fas fa-eye"></i> See All</a>
                 </div>
                 <div class="gray-wrapper radius-admin">
-                    <button type="button" class="btn btn-success full-width" data-toggle="modal" data-target="#addDataModal"><i class="fas fa-plus"></i> Tambah Data</button>
+                    <div class="row">
+                      <div class="col-7 pr-1">
+                        <button type="button" class="btn btn-success full-width" data-toggle="modal" data-target="#addDataModal"><i class="fas fa-plus"></i> Tambah Data</button>
+                      </div>
+                      <div class="col-5 pl-1">
+                        <button type="button" class="btn btn-primary full-width" data-toggle="modal" data-target="#addDataModal"><i class="fas fa-file-upload"></i> Upload</button>
+                      </div>
+                    </div>
                 </div>
                 <div class="total-row text-center p-3 border-bottom mb-5">
                   {{$count}} Data Ditampilkan

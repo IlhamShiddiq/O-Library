@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Permission;
 use App\Models\Ebook;
 use App\Models\Config;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UsingEbook;
+use App\Mail\AcceptedEbook;
+use App\Mail\RejectedEbook;
 
 class DataPermissionController extends Controller
 {
@@ -39,22 +44,6 @@ class DataPermissionController extends Controller
         return view('librarian/data-permission', compact('permissions', 'count', 'requested', 'expired', 'refused'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request, Ebook $ebook)
     {
         date_default_timezone_set('Asia/Jakarta');
@@ -66,6 +55,7 @@ class DataPermissionController extends Controller
                     ->select('permissions.id')
                     ->where('id_member', auth()->user()->id)
                     ->where('id_ebook', $ebook->id)
+                    ->where('confirmed', '0')
                     ->get();
 
         if($check->all()) return redirect('/member/ebook/detail/'.$ebook->id)->with('failed', 'Ebook ini telah anda ajukan sebelumnya, mohon tunggu hingga dikonfirmasi');
@@ -78,53 +68,10 @@ class DataPermissionController extends Controller
         $permission->submit_date = date("Y-m-d");
         $permission->save();
 
+        Mail::to(auth()->user()->email, auth()->user()->name)->send(new UsingEbook(auth()->user()));
+
         return redirect('/member/ebook/detail/'.$ebook->id)->with('success', 'Berhasil diajukan, mohon tunggu hingga pengajuan dikonfirmasi');
 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Permission $permission)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Permission $permission)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Permission $permission)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Permission $permission)
-    {
-        //
     }
 
     public function permissionAccept(Request $request)
@@ -139,6 +86,11 @@ class DataPermissionController extends Controller
                         'limit_date' => $limit
                         ]);
 
+        $permission = Permission::find($request->id);
+        $user = User::find($permission->id_member);
+
+        Mail::to($user->email, $user->name)->send(new AcceptedEbook($user, $permission));
+
         return redirect('/permission')->with('success', 'Ajuan telah disetujui');
     }
 
@@ -151,6 +103,11 @@ class DataPermissionController extends Controller
                         'accepted' => '0',
                         'reason_for_rejection' => $request->alasan
                     ]);
+
+        $permission = Permission::find($request->id);
+        $user = User::find($permission->id_member);
+
+        Mail::to($user->email, $user->name)->send(new RejectedEbook($user, $permission));
 
         return redirect('/permission')->with('success', 'Ajuan telah ditolak');
     }

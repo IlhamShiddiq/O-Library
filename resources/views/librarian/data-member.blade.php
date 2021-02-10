@@ -50,8 +50,11 @@
                 </div>
                 <div class="gray-wrapper radius-admin">
                     <div class="row">
-                      <div class="col-10 pr-1">
+                      <div class="col-8 pr-1">
                           <button type="button" class="btn btn-success full-width" data-toggle="modal" data-target="#addDataModal"><i class="fas fa-plus"></i> Tambah Data</button>
+                      </div>
+                      <div class="col-2 pl-1 pr-1">
+                        <button type="button" class="btn btn-primary full-width" data-toggle="modal" data-target="#exportDataModal"><i class="fas fa-file-upload"></i></button>
                       </div>
                       <div class="col-2 pl-1">
                           <button type="button" class="btn btn-purple full-width" data-toggle="modal" data-target="#printCard"><i class="fas fa-id-card"></i></button>
@@ -286,6 +289,46 @@
                     <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
                 </div>
             </div>
+        </div>
+    </div>
+    
+    <!-- Export Modal -->
+    <div class="modal modal-admin fade" id="exportDataModal" tabindex="-1" aria-labelledby="addDataModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+              <div class="modal-header text-center">
+                  <img src="img/icon.png" alt="icon" width="55">
+                  <h5>EXPORT DATA</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body py-3">
+                <form action="{{url('/member/import')}}" method="post" enctype="multipart/form-data">
+                  @csrf
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="file" name="file" onchange="document.getElementById('name-label-import').innerHTML = this.files[0].name">
+                        <label class="custom-file-label" for="file" id="name-label-import">File ..</label>
+                      </div>
+                    </div>
+                    <small for="file">Kolom dalam file harus terdiri atas : nomor induk, nama, role, email, address, phone, status, kelas, kode konfirmasi</small>
+                    @error('file')
+                      <div id="validationServer03Feedback" class="invalid-feedback">
+                        {{$message}}
+                      </div>
+                    @enderror
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-sm btn-success px-5">Submit</button>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer text-center">
+                  <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
+              </div>
+          </div>
         </div>
     </div>
     

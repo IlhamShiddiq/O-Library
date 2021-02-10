@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendVerification;
 use App\Mail\ResendVerification;
+use App\Imports\MemberImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Auth;
 
 class DataMemberController extends Controller
@@ -311,5 +313,11 @@ class DataMemberController extends Controller
 
             return redirect('/member')->with('success', 'Kode berhasil direset. Kode telah dikirim ke email pengguna');
         }
+    }
+
+    public function importMember(Request $request) {
+        Excel::import(new MemberImport, $request->file);
+
+        return redirect('/member')->with('success', 'Data berhasil ditambah');
     }
 }

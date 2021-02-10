@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Categories;
 use App\Models\Config;
 use Illuminate\Http\Request;
+use App\Imports\CategoryImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DataCategoryController extends Controller
 {
@@ -123,5 +125,11 @@ class DataCategoryController extends Controller
         $count = Categories::where('category', 'like', $word)->count();
 
         return view('librarian/data-category', compact('categories', 'count'));
+    }
+    
+    public function importCategory(Request $request) {
+        Excel::import(new CategoryImport, $request->file);
+
+        return redirect('/category')->with('success', 'Data berhasil ditambah');
     }
 }

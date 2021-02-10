@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendVerification;
 use App\Mail\ResendVerification;
+use App\Imports\LibrarianImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Auth;
 
 class DataPustakawanController extends Controller
@@ -316,5 +318,12 @@ class DataPustakawanController extends Controller
 
             return redirect('/librarian')->with('success', 'Kode berhasil direset, Kode verifikasi berhasil dikirim ke email pengguna');
         }
+    }
+
+    
+    public function importLibrarian(Request $request) {
+        Excel::import(new LibrarianImport, $request->file);
+
+        return redirect('/librarian')->with('success', 'Data berhasil ditambah');
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Publisher;
 use App\Models\Config;
 use Illuminate\Http\Request;
+use App\Imports\PublisherImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DataPublisherController extends Controller
 {
@@ -58,35 +60,6 @@ class DataPublisherController extends Controller
         return redirect('/publisher')->with('success', 'Data berhasil disimpan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Publisher  $publisher
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Publisher $publisher)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Publisher  $publisher
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Publisher $publisher)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Publisher  $publisher
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Publisher $publisher)
     {
         $validateData = $request->validate([
@@ -123,5 +96,11 @@ class DataPublisherController extends Controller
         $count = Publisher::where('publisher', 'like', $word)->count();
 
         return view('librarian/data-publisher', compact('publishers', 'count'));
+    }
+
+    public function importPublisher(Request $request) {
+        Excel::import(new PublisherImport, $request->file);
+
+        return redirect('/publisher')->with('success', 'Data berhasil ditambah');
     }
 }

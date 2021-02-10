@@ -50,6 +50,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/book', [DataBukuController::class, 'index']);
     Route::post('/book', [DataBukuController::class, 'store']);
     Route::post('/book/search', [DataBukuController::class, 'search']);
+    Route::post('/book/import', [DataBukuController::class, 'importBook']);
     Route::get('/book/history/{book}', [DataBukuController::class, 'bookHistory']);
     Route::delete('/book/{book}', [DataBukuController::class, 'destroy']);
     Route::put('/book/{book}', [DataBukuController::class, 'update']);
@@ -57,24 +58,28 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/ebook', [DataEbookController::class, 'index']);
     Route::post('/ebook', [DataEbookController::class, 'store']);
     Route::post('/ebook/search', [DataEbookController::class, 'search']);
+    Route::post('/ebook/import', [DataEbookController::class, 'importEbook']);
     Route::delete('/ebook/{ebook}', [DataEbookController::class, 'destroy']);
     Route::put('/ebook/{ebook}', [DataEbookController::class, 'update']);
 
     Route::get('/publisher', [DataPublisherController::class, 'index']);
     Route::post('/publisher', [DataPublisherController::class, 'store']);
     Route::post('/publisher/search', [DataPublisherController::class, 'search']);
+    Route::post('/publisher/import', [DataPublisherController::class, 'importPublisher']);
     Route::delete('/publisher/{publisher}', [DataPublisherController::class, 'destroy']);
     Route::put('/publisher/{publisher}', [DataPublisherController::class, 'update']);
 
     Route::get('/category', [DataCategoryController::class, 'index']);
     Route::post('/category', [DataCategoryController::class, 'store']);
     Route::post('/category/search', [DataCategoryController::class, 'search']);
+    Route::post('/category/import', [DataCategoryController::class, 'importCategory']);
     Route::delete('/category/{categories}', [DataCategoryController::class, 'destroy']);
     Route::put('/category/{categories}', [DataCategoryController::class, 'update']);
 
     Route::get('/librarian', [DataPustakawanController::class, 'index']);
     Route::post('/librarian', [DataPustakawanController::class, 'store']);
     Route::post('/librarian/search', [DataPustakawanController::class, 'search']);
+    Route::post('/librarian/import', [DataPustakawanController::class, 'importLibrarian']);
     Route::post('/librarian/reset-code/{librarian}', [DataPustakawanController::class, 'resetCode']);
     Route::delete('/librarian/{user}', [DataPustakawanController::class, 'destroy']);
     Route::put('/librarian/{user}', [DataPustakawanController::class, 'update']);
@@ -88,6 +93,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/member', [DataMemberController::class, 'index']);
     Route::post('/member', [DataMemberController::class, 'store']);
     Route::post('/member/search', [DataMemberController::class, 'search']);
+    Route::post('/member/import', [DataMemberController::class, 'importMember']);
     Route::post('/member/reset-code/{member}', [DataMemberController::class, 'resetCode']);
     Route::delete('/member/{member}', [DataMemberController::class, 'destroy']);
     Route::get('/member/history/{member}', [DataMemberController::class, 'memberHistory']);

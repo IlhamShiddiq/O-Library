@@ -9,6 +9,8 @@ use App\Models\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File; 
+use App\Imports\EbookImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DataEbookController extends Controller
 {
@@ -236,5 +238,11 @@ class DataEbookController extends Controller
 
         return view('librarian.data-ebook', compact('ebooks', 'count'));
         // dd($request->request);
+    }
+
+    public function importEbook(Request $request) {
+        Excel::import(new EbookImport, $request->file);
+
+        return redirect('/ebook')->with('success', 'Data berhasil ditambah');
     }
 }

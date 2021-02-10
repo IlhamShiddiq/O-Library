@@ -10,6 +10,8 @@ use App\Models\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File; 
+use App\Imports\BookImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DataBukuController extends Controller
 {
@@ -249,5 +251,11 @@ class DataBukuController extends Controller
 
         return view('librarian.data-book', compact('books', 'count'));
         // dd($request->request);
+    }
+
+    public function importBook(Request $request) {
+        Excel::import(new BookImport, $request->file);
+
+        return redirect('/book')->with('success', 'Data berhasil ditambah');
     }
 }

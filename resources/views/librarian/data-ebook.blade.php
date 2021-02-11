@@ -361,12 +361,10 @@
                         <label class="custom-file-label" for="file" id="name-label-import">File ..</label>
                       </div>
                     </div>
-                    <small for="file">Kolom dalam file harus terdiri atas : kode isbn, judul buku, id penerbit, penulis, id kategori, link, sinopsis, tahun terbit</small>
                     @error('file')
-                      <div id="validationServer03Feedback" class="invalid-feedback">
-                        {{$message}}
-                      </div>
+                      <p style="font-size: 80%; color: #dc3545; margin-top: .25rem">{{$message}}</p>
                     @enderror
+                    <small for="file">Kolom dalam file harus terdiri atas : kode isbn, judul buku, id penerbit, penulis, id kategori, link, sinopsis, tahun terbit</small>
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn btn-sm btn-success px-5">Submit</button>

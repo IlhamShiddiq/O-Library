@@ -84,7 +84,7 @@
                                 </h1>
                                 <p class="username m-1" <?php if($red) echo $red; ?>>Username : {{$librarian->username}} ({{$librarian->role}})</p>
                                 <p class="username">&nbsp;{{$librarian->nomor_induk}}</p>
-                                <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$librarian->id}}">Hapus</a>
+                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$librarian->id}}" @if($librarian->nomor_induk == auth()->user()->nomor_induk) disabled @endif>Hapus</button>
                                 @if ($librarian->confirm_code != '')
                                     <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#resetKode" data-id="{{$librarian->id}}">Reset Kode</a>
                                 @endif
@@ -325,12 +325,10 @@
                           <label class="custom-file-label" for="file" id="name-label-import">File ..</label>
                         </div>
                       </div>
-                      <small for="file">Kolom dalam file harus terdiri atas : nomor induk, nama, role, email, address, phone, kode konfirmasi</small>
                       @error('file')
-                        <div id="validationServer03Feedback" class="invalid-feedback">
-                          {{$message}}
-                        </div>
+                        <p style="font-size: 80%; color: #dc3545; margin-top: .25rem">{{$message}}</p>
                       @enderror
+                      <small for="file">Kolom dalam file harus terdiri atas : nomor induk, nama, role, email, address, phone, kode konfirmasi</small>
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn btn-sm btn-success px-5">Submit</button>

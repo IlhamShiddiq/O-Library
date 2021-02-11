@@ -322,6 +322,10 @@ class DataPustakawanController extends Controller
 
     
     public function importLibrarian(Request $request) {
+        $validateData = $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
         Excel::import(new LibrarianImport, $request->file);
 
         return redirect('/librarian')->with('success', 'Data berhasil ditambah');

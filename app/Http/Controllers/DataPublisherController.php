@@ -99,6 +99,10 @@ class DataPublisherController extends Controller
     }
 
     public function importPublisher(Request $request) {
+        $validateData = $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
         Excel::import(new PublisherImport, $request->file);
 
         return redirect('/publisher')->with('success', 'Data berhasil ditambah');

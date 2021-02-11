@@ -10,7 +10,6 @@ class Publisher extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
         'publisher'
     ];
 }

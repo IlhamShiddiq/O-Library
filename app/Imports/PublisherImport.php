@@ -15,8 +15,7 @@ class PublisherImport implements ToModel
     public function model(array $row)
     {
         $publisher = Publisher::create([
-            'id' => $row[0],
-            'publisher' => $row[1]
+            'publisher' => $row[0]
         ]);
 
         return $publisher;

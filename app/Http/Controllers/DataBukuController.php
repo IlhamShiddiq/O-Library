@@ -254,6 +254,10 @@ class DataBukuController extends Controller
     }
 
     public function importBook(Request $request) {
+        $validateData = $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
         Excel::import(new BookImport, $request->file);
 
         return redirect('/book')->with('success', 'Data berhasil ditambah');

@@ -15,8 +15,7 @@ class CategoryImport implements ToModel
     public function model(array $row)
     {
         $category = Categories::create([
-            'id' => $row[0],
-            'category' => $row[1]
+            'category' => $row[0]
         ]);
 
         return $category;

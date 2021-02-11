@@ -128,6 +128,10 @@ class DataCategoryController extends Controller
     }
     
     public function importCategory(Request $request) {
+        $validateData = $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
         Excel::import(new CategoryImport, $request->file);
 
         return redirect('/category')->with('success', 'Data berhasil ditambah');

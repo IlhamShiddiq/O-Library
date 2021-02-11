@@ -156,12 +156,10 @@
                         <label class="custom-file-label" for="file" id="name-label">File ..</label>
                       </div>
                     </div>
-                    <small for="file">Kolom dalam file harus terdiri atas : id, nama kategori</small>
                     @error('file')
-                      <div id="validationServer03Feedback" class="invalid-feedback">
-                        {{$message}}
-                      </div>
+                      <p style="font-size: 80%; color: #dc3545; margin-top: .25rem">{{$message}}</p>
                     @enderror
+                    <small for="file">Kolom dalam file harus terdiri atas : nama kategori</small>
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn btn-sm btn-success px-5">Submit</button>

@@ -316,6 +316,10 @@ class DataMemberController extends Controller
     }
 
     public function importMember(Request $request) {
+        $validateData = $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
         Excel::import(new MemberImport, $request->file);
 
         return redirect('/member')->with('success', 'Data berhasil ditambah');

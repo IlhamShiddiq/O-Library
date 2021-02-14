@@ -64,6 +64,12 @@
             padding-right: 35px !important;
         }
     }
+    .book-ebook-detail img {
+        padding-top: 50px;
+    }
+    .preview-pdf-ebook {
+        margin-top: 50px;
+    }
 }
 
 // Small devices (landscape phones, less than 768px)
@@ -108,6 +114,12 @@
     .breadcrumb-container-member {
         margin-bottom: 10px;
     }
+    .book-ebook-detail img {
+        padding-top: 50px;
+    }
+    .preview-pdf-ebook {
+        margin-top: 50px;
+    }
 }
 
 // Medium devices (tablets, less than 992px)
@@ -139,6 +151,12 @@
     }
     .breadcrumb-container-member {
         margin-bottom: 5px;
+    }
+    .book-ebook-detail img, .book-ebook-detail-data {
+        padding-top: 30px;
+    }
+    .preview-pdf-ebook {
+        margin-top: 30px;
     }
 }
 

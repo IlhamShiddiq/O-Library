@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-    <div class="col-lg-12 col-md-10 col-12">
+    <div class="col-lg-12 col-md-10 col-12 preview-pdf-ebook">
         <div class="judul-preview-ebook pt-2"> </div>
         <div class="preview-pdf position-relative full-width mt-1">
             <iframe src="{{$link}}" class="full-width position-absolute top-absolute" frameborder="1">

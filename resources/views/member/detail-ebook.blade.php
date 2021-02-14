@@ -19,10 +19,10 @@
 @section('content')
     <div class="detail full-width">
         <div class="row full-width justify-content-center pb-3 border-bottom">
-            <div class="col-lg-4 col-md-6 col-11">
+            <div class="col-lg-4 col-md-6 col-11 book-ebook-detail">
                 <img src="{{asset('uploaded_files/ebook-cover/'.$datas[0]->image)}}" alt="{{$datas[0]->title}}" class="full-width fit-cover-top mb-3">
             </div>
-            <div class="col-lg-6 col-md-6 col-11">
+            <div class="col-lg-6 col-md-6 col-11 book-ebook-detail-data">
                 <div class="detail-wrapper position-relative">
                     <div class="gray-line position-absolute top-absolute full-width pt-1"></div>
                     <h1 class="judul border-bottom py-3 px-2">{{$datas[0]->title}}</h1>

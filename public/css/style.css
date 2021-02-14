@@ -2502,6 +2502,14 @@ img.vector-confirm {
     padding-left: 35px !important;
     padding-right: 35px !important;
   }
+
+  .book-ebook-detail img {
+    padding-top: 50px;
+  }
+
+  .preview-pdf-ebook {
+    margin-top: 50px;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -2541,6 +2549,14 @@ img.vector-confirm {
   .breadcrumb-container-member {
     margin-bottom: 10px;
   }
+
+  .book-ebook-detail img {
+    padding-top: 50px;
+  }
+
+  .preview-pdf-ebook {
+    margin-top: 50px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -2563,6 +2579,15 @@ img.vector-confirm {
 
   .breadcrumb-container-member {
     margin-bottom: 5px;
+  }
+
+  .book-ebook-detail img,
+  .book-ebook-detail-data {
+    padding-top: 30px;
+  }
+
+  .preview-pdf-ebook {
+    margin-top: 30px;
   }
 }
 

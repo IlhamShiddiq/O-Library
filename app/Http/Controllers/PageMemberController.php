@@ -192,11 +192,15 @@ class PageMemberController extends Controller
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
 
+        date_default_timezone_set('Asia/Jakarta');
+
         $ebooks = DB::table('ebooks')
             ->join('permissions', 'permissions.id_ebook', '=', 'ebooks.id')
             ->select('ebooks.id', 'ebooks.title', 'ebooks.link', 'permissions.limit_date')
             ->where('permissions.id_member', auth()->user()->id)
             ->where('permissions.id_ebook', $ebook->id)
+            ->where('permissions.accepted', '1')
+            ->where('permissions.limit_date', '>', date('Y-m-d'))
             ->get();
 
         $link = substr($ebooks[0]->link, 0, strpos($ebooks[0]->link, 'view?usp=sharing')).'preview';

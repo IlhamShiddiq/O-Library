@@ -16,6 +16,11 @@ class ConfigController extends Controller
      */
     public function index()
     {
+        if(!(auth()->user()->role == 'Pustakawan' || auth()->user()->role == 'Admin'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
+        
         $data = Config::all();
         $data = $data[0];
         $gallery = GalleryConfig::all();

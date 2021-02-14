@@ -39,22 +39,6 @@ class DataTransaksiController extends Controller
         return view('librarian/data-transaction', compact('datas', 'today'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validateData = $request->validate([
@@ -162,35 +146,6 @@ class DataTransaksiController extends Controller
         return redirect('/transaction')->with('failed', 'Nomor Induk yang dimasukkan tidak ditemukan di sistem');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Transaction $transaction)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Transaction $transaction)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Transaction $transaction)
     {
         $id = Detail_Transactions::where('transaction_id', $transaction->id)
@@ -307,6 +262,11 @@ class DataTransaksiController extends Controller
 
     public function returnBook(Transaction $transaction)
     {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
+
         $id = $transaction->member_id;
         $data = User::select('nomor_induk', 'name')
                     ->where('id', $id)

@@ -47,6 +47,11 @@ class DataBukuController extends Controller
 
     public function bookHistory(Book $book)
     {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
+
         $histories = Transaction::join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
                                 ->join('users', 'transactions.member_id', '=', 'users.id')
                                 ->where('book_id', $book->id)

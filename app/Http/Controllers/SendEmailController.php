@@ -12,6 +12,10 @@ class SendEmailController extends Controller
 {
     public function sendReminder(Transaction $transaction)
     {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
 
         $id = $transaction->id;
         

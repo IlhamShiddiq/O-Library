@@ -22,6 +22,11 @@ class DataPermissionController extends Controller
      */
     public function index()
     {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
+
         date_default_timezone_set('Asia/Jakarta');
         if(!(auth()->user()->role == 'Pustakawan'))
         {
@@ -114,6 +119,11 @@ class DataPermissionController extends Controller
 
     public function deleteExpired()
     {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
+
         date_default_timezone_set('Asia/Jakarta');
         Permission::where('limit_date', '<', date('Y-m-d'))->delete();
 
@@ -122,6 +132,11 @@ class DataPermissionController extends Controller
 
     public function deleteRefused()
     {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
+
         Permission::where('accepted', 0)->delete();
 
         return redirect('permission')->with('success', 'Daftar yang ditolak berhasil dihapus');

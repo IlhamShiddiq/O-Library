@@ -49,6 +49,10 @@ class DataMemberController extends Controller
 
     public function memberHistory(Member $member)
     {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
 
         $histories = Transaction::join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
                                 ->join('books', 'books.id', '=', 'detail_transactions.book_id')
@@ -120,23 +124,6 @@ class DataMemberController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Member  $member
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Member $member)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Member  $member
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Member $member)
     {
         if(!(auth()->user()->role == 'Member'))

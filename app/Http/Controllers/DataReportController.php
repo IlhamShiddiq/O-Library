@@ -16,6 +16,11 @@ class DataReportController extends Controller
      */
     public function index()
     {
+        if(!(auth()->user()->role == 'Pustakawan' || auth()->user()->role == 'Admin'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
+
         date_default_timezone_set('Asia/Jakarta');
         $this_month = date('n');
 
@@ -43,6 +48,10 @@ class DataReportController extends Controller
 
     public function indexLate()
     {
+        if(!(auth()->user()->role == 'Pustakawan' || auth()->user()->role == 'Admin'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
 
         $config = Config::all();
 

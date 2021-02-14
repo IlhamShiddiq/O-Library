@@ -15,6 +15,11 @@ class StaticPageController extends Controller
 {
     public function guide()
     {
+        if(!(auth()->user()->role == 'Pustakawan' || auth()->user()->role == 'Admin'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
+
         return view('librarian/guide');
     }
 
@@ -33,6 +38,11 @@ class StaticPageController extends Controller
 
     public function pdfReport()
     {
+        if(!(auth()->user()->role == 'Pustakawan' || auth()->user()->role == 'Admin'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
+
         date_default_timezone_set('Asia/Jakarta');
 
         $message = '-';
@@ -70,6 +80,11 @@ class StaticPageController extends Controller
 
     public function pdfReportPrint()
     {
+        if(!(auth()->user()->role == 'Pustakawan' || auth()->user()->role == 'Admin'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
+        
         date_default_timezone_set('Asia/Jakarta');
 
         $message = '-';
@@ -135,6 +150,11 @@ class StaticPageController extends Controller
     }
 
     public function printCard(User $user) {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
+        }
+
         $pdf = PDF::loadView('member-card.card-member', compact('user'));
         return $pdf->download($user->nomor_induk.'-'.$user->name);
     }

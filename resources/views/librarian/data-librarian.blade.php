@@ -88,7 +88,7 @@
                                 @if ($librarian->confirm_code != '')
                                     <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#resetKode" data-id="{{$librarian->id}}">Reset Kode</a>
                                 @endif
-                                <a href="#" class="btn btn-sm btn-info text-white" data-toggle="modal" data-target="#detailDataModal" data-name="{{$librarian->name}}" data-role="{{$librarian->role}}" data-username="{{$librarian->username}}" data-address="{{$librarian->address}}" data-phone="{{$librarian->phone}}" data-image="{{asset('uploaded_files/librarian-foto/'.$librarian->profile_photo_path)}}">Detail</a>
+                                <a href="{{url('/librarian/detail/'.$librarian->id)}}" class="btn btn-sm btn-info text-white">Detail</a>
                             </div>
                         </div>
                     @endforeach
@@ -265,45 +265,6 @@
         </div>
     </div>
 
-    <!-- Detail Data Modal -->
-    <div class="modal modal-admin fade" id="detailDataModal" tabindex="-1" aria-labelledby="detailDataModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <img src="img/icon.png" alt="icon" width="55">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body py-3">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="image-buku">
-                                    
-                                </div>
-                            </div>
-                            <div class="col-9">
-                                <div class="detail">
-                                    <h1 class="detail-nama">Nama Lengkap</h1>
-                                    <span class="badge badge-secondary detail-role mb-2">Admin</span>
-                                    <p class="detail detail-username mb-2">Username : Ilhmshdq</p>
-                                    <p class="detail detail-alamat">
-                                        Alamat : Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam aspernatur est nisi dolorum vero!.
-                                    </p>
-                                    <p class="detail detail-phone">Phone : 082130486258</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer text-center">
-                    <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Export Modal -->
     <div class="modal modal-admin fade" id="exportDataModal" tabindex="-1" aria-labelledby="addDataModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -377,23 +338,6 @@
                                         </div>
                                     </div>
                                 </form>`)
-        });
-        $('#detailDataModal').on('show.bs.modal', function (event) {
-            let button = $(event.relatedTarget) // Button that triggered the modal
-            let name = button.data('name')
-            let role = button.data('role')
-            let username = button.data('username')
-            let address = button.data('address')
-            let phone = button.data('phone')
-            let image = button.data('image')
-            let modal = $(this)
-
-            modal.find('.detail-nama').html(name)
-            modal.find('.detail-role').html(role)
-            modal.find('.detail-username').html(`Username : ${username}`)
-            modal.find('.detail-alamat').html(`Alamat : ${address}`)
-            modal.find('.detail-phone').html(`Phone : ${phone}`)
-            modal.find('.image-buku').html(`<img src="${image}" alt="Foto" class="lib-foto full-width full-height fit-cover">`)
         });
     </script>
 @endsection

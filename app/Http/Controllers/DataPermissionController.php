@@ -56,14 +56,23 @@ class DataPermissionController extends Controller
             'alasan' => 'required'
         ]);
 
-        $check = DB::table('permissions')
-                    ->select('permissions.id')
-                    ->where('id_member', auth()->user()->id)
-                    ->where('id_ebook', $ebook->id)
-                    ->where('confirmed', '0')
-                    ->get();
+        date_default_timezone_set('Asia/Jakarta');
+        $check_load_req = Permission::select('permissions.id')
+                                    ->where('id_member', auth()->user()->id)
+                                    ->where('id_ebook', $ebook->id)
+                                    ->where('confirmed', '0')
+                                    ->get();
 
-        if($check->all()) return redirect('/member/ebook/detail/'.$ebook->id)->with('failed', 'Ebook ini telah anda ajukan sebelumnya, mohon tunggu hingga dikonfirmasi');
+        $check_ebook_avaliable = Permission::select('permissions.id')
+                                            ->where('id_member', auth()->user()->id)
+                                            ->where('id_ebook', $ebook->id)
+                                            ->where('accepted', '1')
+                                            ->where('limit_date', '>', date('Y-m-d'))
+                                            ->get();
+
+        if($check_load_req->all()) return redirect('/member/ebook/detail/'.$ebook->id)->with('failed', 'Ebook ini telah anda ajukan sebelumnya, mohon tunggu hingga dikonfirmasi');
+
+        if($check_ebook_avaliable->all()) return redirect('/member/ebook/detail/'.$ebook->id)->with('failed', 'Ebook ini sedang anda pakai');
 
         $permission = new Permission;
         $permission->id_member = auth()->user()->id;

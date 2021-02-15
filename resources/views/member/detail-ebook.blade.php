@@ -10,42 +10,46 @@
                 <li class="breadcrumb-item active" aria-current="page">Member</li>
                 <li class="breadcrumb-item"><a href="{{asset('/member/ebook')}}">Ebook</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Detail</li>
-                <li class="breadcrumb-item"><a href="{{asset('/member/ebook/detail/'.$datas[0]->id)}}">{{$datas[0]->id}}</a></li>
+                <li class="breadcrumb-item"><a href="{{asset('/member/ebook/detail/'.$data->id)}}">{{$data->id}}</a></li>
             </ol>
         </div>
     </div>
 @endsection
 
 @section('content')
-    <div class="detail full-width">
-        <div class="row full-width justify-content-center pb-3 border-bottom">
-            <div class="col-lg-4 col-md-6 col-11 book-ebook-detail">
-                <img src="{{asset('uploaded_files/ebook-cover/'.$datas[0]->image)}}" alt="{{$datas[0]->title}}" class="full-width fit-cover-top mb-3">
-            </div>
-            <div class="col-lg-6 col-md-6 col-11 book-ebook-detail-data">
-                <div class="detail-wrapper position-relative">
-                    <div class="gray-line position-absolute top-absolute full-width pt-1"></div>
-                    <h1 class="judul border-bottom py-3 px-2">{{$datas[0]->title}}</h1>
-                    <h5 class="kategori"><span class="badge badge-secondary px-3 ml-2">{{$datas[0]->category}}</span></h5>
-                    <div class="profile-buku pl-2 my-4 border-bottom">
-                        <p class="profile">Diterbitkan oleh {{$datas[0]->publisher}}</p>
-                        <p class="profile">Ditulis oleh ini {{$datas[0]->author}}</p>
+    <div class="detail-for-member full-width">
+        <div class="book-detail-for-member">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-12 col-lg-4 p-2">
+                        <div class="gray-wrapper radius-admin">
+                            <div class="text-center border-bottom pb-2">
+                                <img src="{{asset('uploaded_files/ebook-cover/'.$data->image)}}" alt="{{$data->title}}" class="fit-cover full-width">
+                            </div>
+                            <div class="text-center pt-1">
+                                <button type="button" class="btn btn-sm btn-dark mt-3 px-3 rounded-0 text-white full-width mb-3" data-toggle="modal" data-target="#ajuanModal"><span>Ajukan Penggunaan Ebook</span></button>
+                            </div>
+                        </div>
                     </div>
-                    <p class="tentang text-justify pl-2 pr-5">{{$datas[0]->about}}</p>
-                    
-                    <div class="btn-ajuan-wrapper ml-2">
-                        <button type="button" class="btn btn-sm btn-ajuan mt-3 px-3 rounded-0 text-white mb-3" data-toggle="modal" data-target="#ajuanModal"><span>Ajukan Penggunaan Ebook</span></button>
+                    <div class="col-12 col-md-12 col-lg-6 p-3">
+                        <div class="detail-book-title p-2 border-bottom"><h1>{{$data->title}}</h1></div>
+                        <div class="detail-buku-data p-2">
+                            <div class="detail-buku-kategori mt-2 mb-3">
+                                <span class="badge badge-success py-2 px-4">{{$data->category}}</span>
+                                <span class="badge badge-info py-2 px-3 text-white">ISBN : {{$data->isbn}}</span>
+                                <span class="badge badge-primary py-2 px-3">{{$data->publish_year}}</span>
+                            </div>
+                            <p class="sinopsis">{{$data->about}}</p>
+                            <div class="gray-wrapper p-2 bold">
+                                Ditulis oleh {{$data->author}}
+                            </div>
+                            <div class="gray-wrapper p-2 bold">
+                                Diterbitkan oleh {{$data->publisher}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-@endsection
-
-@section('more-content')
-    <div class="full-width">
-        <div class="ibsn-buku px-3 py-2 text-center text-white mb-4">
-            ISBN : {{$datas[0]->isbn}}
         </div>
     </div>
 @endsection
@@ -63,7 +67,7 @@
                     </button>
                 </div>
                 <div class="modal-body py-2 px-4">
-                    <form action="{{'/member/ebook/permission/'.$datas[0]->id}}" method="post">
+                    <form action="{{'/member/ebook/permission/'.$data->id}}" method="post">
                         @csrf
                         <div class="form-group mb-3">
                             <small>Alasan pengajuan</small>

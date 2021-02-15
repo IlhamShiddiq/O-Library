@@ -48,6 +48,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/book', [DataBukuController::class, 'index']);
+    Route::get('/book/detail/{book}', [DataBukuController::class, 'bookDetail']);
     Route::post('/book', [DataBukuController::class, 'store']);
     Route::post('/book/search', [DataBukuController::class, 'search']);
     Route::post('/book/import', [DataBukuController::class, 'importBook']);
@@ -56,6 +57,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::put('/book/{book}', [DataBukuController::class, 'update']);
 
     Route::get('/ebook', [DataEbookController::class, 'index']);
+    Route::get('/ebook/detail/{ebook}', [DataEbookController::class, 'ebookDetail']);
     Route::post('/ebook', [DataEbookController::class, 'store']);
     Route::post('/ebook/search', [DataEbookController::class, 'search']);
     Route::post('/ebook/import', [DataEbookController::class, 'importEbook']);
@@ -83,6 +85,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::post('/librarian/reset-code/{librarian}', [DataPustakawanController::class, 'resetCode']);
     Route::delete('/librarian/{user}', [DataPustakawanController::class, 'destroy']);
     Route::put('/librarian/{user}', [DataPustakawanController::class, 'update']);
+    Route::get('/librarian/detail/{librarian}', [DataPustakawanController::class, 'librarianDetail']);
 
     Route::get('/edit-profile', [DataPustakawanController::class, 'edit']);
     Route::post('/edit-profile', [DataPustakawanController::class, 'update']);
@@ -98,6 +101,7 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::delete('/member/{member}', [DataMemberController::class, 'destroy']);
     Route::get('/member/history/{member}', [DataMemberController::class, 'memberHistory']);
     Route::get('/member/card/{user}', [StaticPageController::class, 'printCard']);
+    Route::get('/member/detail/{member}', [DataMemberController::class, 'memberDetail']);
 
     Route::get('/transaction', [DataTransaksiController::class, 'index']);
     Route::post('/transaction', [DataTransaksiController::class, 'store']);

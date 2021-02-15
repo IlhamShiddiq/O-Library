@@ -47,6 +47,16 @@ class DataMemberController extends Controller
         return view('librarian.data-member', compact('members', 'count'));
     }
 
+    public function memberDetail(Member $member)
+    {
+        $datas = Member::join('users', 'users.id', '=', 'members.id')
+                        ->select('users.*', 'members.address', 'members.phone', 'members.status', 'members.class')
+                        ->where('members.id', $member->id)
+                        ->get();
+
+        return view('librarian.detail-member', ['data' => $datas[0]])
+;    }
+
     public function memberHistory(Member $member)
     {
         if(!(auth()->user()->role == 'Pustakawan'))

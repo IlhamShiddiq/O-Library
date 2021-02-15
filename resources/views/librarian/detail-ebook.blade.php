@@ -1,19 +1,15 @@
-@extends('../templates/member')
+@extends('../templates/admin')
 
-@section('title', 'Detail Buku')
+@section('title', 'Detail Ebook')
+
 
 @section('breadcrumb')
-    <div class="col-12">
-        <div class="breadcrumb-container">
-            <ol class="breadcrumb position-relative">
-                <div class="breadcrumb-title position-absolute top-absolute text-center text-white">DETAIL BUKU</div>
-                <li class="breadcrumb-item active" aria-current="page">Member</li>
-                <li class="breadcrumb-item"><a href="{{asset('/member/book')}}">Book</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Detail</li>
-                <li class="breadcrumb-item"><a href="{{asset('/member/book/detail/'.$data->id)}}">{{$data->id}}</a></li>
-            </ol>
-        </div>
-    </div>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Admin</li>
+        <li class="breadcrumb-item"><a href="{{ url('/ebook') }}">Ebook</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Detail</li>
+        <li class="breadcrumb-item active" aria-current="page">{{$data->id}}</li>
+    </ol>
 @endsection
 
 @section('content')
@@ -24,10 +20,10 @@
                     <div class="col-12 col-md-12 col-lg-4 p-2">
                         <div class="gray-wrapper radius-admin">
                             <div class="text-center border-bottom pb-2">
-                                <img src="{{asset('uploaded_files/book-cover/'.$data->image)}}" alt="{{$data->title}}" class="fit-cover full-width">
+                                <img src="{{asset('uploaded_files/ebook-cover/'.$data->image)}}" alt="{{$data->title}}" class="fit-cover full-width">
                             </div>
                             <div class="text-center pt-1">
-                                <p class="m-1">Kuantitas tersedia : {{$data->qty}} buku</p>
+                                <p class="m-1">Buka ebook <a href="{{$data->link}}" target="_blank" rel="noopener">disini</a></p>
                             </div>
                         </div>
                     </div>

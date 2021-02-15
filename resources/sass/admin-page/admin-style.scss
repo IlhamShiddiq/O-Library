@@ -285,7 +285,7 @@
         width: 80%;
         background-color: gray;
         bottom: -39px;
-        button {
+        a {
             border-radius: 0;
             border-top-right-radius: 20px;
             width: 170px;
@@ -509,6 +509,45 @@ input.input-admin {
     h6 {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-weight: lighter;
+    }
+}
+
+.detail-for-member {
+    .book-detail-for-member {
+        .detail-book-title h1 {
+            width: 80%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-transform: uppercase;
+            font-size: 30px;
+            color: rgb(53, 53, 53);
+            font-weight: 400;
+        }
+        .detail-buku-data p.sinopsis {
+            width: 80%;
+        }
+    }
+    .person-detail-for-member {
+        .foto-detail {
+            img {
+                width: 150px;
+                height: 150px;
+            }
+            margin: auto;
+        }
+        .green-line {
+            background-color: rgb(124, 216, 124);
+        }
+        .name-member h1 {
+            width: 80%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-transform: uppercase;
+            font-size: 30px;
+            color: rgb(53, 53, 53);
+            font-weight: 400;
+            span {
+                font-size: 20px;
+            }
+        }
     }
 }
 

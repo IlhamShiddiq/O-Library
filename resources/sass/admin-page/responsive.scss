@@ -3,6 +3,14 @@
     .breadcrumb-container {
         margin-bottom: -45px;
     }
+    .detail-for-member {
+        margin-top: 35px;
+        .book-detail-for-member {
+            .detail-book-title h1 {
+                width: 100%;
+            }
+        }
+    }
 }
 
 // Small devices (landscape phones, less than 768px)
@@ -10,12 +18,34 @@
     .breadcrumb-container {
         margin-bottom: -45px;
     }
+    .detail-for-member {
+        margin-top: 35px;
+        img {
+            width: 80%;
+        }
+        .book-detail-for-member {
+            .detail-book-title h1 {
+                width: 100%;
+            }
+        }
+    }
 }
 
 // Medium devices (tablets, less than 992px)
 @media (min-width: 768px) and (max-width: 991.98px) {
     .breadcrumb-container {
         margin-bottom: -45px;
+    }
+    .detail-for-member {
+        margin-top: 35px;
+        img {
+            width: 80%;
+        }
+        .book-detail-for-member {
+            .detail-book-title h1 {
+                width: 100%;
+            }
+        }
     }
 }
 

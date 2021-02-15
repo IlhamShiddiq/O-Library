@@ -44,22 +44,22 @@ class DataEbookController extends Controller
         // dd($ebooks);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    
+    public function ebookDetail(Ebook $ebook) {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+
+        $ebook_data = Ebook::join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')
+                        ->join('categories', 'ebooks.category_id', '=', 'categories.id')
+                        ->select('ebooks.*', 'publishers.publisher', 'categories.category')
+                        ->where('ebooks.id', $ebook->id)
+                        ->get();
+
+        return view('librarian.detail-ebook', ['data' => $ebook_data[0]]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validateData = $request->validate([

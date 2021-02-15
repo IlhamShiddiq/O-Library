@@ -46,6 +46,16 @@ class DataPustakawanController extends Controller
         return view('librarian.data-librarian', compact('librarians', 'count'));
     }
 
+    public function librarianDetail(Librarian $librarian) 
+    {
+        $datas = Librarian::join('users', 'users.id', '=', 'librarians.id')
+                        ->select('users.*', 'librarians.address', 'librarians.phone')
+                        ->where('librarians.id', $librarian->id)
+                        ->get();
+
+        return view('librarian.detail-librarian', ['data' => $datas[0]]);
+    }
+
     public function store(Request $request)
     {
         $validateData = $request->validate([
@@ -96,23 +106,6 @@ class DataPustakawanController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Librarian  $librarian
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Librarian $librarian)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Librarian  $librarian
-     * @return \Illuminate\Http\Response
-     */
     public function edit()
     {
         if(!(auth()->user()->role == 'Pustakawan' || auth()->user()->role == 'Admin'))

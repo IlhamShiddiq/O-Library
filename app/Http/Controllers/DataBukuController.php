@@ -45,6 +45,21 @@ class DataBukuController extends Controller
         // dd($books);
     }
 
+    public function bookDetail(Book $book) {
+        if(!(auth()->user()->role == 'Pustakawan'))
+        {
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+        }
+
+        $book_data = Book::join('publishers', 'books.publisher_id', '=', 'publishers.id')
+                        ->join('categories', 'books.category_id', '=', 'categories.id')
+                        ->select('books.*', 'publishers.publisher', 'categories.category')
+                        ->where('books.id', $book->id)
+                        ->get();
+        
+        return view('librarian.detail-book', ['data' => $book_data[0]]);
+    }
+
     public function bookHistory(Book $book)
     {
         if(!(auth()->user()->role == 'Pustakawan'))

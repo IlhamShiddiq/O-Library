@@ -351,6 +351,10 @@ small.counter-text {
   color: #dc3545;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 @media (max-width: 575.98px) {
   .message {
     width: 280px;
@@ -1586,7 +1590,7 @@ footer.footer-lp table tr {
   bottom: -39px;
 }
 
-.item-person .detail-wrapper button {
+.item-person .detail-wrapper a {
   border-radius: 0;
   border-top-right-radius: 20px;
   width: 170px;
@@ -1826,6 +1830,45 @@ input.input-admin:focus {
   font-weight: lighter;
 }
 
+.detail-for-member .book-detail-for-member .detail-book-title h1 {
+  width: 80%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+  color: #353535;
+  font-weight: 400;
+}
+
+.detail-for-member .book-detail-for-member .detail-buku-data p.sinopsis {
+  width: 80%;
+}
+
+.detail-for-member .person-detail-for-member .foto-detail {
+  margin: auto;
+}
+
+.detail-for-member .person-detail-for-member .foto-detail img {
+  width: 150px;
+  height: 150px;
+}
+
+.detail-for-member .person-detail-for-member .green-line {
+  background-color: #7cd87c;
+}
+
+.detail-for-member .person-detail-for-member .name-member h1 {
+  width: 80%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+  color: #353535;
+  font-weight: 400;
+}
+
+.detail-for-member .person-detail-for-member .name-member h1 span {
+  font-size: 20px;
+}
+
 @-webkit-keyframes load {
   0% {
     background-color: #1c8a63;
@@ -1989,17 +2032,49 @@ input.input-admin:focus {
   .breadcrumb-container {
     margin-bottom: -45px;
   }
+
+  .detail-for-member {
+    margin-top: 35px;
+  }
+
+  .detail-for-member .book-detail-for-member .detail-book-title h1 {
+    width: 100%;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
   .breadcrumb-container {
     margin-bottom: -45px;
   }
+
+  .detail-for-member {
+    margin-top: 35px;
+  }
+
+  .detail-for-member img {
+    width: 80%;
+  }
+
+  .detail-for-member .book-detail-for-member .detail-book-title h1 {
+    width: 100%;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
   .breadcrumb-container {
     margin-bottom: -45px;
+  }
+
+  .detail-for-member {
+    margin-top: 35px;
+  }
+
+  .detail-for-member img {
+    width: 80%;
+  }
+
+  .detail-for-member .book-detail-for-member .detail-book-title h1 {
+    width: 100%;
   }
 }
 

@@ -1,19 +1,15 @@
-@extends('../templates/member')
+@extends('../templates/admin')
 
 @section('title', 'Detail Buku')
 
+
 @section('breadcrumb')
-    <div class="col-12">
-        <div class="breadcrumb-container">
-            <ol class="breadcrumb position-relative">
-                <div class="breadcrumb-title position-absolute top-absolute text-center text-white">DETAIL BUKU</div>
-                <li class="breadcrumb-item active" aria-current="page">Member</li>
-                <li class="breadcrumb-item"><a href="{{asset('/member/book')}}">Book</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Detail</li>
-                <li class="breadcrumb-item"><a href="{{asset('/member/book/detail/'.$data->id)}}">{{$data->id}}</a></li>
-            </ol>
-        </div>
-    </div>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Admin</li>
+        <li class="breadcrumb-item"><a href="{{ url('/book') }}">Book</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Detail</li>
+        <li class="breadcrumb-item active" aria-current="page">{{$data->id}}</li>
+    </ol>
 @endsection
 
 @section('content')

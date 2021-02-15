@@ -65,11 +65,11 @@ class PageMemberController extends Controller
         $datas = DB::table('books')
             ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
             ->join('categories', 'books.category_id', '=', 'categories.id')
-            ->select('books.id', 'books.isbn', 'books.title', 'books.author', 'books.qty', 'books.image', 'books.about', 'publishers.publisher', 'categories.category')
+            ->select('books.*', 'publishers.publisher', 'categories.category')
             ->where('books.id', $id)
             ->get();
 
-        return view('member.detail-book', compact('datas'));
+        return view('member.detail-book', ['data' => $datas[0]]);
     }
 
     public function bookSearch(Request $request)
@@ -143,11 +143,11 @@ class PageMemberController extends Controller
         $datas = DB::table('ebooks')
             ->join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')
             ->join('categories', 'ebooks.category_id', '=', 'categories.id')
-            ->select('ebooks.id', 'ebooks.isbn', 'ebooks.title', 'ebooks.author', 'ebooks.image', 'ebooks.about', 'publishers.publisher', 'categories.category')
+            ->select('ebooks.*', 'publishers.publisher', 'categories.category')
             ->where('ebooks.id', $id)
             ->get();
 
-        return view('member.detail-ebook', compact('datas'));
+        return view('member.detail-ebook', ['data' => $datas[0]]);
     }
     
     public function ebookSearch(Request $request)
@@ -206,61 +206,5 @@ class PageMemberController extends Controller
         $link = substr($ebooks[0]->link, 0, strpos($ebooks[0]->link, 'view?usp=sharing')).'preview';
 
         return view('member.my-ebook-preview', compact('ebooks', 'link'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit()
-    {
-        
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

@@ -94,7 +94,7 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-6 p-0">
-                                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#detailDataModal" data-id="{{$ebook->id}}" data-title="{{$ebook->title}}" data-category="{{$ebook->category}}" data-author="{{$ebook->author}}" data-publisher="{{$ebook->publisher}}" data-about="{{$ebook->about}}" data-image="{{asset('uploaded_files/ebook-cover/'.$ebook->image)}}">Detail Ebook</button>
+                                            <a href="{{url('/ebook/detail/'.$ebook->id)}}" class="btn btn-dark px-5 rounded-0">Detail Ebook</a>
                                         </div>
                                         <div class="col-6 text-right p-0">
                                             <span class="badge badge-light mr-3 stok">ID : {{$ebook->id}}</span>
@@ -279,45 +279,6 @@
         </div>
     </div>
 
-    <!-- Detail Data Modal -->
-    <div class="modal modal-admin fade" id="detailDataModal" tabindex="-1" aria-labelledby="detailDataModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <img src="img/icon.png" alt="icon" width="55">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body py-3">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="image-buku">
-
-                                </div>
-                            </div>
-                            <div class="col-9">
-                                <div class="detail">
-                                    <h1 class="detail-judul">Ini Judul Ebook</h1>
-                                    <span class="badge badge-secondary detail-kategori mb-2">Kategori</span>
-                                    <p class="detail detail-penulis">Ditulis oleh : Ilham Shiddiq</p>
-                                    <p class="detail detail-penerbit">Diterbitkan oleh : Ilham Shiddiq Publisher</p>
-                                    <p class="detail detail-tentang">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam aspernatur est nisi dolorum vero! Assumenda necessitatibus unde commodi rem labore accusamus cum nobis minima obcaecati vel eos, dignissimos quia possimus.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer text-center">
-                    <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Hapus Modal -->
     <div class="modal modal-admin fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -392,24 +353,6 @@
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger">Yes</button>
                                             </form>`)
-        });
-        $('#detailDataModal').on('show.bs.modal', function (event) {
-            let button = $(event.relatedTarget) // Button that triggered the modal
-            let id = button.data('id')
-            let title = button.data('title')
-            let category = button.data('category')
-            let author = button.data('author')
-            let publisher = button.data('publisher')
-            let about = button.data('about')
-            let image = button.data('image')
-            let modal = $(this)
-
-            modal.find('.detail-judul').html(title)
-            modal.find('.detail-kategori').html(category)
-            modal.find('.detail-penulis').html('Ditulis oleh: '+author)
-            modal.find('.detail-penerbit').html('Diterbitkan oleh: '+publisher)
-            modal.find('.detail-tentang').html(about)
-            modal.find('.image-buku').html(`<img src="${image}" alt="${title}" class="full-width full-height fit-cover">`)
         });
         $('#editDataModal').on('show.bs.modal', function (event) {
             let button = $(event.relatedTarget) // Button that triggered the modal

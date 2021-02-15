@@ -67,7 +67,7 @@
                         <tbody>
                             @foreach ($permissions as $permission)
                                 <tr>
-                                    <td class="text-center">{{$permission->nomor_induk}}</td>
+                                    <td class="text-center"><a href="{{url('/member/detail/'.$permission->id_member)}}">{{$permission->nomor_induk}}</a></td>
                                     <td>{{$permission->title}}</td>
                                     <td>{{$permission->reason}}</td>
                                     @if ($permission->confirmed == '1')

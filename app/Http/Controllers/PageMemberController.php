@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Ebook;
 use App\Models\Config;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -202,6 +201,8 @@ class PageMemberController extends Controller
             ->where('permissions.accepted', '1')
             ->where('permissions.limit_date', '>', date('Y-m-d'))
             ->get();
+
+        if(count($ebooks) == 0) return redirect('/member/my-ebook')->with('failed', 'Maaf anda tak diiznkan mengakses ebook tersebut.');
 
         $link = substr($ebooks[0]->link, 0, strpos($ebooks[0]->link, 'view?usp=sharing')).'preview';
 

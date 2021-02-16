@@ -15,6 +15,11 @@
 @endsection
 
 @section('content')
+    <div class="col-12">
+        <div class="explain-my-ebook p-2 rounded text-center mb-3" style="background-color: rgb(240, 240, 240)">
+            Halo, halaman ini adalah halaman yang berisi daftar ebook yang pernah anda ajukan.
+        </div>
+    </div>
     @foreach ($ebooks as $ebook)
         <div class="col-lg-3 col-md-5 col-10 mb-4">
             <div class="card card-book" style="width: 100%;">
@@ -50,15 +55,15 @@
                     @if ($ebook->confirmed == 1)
                         @if ($ebook->accepted == 1)
                             @if(!($ebook->limit_date < date('Y-m-d')))
-                                <small style="color: red; font-style: italic;">Berlaku hingga {{$ebook->limit_date}}</small>
+                                <small style="color: red; font-style: italic; cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Anda dapat menggunakan ebook sampai batas waktu pemakaian.">Berlaku hingga {{$ebook->limit_date}}</small>
                             @else
-                                <small style="color: red; font-style: italic;">Sudah melewati batas waktu</small>
+                                <small style="color: red; font-style: italic; cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Penggunaan ebook telah melewati batas pemakaian.">Sudah melewati batas waktu</small>
                             @endif
                         @else
-                            <small style="color: red; font-style: italic; font-weight: bold;">Ajuan ditolak</small>
+                            <small style="color: red; font-style: italic; font-weight: bold; cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Pustakawan menolak ajuan anda, periksa apa alasan penolakan ini.">Ajuan ditolak</small>
                         @endif
                     @else
-                        <small style="color: rgb(235, 235, 28); font-style: italic;">Menunggu konfirmasi</small>
+                        <small style="color: rgb(206, 206, 27); font-style: italic; cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Pustakawan belum mengambil tindakan mengenai ajuan ebook anda">Menunggu konfirmasi</small>&nbsp;
                     @endif
                 </div>
             </div>
@@ -94,6 +99,10 @@
             var reason = button.data('reason') 
             var modal = $(this)
             modal.find('.reason').html(reason)
+        })
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
 @endsection

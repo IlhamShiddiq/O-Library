@@ -74,7 +74,7 @@ class ConfirmPageController extends Controller
     public function confirmingPageData(Request $request, User $user)
     {
         if(strlen($request->username) < 5) {
-            return redirect('/account/confirm')->with('status', 'Minimal username terdiri atas 4 karakter angka/huruf');
+            return redirect('/account/confirm')->with('status', 'Minimal username terdiri atas 5 karakter angka/huruf');
         }
         else if(strlen($request->password) < 8) {
             return redirect('/account/confirm')->with('status', 'Minimal password terdiri atas 8 karakter angka/huruf');

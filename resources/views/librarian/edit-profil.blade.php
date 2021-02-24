@@ -12,7 +12,18 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-10 col-lg-8 mt-5 mt--5">
+            <div class="col-12 col-md-12 col-lg-4 p-0">
+                <div class="gray-wrapper radius-admin">
+                    <div class="info-login-pic text-center border-bottom pb-2">
+                        <img src="{{asset('uploaded_files/librarian-foto/'.auth()->user()->profile_photo_path)}}" alt="Ilham Shiddiq" class="rounded-circle fit-cover" width="70" height="70">
+                    </div>
+                    <div class="info-login text-center pt-1">
+                        <p class="m-1">Halo, {{auth()->user()->username}} ({{auth()->user()->name}})</p>
+                        <span class="badge badge-success">{{auth()->user()->role}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-8 mt-5 mt--5">
                 <div class="gray-wrapper radius-admin full-width px-5 mb-3 position-relative py-5">
                     <div class="header text-center py-3 px-3 position-absolute top-absolute bg-dark full-width text-white radius-admin">
                       <img src="{{asset('img/icon.png')}}" width="55" class="rounded-circle p-2" style="background-color: rgb(248, 248, 248)">
@@ -23,7 +34,7 @@
                     <form action="{{url('/edit-profile')}}" method="post" enctype="multipart/form-data" class="mb-4">
                         @csrf
                         <div class="row">
-                          <div class="col-7 pr-1">
+                          <div class="col-12 col-md-7 col-lg-7 pr-1">
                             <div class="form-group">
                                 <small for="namaLibrarian">Nama Lengkap</small>
                                 <input type="text" class="form-control @error('namaLibrarian') is-invalid @enderror" id="namaLibrarian" name="namaLibrarian" placeholder="Isikan disini..." value="{{$data['name']}}">
@@ -34,7 +45,7 @@
                                 @enderror
                             </div>
                           </div>
-                          <div class="col-5 pl-1">
+                          <div class="col-12 col-md-5 col-lg-5 pl-1">
                             <div class="form-group">
                                 <small for="usernameLibrarian">Username</small>
                                 <input type="text" class="form-control @error('usernameLibrarian') is-invalid @enderror" id="usernameLibrarian" name="usernameLibrarian" placeholder="Isikan disini..." readonly value="{{$data['username']}}">

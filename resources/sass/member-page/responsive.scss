@@ -47,8 +47,11 @@
     .breadcrumb-container-member {
         margin-bottom: 10px;
     }
-    .form-edit-profile-member {
-        margin-top: 40px;
+    .form-edit-profile {
+        margin-top: 45px;
+        .gray-wrapper {
+            padding: 40px 10px !important;
+        }
     }
     .username-edit-member {
         padding-left: 15px !important;
@@ -120,6 +123,16 @@
     .preview-pdf-ebook {
         margin-top: 50px;
     }
+    .form-edit-profile {
+        margin-top: 45px;
+    }
+    .username-edit-member {
+        padding-left: 15px !important;
+        margin-top: -15px !important;
+    }
+    .name-edit-member {
+        padding-right: 15px !important;
+    }
 }
 
 // Medium devices (tablets, less than 992px)
@@ -158,9 +171,7 @@
     .preview-pdf-ebook {
         margin-top: 30px;
     }
-}
-
-// Large devices (desktops, less than 1200px)
-@media (min-width: 992px) and (max-width: 1199.98px) { 
-
+    .form-edit-profile {
+        margin-top: 45px;
+    }
 }

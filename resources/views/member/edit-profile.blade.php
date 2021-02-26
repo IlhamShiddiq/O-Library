@@ -17,7 +17,7 @@
 @section('content')
   <div class="col-lg-9 col-md-10 col-12">
     <div class="form-edit-profile form-edit-profile-member">
-      <div class="gray-wrapper radius-admin full-width px-5 mb-3 position-relative py-5">
+      <div class="gray-wrapper radius-admin full-width px-5 mb-3 position-relative border py-5">
           <div class="header text-center py-3 px-3 position-absolute top-absolute bg-dark full-width text-white radius-admin">
             <img src="{{asset('img/icon.png')}}" width="55" class="rounded-circle p-2" style="background-color: rgb(248, 248, 248)">
           </div>

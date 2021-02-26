@@ -435,7 +435,7 @@ class DataTransaksiController extends Controller
                             ->join('users', 'users.id', '=', 'transactions.member_id')
                             ->join('members', 'members.id', '=', 'users.id')
                             ->join('books', 'books.id', '=', 'detail_transactions.book_id')
-                            ->select('transactions.id', 'transactions.borrow_date', 'transactions.member_id', 'users.nomor_induk', 'users.name', 'users.email', 'members.class', 'books.title', DB::raw('DATE_ADD(transactions.borrow_date, INTERVAL '.$config[0]->loan_deadline.' DAY) as back'))
+                            ->select('transactions.id', 'transactions.borrow_date', 'transactions.member_id', 'users.nomor_induk', 'users.name', 'users.email', 'members.class', 'books.title', 'detail_transactions.last_warned', DB::raw('DATE_ADD(transactions.borrow_date, INTERVAL '.$config[0]->loan_deadline.' DAY) as back'))
                             ->where('detail_transactions.status', '0')
                             ->get();
 
@@ -452,6 +452,7 @@ class DataTransaksiController extends Controller
             
             $string_datas .= $data->title.'~';
             $string_datas .= $data->back.'~';
+            $string_datas .= $data->last_warned.'~';
         }
         echo $string_datas;
     }

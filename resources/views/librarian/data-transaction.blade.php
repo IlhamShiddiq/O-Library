@@ -546,22 +546,22 @@
                 url: "{{ url('/late-transaction') }}",
                 method: 'post',
                 data: {},
-                success: function(result){
+                success: (result) => {
                     datas = result.split('~')
                     datas.splice(datas.length - 1)
 
                     let array_datas = []
                     while(datas.length > 0) {
 
-                        let new_array = datas.splice(0, 8)
+                        let new_array = datas.splice(0, 9)
 
                         array_datas.push(new_array)
                     }
 
                     let content = '';
                     array_datas.forEach((data) => {
-                        if(data[7] > today) return
-
+                        if(data[7] >= today) return
+                        if(data[8] == '' || data[8] == '0000-00-00 00:00:00') data[8] = 'belum pernah diperingatkan'
                         content += `
                                 <div class="card late-card text-white bg-danger full-width mb-2 shadow">
                                     <div class="card-header user position-relative">
@@ -572,6 +572,7 @@
                                         <p class="card-text m-0">${data[6]}</p>
                                         <small class="text-white">Tenggang waktu : ${data[1]} s/d ${data[7]}</small>
                                     </div>
+                                    <small class="text-white mb-1" style="margin-left: 20px;">Terakhir diperingatkan pada :<i> ${data[8]}</i></small>
                                 </div>
                                 `
                     })

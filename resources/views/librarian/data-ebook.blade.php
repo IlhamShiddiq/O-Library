@@ -75,7 +75,11 @@
                                     <div class="col-6 col-md-8 col-lg-8">
                                         <span class="badge badge-secondary">{{$ebook->category}}</span>
                                         <p class="about mt-2">
-                                            {{$ebook->about}}
+                                          @if (strlen($ebook->about) >= 118)
+                                              {{substr($ebook->about, 0, 119).'......'}}
+                                          @else
+                                              {{$ebook->about}}
+                                          @endif
                                         </p>
                                     </div>
                                 </div>

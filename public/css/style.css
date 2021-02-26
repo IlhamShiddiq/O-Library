@@ -1183,6 +1183,7 @@ footer.footer-lp table tr {
     padding-top: 0;
     padding-right: 0;
     padding: 0 50px;
+    margin-top: -60px;
   }
 }
 

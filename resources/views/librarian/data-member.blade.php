@@ -72,8 +72,8 @@
                     <?php
                       $red = '';
 
-                      if($member->status == 'Siswa') $icon = 'student.png';
-                      else $icon = 'teacher.png';
+                      if($member->status == 'Siswa') $icon = 'student';
+                      else $icon = 'teacher';
 
                       if(!($member->username)) {
                         $red = 'color: red; font-style: italic;';
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                         <div class="role-person position-absolute">
-                          <img src="{{asset('img/icons/'.$icon)}}" width="25">
+                          <img src="{{asset('img/icons/'.$icon.'.png')}}" width="35" class="rounded-circle" data-toggle="tooltip" data-placement="right" title="{{$icon}}" style="cursor: pointer;">
                         </div>
                         <div class="data-person">
                             <h1 class="name-person py-2 mt-2">
@@ -417,5 +417,10 @@
                                   </div>
                               </form>`)
       });
+    </script>
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
     </script>
 @endsection

@@ -19,7 +19,7 @@ class DataPublisherController extends Controller
     {
         if(!(auth()->user()->role == 'Pustakawan'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
 
         $paginate = Config::all();
@@ -31,31 +31,15 @@ class DataPublisherController extends Controller
         return view('librarian/data-publisher', compact('publishers', 'count'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validateData = $request->validate([
             'penerbitBuku' => 'required',
         ]);
 
-        $pub = new Publisher;
-        $pub->publisher = $request->penerbitBuku;
-        $pub->save();
+        $pub = Publisher::create([
+            'publisher' => $request->penerbitBuku,
+        ]);
 
         return redirect('/publisher')->with('success', 'Data berhasil disimpan');
     }

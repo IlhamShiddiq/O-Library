@@ -29,7 +29,7 @@ class DataMemberController extends Controller
     {
         if(!(auth()->user()->role == 'Pustakawan'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
 
         $paginate = Config::all();
@@ -138,7 +138,7 @@ class DataMemberController extends Controller
     {
         if(!(auth()->user()->role == 'Member'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
  
         $id = auth()->user()->id;
@@ -206,7 +206,7 @@ class DataMemberController extends Controller
     {
         if(!(auth()->user()->role == 'Member'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
  
         $id = auth()->user()->id;

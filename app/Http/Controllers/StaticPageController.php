@@ -118,7 +118,6 @@ class StaticPageController extends Controller
                                     ->whereMonth('submit_date', $this_month)
                                     ->count();
 
-        // return view('report/report', compact('borrow_teacher', 'borrow_student', 'return_on_time', 'return_late', 'accepted_request', 'refused_request', 'message'));
         $pdf = PDF::loadView('report/report', compact('borrow_teacher', 'borrow_student', 'return_on_time', 'return_late', 'accepted_request', 'refused_request', 'message'));
         return $pdf->download($this_month_name.' Report');
     }

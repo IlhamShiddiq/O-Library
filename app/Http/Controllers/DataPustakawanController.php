@@ -28,7 +28,7 @@ class DataPustakawanController extends Controller
     {
         if(!(auth()->user()->role == 'Admin'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
 
         $paginate = Config::all();
@@ -110,7 +110,7 @@ class DataPustakawanController extends Controller
     {
         if(!(auth()->user()->role == 'Pustakawan' || auth()->user()->role == 'Admin'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
  
         $id = auth()->user()->id;
@@ -189,7 +189,7 @@ class DataPustakawanController extends Controller
     {
         if(!(auth()->user()->role == 'Pustakawan' || auth()->user()->role == 'Admin'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
  
         $id = auth()->user()->id;
@@ -260,11 +260,6 @@ class DataPustakawanController extends Controller
         }
 
         return redirect('/librarian')->with('success', 'Data '.$user->name.' berhasil dihapus');
-    }
-
-    public function logout() {
-        Auth::logout();
-        return redirect('/login');
     }
 
     public function search(Request $request)

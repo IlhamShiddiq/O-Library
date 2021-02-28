@@ -40,10 +40,10 @@
                                 <span class="badge badge-primary py-2 px-3">{{$data->publish_year}}</span>
                             </div>
                             <p class="sinopsis">{{$data->about}}</p>
-                            <div class="gray-wrapper p-2 bold">
+                            <div class="gray-wrapper p-2 bold border rounded">
                                 Ditulis oleh {{$data->author}}
                             </div>
-                            <div class="gray-wrapper p-2 bold">
+                            <div class="gray-wrapper p-2 bold border rounded">
                                 Diterbitkan oleh {{$data->publisher}}
                             </div>
                         </div>

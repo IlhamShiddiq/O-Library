@@ -21,7 +21,7 @@ class DataTransaksiController extends Controller
     {
         if(!(auth()->user()->role == 'Pustakawan'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
 
         $paginate = Config::all();
@@ -100,11 +100,11 @@ class DataTransaksiController extends Controller
             }
 
             // Memasukkan Data ke table transactions dan detail_transactions
-            $transaction = new Transaction;
-            $transaction->member_id = $id[0]->id;
-            $transaction->librarian_id = auth()->user()->id;
-            $transaction->borrow_date = date('Y-m-d');
-            $transaction->save();
+            $transaction = Transaction::create([
+                'member_id' => $id[0]->id,
+                'librarian_id' => auth()->user()->id,
+                'borrow_date' => date('Y-m-d'),
+            ]);
 
             $dicrease_qty = Book::where('id', $request->idBukuPertama)
                                 ->update([
@@ -115,12 +115,12 @@ class DataTransaksiController extends Controller
                                 ->limit(1)
                                 ->get();
 
-            $detail = new Detail_Transactions;
-            $detail->transaction_id = $id_desc[0]->id;
-            $detail->book_id = $request->idBukuPertama;
-            $detail->date_of_return = date_create('0001-01-01');
-            $detail->status = '0';
-            $detail->save();
+            $detail = Detail_Transactions::create([
+                'transaction_id' => $id_desc[0]->id,
+                'book_id' => $request->idBukuPertama,
+                'date_of_return' => date_create('0001-01-01'),
+                'status' => '0',
+            ]);
 
             if($request->jumlahPinjam == 2)
             {
@@ -131,12 +131,12 @@ class DataTransaksiController extends Controller
                                         'qty' => $id_buku2[0]->qty - 1
                                         ]);
 
-                $detail = new Detail_Transactions;
-                $detail->transaction_id = $id_desc[0]->id;
-                $detail->book_id = $request->idBukuKedua;
-                $detail->date_of_return = date_create('0001-01-01');
-                $detail->status = '0';
-                $detail->save();
+                $detail = Detail_Transactions::create([
+                    'transaction_id' => $id_desc[0]->id,
+                    'book_id' => $request->idBukuKedua,
+                    'date_of_return' => date_create('0001-01-01'),
+                    'status' => '0',
+                ]);
             }
 
             return redirect('/transaction')->with('success', 'Peminjaman berhasil dilakukan');
@@ -230,17 +230,6 @@ class DataTransaksiController extends Controller
         }
 
         return redirect('/transaction')->with('success', 'Data berhasil diubah');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Transaction $transaction)
-    {
-        //
     }
 
     public function search(Request $request)

@@ -10,4 +10,8 @@ class GalleryConfig extends Model
     use HasFactory;
 
     protected $table = "gallery_config";
+
+    protected $fillable = [
+        'gallery_picture'
+    ];
 }

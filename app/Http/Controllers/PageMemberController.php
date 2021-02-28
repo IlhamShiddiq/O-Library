@@ -56,7 +56,7 @@ class PageMemberController extends Controller
     {
         if(!(auth()->user()->role == 'Member'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
  
         $id = $book->id;
@@ -116,7 +116,7 @@ class PageMemberController extends Controller
     {
         if(!(auth()->user()->role == 'Member'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
  
         $ebooks = DB::table('ebooks')

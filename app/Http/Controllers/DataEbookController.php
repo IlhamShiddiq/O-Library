@@ -23,7 +23,7 @@ class DataEbookController extends Controller
     {
         if(!(auth()->user()->role == 'Pustakawan'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
 
         $paginate = Config::all();
@@ -48,7 +48,7 @@ class DataEbookController extends Controller
     public function ebookDetail(Ebook $ebook) {
         if(!(auth()->user()->role == 'Pustakawan'))
         {
-            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halam tersebut');
+            return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
 
         $ebook_data = Ebook::join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')
@@ -117,35 +117,6 @@ class DataEbookController extends Controller
         // dd($request->all());
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Ebook  $ebook
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Ebook $ebook)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ebook  $ebook
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Ebook $ebook)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ebook  $ebook
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Ebook $ebook)
     {
         $validateData = $request->validate([

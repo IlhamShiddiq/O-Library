@@ -33,7 +33,7 @@ use App\Http\Controllers\SendEmailController;
 
 Route::get('/', [LandingPageController::class, 'index']);
 Route::post('/logged_in', [LoginController::class, 'authenticate']);
-Route::get('/logout', [DataPustakawanController::class, 'logout']);
+Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/selecting-user', [StaticPageController::class, 'selecting']);
 Route::get('/account/confirm', [ConfirmPageController::class, 'confirmPage']);
 Route::post('/account/confirm', [ConfirmPageController::class, 'confirmPageData']);

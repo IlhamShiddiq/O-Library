@@ -74,17 +74,17 @@ class DataPermissionController extends Controller
 
         if($check_ebook_avaliable->all()) return redirect('/member/ebook/detail/'.$ebook->id)->with('failed', 'Ebook ini sedang anda pakai');
 
-        $permission = new Permission;
-        $permission->id_member = auth()->user()->id;
-        $permission->id_ebook = $ebook->id;
-        $permission->reason = $request->alasan;
-        $permission->confirmed = '0';
-        $permission->submit_date = date("Y-m-d");
-        $permission->save();
+        $permission = Permission::create([
+            'id_member' => auth()->user()->id,
+            'id_ebook' => $ebook->id,
+            'reason' => $request->alasan,
+            'confirmed' => '0',
+            'submit_date' => date("Y-m-d"),
+        ]);
 
         Mail::to(auth()->user()->email, auth()->user()->name)->send(new UsingEbook(auth()->user()));
 
-        return redirect('/member/ebook/detail/'.$ebook->id)->with('success', 'Berhasil diajukan, mohon tunggu hingga pengajuan dikonfirmasi');
+        return redirect('/member/ebook/detail/'.$ebook->id)->with('success', 'Berhasil diajukan, mohon tunggu hingga pengajuan dikonfirmasi, pemberitahuan konfirmasi dikirim melalui email');
 
     }
 

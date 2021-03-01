@@ -2596,6 +2596,14 @@ img.vector-confirm {
   .preview-pdf-ebook {
     margin-top: 50px;
   }
+
+  .form-change-password-member .right-form {
+    padding-right: 13px !important;
+  }
+
+  .form-change-password-member .left-form {
+    padding-left: 13px !important;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {

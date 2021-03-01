@@ -24,16 +24,16 @@
                 <div class="title py-3 text-center mb-1 mt-5">
                     <h1 class="title-admin">Change Password</h1>
                 </div>
-                <form class="mb-4" action="{{url('/member/change-password')}}" method="post">
+                <form class="mb-4 form-change-password-member" action="{{url('/member/change-password')}}" method="post">
                     @csrf
                     <div class="row">
-                    <div class="col-6 pr-1">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 pr-1 right-form">
                         <div class="form-group">
                             <small for="username">Username</small>
                             <input type="text" class="form-control" id="username" name="username" placeholder="Isikan disini..." readonly value="{{$users[0]->username}}">
                         </div>
                     </div>
-                    <div class="col-6 pl-1">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 pl-1 left-form">
                         <div class="form-group">
                             <small for="oldPassword">Password Lama</small>
                             <input type="password" class="form-control @error('oldPassword') is-invalid @enderror" id="oldPassword" name="oldPassword" placeholder="Isikan disini...">
@@ -46,7 +46,7 @@
                     </div>
                     </div>
                     <div class="row">
-                    <div class="col-6 pr-1">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 pr-1 right-form">
                         <div class="form-group">
                             <small for="newPassword">Password Baru</small>
                             <input type="password" class="form-control @error('newPassword') is-invalid @enderror" id="newPassword" name="newPassword" placeholder="Isikan disini...">
@@ -57,7 +57,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-6 pl-1">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 pl-1 left-form">
                         <div class="form-group">
                             <small for="confirmPassword">Konfirmasi Password Baru</small>
                             <input type="password" class="form-control @error('confirmPassword') is-invalid @enderror" id="confirmPassword" name="confirmPassword" placeholder="Isikan disini...">

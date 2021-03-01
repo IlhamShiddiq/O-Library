@@ -35,7 +35,7 @@
                                         <p>Anda login sebagai {{auth()->user()->role}}</p>
                                         @endauth
                                     </div>
-                                    <a href="{{url('/guide')}}" class="badge badge-success px-3 mt-2"><i class="fas fa-lightbulb"></i> Baca panduan halaman admin</a>
+                                    <a href="{{url('/edit-profile')}}" class="badge badge-success px-3 mt-2"><i class="fas fa-edit"></i> Edit Profil anda</a>
                                 </div>
                             </div>
                         </div>

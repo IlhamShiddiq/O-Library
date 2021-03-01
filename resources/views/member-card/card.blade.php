@@ -35,32 +35,28 @@
                             </div>
                             <div class="profile">
                                 <div class="foto">
-                                    <img src="{{asset('uploaded_files/member-foto/'.$data->profile_photo_path)}}" alt="Foto" class="object-fit">
+                                    <img src="{{asset('uploaded_files/member-foto/'.$data->profile_photo_path)}}" alt="Foto" class="fit-cover">
                                 </div>
                                 <div class="name-wrapper">
                                     <div class="name">
-                                        <h1>{{$data->name}}</h1>
+                                        <h1>{{$data->name}} ({{$data->nomor_induk}})</h1>
                                         <h2>Kartu Anggota</h2>
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="footer">
-                                Perpustakaan SMKN 1 Cimahi
-                            </div> --}}
-                        </div>
-                        {{-- <div class="member-card shadow border belakang">
-                            <div class="header">
-                                <img src="{{asset('img/bg-card.jpg')}}" alt="">
-                            </div>
-                            <div class="profile">
-                                <div class="rules-wrapper">
-                                    <div class="rules"></div>
+                            <div class="more-wrapper">
+                                <div class="more-content">
+                                    <div class="role text-center">
+                                        Siswa
+                                    </div>
+                                    <div class="rules">
+                                        <div class="text-center">Peraturan Perpustakaan</div>
+                                        - Sekali meminjam maksimal boleh meminjam 2 buku <br>
+                                        - Jika terlambat wajib membayar denda yang sudah ditentukan
+                                    </div>
                                 </div>
                             </div>
-                            <div class="footer">
-                                Perpustakaan SMKN 1 Cimahi
-                            </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>

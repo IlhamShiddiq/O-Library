@@ -131,7 +131,6 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::post('/config/member-bg', [ConfigController::class, 'memberBg']);
     Route::post('/config/gallery', [ConfigController::class, 'galleryConfig']);
 
-    Route::get('/guide', [StaticPageController::class, 'guide']);
     Route::get('/pdf-report', [StaticPageController::class, 'pdfReport']);
     Route::get('/pdf-report-print', [StaticPageController::class, 'pdfReportPrint']);
     Route::post('/card-member', [StaticPageController::class, 'cardMember']);

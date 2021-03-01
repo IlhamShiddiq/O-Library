@@ -13,16 +13,6 @@ use PDF;
 
 class StaticPageController extends Controller
 {
-    public function guide()
-    {
-        if(!(auth()->user()->role == 'Pustakawan' || auth()->user()->role == 'Admin'))
-        {
-            return redirect('/member/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
-        }
-
-        return view('librarian/guide');
-    }
-
     public function selecting()
     {
         $role = auth()->user()->role;
@@ -163,6 +153,8 @@ class StaticPageController extends Controller
     }
 
     public function a() {
-        return view('mail.verification', ['verification_code' => 'a', 'head' => 'a', 'sub' => 'b', 'pesan' => 'c', 'pustakawan' => 'd']);
+        // return view('mail.verification', ['verification_code' => 'a', 'head' => 'a', 'sub' => 'b', 'pesan' => 'c', 'pustakawan' => 'd']);
+
+        return view('member-card.card-member');
     }
 }

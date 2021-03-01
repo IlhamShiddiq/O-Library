@@ -210,6 +210,12 @@
                                 <option>RPL</option>
                                 <option>SIJA</option>
                                 <option>IOP</option>
+                                <option>PFPT</option>
+                                <option>TOI</option>
+                                <option>TEI</option>
+                                <option>TEDK</option>
+                                <option>TPTU</option>
+                                <option>MEKA</option>
                               </select>
                             </div>
                           </div>

@@ -96,7 +96,7 @@
             border-radius: .2rem;
         }
         .btn-success {
-            color: #fff;
+            color: #fff !important;
             background-color: #28a745;
             border-color: #28a745;
         }
@@ -110,7 +110,6 @@
 
     <div class="header-mail">
         <div class="container">
-            <img src="https://i.imgur.com/g8B25qI.png" alt="Logo" width="60" class="d-inline-block">
             <div class="title-mail d-inline-block position-relative" style="padding-top: 1rem;">
                 <h1 class="position-absolute bottom-absolute text-white" style="margin-left: .5rem;">O'LIBRARY</h1>
             </div>

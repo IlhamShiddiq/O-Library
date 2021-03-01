@@ -2839,20 +2839,38 @@ body {
   text-align: center;
 }
 
-.member-card-wrapper .member-card .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+.member-card-wrapper .member-card .more-wrapper {
   width: 100%;
+  margin: 110px 0 20px 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.member-card-wrapper .member-card .more-content {
+  width: 100%;
+  height: 150px;
+  background-color: #c4f5c6;
+  border-radius: 10px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+}
+
+.member-card-wrapper .member-card .text-center {
   text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 12px;
+}
+
+.member-card-wrapper .member-card .role {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
-  background-color: #04503c;
-  color: white;
+  font-size: 13px;
+  border-bottom: 1px solid #7e7e7e;
+  padding-bottom: 7px;
+}
+
+.member-card-wrapper .member-card .rules {
+  padding-top: 5px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  text-align: justify;
 }
 
 .about-dev-wrapper {

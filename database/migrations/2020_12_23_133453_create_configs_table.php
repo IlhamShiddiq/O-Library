@@ -26,6 +26,7 @@ class CreateConfigsTable extends Migration
             $table->integer('permission_list_page');
             $table->integer('transaction_list_page');
             $table->integer('report_list_page');
+            $table->string('bg_member');
             $table->timestamps();
         });
     }

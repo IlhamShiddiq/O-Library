@@ -739,6 +739,12 @@ footer.footer-lp table tr {
   }
 }
 
+@media (max-width: 450px) {
+  .page-3 h1.title-page {
+    margin-top: 20px;
+  }
+}
+
 @media (max-width: 575.98px) {
   nav.nav-landing {
     background-color: #388751;

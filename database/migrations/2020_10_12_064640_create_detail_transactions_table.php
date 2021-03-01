@@ -14,10 +14,15 @@ class CreateDetailTransactionsTable extends Migration
     public function up()
     {
         Schema::create('detail_transactions', function (Blueprint $table) {
-            $table->integer('transaction_id');
-            $table->integer('book_id');
+            $table->unsignedBigInteger('transaction_id');
+            $table->unsignedBigInteger('book_id');
+            $table->date('date_of_return');
             $table->char('status', 1);
+            $table->timestamp('last_warned')->nullable();
             $table->timestamps();
+
+            $table->foreign('transaction_id')->references('id')->on('transactions');
+            $table->foreign('book_id')->references('id')->on('books');
         });
     }
 

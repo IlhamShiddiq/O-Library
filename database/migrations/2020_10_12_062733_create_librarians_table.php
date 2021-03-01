@@ -14,10 +14,10 @@ class CreateLibrariansTable extends Migration
     public function up()
     {
         Schema::create('librarians', function (Blueprint $table) {
-            $table->id('librarian_id');
+            $table->id('id');
             $table->text('address');
             $table->char('phone', 16);
-            $table->string('photo');
+            $table->integer('confirm_code')->nullable();
             $table->timestamps();
         });
     }

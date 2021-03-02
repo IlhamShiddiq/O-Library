@@ -41,7 +41,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <h1 class="id-transaksi py-2">id transaksi : {{$report->transaction_id}}</h1>
-                                            <p class="person"><span class="badge badge-info">{{$report->nomor_induk}} / {{$report->name}}</span></p>
+                                            <p class="person"><span class="badge badge-info text-white">{{$report->nomor_induk}} / {{$report->name}}</span></p>
                                             <div class="info">
                                                 <div class="info-book">
                                                     <p class="info-transaksi">"{{$report->title}}"</p>

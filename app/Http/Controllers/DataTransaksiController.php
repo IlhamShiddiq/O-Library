@@ -237,6 +237,9 @@ class DataTransaksiController extends Controller
         $tbl = 'users.'.$request->by;
         $search = '%'.$request->search.'%';
 
+        date_default_timezone_set('Asia/Jakarta');
+        $today = date('Y-m-d');
+
         $datas = Transaction::select('transactions.id', 'users.nomor_induk', 'users.name', DB::raw('COUNT("transaction_id") as sum'))
                             ->join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
                             ->join('users', 'transactions.member_id', '=', 'users.id')
@@ -246,7 +249,7 @@ class DataTransaksiController extends Controller
                             ->orderBy('transactions.id')
                             ->paginate(3000);
 
-        return view('librarian/data-transaction', compact('datas'));
+        return view('librarian/data-transaction', compact('datas', 'today'));
     }
 
     public function returnBook(Transaction $transaction)

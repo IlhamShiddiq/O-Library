@@ -83,11 +83,15 @@ class DataReportController extends Controller
         if($request->by == 'nomor_induk') $tbl = 'users.'.$request->by;
         else if($request->by == 'borrow_date') $tbl = 'transactions.'.$request->by;
         else $tbl = 'detail_transactions.'.$request->by;
+        // dd($tbl);
 
         $search = '%'.$request->search.'%';
 
         date_default_timezone_set('Asia/Jakarta');
         $this_month = date('n');
+
+        $paginate = Config::all();
+        $config = $paginate;
 
         $reports = Transaction::select('transaction_id', 'name', 'nomor_induk', 'librarian_id', 'borrow_date', 'date_of_return', 'title')
                                 ->join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
@@ -99,6 +103,14 @@ class DataReportController extends Controller
                                 ->orderByDesc('date_of_return')
                                 ->paginate(30000);
 
-        return view('librarian/data-report', compact('reports'));
+        $count = Transaction::join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
+                                ->join('users', 'transactions.member_id', '=', 'users.id')
+                                ->join('books', 'detail_transactions.book_id', '=', 'books.id')
+                                ->where('detail_transactions.status', '1')
+                                ->whereMonth('detail_transactions.date_of_return', $this_month)
+                                ->where($tbl, 'like', $search)
+                                ->count();
+
+        return view('librarian/data-report', compact('reports', 'count', 'config'));
     }
 }

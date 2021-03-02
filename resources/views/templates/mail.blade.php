@@ -38,7 +38,8 @@
             font-size: 78px;
         }
         .head-title {
-            font-size: 24px;
+            font-size: 18px;
+            color: black !important;
         }
         .sub-title {
             font-size: 14px;

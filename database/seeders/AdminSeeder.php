@@ -18,8 +18,8 @@ class AdminSeeder extends Seeder
     {
         $user = User::create([
             'nomor_induk' => '373373',
-            'username' => 'sayasukaadmin',
-            'password' => bcrypt('sayasukaadmin'),
+            'username' => 'haloadmin',
+            'password' => bcrypt('haloadmin'),
             'name' => 'Default User',
             'role' => 'Admin',
             'email' => 'default@default.com',

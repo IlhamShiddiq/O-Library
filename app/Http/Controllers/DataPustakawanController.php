@@ -32,6 +32,7 @@ class DataPustakawanController extends Controller
         }
 
         $paginate = Config::all();
+        $isSearch = '';
 
         $librarians = DB::table('users')
             ->join('librarians', 'users.id', '=', 'librarians.id')
@@ -43,7 +44,7 @@ class DataPustakawanController extends Controller
             ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'librarians.address', 'librarians.phone', 'librarians.confirm_code')
             ->count();
 
-        return view('librarian.data-librarian', compact('librarians', 'count'));
+        return view('librarian.data-librarian', compact('librarians', 'count', 'isSearch'));
     }
 
     public function librarianDetail(Librarian $librarian) 
@@ -268,6 +269,7 @@ class DataPustakawanController extends Controller
         else $tbl = 'librarians.'.$request->by;
 
         $search = '%'.$request->search.'%';
+        $isSearch = 'display: none';
 
         $librarians = DB::table('users')
             ->join('librarians', 'users.id', '=', 'librarians.id')
@@ -281,7 +283,7 @@ class DataPustakawanController extends Controller
             ->where($tbl, 'like', $search)
             ->count();
 
-        return view('librarian.data-librarian', compact('librarians', 'count'));
+        return view('librarian.data-librarian', compact('librarians', 'count', 'isSearch'));
         // dd($request->all());
     }
     

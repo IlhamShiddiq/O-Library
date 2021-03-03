@@ -23,12 +23,13 @@ class DataCategoryController extends Controller
         }
 
         $paginate = Config::all();
+        $isSearch = '';
  
         $categories = Categories::paginate($paginate[0]->category_list_page);
 
         $count = Categories::all()->count();
 
-        return view('librarian/data-category', compact('categories', 'count'));
+        return view('librarian/data-category', compact('categories', 'count', 'isSearch'));
     }
 
     public function store(Request $request)
@@ -67,13 +68,14 @@ class DataCategoryController extends Controller
 
     public function search(Request $request) 
     {
+        $isSearch = 'display: none';
         $word = '%'.$request->input('search').'%';
 
         $categories = Categories::where('category', 'like', $word)->paginate(1000);
 
         $count = Categories::where('category', 'like', $word)->count();
 
-        return view('librarian/data-category', compact('categories', 'count'));
+        return view('librarian/data-category', compact('categories', 'count', 'isSearch'));
     }
     
     public function importCategory(Request $request) {

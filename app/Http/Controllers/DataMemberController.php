@@ -33,6 +33,7 @@ class DataMemberController extends Controller
         }
 
         $paginate = Config::all();
+        $isSearch = '';
  
         $members = DB::table('users')
             ->join('members', 'users.id', '=', 'members.id')
@@ -44,7 +45,7 @@ class DataMemberController extends Controller
             ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'members.address', 'members.phone', 'members.status', 'members.class', 'members.confirm_code')
             ->count();
 
-        return view('librarian.data-member', compact('members', 'count'));
+        return view('librarian.data-member', compact('members', 'count', 'isSearch'));
     }
 
     public function memberDetail(Member $member)
@@ -273,6 +274,7 @@ class DataMemberController extends Controller
         else $tbl = 'members.'.$request->by;
 
         $search = '%'.$request->search.'%';
+        $isSearch = 'display: none';
 
         $members = DB::table('users')
             ->join('members', 'users.id', '=', 'members.id')
@@ -286,7 +288,7 @@ class DataMemberController extends Controller
             ->where($tbl, 'like', $search)
             ->count();
 
-        return view('librarian.data-member', compact('members', 'count'));
+        return view('librarian.data-member', compact('members', 'count', 'isSearch'));
     }
 
     public function resetCode(Request $request, Member $member)

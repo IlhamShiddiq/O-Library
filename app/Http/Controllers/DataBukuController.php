@@ -28,6 +28,7 @@ class DataBukuController extends Controller
         }
 
         $paginate = Config::all();
+        $isSearch = '';
  
         $books = DB::table('books')
             ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
@@ -41,7 +42,7 @@ class DataBukuController extends Controller
             ->select('books.id', 'books.publisher_id', 'books.category_id', 'books.title', 'books.author', 'books.qty', 'books.image', 'books.about', 'publishers.publisher', 'categories.category')
             ->count();
         
-        return view('librarian/data-book', compact('books', 'count'));
+        return view('librarian/data-book', compact('books', 'count', 'isSearch'));
         // dd($books);
     }
 
@@ -209,6 +210,7 @@ class DataBukuController extends Controller
         else $tbl = 'books.'.$request->by;
 
         $search = '%'.$request->search.'%';
+        $isSearch = 'display: none';
 
         $books = DB::table('books')
             ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
@@ -224,7 +226,7 @@ class DataBukuController extends Controller
             ->where($tbl, 'like', $search)
             ->count();
 
-        return view('librarian.data-book', compact('books', 'count'));
+        return view('librarian.data-book', compact('books', 'count', 'isSearch'));
         // dd($request->request);
     }
 

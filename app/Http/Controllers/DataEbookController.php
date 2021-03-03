@@ -27,6 +27,7 @@ class DataEbookController extends Controller
         }
 
         $paginate = Config::all();
+        $isSearch = '';
  
         $ebooks = DB::table('ebooks')
             ->join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')
@@ -40,7 +41,7 @@ class DataEbookController extends Controller
             ->select('ebooks.id', 'ebooks.publisher_id', 'ebooks.category_id', 'ebooks.title', 'ebooks.author', 'ebooks.link', 'ebooks.image', 'ebooks.about', 'publishers.publisher', 'categories.category')
             ->count();
 
-        return view('librarian/data-ebook', compact('ebooks', 'count'));
+        return view('librarian/data-ebook', compact('ebooks', 'count', 'isSearch'));
         // dd($ebooks);
     }
 
@@ -192,6 +193,7 @@ class DataEbookController extends Controller
         else $tbl = 'ebooks.'.$request->by;
 
         $search = '%'.$request->search.'%';
+        $isSearch = 'display: none';
 
         $ebooks = DB::table('ebooks')
             ->join('publishers', 'ebooks.publisher_id', '=', 'publishers.id')
@@ -207,7 +209,7 @@ class DataEbookController extends Controller
             ->where($tbl, 'like', $search)
             ->count();
 
-        return view('librarian.data-ebook', compact('ebooks', 'count'));
+        return view('librarian.data-ebook', compact('ebooks', 'count', 'isSearch'));
         // dd($request->request);
     }
 

@@ -48,7 +48,7 @@
                     </form>
                     <a href="{{ url('/book') }}" class="btn btn-success full-width"><i class="fas fa-eye"></i> See All</a>
                 </div>
-                <div class="gray-wrapper radius-admin">
+                <div class="gray-wrapper radius-admin" style="{{$isSearch}}">
                     <div class="row">
                         <div class="col-7 pr-1">
                             <button type="button" class="btn btn-success full-width" data-toggle="modal" data-target="#addDataModal"><i class="fas fa-plus"></i> Tambah Data</button>

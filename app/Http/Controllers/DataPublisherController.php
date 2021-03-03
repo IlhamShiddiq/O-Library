@@ -23,12 +23,13 @@ class DataPublisherController extends Controller
         }
 
         $paginate = Config::all();
+        $isSearch = '';
  
         $publishers = Publisher::paginate($paginate[0]->publisher_list_page);
 
         $count = Publisher::all()->count();
 
-        return view('librarian/data-publisher', compact('publishers', 'count'));
+        return view('librarian/data-publisher', compact('publishers', 'count', 'isSearch'));
     }
 
     public function store(Request $request)
@@ -73,13 +74,14 @@ class DataPublisherController extends Controller
 
     public function search(Request $request) 
     {
+        $isSearch = 'display: none';
         $word = '%'.$request->input('search').'%';
 
         $publishers = Publisher::where('publisher', 'like', $word)->paginate(1000);
 
         $count = Publisher::where('publisher', 'like', $word)->count();
 
-        return view('librarian/data-publisher', compact('publishers', 'count'));
+        return view('librarian/data-publisher', compact('publishers', 'count', 'isSearch'));
     }
 
     public function importPublisher(Request $request) {

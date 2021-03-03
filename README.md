@@ -17,9 +17,9 @@ Sebelum memulai pemasangan, pastikan bahwa di perangkat anda sudah dipasang Comp
 * Ketikkan `php artisan key:generate`, lalu enter
 * Ketikkan `php artisan migrate`, lalu enter
 * Ketikkan `php artisan db:seed --class=ConfigsSeeder`, lalu enter
-* Ketikkan `php artisan de:seed --class=AdminSeeder`, lalu enter
-* Ketikkan `php artisan de:seed --class=LibrarianSeeder`, lalu enter
-* Ketikkan `php artisan de:seed --class=MemberSeeder`, lalu enter
+* Ketikkan `php artisan db:seed --class=AdminSeeder`, lalu enter
+* Ketikkan `php artisan db:seed --class=LibrarianSeeder`, lalu enter
+* Ketikkan `php artisan db:seed --class=MemberSeeder`, lalu enter
 * Terakhir, ketikkan `php artisan serve`, lalu buka web dengan mengetikkan url `localhost:8000` pada browser anda
 
 ## Akun

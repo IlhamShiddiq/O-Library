@@ -1,0 +1,24 @@
+Sebelum anda melakukan langkah-langkah di bawah ini, pastikan bahwa di perangkat anda sudah terpasang software Composer versi terbaru dan NodeJS
+
+1. Pada perangkat anda, buat database yang bernamakan olibrary (MySQL)
+2. Download semua file projek yang ada di github ini, ekstrak lalu buka command prompt/terminal yang mengarah pada path file projek tersebut
+3. Ketikkan composer install, lalu enter
+4. Ketikkan npm install, lalu enter
+5. Ketikkan php artisan key:generate, lalu enter
+6. Ketikkan php artisan migrate, lalu enter
+7. Ketikkan php artisan db:seed --class=ConfigsSeeder, lalu enter
+8. Ketikkan php artisan db:seed --class=AdminSeeder, lalu enter
+9. Ketikkan php artisan db:seed --class=LibrarianSeeder, lalu enter
+10. Ketikkan php artisan db:seed --class=MemberSeeder, lalu enter
+11. Terakhir, ketikkan php artisan serve, lalu buka web dengan mengetikkan url localhost:8000 pada browser anda
+
+AKUN LOGIN
+1. Admin
+   - Username : haloadmin
+   - Password : haloadmin
+2. Pustakawan
+   - Username : halolibrarian
+   - Password : halolibrarian
+3. Member
+   - Username : halomember
+   - Password : halomember

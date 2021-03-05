@@ -12,8 +12,6 @@ Sebelum memulai pemasangan, pastikan bahwa di perangkat anda sudah dipasang Comp
 * Download semua file projek yang ada di github ini, ekstrak lalu buka command prompt/terminal yang mengarah pada path file projek tersebut
 * Ketikkan `composer install`, lalu enter
 * Ketikkan `npm install`, lalu enter
-* Ketikkan `cp .env.example .env`, lalu enter
-* Buka file bernamakan `.env`, lalu cari `DB_DATABASE` dan isikan dengan `olibrary`
 * Ketikkan `php artisan key:generate`, lalu enter
 * Ketikkan `php artisan migrate`, lalu enter
 * Ketikkan `php artisan db:seed --class=ConfigsSeeder`, lalu enter

@@ -152,9 +152,11 @@ class StaticPageController extends Controller
         return view('about-dev');
     }
 
-    public function a() {
-        // return view('mail.verification', ['verification_code' => 'a', 'head' => 'a', 'sub' => 'b', 'pesan' => 'c', 'pustakawan' => 'd']);
+    public function articleLists() {
+        return view('articles.articles');
+    }
 
-        return view('member-card.card-member');
+    public function articleRead() {
+        return view('articles.article');
     }
 }

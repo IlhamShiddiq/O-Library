@@ -40,7 +40,8 @@ Route::post('/account/confirm', [ConfirmPageController::class, 'confirmPageData'
 Route::post('/account/confirming/{user}', [ConfirmPageController::class, 'confirmingPageData']);
 Route::post('/excel-report', [StaticPageController::class, 'excelReportMessage']);
 Route::get('/about-dev', [StaticPageController::class, 'aboutDev']);
-Route::get('/a', [StaticPageController::class, 'a']);
+Route::get('/articles', [StaticPageController::class, 'articleLists']);
+Route::get('/article', [StaticPageController::class, 'articleRead']);
 
 Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(function () {
 

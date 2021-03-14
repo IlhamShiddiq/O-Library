@@ -1,0 +1,137 @@
+.navbar-article-page {
+    z-index: 99;
+}
+
+.heading-articles {
+    height: 350px;
+    background-size: cover;
+}
+
+.titles-heading {
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    .title-heading {
+        font-size: 32px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .quote-reading {
+        font-size: 18px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+}
+
+.overlay-article {
+    background-color: #02250ed0;
+    height: 100%;
+}
+
+.gray-section {
+    height: 30px;
+    background-color: rgb(197, 197, 197);
+}
+
+.articles {
+    h1.title-page {
+        font-family: segoe;
+        font-size: 30px;
+    }
+    .card {
+        cursor: pointer;
+        height: 460px;
+        box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0) !important;
+        transition: box-shadow .5s;
+        img {
+            height: 175px;
+        }
+        .last-updated {
+            font-size: 11px;
+            color: rgb(92, 91, 91);
+            margin-top: -8px;
+        }
+        .card-text {
+            margin-top: -11px;
+        }
+        &:hover {
+            box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;
+            transition: box-shadow .5s;
+        }
+    }
+}
+
+.article-item {
+    .img-article {
+        height: 425px;
+    }
+    .article-title {
+        font-size: 28px;
+        color: rgb(102, 102, 102);
+        text-transform: uppercase;
+    }
+    .last-updated-article, .written-by {
+        color: gray;
+    }
+    .article-content {
+        font-size: 16px;
+    }
+    .sidebar-article {
+        background-color: rgb(226, 226, 226);
+        ol.latest-article {
+            li {
+                margin-left: -20px !important;
+                a {
+                    color: black !important;
+                    text-decoration: none;
+                    &:hover {
+                        color: rgb(77, 77, 77) !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+    .titles-heading {
+        padding: 50px 1px;
+        .title-heading {
+            font-size: 23px !important;
+        }
+        .quote-reading {
+            font-size: 13px !important;
+        }
+    }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (min-width: 576px) and (max-width: 767.98px) { 
+    .titles-heading {
+        padding: 50px 1px;
+        .title-heading {
+            font-size: 23px !important;
+        }
+        .quote-reading {
+            font-size: 13px !important;
+        }
+    }
+}
+
+// Medium devices (tablets, less than 992px)
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .titles-heading {
+        padding: 50px 1px;
+        .title-heading {
+            font-size: 28px !important;
+        }
+        .quote-reading {
+            font-size: 15px !important;
+        }
+    }
+}
+
+// Large devices (desktops, less than 1200px)
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    
+}

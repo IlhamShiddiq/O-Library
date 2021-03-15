@@ -102,7 +102,6 @@ class DataTransaksiController extends Controller
             // Memasukkan Data ke table transactions dan detail_transactions
             $transaction = Transaction::create([
                 'member_id' => $id[0]->id,
-                'librarian_id' => auth()->user()->id,
                 'borrow_date' => date('Y-m-d'),
             ]);
 

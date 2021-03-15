@@ -64,7 +64,8 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{url('/config')}}" class="btn btn-sm btn-notif ml-1"><i class="fas fa-cog"></i></a>
+                <a href="{{url('/config')}}" class="btn btn-sm btn-notif ml-1" title="Artikel"><i class="fas fa-newspaper"></i></a>
+                <a href="{{url('/config')}}" class="btn btn-sm btn-notif ml-1" title="Konfigurasi"><i class="fas fa-cog"></i></a>
                 <button class="btn btn-sm btn-notif"><i class="fas fa-bell"></i></button>
             </div>
         </nav>
@@ -86,6 +87,14 @@
                     </div>
                     <a href="{{ url('/dashboard') }}" class="dest-item d-inline-block text-white">
                         Dashboard
+                    </a>
+                </div>
+                <div class="item-menu text-white">
+                    <div class="icon-item d-inline-block text-center">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <a href="{{ url('/librarian') }}" class="dest-item d-inline-block text-white">
+                        Artikel Perpustakaan
                     </a>
                 </div>
                 <div class="item-menu text-white @if(auth()->user()->role == 'Pustakawan') d-none @endif">

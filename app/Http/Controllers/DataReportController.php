@@ -27,7 +27,7 @@ class DataReportController extends Controller
         $paginate = Config::all();
         $config = $paginate;
 
-        $reports = Transaction::select('transaction_id', 'name', 'nomor_induk', 'librarian_id', 'borrow_date', 'date_of_return', 'title')
+        $reports = Transaction::select('transaction_id', 'name', 'nomor_induk', 'borrow_date', 'date_of_return', 'title')
                                 ->join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
                                 ->join('users', 'transactions.member_id', '=', 'users.id')
                                 ->join('books', 'detail_transactions.book_id', '=', 'books.id')

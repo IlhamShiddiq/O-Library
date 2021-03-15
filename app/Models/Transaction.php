@@ -11,7 +11,6 @@ class Transaction extends Model
 
     protected $fillable = [
         'member_id',
-        'librarian_id',
         'borrow_date'
     ];
 }

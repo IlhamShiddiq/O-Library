@@ -186,12 +186,6 @@ class DataBukuController extends Controller
         return redirect('/book')->with('failed', $err);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Book $book)
     {
         Book::destroy($book->id);
@@ -200,7 +194,6 @@ class DataBukuController extends Controller
         }
 
         return redirect('/book')->with('success', 'Data '.$book->title.' berhasil dihapus');
-        // dd($book);
     }
 
     public function search(Request $request)

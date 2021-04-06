@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{url('/config')}}" class="btn btn-sm btn-notif ml-1" title="Artikel"><i class="fas fa-newspaper"></i></a>
+                <a href="{{url('/article-management')}}" class="btn btn-sm btn-notif ml-1" title="Artikel"><i class="fas fa-newspaper"></i></a>
                 <a href="{{url('/config')}}" class="btn btn-sm btn-notif ml-1" title="Konfigurasi"><i class="fas fa-cog"></i></a>
                 <button class="btn btn-sm btn-notif"><i class="fas fa-bell"></i></button>
             </div>
@@ -93,7 +93,7 @@
                     <div class="icon-item d-inline-block text-center">
                         <i class="fas fa-newspaper"></i>
                     </div>
-                    <a href="{{ url('/librarian') }}" class="dest-item d-inline-block text-white">
+                    <a href="{{ url('/article-management') }}" class="dest-item d-inline-block text-white">
                         Artikel Perpustakaan
                     </a>
                 </div>

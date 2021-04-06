@@ -151,12 +151,4 @@ class StaticPageController extends Controller
     public function aboutDev() {
         return view('about-dev');
     }
-
-    public function articleLists() {
-        return view('articles.articles');
-    }
-
-    public function articleRead() {
-        return view('articles.article');
-    }
 }

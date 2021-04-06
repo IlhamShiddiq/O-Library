@@ -1838,6 +1838,67 @@ footer.footer-lp table tr {
   margin-top: -12px;
 }
 
+.article-item-wrapper {
+  min-height: 160px;
+  background-color: #a8a8a8;
+}
+
+.article-item-wrapper .private-sign {
+  bottom: 13px;
+  right: 13px;
+}
+
+.article-item-wrapper .article-item {
+  bottom: 0;
+  right: 0;
+  width: 99%;
+  height: 100%;
+  background-color: #fff;
+}
+
+.article-item-wrapper .article-item img.article-img {
+  width: 230px;
+}
+
+.article-item-wrapper .article-item .article-info {
+  padding-left: 245px;
+}
+
+.article-item-wrapper .article-item .article-info .title-info {
+  font-size: 17px;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.article-item-wrapper .article-item .article-info .last-updated {
+  font-size: 12px;
+  color: #616161;
+}
+
+.article-item-wrapper .button-wrapper {
+  padding-left: 245px;
+  left: 10px;
+  bottom: 15px;
+}
+
+.create-edit-article .img-article-wrapper img {
+  height: 350px;
+}
+
+.wysiwyg > [contenteditable=true] img {
+  max-width: 100% !important;
+  max-height: 50vh !important;
+  image-orientation: from-image;
+}
+
+.wysiwyg {
+  min-height: 300px !important;
+}
+
+.wysiwyg > textarea {
+  min-height: 300px !important;
+}
+
 .total-row {
   color: #646363;
   font-family: segoe;

@@ -193,7 +193,7 @@
                             <small for="photoLibrarian">Photo</small>
                             <div class="input-group">
                                 <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="photoLibrarian" name="photoLibrarian"  onchange="document.getElementById('member-foto').src = window.URL.createObjectURL(this.files[0]), document.getElementById('name-label').innerHTML = this.files[0].name">
+                                  <input type="file" class="custom-file-input" id="photoLibrarian" name="photoLibrarian" onchange="document.getElementById('member-foto').src = window.URL.createObjectURL(this.files[0]), document.getElementById('name-label').innerHTML = this.files[0].name">
                                   <label class="custom-file-label" for="photoLibrarian" id="name-label">Choose file</label>
                                 </div>
                             </div>

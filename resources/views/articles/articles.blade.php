@@ -27,12 +27,13 @@
                 </div>
                 <div class="col-10 col-md-6 col-lg-5 mb-3">
                     <div class="form-search form-search-member-side">
-                        <form action="" method="POST">
+                        <form action="{{url('/articles/search')}}" method="POST">
                             @csrf
                             <div class="input-group full-width">
                                 <input type="text" class="form-control pl-3" placeholder="Search Article" name="search" aria-describedby="button-addon2">
                                 <div class="input-group-append">
-                                <button class="btn btn-success pr-3" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
+                                <button type="submit" class="btn btn-success pr-3" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
+                                <a href="{{url('/articles')}}" class="btn btn-secondary pr-3" type="submit" id="button-addon2"><i class="fas fa-eye"></i></a>
                                 </div>
                             </div>
                         </form>
@@ -40,116 +41,23 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-10 col-11 px-2 my-2">
-                    <div class="card full-width position-relative">
-                        <img src="{{asset('img/bg-card.jpg')}}" class="card-img-top fit-cover" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title Card title Card title Card title</h5>
-                          <p class="last-updated"><i class="far fa-clock"></i> 2020-03-01 12:00</p>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the Some quick example</p>
-                          <a href="#" class="btn btn-sm btn-dark rounded-0 position-absolute bottom-absolute">Go somewhere</a>
+                @foreach ($articles as $article)
+                    <?php
+                        $synopsis = $article->synopsis;
+                        if(strlen($synopsis) > 150) $synopsis = substr($synopsis, 0, 150).' ...';
+                    ?>
+                    <div class="col-xl-3 col-lg-5 col-md-5 col-sm-10 col-11 px-2 my-2">
+                        <div class="card full-width position-relative">
+                            <img src="{{asset('uploaded_files/article-image/'.$article->image)}}" class="card-img-top fit-cover" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">{{$article->title}}</h5>
+                            <p class="last-updated"><i class="far fa-clock"></i> {{$article->updated_at}}</p>
+                            <p class="card-text">{{$synopsis}}</p>
+                            <a href="{{url('/articles/view/'.$article->id)}}" class="btn btn-sm btn-dark rounded-0 position-absolute bottom-absolute">Buka Artikel</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-10 col-11 px-2 my-2">
-                    <div class="card full-width position-relative">
-                        <img src="{{asset('img/book-default.png')}}" class="card-img-top fit-cover" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title Card title Card title Card title</h5>
-                          <p class="last-updated"><i class="far fa-clock"></i> 2020-03-01 12:00</p>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the Some quick example</p>
-                          <a href="#" class="btn btn-sm btn-dark rounded-0 position-absolute bottom-absolute">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-10 col-11 px-2 my-2">
-                    <div class="card full-width position-relative">
-                        <img src="{{asset('img/book-default.png')}}" class="card-img-top fit-cover" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title Card title Card title Card title</h5>
-                          <p class="last-updated"><i class="far fa-clock"></i> 2020-03-01 12:00</p>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the Some quick example</p>
-                          <a href="#" class="btn btn-sm btn-dark rounded-0 position-absolute bottom-absolute">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-10 col-11 px-2 my-2">
-                    <div class="card full-width position-relative">
-                        <img src="{{asset('img/bg-card.jpg')}}" class="card-img-top fit-cover" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title Card title Card title Card title</h5>
-                          <p class="last-updated"><i class="far fa-clock"></i> 2020-03-01 12:00</p>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the Some quick example</p>
-                          <a href="#" class="btn btn-sm btn-dark rounded-0 position-absolute bottom-absolute">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-10 col-11 px-2 my-2">
-                    <div class="card full-width position-relative">
-                        <img src="{{asset('img/bg-card.jpg')}}" class="card-img-top fit-cover" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title Card title Card title Card title</h5>
-                          <p class="last-updated"><i class="far fa-clock"></i> 2020-03-01 12:00</p>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the Some quick example</p>
-                          <a href="#" class="btn btn-sm btn-dark rounded-0 position-absolute bottom-absolute">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-10 col-11 px-2 my-2">
-                    <div class="card full-width position-relative">
-                        <img src="{{asset('img/book-default.png')}}" class="card-img-top fit-cover" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title Card title Card title Card title</h5>
-                          <p class="last-updated"><i class="far fa-clock"></i> 2020-03-01 12:00</p>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the Some quick example</p>
-                          <a href="#" class="btn btn-sm btn-dark rounded-0 position-absolute bottom-absolute">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-10 col-11 px-2 my-2">
-                    <div class="card full-width position-relative">
-                        <img src="{{asset('img/book-default.png')}}" class="card-img-top fit-cover" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title Card title Card title Card title</h5>
-                          <p class="last-updated"><i class="far fa-clock"></i> 2020-03-01 12:00</p>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the Some quick example</p>
-                          <a href="#" class="btn btn-sm btn-dark rounded-0 position-absolute bottom-absolute">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-10 col-11 px-2 my-2">
-                    <div class="card full-width position-relative">
-                        <img src="{{asset('img/book-default.png')}}" class="card-img-top fit-cover" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title Card title Card title Card title</h5>
-                          <p class="last-updated"><i class="far fa-clock"></i> 2020-03-01 12:00</p>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the Some quick example</p>
-                          <a href="#" class="btn btn-sm btn-dark rounded-0 position-absolute bottom-absolute">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-10 col-11 px-2 my-2">
-                    <div class="card full-width position-relative">
-                        <img src="{{asset('img/bg-card.jpg')}}" class="card-img-top fit-cover" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title Card title Card title Card title</h5>
-                          <p class="last-updated"><i class="far fa-clock"></i> 2020-03-01 12:00</p>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the Some quick example</p>
-                          <a href="#" class="btn btn-sm btn-dark rounded-0 position-absolute bottom-absolute">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-10 col-11 px-2 my-2">
-                    <div class="card full-width position-relative">
-                        <img src="{{asset('img/bg-card.jpg')}}" class="card-img-top fit-cover" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title Card title Card title Card title</h5>
-                          <p class="last-updated"><i class="far fa-clock"></i> 2020-03-01 12:00</p>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the Some quick example</p>
-                          <a href="#" class="btn btn-sm btn-dark rounded-0 position-absolute bottom-absolute">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

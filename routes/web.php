@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LoginPageController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\DataBukuController;
 use App\Http\Controllers\DataEbookController;
 use App\Http\Controllers\DataPublisherController;
@@ -40,13 +41,22 @@ Route::post('/account/confirm', [ConfirmPageController::class, 'confirmPageData'
 Route::post('/account/confirming/{user}', [ConfirmPageController::class, 'confirmingPageData']);
 Route::post('/excel-report', [StaticPageController::class, 'excelReportMessage']);
 Route::get('/about-dev', [StaticPageController::class, 'aboutDev']);
-Route::get('/articles', [StaticPageController::class, 'articleLists']);
-Route::get('/article', [StaticPageController::class, 'articleRead']);
+Route::get('/articles', [ArticlesController::class, 'articleLists']);
+Route::get('/articles/view/{article}', [ArticlesController::class, 'articleRead']);
+Route::post('/articles/search', [ArticlesController::class, 'search']);
 
 Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(function () {
 
     // LIBRARIAN OR ADMIN PAGE
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/article-management', [ArticlesController::class, 'index']);
+    Route::get('/article-management/create', [ArticlesController::class, 'create']);
+    Route::post('/article-management/create', [ArticlesController::class, 'store']);
+    Route::get('/article-management/edit/{article}', [ArticlesController::class, 'edit']);
+    Route::post('/article-management/edit/{article}', [ArticlesController::class, 'update']);
+    Route::delete('/article-management/delete/{article}', [ArticlesController::class, 'destroy']);
+    Route::post('/article-management/search', [ArticlesController::class, 'searchFromLibrarian']);
 
     Route::get('/book', [DataBukuController::class, 'index']);
     Route::get('/book/detail/{book}', [DataBukuController::class, 'bookDetail']);

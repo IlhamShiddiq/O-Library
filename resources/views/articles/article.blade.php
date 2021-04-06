@@ -14,7 +14,8 @@
             <div class="title-heading text-center text-white mt-4 mb-1">KUMPULAN ARTIKEL PERPUSTAKAAN SMK NEGERI 1 CIMAHI</div>
             <div class="quote-reading text-white text-center">"Membaca adalah napas hidup dan jembatan emas ke masa depan."</div>
             <div class="text-center mt-3">
-                <a href="{{url('/articles')}}" class="btn btn-success px-4 rounded-pill m-auto">Kembali ke Halaman Artikel</a>
+                <a href="{{url('/articles')}}" style="{{$style_unauth}}" class="btn btn-success px-4 rounded-pill m-auto">Kembali ke Halaman Artikel</a>
+                <a href="{{url('/article-management')}}" style="{{$style_auth}}" class="btn btn-success px-4 rounded-pill m-auto">Kembali</a>
             </div>
         </div>
     </div>
@@ -24,30 +25,25 @@
             <div class="row pt-3">
                 <div class="col-12 col-md-7 col-lg-8">
                     <div class="article full-width">
-                        <img src="{{asset('img/book-default.png')}}" alt="Article Image" class="img-article full-width fit-cover">
-                        <h1 class="article-title mt-4">Ini Adalah judul ARTIKELNYA</h1>
-                        <p class="last-updated-article mb-4"><i class="far fa-clock"></i> Terakhir diupdate pada 2020-10-10 20:20:12</p>
+                        <img src="{{asset('uploaded_files/article-image/'.$article->image)}}" alt="Article Image" class="img-article full-width fit-cover">
+                        <h1 class="article-title mt-4">{{$article->title}}</h1>
+                        <p class="last-updated-article mb-4"><i class="far fa-clock"></i> Terakhir diupdate pada {{$article->updated_at}}</p>
                         <div class="article-content">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo excepturi temporibus asperiores ipsum accusantium deserunt, vel rem atque aspernatur totam dicta mollitia possimus consequuntur voluptatibus nobis. Omnis nostrum nisi quod! <br>
-
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque magnam nobis ratione cum voluptatibus numquam distinctio quibusdam adipisci maxime. Blanditiis alias accusamus maxime dignissimos sed dicta assumenda nesciunt quis soluta.
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo excepturi temporibus asperiores ipsum accusantium deserunt, vel rem atque aspernatur totam dicta mollitia possimus consequuntur voluptatibus nobis. Omnis nostrum nisi quod! <br>
-
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque magnam nobis ratione cum voluptatibus numquam distinctio quibusdam adipisci maxime. Blanditiis alias accusamus maxime dignissimos sed dicta assumenda nesciunt quis soluta.
+                            {!!$article->content!!}
                         </div>
-                        <p class="written-by mt-2"><i class="fas fa-user"></i> Ditulis oleh Ilham Shiddiq</p>
+                        <p class="written-by mt-2"><i class="fas fa-user"></i> Ditulis oleh {{$article->written_by}}</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-5 col-lg-4">
                     <div class="sidebar-article full-width">
                         <button class="btn btn-dark full-width rounded-0 text-left">CARI ARTIKEL</button>
                         <div class="form-search p-3">
-                            <form action="" method="POST">
+                            <form action="{{url('/articles/search')}}" method="POST">
                                 @csrf
                                 <div class="input-group full-width">
                                     <input type="text" class="form-control pl-3" placeholder="Search Article" name="search" aria-describedby="button-addon2">
                                     <div class="input-group-append">
-                                    <button class="btn btn-success pr-3" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
+                                    <button type="submit" class="btn btn-success pr-3" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
                                     </div>
                                 </div>
                             </form>
@@ -55,11 +51,9 @@
                         <button class="btn btn-dark full-width rounded-0 text-left">ARTIKEL TERBARU</button>
                         <div class="p-3">
                             <ol class="latest-article">
-                                <li><a href="">Ini Daftar Artikel ke-1</a></li>
-                                <li><a href="">Ini Daftar Artikel ke-1</a></li>
-                                <li><a href="">Ini Daftar Artikel ke-1</a></li>
-                                <li><a href="">Ini Daftar Artikel ke-1</a></li>
-                                <li><a href="">Ini Daftar Artikel ke-1</a></li>
+                                @foreach ($latest_article as $latest)
+                                    <li><a href="{{url('/articles/view/'.$latest->id)}}">{{$latest->title}}</a></li>
+                                @endforeach
                             </ol>
                         </div>
                     </div>

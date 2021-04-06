@@ -17,8 +17,10 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->string('title', 100);
             $table->longText('content');
+            $table->text('synopsis');
             $table->string('written_by', 100);
             $table->string('image');
+            $table->char('public', 1);
             $table->timestamps();
         });
     }

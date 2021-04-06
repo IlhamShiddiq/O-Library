@@ -7,6 +7,7 @@ use App\Models\Categories;
 use App\Models\Book;
 use App\Models\Ebook;
 use App\Models\GalleryConfig;
+use App\Models\Article;
 
 class LandingPageController extends Controller
 {
@@ -49,7 +50,8 @@ class LandingPageController extends Controller
         $sum_books = Book::all()->count();
         $sum_ebooks = Ebook::all()->count();
         $gallery = GalleryConfig::all();
+        $articles = Article::where('public', '1')->limit(4)->orderByDesc('created_at')->get();
 
-        return view('landing-page/landing', compact('sum_categories', 'sum_books', 'sum_ebooks', 'gallery', 'today'));
+        return view('landing-page/landing', compact('sum_categories', 'sum_books', 'sum_ebooks', 'gallery', 'articles', 'today'));
     }
 }

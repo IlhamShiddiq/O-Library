@@ -20,13 +20,13 @@ Before installing OLibrary, make sure your device has installed these softwares.
 * Last, type `php artisan serve`, then open your browser with url address `localhost:8000`
 
 ## Account
-### Admin
+#### 1. Admin
 * Username : haloadmin
 * Password : haloadmin
-### Pustakawan
+#### 2. Pustakawan
 * Username : halolibrarian
 * Password : halolibrarian
-### Member
+#### 3. Member
 * Username : halomember
 * Password : halomember
 

@@ -212,39 +212,56 @@ class DataTransaksiController extends Controller
 
     public function update(Request $request, Transaction $transaction)
     {
+        $idPertama = null;
+        $idKedua = null;
+        
         $id = Detail_Transactions::where('transaction_id', $transaction->id)
                                 ->where('status', '0')
                                 ->get();
 
-        if($request->idBukuPertamaEdit && $request->idBukuKeduaEdit) {
-            if($request->idBukuPertamaEdit == $request->idBukuKeduaEdit) {
+        if($request->isbnPertama) {
+            $isbnPertama = $request->isbnPertama;
+            $isbnPertama = chop($request->isbnPertama, 'e');
+            $book_id = Book::where('isbn', $isbnPertama)->get();
+
+            if(count($book_id) == 0) return redirect('/transaction')->with('failed', 'ID Buku(1) tidak terdaftar di sistem');
+            if($book_id[0]->qty == '0') return redirect('/transaction')->with('failed', 'Buku(1) tidak tersedia');
+
+            $idPertama = $book_id[0]->id;
+        }
+
+        if($request->isbnPertama && $request->isbnKedua) {
+            $isbnKedua = $request->isbnKedua;
+            $isbnKedua = chop($request->isbnKedua, 'e');
+            $book_id_2 = Book::where('isbn', $isbnKedua)->get();
+
+            if(count($book_id_2) == 0) return redirect('/transaction')->with('failed', 'ID Buku(2) tidak terdaftar di sistem');
+            if($book_id_2[0]->qty == '0') return redirect('/transaction')->with('failed', 'Buku(2) tidak tersedia');
+
+            $idKedua = $book_id_2[0]->id;
+
+            if($idPertama == $idKedua) {
                 return redirect('/transaction')->with('failed', 'ID Buku Tidak boleh sama');
             }
 
-            if(($request->idBukuPertamaEdit == $id[1]->book_id) && ($id[0]->book_id == $request->idBukuKeduaEdit)) {
+            if(($idPertama == $id[1]->book_id) && ($id[0]->book_id == $idKedua)) {
                 return redirect('/transaction')->with('failed', 'Pengubahan ditolak');
             }
         }
 
-        if($request->idBukuPertamaEdit)
+        if($idPertama)
         {
-            $check = Book::where('id', $request->idBukuPertamaEdit)->count();
-            if($check == 0) return redirect('/transaction')->with('failed', 'ID Buku(1) tidak terdaftar di sistem');
-
-            $checkQTY = Book::where('id', $request->idBukuPertamaEdit)->get();
-            if($checkQTY[0]->qty == '0') return redirect('/transaction')->with('failed', 'Buku(1) tidak tersedia');
-
             $updateID = Detail_Transactions::where('transaction_id', $transaction->id)
                                     ->where('book_id', $id[0]->book_id)
                                     ->update([
-                                        'book_id' => $request->idBukuPertamaEdit
+                                        'book_id' => $idPertama
                                         ]);
 
             $qty = Book::select('qty')
-                        ->where('id', $request->idBukuPertamaEdit)
+                        ->where('id', $idPertama)
                         ->get();
                                     
-            $dicrease_qty = Book::where('id', $request->idBukuPertamaEdit)
+            $dicrease_qty = Book::where('id', $idPertama)
                                     ->update([
                                         'qty' => $qty[0]->qty - 1
                                         ]);
@@ -260,25 +277,19 @@ class DataTransaksiController extends Controller
                                         ]);
         }
 
-        if($request->idBukuKeduaEdit)
+        if($idKedua)
         {
-            $check = Book::where('id', $request->idBukuKeduaEdit)->count();
-            if($check == 0) return redirect('/transaction')->with('failed', 'ID Buku(2) tidak terdaftar di sistem');
-
-            $checkQTY = Book::where('id', $request->idBukuKeduaEdit)->get();
-            if($checkQTY[0]->qty == '0') return redirect('/transaction')->with('failed', 'Buku(2) tidak tersedia');
-
             $updateID = Detail_Transactions::where('transaction_id', $transaction->id)
                                     ->where('book_id', $id[1]->book_id)
                                     ->update([
-                                        'book_id' => $request->idBukuKeduaEdit
+                                        'book_id' => $idKedua
                                         ]);
 
             $qty = Book::select('qty')
-                        ->where('id', $request->idBukuKeduaEdit)
+                        ->where('id', $idKedua)
                         ->get();
                         
-            $dicrease_qty = Book::where('id', $request->idBukuKeduaEdit)
+            $dicrease_qty = Book::where('id', $idKedua)
                                     ->update([
                                         'qty' => $qty[0]->qty - 1
                                         ]);
@@ -428,10 +439,10 @@ class DataTransaksiController extends Controller
 
     public function checkBook(Request $request)
     {
-        $id = $request->id;
+        $isbn = $request->isbn;
 
         $title = Book::select('title')
-                    ->where('id', $id)
+                    ->where('isbn', $isbn)
                     ->where('qty', '>', 0)
                     ->get();
 
@@ -475,7 +486,7 @@ class DataTransaksiController extends Controller
     {
         $id = $request->id;
 
-        $titles = Detail_Transactions::select('id', 'title')
+        $titles = Detail_Transactions::select('isbn', 'id', 'title')
                                     ->join('books', 'books.id', '=', 'detail_transactions.book_id')
                                     ->where('transaction_id', $id)
                                     ->where('status', '0')
@@ -489,7 +500,7 @@ class DataTransaksiController extends Controller
         $title_response = $count.'~';
         foreach($titles as $title)
         {
-            $title_response .= $title->id.'~';
+            $title_response .= $title->isbn.'~';
             $title_response .= $title->title.'~';
         }
 

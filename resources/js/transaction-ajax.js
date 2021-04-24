@@ -164,12 +164,12 @@ $('#editDataModal').on('show.bs.modal', function (event) {
                     <div class="row form-mg">
                         <div class="col-5 pr-1">
                             <div class="form-group">
-                                <small for="idBukuPertamaEdit">ID Buku</small>
-                                <input type="text" class="form-control" id="idBukuPertamaEdit" name="idBukuPertamaEdit" placeholder="Isikan disini..." value="${splits[1]}">
+                                <small for="isbnPertama">ID Buku</small>
+                                <input type="text" class="form-control" id="isbnPertama" name="isbnPertama" placeholder="Isikan disini..." value="${splits[1]}">
                             </div>
                         </div>
                         <div class="col-1 pl-1">
-                            <button type="button" class="btn btn-primary mt-4 btn-sm-text px-2" id="cekBukuPertamaEdit"><i class="fas fa-search"></i></button>
+                            <button type="button" class="btn btn-primary mt-4 btn-sm-text px-2" id="isbnPertamaCek"><i class="fas fa-search"></i></button>
                         </div>
                         <div class="col-6 pl-1">
                             <div class="form-group">
@@ -185,12 +185,12 @@ $('#editDataModal').on('show.bs.modal', function (event) {
                     <div class="row form-mg" id="row-buku-dua-detail">
                         <div class="col-5 pr-1">
                             <div class="form-group">
-                                <small for="idBukuKeduaEdit">ID Buku kedua</small>
-                                <input type="text" class="form-control" id="idBukuKeduaEdit" name="idBukuKeduaEdit" placeholder="Isikan disini..." value="${splits[3]}">
+                                <small for="isbnKedua">ID Buku kedua</small>
+                                <input type="text" class="form-control" id="isbnKedua" name="isbnKedua" placeholder="Isikan disini..." value="${splits[3]}">
                             </div>
                         </div>
                         <div class="col-1 pl-1">
-                            <button type="button" class="btn btn-primary mt-4 btn-sm-text px-2" id="cekBukuKeduaEdit"><i class="fas fa-search"></i></button>
+                            <button type="button" class="btn btn-primary mt-4 btn-sm-text px-2" id="isbnKeduaCek"><i class="fas fa-search"></i></button>
                         </div>
                         <div class="col-6 pl-1">
                             <div class="form-group">
@@ -211,7 +211,7 @@ $('#editDataModal').on('show.bs.modal', function (event) {
             modal.find('.wrapper').html(wrapper)
 
             
-            jQuery('#cekBukuPertamaEdit').click(function(e){
+            jQuery('#isbnPertamaCek').click(function(e){
                 jQuery('#judulBukuPertamaEdit').val("");
                 jQuery('#judulBukuPertamaEdit').attr("placeholder", "Mohon Tunggu...");
                 e.preventDefault();
@@ -224,7 +224,7 @@ $('#editDataModal').on('show.bs.modal', function (event) {
                     url: `${APP_URL}/check-book`,
                     method: 'post',
                     data: {
-                        id: jQuery('#idBukuPertamaEdit').val()
+                        isbn: jQuery('#isbnPertama').val()
                     },
                     success: function(result){
                         jQuery('#judulBukuPertamaEdit').val(result);
@@ -232,7 +232,7 @@ $('#editDataModal').on('show.bs.modal', function (event) {
                 });
             });
             
-            jQuery('#cekBukuKeduaEdit').click(function(e){
+            jQuery('#isbnKeduaCek').click(function(e){
                 jQuery('#judulBukuKeduaEdit').val("");
                 jQuery('#judulBukuKeduaEdit').attr("placeholder", "Mohon Tunggu...");
                 e.preventDefault();
@@ -245,7 +245,7 @@ $('#editDataModal').on('show.bs.modal', function (event) {
                     url: `${APP_URL}/check-book`,
                     method: 'post',
                     data: {
-                        id: jQuery('#idBukuKeduaEdit').val()
+                        isbn: jQuery('#isbnKedua').val()
                     },
                     success: function(result){
                         jQuery('#judulBukuKeduaEdit').val(result);

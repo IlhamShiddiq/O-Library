@@ -5,6 +5,10 @@
     <meta name="_base_url" content="{{ url('/') }}">
 @endsection
 
+@section('more-css')
+    <link rel="stylesheet" href="{{asset('css/style-sliding-form.css')}}">
+@endsection
+
 @section('title', 'Data Transaksi')
 
 @section('breadcrumb')
@@ -104,101 +108,26 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body py-3">
-                    <form action="{{url('/transaction')}}" method="POST">
-                        @csrf
-                        <div class="row">
-                          <div class="col-6 pr-1">
-                            <div class="form-group">
-                                <small for="nameLibrarian">Nama Pustakawan (Librarian in charge)</small>
-                                <input type="text" class="form-control" id="nameLibrarian" name="nameLibrarian" placeholder="Isikan disini..." value="{{auth()->user()->name}}" readonly>
+                <div class="modal-body py-1">
+                    <div class="p-2">
+                        <form action="{{url('/transaction/add/member')}}" method="POST" class="row">
+                            @csrf
+                            <div class="col-10 mb-2 pr-1">
+                                <label for="nomorIndukMember" class="form-label">Nomor Induk Anggota</label>
+                                <input type="number" class="form-control" id="nomorIndukMember" name="nomorIndukMember" placeholder="Isikan Disini">
                             </div>
-                          </div>
-                          <div class="col-6 pl-1">
-                            <div class="form-group">
-                                <small for="nomorIndukLibrarian">NIP</small>
-                                <input type="text" class="form-control" id="nomorIndukLibrarian" name="nomorIndukLibrarian" placeholder="Isikan disini..." value="{{auth()->user()->nomor_induk}}" readonly>
+                            <div class="col-2 pt-2 pl-2">
+                                <button type="button" class="btn btn-primary full-width mt-4" id="cekAnggota"><i class="fas fa-search"></i></button>
                             </div>
-                          </div>
-                        </div>
-                        <div class="row form-mg">
-                          <div class="col-6 pr-1">
-                            <small for="nomorIndukMember">NIS/NIP Anggota</small>
-                            <div class="input-group mb-3">
-                                <input type="number" class="form-control @error('nomorIndukMember') is-invalid @enderror" id="nomorIndukMember" name="nomorIndukMember" placeholder="Isikan disini...">
-                                <div class="input-group-append">
-                                    <button type="button" class="btn btn-primary btn-sm-text px-2" id="cekAnggota"><i class="fas fa-search"></i></button>
-                                </div>
+                            <div class="col-12 mb-4">
+                                <label for="namaMember" class="form-label">Nama Anggota</label>
+                                <input type="text" class="form-control" id="namaMember" placeholder="Nama akan muncul disini" readonly>
                             </div>
-                          </div>
-                          <div class="col-6 pl-1">
-                            <div class="form-group">
-                                <small for="namaMember">Nama Anggota</small>
-                                <input type="text" class="form-control" id="namaMember" name="namaMember" placeholder="Isikan disini..." readonly>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary full-width">Submit</button>
                             </div>
-                          </div>
-                        </div>
-                        <div class="row mb-3 py-2 gray-bg gray-bg-transaction">
-                            <div class="col-12 text-center">
-                                <small>Jumlah buku dipinjam</small>
-                            </div>
-                            <div class="col-6 text-right pr-1">
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jumlahPinjam" id="satuBuku" value="1" checked>
-                                <label class="form-check-label" for="satuBuku">1 Buku</label>
-                              </div>
-                            </div>
-                            <div class="col-6 pl-1">
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jumlahPinjam" id="duaBuku" value="2">
-                                <label class="form-check-label" for="duaBuku">2 Buku</label>
-                              </div>
-                            </div>
-                          </div>
-                        <div class="row form-mg">
-                            <div class="col-6 pr-1">
-                                <div class="form-group">
-                                    <small for="idBukuPertama">ID Buku</small>
-                                    <div class="input-group mb-3">
-                                        <input type="number" class="form-control @error('idBukuPertama') is-invalid @enderror" id="idBukuPertama" name="idBukuPertama" placeholder="Isikan disini...">
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-primary btn-sm-text px-2" id="cekBukuPertama"><i class="fas fa-search"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 pl-1">
-                                <div class="form-group">
-                                    <small for="judulBukuPertama">Judul Buku</small>
-                                    <input type="text" class="form-control" id="judulBukuPertama" name="judulBukuPertama" placeholder="Isikan disini..." readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row form-mg d-none" id="row-buku-dua">
-                            <div class="col-6 pr-1 d-inline-block">
-                                <div class="form-group">
-                                    <small for="idBukuKedua">ID Buku kedua</small>
-                                    <div class="input-group mb-3">
-                                        <input type="number" class="form-control" id="idBukuKedua" name="idBukuKedua" placeholder="Isikan disini...">
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-primary mb-1 btn-sm-text px-2 full-height" id="cekBukuKedua"><i class="fas fa-search"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 pl-1 d-inline-block">
-                                <div class="form-group">
-                                    <small for="judulBukuKedua">Judul Buku kedua</small>
-                                    <input type="text" class="form-control" id="judulBukuKedua" name="judulBukuKedua" placeholder="Isikan disini..." readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center">
-                          <div class="col-12 text-center px-1">
-                            <button type="submit" class="btn btn-primary mt-3 px-5" name="tambahData">Tambah Data</button>
-                          </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
                 <div class="modal-footer text-center">
                     <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
@@ -283,6 +212,35 @@
 @endsection
 
 @section('more-js')
-    <script src="js/transaction-modal.js"></script>
+    {{-- <script src="js/transaction-modal.js"></script> --}}
+    {{-- <script src="js/sliding-form.js"></script> --}}
     <script src="js/transaction-ajax.js"></script>
+    <script>
+             
+        const checkBuku = (urutanBuku) => {
+            let id = document.querySelector(`#idBuku${urutanBuku}`).value;
+            id = id.replace('e','');
+            console.log(id)
+            document.querySelector(`#judulBuku${urutanBuku}`).value = "Mohon Tunggu";
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: `/check-book`,
+                method: 'post',
+                data: {
+                    id: jQuery(`#idBuku${urutanBuku}`).val()
+                },
+                success: function(result){
+                    document.querySelector(`#judulBuku${urutanBuku}`).value = "Mohon Tunggu";
+                    if (result !== "Not Found") document.querySelector(`#judulBuku${urutanBuku}`).value = result;
+                    else document.querySelector(`#judulBuku${urutanBuku}`).value = "Mohon Tunggu";
+                    
+                }
+            });
+        }
+        
+    </script>
 @endsection

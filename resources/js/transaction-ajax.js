@@ -23,48 +23,6 @@ jQuery('#cekAnggota').click(function(e){
     });
 });
 
-jQuery('#cekBukuPertama').click(function(e){
-    jQuery('#judulBukuPertama').val("");
-    jQuery('#judulBukuPertama').attr("placeholder", "Mohon Tunggu...");
-    e.preventDefault();
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': _CSRF
-        }
-    });
-    jQuery.ajax({
-        url: `${APP_URL}/check-book`,
-        method: 'post',
-        data: {
-            id: jQuery('#idBukuPertama').val()
-        },
-        success: function(result){
-            jQuery('#judulBukuPertama').val(result);
-        }
-    });
-});
-
-jQuery('#cekBukuKedua').click(function(e){
-    jQuery('#judulBukuKedua').val("");
-    jQuery('#judulBukuKedua').attr("placeholder", "Mohon Tunggu...");
-    e.preventDefault();
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': _CSRF
-        }
-    });
-    jQuery.ajax({
-        url: `${APP_URL}/check-book`,
-        method: 'post',
-        data: {
-            id: jQuery('#idBukuKedua').val()
-        },
-        success: function(result){
-            jQuery('#judulBukuKedua').val(result);
-        }
-    });
-});
-
 $('#keterlambatanModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) 
     const today = button.data('today')
@@ -296,4 +254,4 @@ $('#editDataModal').on('show.bs.modal', function (event) {
             });
         }
     });
-})
+});

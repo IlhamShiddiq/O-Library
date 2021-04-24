@@ -115,13 +115,19 @@ Route::middleware(['auth:sanctum', 'verified', 'prevent-back-history'])->group(f
     Route::get('/member/detail/{member}', [DataMemberController::class, 'memberDetail']);
 
     Route::get('/transaction', [DataTransaksiController::class, 'index']);
-    Route::post('/transaction', [DataTransaksiController::class, 'store']);
+    Route::get('/transaction/add', [DataTransaksiController::class, 'create']);
+    Route::post('/transaction/add/book', [DataTransaksiController::class, 'createBook']);
+    Route::post('/transaction/add/member', [DataTransaksiController::class, 'createMember']);
+    Route::get('/transaction/add/reset', [DataTransaksiController::class, 'reset']);
+    Route::post('/transaction/add/cancel', [DataTransaksiController::class, 'cancel']);
+    Route::post('/transaction/add', [DataTransaksiController::class, 'store']);
     Route::post('/transaction/edit/{transaction}', [DataTransaksiController::class, 'update']);
     Route::post('/transaction/search', [DataTransaksiController::class, 'search']);
     Route::get('/transaction/return-book/{transaction}', [DataTransaksiController::class, 'returnBook']);
     Route::post('/transaction/return-book/{transaction}', [DataTransaksiController::class, 'returnBookUpdate']);
     Route::post('/check-member', [DataTransaksiController::class, 'checkMember']);
     Route::post('/check-book', [DataTransaksiController::class, 'checkBook']);
+    Route::post('/transaction-check-book', [DataTransaksiController::class, 'checkBookTransaction']);
     Route::post('/check-detail', [DataTransaksiController::class, 'checkDetail']);
     Route::post('/check-detail-edit', [DataTransaksiController::class, 'checkDetailEdit']);
     Route::post('/late-transaction', [DataTransaksiController::class, 'lateTransaction']);

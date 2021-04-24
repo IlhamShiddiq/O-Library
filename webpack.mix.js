@@ -23,6 +23,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/print-pdf.js', 'public/js')
     .js('resources/js/transaction-modal.js', 'public/js')
     .js('resources/js/transaction-ajax.js', 'public/js')
+    .js('resources/js/sliding-form.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/style.scss', 'public/css')
     .sourceMaps();

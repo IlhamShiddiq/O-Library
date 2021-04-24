@@ -18,7 +18,6 @@
     @yield('content')
 
 
-    @yield('more-js')
     <!-- Optional JavaScript -->
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/font-awesome.js')}}"></script>

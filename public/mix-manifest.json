@@ -11,6 +11,7 @@
     "/js/font-awesome.js": "/js/font-awesome.js",
     "/js/member-modal.js": "/js/member-modal.js",
     "/js/print-pdf.js": "/js/print-pdf.js",
+    "/js/sliding-form.js": "/js/sliding-form.js",
     "/js/transaction-ajax.js": "/js/transaction-ajax.js",
     "/js/transaction-modal.js": "/js/transaction-modal.js"
 }

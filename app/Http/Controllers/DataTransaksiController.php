@@ -9,6 +9,7 @@ use App\Models\Book;
 use App\Models\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Cookie;
 
 class DataTransaksiController extends Controller
 {
@@ -39,110 +40,174 @@ class DataTransaksiController extends Controller
         return view('librarian/data-transaction', compact('datas', 'today'));
     }
 
+    public function create()
+    {
+        $lists = [];
+        $books = json_decode(request()->cookie('add-book-lists'), true);
+        $member = json_decode(request()->cookie('member-list'), true);
+        
+        if(!$books) array_push($lists, ['picture' => '-', 'title' => '-']);
+        else $lists = $books;
+
+        return view('librarian.add-transaction', compact('lists', 'member'));
+    }
+
+    public function createBook(Request $request)
+    {
+        $isbn = chop($request->isbn, 'e');
+        $book_data = Book::where('isbn', $isbn)->get();
+        if(count($book_data) == 0) return redirect('/transaction/add')->with('failed', 'Buku tidak terdaftar di sistem');
+
+        $lists = [];
+        $books = json_decode(request()->cookie('add-book-lists'), true);
+
+        if($books) {
+            if(isset($books[1]['id'])) return redirect('/transaction/add')->with('failed', 'Peminjaman tak boleh lebih dari 2 buku');
+
+            if($book_data[0]->id == $books[0]['id']) return redirect('/transaction/add')->with('failed', 'Buku ini telah ditambahkan sebelumnya');
+
+            array_push($lists, [
+                'id' => $books[0]['id'],
+                'picture' => $books[0]['picture'],
+                'title' => $books[0]['title'],
+                'status' => $books[0]['status']
+            ]);
+        }
+
+        array_push($lists, [
+                        'id' => $book_data[0]->id,
+                        'picture' => $book_data[0]->image,
+                        'title' => $book_data[0]->title,
+                        'status' => 'added'
+                    ]);
+
+        $cookie = cookie('add-book-lists', json_encode($lists), 60);
+
+        return redirect('/transaction/add')->cookie($cookie);
+    }
+
+    public function createMember(Request $request)
+    {
+        $nomor_induk = $request->nomorIndukMember;
+        $datas = User::where('nomor_induk', $nomor_induk)->get();
+        if(count($datas) == 0) return redirect('/transaction')->with('failed', 'Anggota tidak terdaftar di sistem');
+        if($datas[0]->role != 'Member') return redirect('/transaction')->with('failed', 'User ini tidak terdaftar sebagai anggota');
+
+        $data = [
+            'nomor_induk' => $nomor_induk,
+            'name' => $datas[0]->name
+        ];
+
+        $cookie = cookie('member-list', json_encode($data), 60);
+
+        return redirect('/transaction/add')->cookie($cookie);
+    }
+
+    public function reset() {
+        return redirect('/transaction/add')->withCookie(Cookie::forget('add-book-lists'));
+    }
+
+    public function cancel() {
+        return redirect('/transaction')->with('success', 'Peminjaman dibatalkan')->withCookie(Cookie::forget('add-book-lists'))->withCookie(Cookie::forget('member-list'));
+    }
+
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'nomorIndukMember' => 'required',
-            'idBukuPertama' => 'required'
-        ]);
-
-        if($request->jumlahPinjam == 2)
+        $books = json_decode(request()->cookie('add-book-lists'), true);
+        $member = json_decode(request()->cookie('member-list'), true);
+        if(!$member) return redirect('/transaction/add')->with('failed', 'Member yang meminjam belum ditambahkan');
+        if(!$books) return redirect('/transaction/add')->with('failed', 'Buku yang dipinjam belum ditambahkan');
+        
+        $idBukuPertama = $books[0]['id'];
+        $idBukuKedua = 0;
+        $nomor_induk = $member['nomor_induk'];
+        
+        $jumlahPinjam = count($books);
+        
+        if ($jumlahPinjam == 2)
         {
-            if($request->idBukuKedua == null)
-            {
-                return redirect('/transaction')->with('failed', 'Data belum lengkap');
-            }
+            $idBukuKedua = $books[1]['id'];
+        }
+        
+        // Ambil id dari nomor induk yang ditambah
+        $id = User::select('id')
+        ->where('nomor_induk', $nomor_induk)
+        ->where('role', 'Member')
+        ->get();
+        
+        // Mengecek apakah member ini sebelumnya pernah meminjam dan belum dikembalikan
+        $transaction_id = Transaction::where('member_id', $id[0]->id)
+                                        ->orderByDesc('id')
+                                        ->limit(1)
+                                        ->get();
 
-            if($request->idBukuPertama == $request->idBukuKedua)
+        if(count($transaction_id) != 0) {
+            $checkMember = Detail_Transactions::where('transaction_id', $transaction_id[0]->id)
+                                            ->where('status', '0')
+                                            ->get();
+
+            if(count($checkMember) != 0) return redirect('/transaction/add')->with('failed', 'Member ini sebelumnya telah meminjam dan belum mengembalikan buku tersebut');
+        }                                 
+
+        // Buku pertama yang dipinjam
+        $id_buku1 = Book::where('id', $idBukuPertama)->get();
+
+        if($id_buku1[0]->qty == 0)
+        {    
+            return redirect('/transaction/add')->with('failed', 'Buku(1) yang dipilih tidak tersedia');
+        }
+
+        // Buku kedua yang dipinjam (Jika ada)
+        if($jumlahPinjam == 2)
+        {
+            $id_buku2 = Book::where('id', $idBukuKedua)->get();
+            
+            if($id_buku2[0]->qty == 0)
             {
-                return redirect('/transaction')->with('failed', 'Buku yang dipinjam tidak boleh sama');
+                return redirect('/transaction/add')->with('failed', 'Buku(2) yang dipilih tidak tersedia');
             }
         }
 
-        $id = User::select('id')
-                    ->where('nomor_induk', $request->nomorIndukMember)
-                    ->where('role', 'Member')
-                    ->get();
+        // Memasukkan Data ke table transactions dan detail_transactions
+        $transaction = Transaction::create([
+            'member_id' => $id[0]->id,
+            'borrow_date' => date('Y-m-d'),
+        ]);
 
-        if($id->all())
+        $dicrease_qty = Book::where('id', $idBukuPertama)
+                            ->update([
+                                'qty' => $id_buku1[0]->qty - 1
+                                ]);
+
+        $id_desc = Transaction::orderByDesc('id')
+                            ->limit(1)
+                            ->get();
+
+        $detail = Detail_Transactions::create([
+            'transaction_id' => $id_desc[0]->id,
+            'book_id' => $idBukuPertama,
+            'date_of_return' => date_create('0001-01-01'),
+            'status' => '0',
+        ]);
+
+        if($jumlahPinjam == 2)
         {
-            // Buku pertama yang dipinjam
-            $id_buku1 = Book::where('id', $request->idBukuPertama)->get();
-
-            if($id_buku1->all())
-            {
-                if($id_buku1[0]->qty == 0)
-                {    
-                    return redirect('/transaction')->with('failed', 'Buku(1) yang dipilih tidak tersedia');
-                }
-            }
-            else
-            {
-                return redirect('/transaction')->with('failed', 'ID Buku(1) yang dimasukkan tidak ditemukan di sistem');
-            }
-
-            // Buku kedua yang dipinjam (Jika ada)
-            if($request->jumlahPinjam == 2)
-            {
-                $id_buku2 = Book::where('id', $request->idBukuKedua)->get();
-                
-                if($id_buku2->all())
-                {
-                    if($id_buku2[0]->qty == 0)
-                    {
-                        return redirect('/transaction')->with('failed', 'Buku(2) yang dipilih tidak tersedia');
-                    }
-                }
-                else 
-                {
-                    return redirect('/transaction')->with('failed', 'ID Buku(2) yang dimasukkan tidak ditemukan di sistem');
-                }
-            }
-
-            // Memasukkan Data ke table transactions dan detail_transactions
-            $transaction = Transaction::create([
-                'member_id' => $id[0]->id,
-                'borrow_date' => date('Y-m-d'),
-            ]);
-
-            $dicrease_qty = Book::where('id', $request->idBukuPertama)
+            $id_buku2 = Book::where('id', $idBukuKedua)->get();
+            
+            $dicrease_qty2 = Book::where('id', $idBukuKedua)
                                 ->update([
-                                    'qty' => $id_buku1[0]->qty - 1
+                                    'qty' => $id_buku2[0]->qty - 1
                                     ]);
-
-            $id_desc = Transaction::orderByDesc('id')
-                                ->limit(1)
-                                ->get();
 
             $detail = Detail_Transactions::create([
                 'transaction_id' => $id_desc[0]->id,
-                'book_id' => $request->idBukuPertama,
+                'book_id' => $idBukuKedua,
                 'date_of_return' => date_create('0001-01-01'),
                 'status' => '0',
             ]);
-
-            if($request->jumlahPinjam == 2)
-            {
-                $id_buku2 = Book::where('id', $request->idBukuKedua)->get();
-                
-                $dicrease_qty2 = Book::where('id', $request->idBukuKedua)
-                                    ->update([
-                                        'qty' => $id_buku2[0]->qty - 1
-                                        ]);
-
-                $detail = Detail_Transactions::create([
-                    'transaction_id' => $id_desc[0]->id,
-                    'book_id' => $request->idBukuKedua,
-                    'date_of_return' => date_create('0001-01-01'),
-                    'status' => '0',
-                ]);
-            }
-
-            return redirect('/transaction')->with('success', 'Peminjaman berhasil dilakukan');
-            
         }
-        
-        return redirect('/transaction')->with('failed', 'Nomor Induk yang dimasukkan tidak ditemukan di sistem');
+
+        return redirect('/transaction')->with('success', 'Peminjaman berhasil dilakukan')->withCookie(Cookie::forget('add-book-lists'))->withCookie(Cookie::forget('member-list'));
     }
 
     public function update(Request $request, Transaction $transaction)
@@ -372,6 +437,19 @@ class DataTransaksiController extends Controller
 
         if($title->all()) echo $title[0]->title;
         else echo "Not Found";
+    }
+
+    public function checkBookTransaction(Request $request)
+    {
+        $isbn = $request->isbn;
+
+        $datas = Book::join('publishers', 'publishers.id', '=', 'books.publisher_id')
+                    ->select('books.title', 'publishers.publisher', 'books.author')
+                    ->where('books.isbn', $isbn)
+                    ->get();
+
+        if($datas->all()) echo $datas[0]->title.'~'.$datas[0]->author.'~'.$datas[0]->publisher;
+        else echo "Not Found~Not Found~Not Found";
     }
 
     public function checkDetail(Request $request)

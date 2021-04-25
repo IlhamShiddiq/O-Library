@@ -5,10 +5,6 @@
     <meta name="_base_url" content="{{ url('/') }}">
 @endsection
 
-@section('more-css')
-    <link rel="stylesheet" href="{{asset('css/style-sliding-form.css')}}">
-@endsection
-
 @section('title', 'Data Transaksi')
 
 @section('breadcrumb')
@@ -213,7 +209,6 @@
 
 @section('more-js')
     {{-- <script src="js/transaction-modal.js"></script> --}}
-    {{-- <script src="js/sliding-form.js"></script> --}}
     <script src="js/transaction-ajax.js"></script>
     <script>
              

@@ -95,6 +95,8 @@ class DataBukuController extends Controller
             'gambarBuku' => 'mimes:jpeg,jpg,bmp,png|max:2000'
         ]);
 
+        $isbn = chop($request->isbnBuku, 'e');  
+
         $cat = Categories::where('id', $request->kategoriBuku)->get();
         $pub = Publisher::where('id', $request->penerbitBuku)->get();
 
@@ -106,7 +108,7 @@ class DataBukuController extends Controller
             else $image = "book-default.png";
 
             $book = Book::create([
-                'isbn' => $request->isbnBuku,
+                'isbn' => $isbn,
                 'title' => $request->judulBuku,
                 'publisher_id' => $request->penerbitBuku,
                 'author' => $request->penulisBuku,

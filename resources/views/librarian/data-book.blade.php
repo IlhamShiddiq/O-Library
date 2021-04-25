@@ -2,6 +2,11 @@
 
 @section('title', 'Data Buku')
 
+
+@section('more-css')
+    <link rel="stylesheet" href="{{asset('css/style-sliding-form.css')}}">
+@endsection
+
 @section('breadcrumb')
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Admin</li>
@@ -51,7 +56,7 @@
                 <div class="gray-wrapper radius-admin" style="{{$isSearch}}">
                     <div class="row">
                         <div class="col-7 pr-1">
-                            <button type="button" class="btn btn-success full-width" data-toggle="modal" data-target="#addDataModal"><i class="fas fa-plus"></i> Tambah Data</button>
+                            <button type="button" class="btn btn-success full-width" data-toggle="modal" data-target="#addData"><i class="fas fa-plus"></i> Tambah Data</button>
                         </div>
                         <div class="col-5 pl-1">
                           <button type="button" class="btn btn-primary full-width" data-toggle="modal" data-target="#exportDataModal"><i class="fas fa-file-upload"></i> Upload</button>
@@ -118,8 +123,8 @@
     </div>
 
     <!-- Add Data Modal -->
-    <div class="modal modal-admin fade" id="addDataModal" tabindex="-1" aria-labelledby="addDataModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal modal-admin fade" id="addData" tabindex="-1" aria-labelledby="addDataModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header text-center">
                     <img src="{{asset('img/icon.png')}}" alt="icon" width="55">
@@ -128,133 +133,176 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body py-3">
-                    <form action="{{url('/book')}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="row">
-                          <div class="col-12">
-                            <div class="form-group">
-                                <small for="judulBuku">Judul Buku</small>
-                                <input type="text" class="form-control @error('judulBuku') is-invalid @enderror" id="judulBuku" name="judulBuku" placeholder="Isikan disini...">
-                                @error('judulBuku')
-                                  <div id="validationServer03Feedback" class="invalid-feedback">
-                                    {{$message}}
-                                  </div>
-                                @enderror
+                <div class="modal-body">
+                    <div id="content">
+                        <div id="wrapper">
+                            <div id="steps" class="pt-3">
+                                <form id="formElem" name="formElem" action="{{url('/book')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <fieldset class="step">
+                                        <div class="title-step text-center full-width py-3 mb-2">DATA BUKU</div>
+                                        <div class="px-5">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                  <div class="form-group">
+                                                      <small for="judulBuku">Judul Buku</small>
+                                                      <input type="text" class="form-control @error('judulBuku') is-invalid @enderror" id="judulBuku" name="judulBuku" placeholder="Isikan disini...">
+                                                      @error('judulBuku')
+                                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                                          {{$message}}
+                                                        </div>
+                                                      @enderror
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="row form-mg">
+                                                <div class="col-4 pr-1">
+                                                  <div class="form-group">
+                                                      <small for="penerbitBuku">ID Penerbit Buku</small>
+                                                      <input type="number" class="form-control @error('penerbitBuku') is-invalid @enderror" id="penerbitBuku" name="penerbitBuku" placeholder="Isikan disini...">
+                                                      @error('penerbitBuku')
+                                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                                          {{$message}}
+                                                        </div>
+                                                      @enderror
+                                                  </div>
+                                                </div>
+                                                <div class="col-4 pl-1">
+                                                  <div class="form-group">
+                                                      <small for="kategoriBuku">ID Kategori Buku</small>
+                                                      <input type="number" class="form-control @error('kategoriBuku') is-invalid @enderror" id="kategoriBuku" name="kategoriBuku" placeholder="Isikan disini...">
+                                                      @error('kategoriBuku')
+                                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                                          {{$message}}
+                                                        </div>
+                                                      @enderror
+                                                  </div>
+                                                </div>
+                                                <div class="col-4 pl-1">
+                                                    <div class="form-group">
+                                                        <small for="tahunTerbit">Tahun Terbit</small>
+                                                        <input type="number" class="form-control @error('tahunTerbit') is-invalid @enderror" id="tahunTerbit" name="tahunTerbit" placeholder="Isikan disini...">
+                                                        @error('tahunTerbit')
+                                                          <div id="validationServer03Feedback" class="invalid-feedback">
+                                                            {{$message}}
+                                                          </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row form-mg">
+                                                <div class="col-8 pr-1">
+                                                  <div class="form-group">
+                                                      <small for="penulisBuku">Penulis Buku</small>
+                                                      <input type="text" class="form-control @error('penulisBuku') is-invalid @enderror" id="penulisBuku" name="penulisBuku" placeholder="Isikan disini...">
+                                                      @error('penulisBuku')
+                                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                                          {{$message}}
+                                                        </div>
+                                                      @enderror
+                                                  </div>
+                                                </div>
+                                                <div class="col-4 pl-1">
+                                                  <div class="form-group">
+                                                      <small for="stokBuku">Stok Buku</small>
+                                                      <input type="number" class="form-control @error('stokBuku') is-invalid @enderror" id="stokBuku" name="stokBuku" placeholder="Isikan disini...">
+                                                      @error('stokBuku')
+                                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                                          {{$message}}
+                                                        </div>
+                                                      @enderror
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="row form-mg">
+                                                <div class="col-12">
+                                                  <div class="form-group">
+                                                      <small for="tentangBuku">Tentang Buku</small>
+                                                      <textarea class="form-control @error('tentangBuku') is-invalid @enderror" id="tentangBuku" name="tentangBuku" placeholder="Isikan disini..." rows="3"></textarea>
+                                                      @error('tentangBuku')
+                                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                                          {{$message}}
+                                                        </div>
+                                                      @enderror
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="step">
+                                        <div class="title-step text-center full-width py-3 mb-3">GAMBAR BUKU</div>
+                                        <div class="px-5">
+                                            <div class="row form-mg mt-3">
+                                                <div class="col-12">
+                                                  <small for="gambarBuku">Gambar Buku</small>
+                                                  <div class="input-group">
+                                                      <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="gambarBuku" name="gambarBuku" onchange="document.getElementById('member-foto').src = window.URL.createObjectURL(this.files[0]), document.getElementById('name-label').innerHTML = this.files[0].name">
+                                                        <label class="custom-file-label" for="gambarBuku" id="name-label">Choose file</label>
+                                                      </div>
+                                                  </div>
+                                                  @error('gambarBuku')
+                                                    <p style="font-size: 80%; color: #dc3545; margin-top: .25rem">{{$message}}</p>
+                                                  @enderror
+                                                </div>
+                                                <div class="col-12 mt-3">
+                                                    <div class="note-opsional-form text-center p-2">
+                                                        <small>Bagian form ini bersifat opsional.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-center mt-3">
+                                                <div class="col-4 px-0">
+                                                  <div class="preview-img full-width" id="preview-img">
+                                                      <img class="full-width full-height fit-cover-top" id="member-foto">
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="step">
+                                        <div class="title-step text-center full-width py-3 mb-3">DATA ISBN BUKU</div>
+                                        <div class="px-5">
+                                            <div class="row form-mg mt-3">
+                                                <div class="col-12 pr-1">
+                                                  <div class="form-group">
+                                                      <small for="isbnBuku">Kode ISBN Buku</small>
+                                                      <input type="text" class="form-control @error('isbnBuku') is-invalid @enderror" id="isbnBuku" name="isbnBuku" placeholder="Isikan disini...">
+                                                      @error('isbnBuku')
+                                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                                          {{$message}}
+                                                        </div>
+                                                      @enderror
+                                                  </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="note-opsional-form text-center p-2">
+                                                        <small>Bagian form ini wajib diisi. Jika anda menggunakan scanner, langsung saja scan barcode ISBN yang ada di buku.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 text-center mt-4">
+                                                    <button type="submit" class="btn btn-success px-5 rounded-0 mx-1 mt-1">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
                             </div>
-                          </div>
+                            <div id="navigation" style="display:none;">
+                                <ul class="mt-1">
+                                    <li class="selected">
+                                        <a href="#" class="btn btn-primary rounded-0 mx-1 mt-1" style="width: 172px;">Data Buku</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn-primary rounded-0 mx-1 mt-1" style="width: 172px;">Gambar Buku</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn-primary rounded-0 mx-1 mt-1" style="width: 172px;">ISBN Buku</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="row form-mg">
-                          <div class="col-6 pr-1">
-                            <div class="form-group">
-                                <small for="penerbitBuku">ID Penerbit Buku</small>
-                                <input type="number" class="form-control @error('penerbitBuku') is-invalid @enderror" id="penerbitBuku" name="penerbitBuku" placeholder="Isikan disini...">
-                                @error('penerbitBuku')
-                                  <div id="validationServer03Feedback" class="invalid-feedback">
-                                    {{$message}}
-                                  </div>
-                                @enderror
-                            </div>
-                          </div>
-                          <div class="col-6 pl-1">
-                            <div class="form-group">
-                                <small for="kategoriBuku">ID Kategori Buku</small>
-                                <input type="number" class="form-control @error('kategoriBuku') is-invalid @enderror" id="kategoriBuku" name="kategoriBuku" placeholder="Isikan disini...">
-                                @error('kategoriBuku')
-                                  <div id="validationServer03Feedback" class="invalid-feedback">
-                                    {{$message}}
-                                  </div>
-                                @enderror
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row form-mg">
-                          <div class="col-8 pr-1">
-                            <div class="form-group">
-                                <small for="penulisBuku">Penulis Buku</small>
-                                <input type="text" class="form-control @error('penulisBuku') is-invalid @enderror" id="penulisBuku" name="penulisBuku" placeholder="Isikan disini...">
-                                @error('penulisBuku')
-                                  <div id="validationServer03Feedback" class="invalid-feedback">
-                                    {{$message}}
-                                  </div>
-                                @enderror
-                            </div>
-                          </div>
-                          <div class="col-4 pl-1">
-                            <div class="form-group">
-                                <small for="stokBuku">Stok Buku</small>
-                                <input type="number" class="form-control @error('stokBuku') is-invalid @enderror" id="stokBuku" name="stokBuku" placeholder="Isikan disini...">
-                                @error('stokBuku')
-                                  <div id="validationServer03Feedback" class="invalid-feedback">
-                                    {{$message}}
-                                  </div>
-                                @enderror
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row form-mg">
-                          <div class="col-8 pr-1">
-                            <div class="form-group">
-                                <small for="isbnBuku">Kode ISBN (xxx-xxx-xxxx-xx-x)</small>
-                                <input type="text" class="form-control @error('isbnBuku') is-invalid @enderror" id="isbnBuku" name="isbnBuku" placeholder="Isikan disini...">
-                                @error('isbnBuku')
-                                  <div id="validationServer03Feedback" class="invalid-feedback">
-                                    {{$message}}
-                                  </div>
-                                @enderror
-                            </div>
-                          </div>
-                          <div class="col-4 pl-1">
-                            <div class="form-group">
-                                <small for="tahunTerbit">Tahun Terbit</small>
-                                <input type="number" class="form-control @error('tahunTerbit') is-invalid @enderror" id="tahunTerbit" name="tahunTerbit" placeholder="Isikan disini...">
-                                @error('tahunTerbit')
-                                  <div id="validationServer03Feedback" class="invalid-feedback">
-                                    {{$message}}
-                                  </div>
-                                @enderror
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row form-mg">
-                          <div class="col-12">
-                            <div class="form-group">
-                                <small for="tentangBuku">Tentang Buku</small>
-                                <textarea class="form-control @error('tentangBuku') is-invalid @enderror" id="tentangBuku" name="tentangBuku" placeholder="Isikan disini..." rows="3"></textarea>
-                                @error('tentangBuku')
-                                  <div id="validationServer03Feedback" class="invalid-feedback">
-                                    {{$message}}
-                                  </div>
-                                @enderror
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row form-mg">
-                          <div class="col-12">
-                            <small for="gambarBuku">Gambar Buku</small>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="gambarBuku" name="gambarBuku" onchange="document.getElementById('member-foto').src = window.URL.createObjectURL(this.files[0]), document.getElementById('name-label').innerHTML = this.files[0].name">
-                                  <label class="custom-file-label" for="gambarBuku" id="name-label">Choose file</label>
-                                </div>
-                            </div>
-                            @error('gambarBuku')
-                              <p style="font-size: 80%; color: #dc3545; margin-top: .25rem">{{$message}}</p>
-                            @enderror
-                          </div>
-                        </div>
-                        <div class="row justify-content-center mt-3">
-                          <div class="col-4 px-0">
-                            <div class="preview-img" id="preview-img">
-                                <img class="full-width full-height fit-cover-top" id="member-foto">
-                            </div>
-                          </div>
-                          <div class="col-8 text-black pt-3 px-1">
-                            <small>Mohon diisi secara lengkap,<br>serta diisi dengan data yang sebenar-benarnya.</small>
-                            <button type="submit" class="btn btn-sm btn-primary mt-3 px-5" name="tambahData">Tambah Data</button>
-                          </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
                 <div class="modal-footer text-center">
                     <small>O'Library &copy; 2020, SMKN 1 Cimahi</small>
@@ -346,6 +394,7 @@
 @endsection
 
 @section('more-js')
+    <script src="js/sliding-form.js"></script>
     <script>
         $('#deleteModal').on('show.bs.modal', function (event) {
             let button = $(event.relatedTarget) // Button that triggered the modal

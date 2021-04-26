@@ -1,5 +1,5 @@
 # O'Library
-A web application for datas management system in library. Managing any datas like book, ebook, publisher, etc. Olibrary also a web that is used for member to check all book and ebook datas in library, with this web member can ask permission to read ebook(s).
+A web application for datas management system in library. Managing any datas like book, ebook, publisher, etc. Olibrary also a web that is used for member to check all book and ebook datas in library, with this web member can ask permission to read ebook(s). You can check this website [here](https://olibrary-smkn-1.herokuapp.com/)
 
 ## Installing Web Application
 ### 1. Sofware required
@@ -9,15 +9,15 @@ Before installing OLibrary, make sure your device has installed these softwares.
 ### 2. Installing
 * In your device, make a database named `olibrary` (MySQL DBMS)
 * Download all files from this github repo, extract it and open the Command Prompt/Terminal (make sure the path is direct to the project)
-* Type `composer install`, and enter
-* Type `npm install`, and enter
-* Type `php artisan key:generate`, and enter
-* Type `php artisan migrate`, and enter
-* Type `php artisan db:seed --class=ConfigsSeeder`, and enter
-* Type `php artisan db:seed --class=AdminSeeder`, and enter
-* Type `php artisan db:seed --class=LibrarianSeeder`, and enter
-* Type `php artisan db:seed --class=MemberSeeder`, and enter
-* Last, type `php artisan serve`, then open your browser with url address `localhost:8000`
+* Run `composer install`
+* Run `npm install`
+* Run `php artisan key:generate`
+* Run `php artisan migrate`
+* Run `php artisan db:seed --class=ConfigsSeeder`
+* Run `php artisan db:seed --class=AdminSeeder`
+* Run `php artisan db:seed --class=LibrarianSeeder`
+* Run `php artisan db:seed --class=MemberSeeder`
+* Last, run `php artisan serve`, then open your browser with url address `http://127.0.0.1:8000/`
 
 ## Account
 #### 1. Admin
@@ -33,6 +33,9 @@ Before installing OLibrary, make sure your device has installed these softwares.
 ## Built with
 * [Laravel v 8](https://laravel.com/docs/8.x)
 * [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/)
+
+### Note
+Please let me know, if youn find bugs in my website.
 
 
 All vectors designed by [Freepik](https://www.freepik.com/)

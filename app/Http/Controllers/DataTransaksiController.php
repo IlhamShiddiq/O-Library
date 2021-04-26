@@ -83,7 +83,7 @@ class DataTransaksiController extends Controller
 
         $cookie = cookie('add-book-lists', json_encode($lists), 60);
 
-        return redirect('/transaction/add')->cookie($cookie);
+        return redirect('/transaction/add')->cookie($cookie)->with('success', $book_data[0]->title." telah ditambahkan");
     }
 
     public function createMember(Request $request)

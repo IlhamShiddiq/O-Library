@@ -96,6 +96,7 @@ class DataBukuController extends Controller
         ]);
 
         $isbn = chop($request->isbnBuku, 'e');  
+        $isbn = str_replace('-', '', $isbn);
 
         $cat = Categories::where('id', $request->kategoriBuku)->get();
         $pub = Publisher::where('id', $request->penerbitBuku)->get();
@@ -204,7 +205,13 @@ class DataBukuController extends Controller
         else if($request->by == 'publisher') $tbl = 'publishers.'.$request->by;
         else $tbl = 'books.'.$request->by;
 
-        $search = '%'.$request->search.'%';
+        $keyword = $request->search;
+        if($request->by == 'isbn') {
+            $keyword = chop($keyword, 'e');  
+            $keyword = str_replace('-', '', $keyword);
+        }
+
+        $search = '%'.$keyword.'%';
         $isSearch = 'display: none';
 
         $books = DB::table('books')

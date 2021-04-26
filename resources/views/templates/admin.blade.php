@@ -192,8 +192,11 @@
                     <p class="pt-2">Anda harus mengisi form login lagi jika ingin<br>masuk kembali</p>
                 </div>
                 <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a href="{{url('/logout')}}" class="btn btn-danger">Yes</a>
+                    <form action="{{url('/logout')}}" method="post">
+                        @csrf
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" href="{{url('/logout')}}" class="btn btn-danger">Yes</button>
+                    </form>
                 </div>
             </div>
         </div>

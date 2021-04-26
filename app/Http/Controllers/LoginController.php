@@ -22,8 +22,12 @@ class LoginController extends Controller
         return redirect('/login')->with('status', 'Maaf, akun '.$request->username.' tidak dikenali, atau mungkin anda salah memasukkan data');
     }
 
-    public function logout() {
+    public function logout(Request $request) {
         Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect('/login');
     }
 }

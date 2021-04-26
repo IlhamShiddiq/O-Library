@@ -9,6 +9,8 @@ use App\Models\Book;
 use App\Models\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BorrowBook;
 use Cookie;
 
 class DataTransaksiController extends Controller
@@ -130,10 +132,9 @@ class DataTransaksiController extends Controller
         }
         
         // Ambil id dari nomor induk yang ditambah
-        $id = User::select('id')
-        ->where('nomor_induk', $nomor_induk)
-        ->where('role', 'Member')
-        ->get();
+        $id = User::where('nomor_induk', $nomor_induk)
+                    ->where('role', 'Member')
+                    ->get();
         
         // Mengecek apakah member ini sebelumnya pernah meminjam dan belum dikembalikan
         $transaction_id = Transaction::where('member_id', $id[0]->id)
@@ -206,6 +207,8 @@ class DataTransaksiController extends Controller
                 'status' => '0',
             ]);
         }
+
+        Mail::to($id[0]->email, $id[0]->name)->send(new BorrowBook($id[0], $transaction));
 
         return redirect('/transaction')->with('success', 'Peminjaman berhasil dilakukan')->withCookie(Cookie::forget('add-book-lists'))->withCookie(Cookie::forget('member-list'));
     }

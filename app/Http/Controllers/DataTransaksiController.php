@@ -489,7 +489,7 @@ class DataTransaksiController extends Controller
     {
         $id = $request->id;
 
-        $titles = Detail_Transactions::select('isbn', 'id', 'title')
+        $titles = Detail_Transactions::select('isbn', 'books.id', 'title')
                                     ->join('books', 'books.id', '=', 'detail_transactions.book_id')
                                     ->where('transaction_id', $id)
                                     ->where('status', '0')

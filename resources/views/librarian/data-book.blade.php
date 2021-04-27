@@ -398,7 +398,7 @@
     <script src="js/sliding-form.js"></script>
     <script>
         $('#deleteModal').on('show.bs.modal', function (event) {
-            let button = $(event.relatedTarget) /   / Button that triggered the modal
+            let button = $(event.relatedTarget) // Button that triggered the modal
             let id = button.data('id')
             let modal = $(this)
 

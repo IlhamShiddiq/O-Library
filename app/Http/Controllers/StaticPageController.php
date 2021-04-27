@@ -109,7 +109,7 @@ class StaticPageController extends Controller
                                     ->count();
 
         $pdf = PDF::loadView('report/report', compact('borrow_teacher', 'borrow_student', 'return_on_time', 'return_late', 'accepted_request', 'refused_request', 'message'));
-        return $pdf->download($this_month_name.' Report');
+        return $pdf->download($this_month_name.' Report.pdf');
     }
 
     public function excelReportMessage(Request $request)

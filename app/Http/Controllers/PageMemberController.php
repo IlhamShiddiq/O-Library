@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Ebook;
 use App\Models\Config;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -60,15 +61,25 @@ class PageMemberController extends Controller
         }
  
         $id = $book->id;
+        $this_month = date('n');
 
         $datas = DB::table('books')
-            ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
-            ->join('categories', 'books.category_id', '=', 'categories.id')
-            ->select('books.*', 'publishers.publisher', 'categories.category')
-            ->where('books.id', $id)
-            ->get();
+                    ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
+                    ->join('categories', 'books.category_id', '=', 'categories.id')
+                    ->select('books.*', 'publishers.publisher', 'categories.category')
+                    ->where('books.id', $id)
+                    ->get();
 
-        return view('member.detail-book', ['data' => $datas[0]]);
+        $histories = Transaction::join('detail_transactions', 'transactions.id', '=', 'detail_transactions.transaction_id')
+                                ->join('users', 'transactions.member_id', '=', 'users.id')
+                                ->join('members', 'users.id', '=', 'members.id')
+                                ->select('users.name', 'members.status', 'members.class')
+                                ->where('book_id', $id)
+                                ->whereMonth('transactions.borrow_date', $this_month)
+                                ->orderByDesc('transactions.created_at')
+                                ->paginate(5);
+
+        return view('member.detail-book', ['data' => $datas[0], 'histories' => $histories]);
     }
 
     public function bookSearch(Request $request)

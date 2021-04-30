@@ -47,6 +47,30 @@
                                 Diterbitkan oleh {{$data->publisher}}
                             </div>
                         </div>
+                        <div class="book-history mt-3 mb-1">
+                            <div class="book-history-tag-title px-4 py-2 mb-2 text-white text-center">
+                                RIWAYAT PEMINJAMAN BULAN INI
+                            </div>
+                            <table class="table table-hover">
+                                <thead class="table-dark">
+                                  <tr>
+                                    <th width="375" scope="col">Nama</th>
+                                    <th scope="col">Role/Kelas</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($histories as $history)
+                                        <tr>
+                                            <td>{{$history->name}}</td>
+                                            <td>{{$history->status}}/{{$history->class}}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <div class="pagination-wrapper position-relative full-width p-2 my-3">
+                                {{$histories->links()}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

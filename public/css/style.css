@@ -2756,6 +2756,14 @@ img.vector-confirm {
   transform: translate(-50%, -50%);
 }
 
+.book-history-tag-title {
+  width: 380px !important;
+  background-color: #7c7c7c;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  font-size: 14px;
+}
+
 @media (max-width: 575.98px) {
   .member-page .form-search .title p.main-title {
     font-size: 32px;

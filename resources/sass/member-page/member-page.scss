@@ -315,4 +315,12 @@
     }
 }
 
+.book-history-tag-title {
+    width: 380px !important;
+    background-color: rgb(124, 124, 124);
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    font-size: 14px;
+}
+
 @import './responsive.scss';

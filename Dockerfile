@@ -1,4 +1,4 @@
-FROM php:7.3-cli-alpine
+FROM php:7.4-alpine
 
 ENV \
     APP_DIR="/app" \
@@ -20,7 +20,7 @@ RUN apk add --update \
 RUN curl -sS https://getcomposer.org/installer | php -- \
     --install-dir=/usr/bin --filename=composer
 
-RUN cd $APP_DIR && composer update
+RUN cd $APP_DIR && composer update --ignore-platform-reqs
 RUN cd $APP_DIR && php artisan key:generate
 
 WORKDIR $APP_DIR

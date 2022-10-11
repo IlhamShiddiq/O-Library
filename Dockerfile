@@ -20,6 +20,7 @@ RUN apk add --update \
 RUN curl -sS https://getcomposer.org/installer | php -- \
     --install-dir=/usr/bin --filename=composer
 
+RUN cd $APP_DIR && composer dump-autoload --no-scripts
 RUN cd $APP_DIR && composer update --ignore-platform-reqs
 RUN cd $APP_DIR && php artisan key:generate
 

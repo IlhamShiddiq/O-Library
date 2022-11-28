@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendVerification;
 use App\Mail\ResendVerification;
@@ -34,7 +34,7 @@ class DataMemberController extends Controller
 
         $paginate = Config::all();
         $isSearch = '';
- 
+
         $members = DB::table('users')
             ->join('members', 'users.id', '=', 'members.id')
             ->select('users.id', 'users.nomor_induk', 'users.name', 'users.username', 'users.role', 'users.email', 'users.profile_photo_path', 'members.address', 'members.phone', 'members.status', 'members.class', 'members.confirm_code')
@@ -129,7 +129,7 @@ class DataMemberController extends Controller
 
             if($file) $file->move(public_path('uploaded_files/member-foto/'.$request->nomorInduk.'/'),$file->getClientOriginalName());
 
-            Mail::to($user->email, $user->name)->send(new SendVerification($user));
+//            Mail::to($user->email, $user->name)->send(new SendVerification($user));
 
             return redirect('/member')->with('success', 'Data '.$request->namaLengkap.' berhasil disimpan dan kode verifikasi telah berhasil terkirim');
         }
@@ -141,7 +141,7 @@ class DataMemberController extends Controller
         {
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
- 
+
         $id = auth()->user()->id;
         $datas = DB::table('users')
                     ->join('members', 'users.id', '=', 'members.id')
@@ -194,22 +194,22 @@ class DataMemberController extends Controller
                         'email' => $request->emailMember,
                         'profile_photo_path' => $foto
                         ]);
-        
+
         if($file) {
             if($users[0]->profile_photo_path != "default.jpg") File::delete(public_path('uploaded_files/member-foto/'.$users[0]->profile_photo_path));
             $file->move(public_path('uploaded_files/member-foto/'.$users[0]->nomor_induk),$file->getClientOriginalName());
         }
-        
+
         return redirect('/member/edit-profile')->with('success', 'Data Profile berhasil diubah');
     }
-        
+
     public function editPass()
     {
         if(!(auth()->user()->role == 'Member'))
         {
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
- 
+
         $id = auth()->user()->id;
         $users = DB::table('users')
                     ->select('users.id', 'users.username')
@@ -306,9 +306,9 @@ class DataMemberController extends Controller
                     ->update([
                         'confirm_code' => $code_generate,
                         ]);
-                        
+
             $user = User::find($member->id);
-            Mail::to($user->email, $user->name)->send(new ResendVerification($user));
+//            Mail::to($user->email, $user->name)->send(new ResendVerification($user));
 
             return redirect('/member')->with('success', 'Kode berhasil direset. Kode telah dikirim ke email pengguna');
         }

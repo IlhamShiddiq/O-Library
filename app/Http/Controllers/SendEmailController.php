@@ -21,7 +21,7 @@ class SendEmailController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         $today = date('Y-m-d H:i');
         $id = $transaction->id;
-        
+
         $user = User::select('email', 'name')
                     ->where('id', $transaction->member_id)
                     ->get();
@@ -30,8 +30,8 @@ class SendEmailController extends Controller
                     ->update([
                         'last_warned' => $today,
                         ]);
-        
-        Mail::to($user[0]->email, $user[0]->name)->send(new SendReminder($transaction));
+
+//        Mail::to($user[0]->email, $user[0]->name)->send(new SendReminder($transaction));
 
         return redirect('/transaction')->with('success', 'Email berhasil terkirim kepada '.$user[0]->name);
     }

@@ -47,7 +47,7 @@ class DataTransaksiController extends Controller
         $lists = [];
         $books = json_decode(request()->cookie('add-book-lists'), true);
         $member = json_decode(request()->cookie('member-list'), true);
-        
+
         if(!$books) array_push($lists, ['picture' => '-', 'title' => '-']);
         else $lists = $books;
 
@@ -119,23 +119,23 @@ class DataTransaksiController extends Controller
         $member = json_decode(request()->cookie('member-list'), true);
         if(!$member) return redirect('/transaction/add')->with('failed', 'Member yang meminjam belum ditambahkan');
         if(!$books) return redirect('/transaction/add')->with('failed', 'Buku yang dipinjam belum ditambahkan');
-        
+
         $idBukuPertama = $books[0]['id'];
         $idBukuKedua = 0;
         $nomor_induk = $member['nomor_induk'];
-        
+
         $jumlahPinjam = count($books);
-        
+
         if ($jumlahPinjam == 2)
         {
             $idBukuKedua = $books[1]['id'];
         }
-        
+
         // Ambil id dari nomor induk yang ditambah
         $id = User::where('nomor_induk', $nomor_induk)
                     ->where('role', 'Member')
                     ->get();
-        
+
         // Mengecek apakah member ini sebelumnya pernah meminjam dan belum dikembalikan
         $transaction_id = Transaction::where('member_id', $id[0]->id)
                                         ->orderByDesc('id')
@@ -148,13 +148,13 @@ class DataTransaksiController extends Controller
                                             ->get();
 
             if(count($checkMember) != 0) return redirect('/transaction/add')->with('failed', 'Member ini sebelumnya telah meminjam dan belum mengembalikan buku tersebut');
-        }                                 
+        }
 
         // Buku pertama yang dipinjam
         $id_buku1 = Book::where('id', $idBukuPertama)->get();
 
         if($id_buku1[0]->qty == 0)
-        {    
+        {
             return redirect('/transaction/add')->with('failed', 'Buku(1) yang dipilih tidak tersedia');
         }
 
@@ -162,7 +162,7 @@ class DataTransaksiController extends Controller
         if($jumlahPinjam == 2)
         {
             $id_buku2 = Book::where('id', $idBukuKedua)->get();
-            
+
             if($id_buku2[0]->qty == 0)
             {
                 return redirect('/transaction/add')->with('failed', 'Buku(2) yang dipilih tidak tersedia');
@@ -194,7 +194,7 @@ class DataTransaksiController extends Controller
         if($jumlahPinjam == 2)
         {
             $id_buku2 = Book::where('id', $idBukuKedua)->get();
-            
+
             $dicrease_qty2 = Book::where('id', $idBukuKedua)
                                 ->update([
                                     'qty' => $id_buku2[0]->qty - 1
@@ -208,7 +208,7 @@ class DataTransaksiController extends Controller
             ]);
         }
 
-        Mail::to($id[0]->email, $id[0]->name)->send(new BorrowBook($id[0], $transaction));
+//        Mail::to($id[0]->email, $id[0]->name)->send(new BorrowBook($id[0], $transaction));
 
         return redirect('/transaction')->with('success', 'Peminjaman berhasil dilakukan')->withCookie(Cookie::forget('add-book-lists'))->withCookie(Cookie::forget('member-list'));
     }
@@ -217,7 +217,7 @@ class DataTransaksiController extends Controller
     {
         $idPertama = null;
         $idKedua = null;
-        
+
         $id = Detail_Transactions::where('transaction_id', $transaction->id)
                                 ->where('status', '0')
                                 ->get();
@@ -263,7 +263,7 @@ class DataTransaksiController extends Controller
             $qty = Book::select('qty')
                         ->where('id', $idPertama)
                         ->get();
-                                    
+
             $dicrease_qty = Book::where('id', $idPertama)
                                     ->update([
                                         'qty' => $qty[0]->qty - 1
@@ -272,8 +272,8 @@ class DataTransaksiController extends Controller
             $qtyNew = Book::select('qty')
                         ->where('id', $id[0]->book_id)
                         ->get();
-                
-                                    
+
+
             $increase_qty = Book::where('id', $id[0]->book_id)
                                     ->update([
                                         'qty' => $qtyNew[0]->qty + 1
@@ -291,7 +291,7 @@ class DataTransaksiController extends Controller
             $qty = Book::select('qty')
                         ->where('id', $idKedua)
                         ->get();
-                        
+
             $dicrease_qty = Book::where('id', $idKedua)
                                     ->update([
                                         'qty' => $qty[0]->qty - 1
@@ -300,7 +300,7 @@ class DataTransaksiController extends Controller
             $qtyNew = Book::select('qty')
                         ->where('id', $id[1]->book_id)
                         ->get();
-                      
+
             $increase_qty = Book::where('id', $id[1]->book_id)
                                     ->update([
                                         'qty' => $qtyNew[0]->qty + 1
@@ -382,7 +382,7 @@ class DataTransaksiController extends Controller
             $qty_book1 = Book::select('qty')
                             ->where('id', $id_buku)
                             ->get();
-            
+
             $increase_qty = Book::where('id', $id_buku)
                                     ->update([
                                         'qty' => $qty_book1[0]->qty + 1
@@ -405,7 +405,7 @@ class DataTransaksiController extends Controller
             $qty_book2 = Book::select('qty')
                             ->where('id', $id_buku2)
                             ->get();
-            
+
             $increase_qty2 = Book::where('id', $id_buku2)
                                     ->update([
                                         'qty' => $qty_book2[0]->qty + 1
@@ -414,11 +414,11 @@ class DataTransaksiController extends Controller
             $denda += (date_diff(date_create($today), date_create($borrow_date[0]->borrow_date))->format('%a') - $config[0]->loan_deadline) * $config[0]->late_charge;
 
         }
-        
+
         if($request->returnBuku || $request->returnBukuKedua)
         {
             if($denda < 0) $denda=0;
-        
+
             return view('librarian/penalty-page', ["penalty" => $denda, "name" => $request->atasNama, "nomor_induk" => $request->atasNamaNomorInduk]);
         }
         else
@@ -532,7 +532,7 @@ class DataTransaksiController extends Controller
 
             if($data->class == null) $string_datas .= '-~';
             else $string_datas .= $data->class.'~';
-            
+
             $string_datas .= $data->title.'~';
             $string_datas .= $data->back.'~';
             $string_datas .= $data->last_warned.'~';

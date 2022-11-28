@@ -45,7 +45,7 @@ class DataPermissionController extends Controller
         $requested = Permission::where('confirmed', 0)->count();
         $expired = Permission::where('limit_date', '<', date('Y-m-d'))->count();
         $refused = Permission::where('accepted', 0)->count();
- 
+
         return view('librarian/data-permission', compact('permissions', 'count', 'requested', 'expired', 'refused'));
     }
 
@@ -82,7 +82,7 @@ class DataPermissionController extends Controller
             'submit_date' => date("Y-m-d"),
         ]);
 
-        Mail::to(auth()->user()->email, auth()->user()->name)->send(new UsingEbook(auth()->user()));
+//        Mail::to(auth()->user()->email, auth()->user()->name)->send(new UsingEbook(auth()->user()));
 
         return redirect('/member/ebook/detail/'.$ebook->id)->with('success', 'Berhasil diajukan, mohon tunggu hingga pengajuan dikonfirmasi, pemberitahuan konfirmasi dikirim melalui email');
 
@@ -103,7 +103,7 @@ class DataPermissionController extends Controller
         $permission = Permission::find($request->id);
         $user = User::find($permission->id_member);
 
-        Mail::to($user->email, $user->name)->send(new AcceptedEbook($user, $permission));
+//        Mail::to($user->email, $user->name)->send(new AcceptedEbook($user, $permission));
 
         return redirect('/permission')->with('success', 'Ajuan telah disetujui');
     }
@@ -121,7 +121,7 @@ class DataPermissionController extends Controller
         $permission = Permission::find($request->id);
         $user = User::find($permission->id_member);
 
-        Mail::to($user->email, $user->name)->send(new RejectedEbook($user, $permission));
+//        Mail::to($user->email, $user->name)->send(new RejectedEbook($user, $permission));
 
         return redirect('/permission')->with('success', 'Ajuan telah ditolak');
     }

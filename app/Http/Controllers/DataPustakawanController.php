@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendVerification;
 use App\Mail\ResendVerification;
@@ -47,7 +47,7 @@ class DataPustakawanController extends Controller
         return view('librarian.data-librarian', compact('librarians', 'count', 'isSearch'));
     }
 
-    public function librarianDetail(Librarian $librarian) 
+    public function librarianDetail(Librarian $librarian)
     {
         $datas = Librarian::join('users', 'users.id', '=', 'librarians.id')
                         ->select('users.*', 'librarians.address', 'librarians.phone')
@@ -79,10 +79,10 @@ class DataPustakawanController extends Controller
         else
         {
             $file = $request->file('photoLibrarian');
-    
+
             if($file) $image = $request->nomorInduk.'/'.$file->getClientOriginalName();
             else $image = "default.jpg";
-    
+
             $user = User::create([
                 'nomor_induk' => $request->nomorInduk,
                 'name' => $request->namaLibrarian,
@@ -98,11 +98,11 @@ class DataPustakawanController extends Controller
                 'phone' => $request->nomorTelepon,
                 'confirm_code' => $code_generate,
             ]);
-            
+
             if($file) $file->move(public_path('uploaded_files/librarian-foto/'.$request->nomorInduk.'/'),$file->getClientOriginalName());
 
-            Mail::to($user->email, $user->name)->send(new SendVerification($user));
-            
+//            Mail::to($user->email, $user->name)->send(new SendVerification($user));
+
             return redirect('/librarian')->with('success', 'Data '.$request->namaLibrarian.' berhasil disimpan. Kode verifikasi berhasil terkirim');
         }
     }
@@ -113,7 +113,7 @@ class DataPustakawanController extends Controller
         {
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
- 
+
         $id = auth()->user()->id;
         $users = DB::table('users')
                     ->join('librarians', 'users.id', '=', 'librarians.id')
@@ -182,7 +182,7 @@ class DataPustakawanController extends Controller
             if($users[0]->profile_photo_path != "default.jpg") File::delete(public_path('uploaded_files/librarian-foto/'.$users[0]->profile_photo_path));
             $file->move(public_path('uploaded_files/librarian-foto/'.$users[0]->nomor_induk.'/'),$file->getClientOriginalName());
         }
-        
+
         return redirect('/edit-profile')->with('success', 'Data Profile berhasil diubah');
     }
 
@@ -192,7 +192,7 @@ class DataPustakawanController extends Controller
         {
             return redirect('/dashboard')->with('failed', 'Anda tidak diizinkan untuk mengakses halaman tersebut');
         }
- 
+
         $id = auth()->user()->id;
         $users = DB::table('users')
                     ->select('users.id', 'users.username')
@@ -286,7 +286,7 @@ class DataPustakawanController extends Controller
         return view('librarian.data-librarian', compact('librarians', 'count', 'isSearch'));
         // dd($request->all());
     }
-    
+
     public function resetCode(Request $request, Librarian $librarian)
     {
         $code_generate = '';
@@ -304,13 +304,13 @@ class DataPustakawanController extends Controller
                         ]);
 
             $user = User::find($librarian->id);
-            Mail::to($user->email, $user->name)->send(new ResendVerification($user));
+//            Mail::to($user->email, $user->name)->send(new ResendVerification($user));
 
             return redirect('/librarian')->with('success', 'Kode berhasil direset, Kode verifikasi berhasil dikirim ke email pengguna');
         }
     }
 
-    
+
     public function importLibrarian(Request $request) {
         $validateData = $request->validate([
             'file' => 'required|mimes:xlsx,xls',

@@ -30,7 +30,7 @@ class ConfirmPageController extends Controller
         if($nomor_induk->all())
         {
             $id = $nomor_induk[0]->id;
-            
+
             $role = User::select('role')
                         ->where('id', $id)
                         ->get();
@@ -45,7 +45,7 @@ class ConfirmPageController extends Controller
                 {
                     return view('confirm-page.confirming-page', compact('id'));
                 }
-                else 
+                else
                 {
                     return redirect('/account/confirm')->with('status', 'Kode Konfirmasi tidak terdaftar di sistem');
                 }
@@ -59,7 +59,7 @@ class ConfirmPageController extends Controller
                 {
                     return view('confirm-page.confirming-page', compact('id'));
                 }
-                else 
+                else
                 {
                     return redirect('/account/confirm')->with('status', 'Kode Konfirmasi tidak terdaftar di sistem');
                 }
@@ -106,8 +106,8 @@ class ConfirmPageController extends Controller
                         'confirm_code' => null
                         ]);
                 }
-                
-                Mail::to($user->email, $user->name)->send(new Welcoming($user));
+
+//                Mail::to($user->email, $user->name)->send(new Welcoming($user));
 
                 return redirect('/login')->with('success', 'Akun berhasil dibuat, silakan untuk login kembali.');
             }

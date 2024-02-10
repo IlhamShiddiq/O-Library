@@ -18,7 +18,9 @@ RUN apt-get install -y \
     libreadline-dev \
     libfreetype6-dev \
     libzip-dev \
-    g++
+    g++ \
+    nodejs \
+    npm
 
 # 2. apache configs + document root
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
